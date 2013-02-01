@@ -1,3 +1,11 @@
+---
+layout: post
+title: structure assignment and its pitfall in C language
+date: 2013-01-28 21:47
+comments: true
+categories: programming
+footer: true
+---
 
 ###Problem
 
@@ -85,7 +93,7 @@ int main()
 Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. **It's dangerous!!**
 
 
-![Alt text](../images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png "Illustrates above source code memory layout.")
+![Alt text](/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png "Illustrates above source code memory layout.")
 
 ### Conclusion
 * Recommend use straight assignment '=' instead of memcpy.
