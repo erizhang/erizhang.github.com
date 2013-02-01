@@ -1,2 +1,20 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+@media only screen and (min-width: 1040px) {
+       body > nav {
+            @include border-top-radius(.4em);
+       }
+
+       body > footer {
+            @include border-bottom-radius(.4em);
+       }
+}
+
+@media only screen and (min-width: 550px) {
+       body > header h1{
+              background: url("/images/logoeric.png")  no-repeat 0 1px;
+              padding-right: 65px;
+       }
+       body > header h2 {padding-left: 65px;}
+}
