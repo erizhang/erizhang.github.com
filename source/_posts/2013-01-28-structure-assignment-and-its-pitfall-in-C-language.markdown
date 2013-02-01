@@ -7,7 +7,7 @@ categories: programming
 footer: true
 ---
 
-###Problem
+## Problem
 
 There is a structure type defined as below:
 {% codeblock lang:c %}
@@ -32,7 +32,7 @@ struct1 = struct2;
 {% endcodeblock %}
 Consider above ways, most of programmer won't use way #1, since it's so stupid ways compare to other twos, only if we are defining an structure assignment function. So, ***what's the difference between way #2 and way #3? And what's the pitfall of the structure assignment once there is array or pointer member existed?*** Coming sections maybe helpful for your understanding.
 
-### The difference between ***'=' straight assignment*** and ***memcpy***
+## The difference between ***'=' straight assignment*** and ***memcpy***
 
 The <code>struct1=struct2;</code> notation is not only **more concise**, but also **shorter** and **leaves more optimization opportunities to the compiler**. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That's a huge **difference in readability** as well, although <code>memcpy</code> does the same in this case.
 
@@ -40,7 +40,7 @@ Copying by straight assignment is probably best, since it's shorter, easier to r
 
 Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (*It will be introduced below section*). If we use straight structure assignment '=' in C++, we **can consider to overload the <code>operator=</code> function**, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.
 
-### The pitfall of structure assignment:
+## The pitfall of structure assignment:
 Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you're aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.
 
 If the structures are of compatible types, yes, you can, with something like:
@@ -58,7 +58,7 @@ dest_struct->strptr = strdup(source_struct->strptr);
 
 This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn't have a strdup (it's not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.
 
-#### Example of trap:
+### Example of trap:
 {% codeblock lang:c %}
 #include <stdio.h>
 #include <stdlib.h>
@@ -95,11 +95,11 @@ Below diagram illustrates above source memory layout, if there is a pointer fiel
 
 ![Alt text](/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png "Illustrates above source code memory layout.")
 
-### Conclusion
+## Conclusion
 * Recommend use straight assignment '=' instead of memcpy.
 * If structure has pointer or array member, please consider the pointer alias problem, it will lead dangling pointer once incorrect use. Better way is implement structure assignment function in C, and overload the operator= function in C++.
 
-### Reference:
+## Reference:
 * [stackoverflow.com: structure assignment or memcpy](http://stackoverflow.com/questions/5383318/struct-assignment-or-memcpy "struct assignment")
 * [stackoverflow.com: assign one struct to another in C](http://stackoverflow.com/questions/2302351/assign-one-struct-to-another-in-c "assign one struct to another")
 * [bytes.com: structures assignment](http://bytes.com/topic/c/answers/215832-structures-assignment "structures assignment")

@@ -11,7 +11,7 @@ In our organization, we have a basic rule is: If you make retrospective for one 
 
 My grandpa told my mother, and my mother told me that you have to look back and reflect on your life every night before you go to bed. It’s difficult for me, because I always tell story to my kid during that time, or do others, you know that... So I demand me shall make retrospective at least once annually.
 
-### How have things gone?
+## How have things gone?
 
 2012, some small changes in my job. I resigned my R&D manager job, and selected R&D coach job. Make this decision, it was based on my interesting, and strength(I think so). Some other reason is that I like to try some new rather than maintain old, I’d like do some challenge works.  Be a R&D manager, I would think I’m somebody’s boss, only feel good, but it’s shit, since this manager title sometimes it will blind your eyes. To be honest, had such title, it just gratify my vanity after your handle it for years. After I had known what R&D manager does, how to be a R&D manager, and understand the real politic rule, I decide to quit, 
 
@@ -34,6 +34,6 @@ Another interesting works is have a taste on the translation works, in 2012, fin
 * [Thinking, Fast and Slow]("http://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374275637" "Thinking, Fast and Slow")
 * [Software Exorcism: A Handbook for Debugging and Optimizing Legacy Code (Expert's Voice)]("http://www.amazon.com/Software-Exorcism-Handbook-Debugging-Optimizing/dp/B008SMFV9W", "Software Exorcism")
 
-### What improvements are needed
+## What improvements are needed
 
 Be fat, shall make a plan to resolve this problem. I shall learn some web technical in this web era, and be more active in open communities, learn more, and also shall seriously consider where I go. Maybe leave this country is a choice, even it’s not easy for a married man, so practice English communication skill is more important than before. I’ll continually post English blog here, translate English post to Chinese, and practice more.
