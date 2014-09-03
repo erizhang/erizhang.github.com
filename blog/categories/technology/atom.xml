@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technology | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-09-03T15:43:03+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat/"/>
+    <updated>2012-12-18T10:51:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat</id>
+    <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
+
+<h2>What&rsquo;s the coderetreat</h2>
+
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
+
+<p>In the day, all participants practiced below modern development practices:</p>
+
+<ul>
+<li>Pair-programming</li>
+<li>Unit test</li>
+<li>Test-Driven Development (TDD)</li>
+<li>Code refactoring</li>
+</ul>
+
+
+<h2>Rules and practice</h2>
+
+<p>In each session there were some interesting rules/limitation, to guide people go beyond the border of their programming habits, and re-think of important aspects of programming.</p>
+
+<ul>
+<li>RULE #1. Pair-programming is requried</li>
+<li>RULE #2. TDD (Test-Driven Development) is required</li>
+<li>RULE #3. Clean Code is required</li>
+<li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
+<li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
+<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
+</ul>
+
+
+<p>Beside these rules, each session is finished, programmer shall switch pair and permanent remove the previous typing code, we demand this since there would be more chance to share the idea as more as possiable, demand to remove the source code because we were willing to make programmer understand and believe they will coding better.</p>
+
+<p>We took 6 sessions for each rule, and wrap up in the end. Also had video connecting with other cities (Beijing, Shanghai, Taiyuan, Tokyo, Singapore, Hanoi, Ho Chi Minh) via google hangout.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
+
+<h2>Sponsor</h2>
+
+<p>This event is for free, and attendee deserve one lunch which better than pizza, and some soft drink, fruit. So we need some budget, luckly we address a mail to our head, and tell her this event is align with organization goal, and will help to promote the programming competence development in our organization, and finally, she nod for the buget plan, the cost was around 800RMB.</p>
+
+<h2>Attendee</h2>
+
+<p>Since this is an open event, we were looking forward to more programmers come from different company and industry, and coding in different programming language, it will increase the idea diversity, so we advertise on social networks. But later just come 2 persons from outside our company, it prove our advertisement was failed. So, if we plan to facilitate same event, we will advertise on some programming community will be better.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
+
+<p>Of cause, the advertisement inside our company is quite good, there were more then 20 programmers coming.</p>
+
+<p><em>Suggest the number limited in 30 will better to organize.</em></p>
+
+<h2>Problem for programming</h2>
+
+<p>The problem is <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Conway's Game of Life">Game of life</a>, programming language is no restrict, actually, we encourage people use strange language.</p>
+
+<p>As my feeling, the event is successful, and quite many people ask me when we will facilitate same event after then. Also, help people to build the modern programming awareness, and change the mindset of that limitation (restriction) is not impediment, instead it demends you think more, it likes the matchstick to light your thinking, open your mind.</p>
+
+<p>More pictures from Hangzhou GDCR 2012, please click <a href="http://coderetreat.org/photo/album/show?id=6456126%3AAlbum%3A18835&amp;xg_source=activity" title="GDCR2012 Hangzhou">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

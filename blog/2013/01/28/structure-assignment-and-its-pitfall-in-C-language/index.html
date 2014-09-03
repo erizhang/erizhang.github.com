@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Structure Assignment and Its Pitfall in C Language - Actionary</title>
+  <meta name="author" content="Eric Zhang">
+
+  
+  <meta name="description" content="Problem There is a structure type defined as below: 1
+2
+3
+4
+5
+typedef struct __map_t { int code; char name[NAME_SIZE]; char *alias;
+}map_t; If we &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40225877-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Actionary</a></h1>
+  
+    <h2>A man is valued by his works, not his words!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zhangliaoyuan.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Structure Assignment and Its Pitfall in C Language</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-01-28T21:47:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:47 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Problem</h2>
+
+<p>There is a structure type defined as below:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">__map_t</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">alias</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="kt">map_t</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>If we want to assign <code>map_t</code> type variable <code>struct2</code> to <code>sturct1</code>, we usually have below 3 ways:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* Way #1: assign the members one by one */</span>
+</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">code</span><span class="p">;</span>
+</span><span class='line'><span class="n">strncpy</span><span class="p">(</span><span class="n">struct1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">struct2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">);</span>
+</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">alias</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* Way #2: memcpy the whole memory content of struct2 to struct1 */</span>
+</span><span class='line'><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">struct1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">struct2</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">struct1</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* Way #3: straight assignment with &#39;=&#39; */</span>
+</span><span class='line'><span class="n">struct1</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Consider above ways, most of programmer won&rsquo;t use way #1, since it&rsquo;s so stupid ways compare to other twos, only if we are defining an structure assignment function. So, <strong><em>what&rsquo;s the difference between way #2 and way #3? And what&rsquo;s the pitfall of the structure assignment once there is array or pointer member existed?</em></strong> Coming sections maybe helpful for your understanding.</p>
+
+<h2>The difference between <strong><em>&lsquo;=&rsquo; straight assignment</em></strong> and <strong><em>memcpy</em></strong></h2>
+
+<p>The <code>struct1=struct2;</code> notation is not only <strong>more concise</strong>, but also <strong>shorter</strong> and <strong>leaves more optimization opportunities to the compiler</strong>. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That&rsquo;s a huge <strong>difference in readability</strong> as well, although <code>memcpy</code> does the same in this case.</p>
+
+<p>Copying by straight assignment is probably best, since it&rsquo;s shorter, easier to read, and has a higher level of abstraction. Instead of saying (to the human reader of the code) &ldquo;copy these bits from here to there&rdquo;, and requiring the reader to think about the size argument to the copy, you&rsquo;re just doing a straight assignment (&ldquo;copy this value from here to here&rdquo;). There can be no hesitation about whether or not the size is correct.</p>
+
+<p>Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (<em>It will be introduced below section</em>). If we use straight structure assignment &lsquo;=&rsquo; in C++, we <strong>can consider to overload the <code>operator=</code> function</strong>, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.</p>
+
+<h2>The pitfall of structure assignment:</h2>
+
+<p>Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you&rsquo;re aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.</p>
+
+<p>If the structures are of compatible types, yes, you can, with something like:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>}
+The only thing you need to be aware of is that this is a shallow copy. In other words, if you have a <code>char *</code> pointing to a specific string, both structures will point to the same string.</p>
+
+<p>And changing the contents of one of those string fields (the data that the <code>char <em></code> points to, not the <code>char </em></code> itself) will change the other as well. For these situations a &ldquo;deep copy&rdquo; is really the only choice, and that needs to go in a function. If you want a easy copy without having to manually do each field but with the added bonus of non-shallow string copies, use strdup:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
+</span><span class='line'><span class="n">dest_struct</span><span class="o">-&gt;</span><span class="n">strptr</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="n">source_struct</span><span class="o">-&gt;</span><span class="n">strptr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn&rsquo;t have a strdup (it&rsquo;s not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.</p>
+
+<h3>Example of trap:</h3>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;stdlib.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define NAME_SIZE   16</span>
+</span><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">_map_t</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">alias</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="kt">map_t</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">map_t</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/* initialize the a&#39;s members value */</span>
+</span><span class='line'>    <span class="n">a</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">snprintf</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">,</span> <span class="s">&quot;Controller SW3&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">alias</span> <span class="o">=</span> <span class="s">&quot;RNC&amp;IPA&quot;</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">a</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">alias</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/* assign the value via memcpy */</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="cm">/* assign the value via &#39;=&#39; */</span>
+</span><span class='line'>    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&rsquo;s dangerous!!</strong></p>
+
+<p><img src="/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
+
+<h2>Conclusion</h2>
+
+<ul>
+<li>Recommend use straight assignment &lsquo;=&rsquo; instead of memcpy.</li>
+<li>If structure has pointer or array member, please consider the pointer alias problem, it will lead dangling pointer once incorrect use. Better way is implement structure assignment function in C, and overload the operator= function in C++.</li>
+</ul>
+
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/5383318/struct-assignment-or-memcpy" title="struct assignment">stackoverflow.com: structure assignment or memcpy</a></li>
+<li><a href="http://stackoverflow.com/questions/2302351/assign-one-struct-to-another-in-c" title="assign one struct to another">stackoverflow.com: assign one struct to another in C</a></li>
+<li><a href="http://bytes.com/topic/c/answers/215832-structures-assignment" title="structures assignment">bytes.com: structures assignment</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29" title="struct in C programming language">wikipedia: struct in C programming language</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric Zhang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-01-28T21:47:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:47 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/" data-via="zhangliaoyuan" data-counturl="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/14/retrospective-of-my-2012/" title="Previous Post: Retrospective of my 2012">&laquo; Retrospective of my 2012</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/23/team-gethering-game/" title="Next Post: Team Gathering Game">Team Gathering Game &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/02/talk-about-agile/">2B青年欢乐多之敏捷扫盲</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/24/translating-preface-of-software-exorcism/">驱魔人 ——《软件驱魔术》译者序</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/17/Hatching-twitter-reading-notes/">一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/10/gerrit-jenkins-subversion-integration/">Build CI Environment With Gerrit, Jenkins and Subverison</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/30/why-we-need-visual-task-board/">Why We Need Visual Task Board</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/how-programmer-surf-internet/">程序员上网扫盲</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/08/codermetrics-in-scrumgathering/">Speaking Codermetrics in ScrumGathering Shanghai 2013</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/25/bee-watcher/">Bee Watcher</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/30/exception-has-been-normal/">Exception Has Been Normal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/27/take-care-of-your-integer-variable/">Take Care of Your Integer Variables</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <p><a class="twitter-timeline" href="https://twitter.com/zhangliaoyuan" data-widget-id="360654469018554368">Tweets by @zhangliaoyuan</a></p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Eric Zhang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'actionary';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/';
+        var disqus_url = 'http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-09-03T15:43:03+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Build CI Environment With Gerrit, Jenkins and Subverison]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
+    <updated>2013-10-10T11:31:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
+    <content type="html"><![CDATA[<h2>1. Overview</h2>
+
+<h3>1.1. Purpose</h3>
+
+<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&rsquo;d like mark my practice notes here.</p>
+
+<ul>
+<li>Gerrit is <code>git</code> repository management tools, more external reference you can read about the benefits of <code>git</code></li>
+<li>Gerrit provides good source code review web UI</li>
+<li>Gerrit is easier to integrate with jenkins</li>
+</ul>
+
+
+<p>So, from developer perspective of view, he/she can focus on source code changing/implementation, no more interruption from process manager or quality manager. From process manager view, he/she can define the source code commit and review process easier via gerrit configuration. From quality manager view, he/she can easier get the source code and review quality metrics which via developed metrics system (cooperate with jenkins and gerrit through REST query API).</p>
+
+<p>Of cause, if your organization still using subversion, you can use subgit to sync the changes between subversion and gerrit.</p>
+
+<h3>1.2. Architecture</h3>
+
+<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
+
+<p>Team can use subgit mirror the project to team owned gerrit server, and then team member clone the project to their local disk. Any changes making will be happen in local repository, after changes done. Developer can push the changes to remote repository (i.e., the gerrit server git repository). Once the changes is pushed to the server, gerrit will trigger jenkins to verify the changes (Compiling, unit testing, regression testing etc. CI jobs will be ran), and meanwhile, gerrit will send the review request mail to dedicated reviewer. After the reviewer approved the changes and jenkins verified okay, the source code changes can be merged into project master which is located in gerrit git repository. Otherwise, developer shall rework and push new patch again.</p>
+
+<h2>2. Gerrit Deployment</h2>
+
+<h3>2.1. Installation</h3>
+
+<pre>
+gerrit@gerrit-Workstation:~/gerrit$ java -jar gerrit-2.6.1.war init -d review_site
+</pre>
+
+
+<p>Once finish the installation of gerrit, it will be started automatically, or you can switch to <code>$(ROOT)/bin</code> folder, and execute command</p>
+
+<pre>
+gerrit@gerrit-Workstation:~/gerrit/review_site/bin$ ./gerrit.sh start
+Starting Gerrit Code Review: OK
+</pre>
+
+
+<p>
+to start it.</p>
+
+<h3>2.2. LDAP Configuration</h3>
+
+<p>To support the LDAP authentication, you have to change the gerrit configuration under <code>$(ROOT)/etc/gerrit.config</code>, so that, you can use the LDAP type to authenticate the gerrit login and git operates.</p>
+
+<pre>
+[auth]
+        type = LDAP
+        gitBasicAuth = true  #This option means user can push source via ldap authentication during execute git related comments.
+[ldap]
+        server = ldap://ldap-server-address:389 #fill yours
+        username = cn=BOOTMAN_Acc,ou=SystemUsers,ou=Accounts,o=... #fill yours
+        accountBase = ou=People,o=xxx #fill yours
+        accountPattern = (uid=${username})
+</pre>
+
+
+<h3>2.3. Create a new project</h3>
+
+<h4>Login the gerrit web UI</h4>
+
+<p>Type the http address of gerrit service on browser, in this case, it&rsquo;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
+
+<h4>Create new project</h4>
+
+<p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
+
+<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
+Figure 1-1</p>
+
+<p>After create this project, it means create a new project git repository under gerrit git repositories folder. In this case, the new project git repository is <a href="http://192.168.1.100:8081/gameoflife_java" title="project repository">http://192.168.1.100:8081/gameoflife_java</a>. You can clone this project in your local PC by execute this command.</p>
+
+<pre>
+client@client-Workstation:~/workspace$ git clone http://192.168.1.100:8081/gameoflife_java
+Cloning into 'gameoflife_java'...
+warning: You appear to have cloned an empty repository.
+</pre>
+
+
+<p>Now you have cloned the repository, because this repository is empty, so there is warning prompted.</p>
+
+<pre>
+client@client-Workstation:~/workspace/gameoflife_java$ git remote -v
+origin  http://192.168.1.100:8081/gameoflife_java (fetch)
+origin  http://192.168.1.100:8081/gameoflife_java (push)
+</pre>
+
+
+<h3>2.4. Client works</h3>
+
+<p>As developer, the most of works are done in client site, since your local git repository will cooperate with remote gerrit git repository, we have to do some initial step firstly.</p>
+
+<h5>Get the commit-msg which is used for generate the changed-id:</h5>
+
+<pre>
+client@client-Workstation:~/workspace$ cd gameoflife_java/
+client@client-Workstation:~/workspace/gameoflife_java$ curl -o .git/hooks/commit-msg http://192.168.1.100:8081/tools/hooks/commit-msg
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  4276  100  4276    0     0   3515      0  0:00:01  0:00:01 --:--:--  4341
+client@client-Workstation:~/tmp/gameoflife_java$ chmod u+x .git/hooks/commit-msg
+client@client-Workstation:~/tmp/gameoflife_java$ 
+</pre>
+
+
+<h5>Configure the git user properties:</h5>
+
+<pre>
+client@client-Workstation:~/workspace/gameoflife_java$ git config remote.origin.push HEAD:refs/for/master
+client@client-Workstation:~/workspace/gameoflife_java$ git config user.name erizhang
+client@client-Workstation:~/workspace/gameoflife_java$ git config user.email eric.zhang@xxx.com
+client@client-Workstation:~/workspace/gameoflife_java$ 
+</pre>
+
+
+<p>Okay, from here, you can execute general git command to commit and push your source code changes.</p>
+
+<pre>
+client@client-Workstation:~/workspace/gameoflife_java$ vim README.md 
+client@client-Workstation:~/workspace/gameoflife_java$ git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#   README.md
+nothing added to commit but untracked files present (use "git add" to track)
+client@client-Workstation:~/workspace/gameoflife_java$ git add .
+client@client-Workstation:~/workspace/gameoflife_java$ git commit -m 'add README.md to initialize this repository'
+[master (root-commit) 585f136] add README.md to initialize this repository
+ 1 file changed, 18 insertions(+)
+ create mode 100644 README.md
+</pre>
+
+
+<p>Execute above command, we have already commit the source code changes in local git repository, and then we have to push them to our gerrit server git repository:</p>
+
+<pre>
+client@client-Workstation-Workstation:~/workspace/gameoflife_java$ git push origin
+Username for 'http://192.168.1.100:8081': erizhang
+Password for 'http://erizhang@192.168.1.100:8081': 
+remote: Processing changes: new: 1, refs: 1, done    
+remote: 
+remote: New Changes:
+remote:   http://192.168.1.100:8081/1
+remote: 
+To http://192.168.1.100:8081/gameoflife_java
+ * [new branch]      HEAD -> refs/for/master
+client@client-Workstation-Workstation:~/workspace/gameoflife_java$ 
+</pre>
+
+
+<p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
+<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
+
+<p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
+
+<h3>2.5. Create ReviewBoard group and access control</h3>
+
+<h4>Create ReviewBoard group and add the members</h4>
+
+<p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
+<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
+
+<h4>Access control of the new create group</h4>
+
+<p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
+<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
+
+<p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
+
+<h2>3. Jenkins deployment</h2>
+
+<h3>3.1. Install Jenkins</h3>
+
+<pre>
+jenkins@jenkins-Workstation:~/gerrit/jenkins$ wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get update
+jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get install jenkins
+</pre>
+
+
+<h3>3.2. Start jenkins</h3>
+
+<p>If you want to start jenkins with another port rather than default port 8080，you can modify below configuration file, and set the httpPort to your prefer:</p>
+
+<pre>
+jenkins@jenkins-Workstation:~$ sudo vim /etc/default/jenkins
+</pre>
+
+
+<p>Start jenkins:</p>
+
+<pre>
+jenkins@jenkins-Workstation:~$ sudo /etc/init.d/jenkins start
+ * Starting Jenkins Continuous Integration Server jenkins                                                   [ OK ]
+jenkins@jenkins-Workstation:~$
+</pre>
+
+
+<h2>4. Gerrit Trigger</h2>
+
+<h3>4.1. Install the <code>Gerrit Trigger</code> Plugin</h3>
+
+<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &ldquo;Manage Jenkins&rdquo; -> &ldquo;Manage Plugin&rdquo;, and then you can find the <code>Gerrit Trigger</code> in the &ldquo;Available&rdquo; tab.</p>
+
+<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &ldquo;Available&rdquo; tab, maybe you should select &ldquo;Advanced&rdquo; tab, and click &ldquo;Check Now&rdquo; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &ldquo;Advanced&rdquo; tab as well.</em></p></blockquote>
+
+<p>Select the plugin, and install without restart, the process which shows like this.</p>
+
+<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
+
+<h3>4.2. Generate jenkins needs ssh-key for <code>Gerrit Trigger</code> usage</h3>
+
+<p>Since jenkins will operate gerrit via SSH protocol, to Gerrit, there will be a gerrit user account represents jenkins. So, this step is generate rsa key first.</p>
+
+<pre>
+jenkins@jenkins-Workstation:/var/lib/jenkins$ sudo ssh-keygen                                   -t rsa -C "jenkins@xxx.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): /var/lib/jenkins/.ssh/i                                  d_rsa
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /var/lib/jenkins/.ssh/id_rsa.
+Your public key has been saved in /var/lib/jenkins/.ssh/id_rsa.pub.
+The key fingerprint is:
+8d:e6:0c:42:cf:3b:d6:52:63:e8:a0:d7:9a:7b:5f:bd jenkins@xxx.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|                 |
+|    .            |
+|   . o . o       |
+|    o = S .      |
+|   . = X . .     |
+|  . . B + . .    |
+|   . +.o .   .   |
+|    +o ..   E    |
++-----------------+
+</pre>
+
+
+<h3>4.3. Create <code>jenkins</code> user account for jenkins</h3>
+
+<p>In jenkins server, generate the jenkins rsa public key by this command:</p>
+
+<p>Create a new gerrit user <code> jenkins </code></p>
+
+<pre>
+jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ ssh -p 29418 erizhang@192.168.1.100 gerrit create-account --ssh-key - jenkins < /var/lib/jenkins/.ssh/id_rsa.pub
+Enter passphrase for key '/home/erizhang/.ssh/id_rsa':
+jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ 
+</pre>
+
+
+<p>Now we have create a new gerrit account <code>jenkins</code>, this account will be used for the gerrit automatically trigger jenkins job purpose. Of cause, you can use <code>gerrit set-account</code> command to change the or add the account properties.</p>
+
+<h3>4.4. Configure <code>Gerrit Trigger</code></h3>
+
+<p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
+
+<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
+
+<p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
+
+<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
+
+<h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
+
+<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &ldquo;Label Verified&rdquo; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
+
+<pre>
+client@client-Workstation:~/tmp/a$ git init
+Initialized empty Git repository in /home/erizhang/tmp/a/.git/
+client@client-Workstation:~/tmp/a$ git remote add origin ssh://erizhang@192.168.1.100:29418/All-Projects
+client@client-Workstation:~/tmp/a$ git fetch origin refs/meta/config:refs/remotes/origin/meta/config
+remote: Counting objects: 4, done
+remote: Finding sources: 100% (4/4)
+remote: Total 4 (delta 0), reused 0 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From ssh://192.168.1.100:29418/All-Projects
+ * [new branch]      refs/meta/config -> origin/meta/config
+client@client-Workstation:~/tmp/a$ ls
+client@client-Workstation:~/tmp/a$ git config user.email eric.zhang@xxx.com
+client@client-Workstation:~/tmp/a$ git config user.name erizhang
+client@client-Workstation:~/tmp/a$ ls
+client@client-Workstation:~/tmp/a$ git co meta/config
+Branch meta/config set up to track remote branch meta/config from origin.
+Switched to a new branch 'meta/config'
+client@client-Workstation:~/tmp/a$ ls
+groups  project.config
+</pre>
+
+
+<p>Open <code>project.config</code>, and append below lines into the file.</p>
+
+<pre>
+[label "Verified"]
+       function = MaxWithBlock
+       value = -1 Fails
+       value =  0 No score
+       value = +1 Verified
+</pre>
+
+
+<p>Execute below commands, to update the configuration.</p>
+
+<pre>
+client@client-Workstation:~/tmp/a$ git commit -a -m 'add verified label'
+[meta/config 09b3910] add verified label
+ 1 file changed, 6 insertions(+)
+client@client-Workstation:~/tmp/a$ git push origin meta/config:meta/config
+Counting objects: 5, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 395 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1)
+remote: Processing changes: refs: 2, done
+To ssh://erizhang@192.168.1.100:29418/All-Projects
+   7fa7742..09b3910  meta/config -> refs/meta/config
+client@client-Workstation:~/tmp/a$
+</pre>
+
+
+<h3>4.6. Create <code>VerifyBoard</code> Group and add <code>jenkins</code> user account in this group</h3>
+
+<p>Can follow section 2.5 to implement it.</p>
+
+<h3>4.7. Create the jenkins job</h3>
+
+<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Take Care of Your Integer Variables]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable/"/>
+    <updated>2013-04-27T13:19:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable</id>
+    <content type="html"><![CDATA[<p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
+
+<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
+
+<ul>
+<li>No overflow exception</li>
+<li>No run-time detection if a negative integer is converted to an unsigned value</li>
+<li>No checks whether a larger integer value is put into a shorter variable</li>
+</ul>
+
+
+<p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
+
+<p><img src="/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
+
+<p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//TODO: use dest here&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Could you please tell me is there any problem if you stop here and do not plan to go through this post? Of cause, there is a big problem once assign a negative value to parameter <code>len</code>, for example, we assign the <code>len</code> is <code>-1</code>, the program can be executed in <code>memcpy(dest, src, len)</code>, and <code>-1</code> will be casted to unsigned value <code>0xffffffff</code>, and lead the program Segmentation fault, this problem is called <strong>Signedness bug</strong>.</p>
+
+<p>Okay, let&rsquo;s see another code snippet here:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">append</span><span class="p">(</span><span class="kt">char</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">str1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">str2</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len2</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">dest_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">len1</span> <span class="o">+</span> <span class="n">len2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="n">len1</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span> <span class="o">+</span> <span class="n">len1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">len2</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//TODO: dest_buf usage can be added here&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+How about this one, is there any problem? In case of <code>len1</code> is huge number, and <code>len1+len2</code> can be overflow to a small number. For example, <code>len1 = 4294967198</code>, and <code>len2 = 100</code>, and then <code>len1 + len2 = 4294967298 (0x100000002)</code>. We call this problem is <strong>Arithmetical overflow</strong>.</p>
+
+<p>one more, this will be easily to spot with previous experience:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">string</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">s</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">string</span> <span class="n">is</span> <span class="n">too</span> <span class="kt">long</span><span class="o">!</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">\</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
+
+<p><img src="/images/2013-04-27/integer-ranges.png" title="integer ranges
+" alt="Alt text" /></p>
+
+<p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
+
+<p>Be careful! :\</p>
+
+<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Coderetreat: Programming Game of Life Under 'No Conditional Expression' Restriction]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
+    <updated>2013-04-12T23:51:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
+    <content type="html"><![CDATA[<p>If you search this topic with &ldquo;coderetreat&rdquo;, &ldquo;no if&rdquo; or &ldquo;no conditional expression&rdquo; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
+
+<p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&rsquo;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &ldquo;while loop&rdquo; or &ldquo;for loop&#8221;instead of &#8220;if&rdquo;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
+
+<p>So how, is there any trick, I can only say don&rsquo;t know, but here I can give a sample of how to resolve the major logic of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Game of Life">&ldquo;Conway&rsquo;s Game of Life&rdquo;</a>, rules of the game is:</p>
+
+<blockquote><ol>
+<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
+<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+</ol>
+</blockquote>
+
+<p> So we can understand the next generation state will be based on two factors: current generation state (live or dead) and live neighours amount. We can define a two-dimensional array like below diagram illustrates:</p>
+
+<p> <img src="/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
+
+<p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&rsquo;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:
+ <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'> <span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="mi">0</span> <span class="n">means</span> <span class="n">dead</span><span class="p">,</span> <span class="mi">1</span> <span class="n">means</span> <span class="n">live</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'> <span class="kt">int</span> <span class="n">rule_map</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
+</span><span class='line'> <span class="p">};</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="kt">int</span> <span class="n">next_state</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur_state</span><span class="p">,</span> <span class="kt">int</span> <span class="n">neighbours</span><span class="p">)</span>
+</span><span class='line'> <span class="p">{</span>
+</span><span class='line'>     <span class="k">return</span> <span class="n">rule_map</span><span class="p">[</span><span class="n">cur_state</span><span class="p">][</span><span class="n">neighbours</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+</span><span class='line'> <span class="p">}</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&rsquo;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Structure Assignment and Its Pitfall in C Language]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
+    <updated>2013-01-28T21:47:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
+    <content type="html"><![CDATA[<h2>Problem</h2>
+
+<p>There is a structure type defined as below:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">__map_t</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">alias</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="kt">map_t</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+If we want to assign <code>map_t</code> type variable <code>struct2</code> to <code>sturct1</code>, we usually have below 3 ways:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">/&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">1</span><span class="o">:</span> <span class="n">assign</span> <span class="n">the</span> <span class="n">members</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span> <span class="err">*/</span>
+</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">code</span><span class="p">;</span>
+</span><span class='line'><span class="n">strncpy</span><span class="p">(</span><span class="n">struct1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">struct2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">);</span>
+</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">alias</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">2</span><span class="o">:</span> <span class="n">memcpy</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">memory</span> <span class="n">content</span> <span class="n">of</span> <span class="n">struct2</span> <span class="n">to</span> <span class="n">struct1</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">struct1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">struct2</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">struct1</span><span class="p">));</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">3</span><span class="o">:</span> <span class="n">straight</span> <span class="n">assignment</span> <span class="n">with</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">=&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
+</span><span class='line'><span class="n">struct1</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Consider above ways, most of programmer won&rsquo;t use way #1, since it&rsquo;s so stupid ways compare to other twos, only if we are defining an structure assignment function. So, <strong><em>what&rsquo;s the difference between way #2 and way #3? And what&rsquo;s the pitfall of the structure assignment once there is array or pointer member existed?</em></strong> Coming sections maybe helpful for your understanding.</p>
+
+<h2>The difference between <strong><em>&lsquo;=&rsquo; straight assignment</em></strong> and <strong><em>memcpy</em></strong></h2>
+
+<p>The <code>struct1=struct2;</code> notation is not only <strong>more concise</strong>, but also <strong>shorter</strong> and <strong>leaves more optimization opportunities to the compiler</strong>. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That&rsquo;s a huge <strong>difference in readability</strong> as well, although <code>memcpy</code> does the same in this case.</p>
+
+<p>Copying by straight assignment is probably best, since it&rsquo;s shorter, easier to read, and has a higher level of abstraction. Instead of saying (to the human reader of the code) &ldquo;copy these bits from here to there&rdquo;, and requiring the reader to think about the size argument to the copy, you&rsquo;re just doing a straight assignment (&ldquo;copy this value from here to here&rdquo;). There can be no hesitation about whether or not the size is correct.</p>
+
+<p>Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (<em>It will be introduced below section</em>). If we use straight structure assignment &lsquo;=&rsquo; in C++, we <strong>can consider to overload the <code>operator=</code> function</strong>, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.</p>
+
+<h2>The pitfall of structure assignment:</h2>
+
+<p>Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you&rsquo;re aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.</p>
+
+<p>If the structures are of compatible types, yes, you can, with something like:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>}
+The only thing you need to be aware of is that this is a shallow copy. In other words, if you have a <code>char *</code> pointing to a specific string, both structures will point to the same string.</p>
+
+<p>And changing the contents of one of those string fields (the data that the <code>char <em></code> points to, not the <code>char </em></code> itself) will change the other as well. For these situations a &ldquo;deep copy&rdquo; is really the only choice, and that needs to go in a function. If you want a easy copy without having to manually do each field but with the added bonus of non-shallow string copies, use strdup:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
+</span><span class='line'><span class="n">dest_struct</span><span class="o">-&gt;</span><span class="n">strptr</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="n">source_struct</span><span class="o">-&gt;</span><span class="n">strptr</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn&rsquo;t have a strdup (it&rsquo;s not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.</p>
+
+<h3>Example of trap:</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdlib</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">string</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">NAME_SIZE</span>   <span class="mi">16</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">_map_t</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">alias</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span> <span class="kt">map_t</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">map_t</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="cm">/* initialize the a&#39;s members value */</span>
+</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+</span><span class='line'><span class="n">snprintf</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">,</span> <span class="s">&quot;Controller SW3&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kt">char</span> <span class="o">*</span><span class="n">alias</span> <span class="o">=</span> <span class="s">&quot;RNC&amp;amp;IPA&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">alias</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* assign the value via memcpy */</span>
+</span><span class='line'><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">a</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/* assign the value via &#39;=&#39; */</span>
+</span><span class='line'><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+</span><span class='line'><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&rsquo;s dangerous!!</strong></p>
+
+<p><img src="/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
+
+<h2>Conclusion</h2>
+
+<ul>
+<li>Recommend use straight assignment &lsquo;=&rsquo; instead of memcpy.</li>
+<li>If structure has pointer or array member, please consider the pointer alias problem, it will lead dangling pointer once incorrect use. Better way is implement structure assignment function in C, and overload the operator= function in C++.</li>
+</ul>
+
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/5383318/struct-assignment-or-memcpy" title="struct assignment">stackoverflow.com: structure assignment or memcpy</a></li>
+<li><a href="http://stackoverflow.com/questions/2302351/assign-one-struct-to-another-in-c" title="assign one struct to another">stackoverflow.com: assign one struct to another in C</a></li>
+<li><a href="http://bytes.com/topic/c/answers/215832-structures-assignment" title="structures assignment">bytes.com: structures assignment</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29" title="struct in C programming language">wikipedia: struct in C programming language</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

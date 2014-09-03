@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Reading | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/reading/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-09-03T15:43:03+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
+    <updated>2014-02-17T15:31:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes</id>
+    <content type="html"><![CDATA[<p>这是一本闲书，适合枕边阅读，看这本书，就像看电视剧一样，每个场景描述得就像真的出现在眼前一样，一群IT屌丝的欢声笑语与恩怨情仇。如果要给这本书一个更恰当的副标题的话，就是“一群IT屌丝成为高富帅的故事”。</p>
+
+<p>作者也有意的在书中给每位角色给出前后反差的描写：</p>
+
+<ul>
+<li>Evan从一个小农场的小农民，成为身价数十亿美金的高富帅；一直心量想得多，就是对别人好，也不会说出来，典型的国内IT群里好男人的形像，理想是想做个好大哥；</li>
+<li>Jack从一个邋遢，就算辞职也要戴鼻环的IT黑客，成为一个追求时尚装扮的商人；我觉得他是作者描写得最腹黑的一位；</li>
+<li>Biz Stone最后为了Evan的职位而怒发冲冠，完全颠覆了老好人的形像；</li>
+<li>Noah则从原来的闹腾的大男孩，如何变成了一位沉默的人，默默地注视，默默地离去；他应该是最不得志的人了。</li>
+</ul>
+
+
+<p>作者从几任CEO的维度来组织描写，下图是我从时间的维度给出的一个简介。</p>
+
+<p><img src="/images/2014-02-17-read-hatching-twitter/twitter.png" title="twitter" alt="Alt text" /></p>
+
+<p>从书中总结的几点：</p>
+
+<ul>
+<li>千万不要和朋友一起创业，除非你们能一直Align彼此的想法；</li>
+<li>什么创始人，什么技术并不重要，资本在公司才有至高的权力；</li>
+<li>对立的想法，并不会阻碍孕育成功的产品；</li>
+<li>成功的产品应该是集众人所长之大成；</li>
+<li>资本是逐利的；</li>
+<li>坚持自己的想法；</li>
+<li>重视身边的副产品。</li>
+</ul>
+
+
+<p>这是最好的电影素材，如果搬上银幕，千万不要让我失望。</p>
+
+<p>-End-</p>
+]]></content>
+  </entry>
+  
+</feed>
