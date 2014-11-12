@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Technology | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/technology/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2014-09-03T15:43:03+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://erizhang.github.io/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://erizhang.github.io/"/>
+  <updated>2014-11-12T15:07:06+08:00</updated>
+  <id>http://erizhang.github.io/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -14,15 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat/"/>
+    <title type="html"><![CDATA[Facilitate coderetreat global day of 2012]]></title>
+    <link href="http://erizhang.github.io/blog/2012/12/18/facilitate-coderetreat/"/>
     <updated>2012-12-18T10:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat</id>
+    <id>http://erizhang.github.io/blog/2012/12/18/facilitate-coderetreat</id>
     <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
 
-<h2>What&rsquo;s the coderetreat</h2>
+<h2>What's the coderetreat</h2>
 
-<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of 'getting things done', the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
 
 <p>In the day, all participants practiced below modern development practices:</p>
 
@@ -44,7 +44,7 @@
 <li>RULE #3. Clean Code is required</li>
 <li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
 <li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
-<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
+<li>RULE #6. No “if … else ...”, “switch … case ...” , “..? ..:..” condition expressions</li>
 </ul>
 
 
