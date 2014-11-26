@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: pragramming | Actionary]]></title>
-  <link href="http://erizhang.github.io/blog/categories/pragramming/atom.xml" rel="self"/>
-  <link href="http://erizhang.github.io/"/>
-  <updated>2014-11-12T15:07:06+08:00</updated>
-  <id>http://erizhang.github.io/</id>
+  <title><![CDATA[Category: Pragramming | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/pragramming/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-11-26T22:08:27+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -14,30 +14,30 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Build up octopress style blog site]]></title>
-    <link href="http://erizhang.github.io/blog/2012/12/20/build-up-octopress-blog/"/>
+    <title type="html"><![CDATA[Build Up Octopress Style Blog Site]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog/"/>
     <updated>2012-12-20T00:00:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2012/12/20/build-up-octopress-blog</id>
+    <id>http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog</id>
     <content type="html"><![CDATA[<h2>Why I choose octopress?</h2>
 
-<p>I'm a programmer, and I'm also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I'm lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
+<p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
 
-<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I'm not a proffsional editor, and I'm living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
+<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&rsquo;m not a proffsional editor, and I&rsquo;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
 
-<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it...., thank god, thank author, thank all the people who guide me know this.</p>
+<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&hellip;., thank god, thank author, thank all the people who guide me know this.</p>
 
 <h2>My octopress git repository</h2>
 
-<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer's private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
+<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&rsquo;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
 
 <p><img src="/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
 
-<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that's my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
+<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&rsquo;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
 
 <h2>Tips</h2>
 
 <p>Open the <code>Rakefile</code> which is under octopress folder, and jump to this code snippet:
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -52,38 +52,26 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="sr">&lt;p&gt;task :setup_github_pages, :repo do |t, args|</span>
-</span><span class='line'><span class="sr">  if args.repo&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">repo_url</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;puts &quot;Enter the read/</span><span class="n">write</span> <span class="n">url</span> <span class="k">for</span> <span class="n">your</span> <span class="n">repository</span><span class="s2">&quot;</span>
-</span><span class='line'><span class="s2">puts &quot;</span><span class="p">(</span><span class="no">For</span> <span class="n">example</span><span class="p">,</span> <span class="s1">&#39;git@github.com:your_username/your_username.github.com)&quot;</span>
-</span><span class='line'><span class="s1">repo_url = get_stdin(&quot;Repository url: &quot;)</span>
-</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="s1">&lt;p&gt;  end</span>
-</span><span class='line'><span class="s1">  user = repo_url.match(/:([&lt;sup&gt;\/]+)/)[1]&lt;/sup&gt;</span>
-</span><span class='line'><span class="s1">  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &#39;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="s1">&#39; : &#39;</span><span class="n">master</span><span class="s1">&#39;</span>
-</span><span class='line'><span class="s1">  project = (branch == &#39;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="s1">&#39;) ? repo_url.match(/\/([&lt;sup&gt;.]+)/)[1]&lt;/sup&gt; : &#39;</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'><span class="sr">  if args.repo</span>
+</span><span class='line'><span class="sr">    repo_url = args.repo</span>
+</span><span class='line'><span class="sr">  else</span>
+</span><span class='line'><span class="sr">    puts &amp;ldquo;Enter the read/</span><span class="n">write</span> <span class="n">url</span> <span class="k">for</span> <span class="n">your</span> <span class="n">repository</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;(</span><span class="no">For</span> <span class="n">example</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="p">)</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Repository</span> <span class="ss">url</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">branch</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/[\w-]+.github.com/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="c1">#8216;gh-pages&amp;rsquo; : &amp;lsquo;master&amp;rsquo;</span>
+</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="sr">&lt;p&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>You can change the code to support <code>https</code>url, the code like this:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -102,49 +90,25 @@
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">task</span> <span class="ss">:setup_github_pages</span><span class="p">,</span> <span class="ss">:repo</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
+</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Enter</span> <span class="n">the</span> <span class="n">read</span><span class="o">/</span><span class="n">write</span> <span class="n">url</span> <span class="k">for</span> <span class="n">your</span> <span class="n">repository</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;(</span><span class="no">For</span> <span class="n">example</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span>           <span class="ow">or</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/your_username/your_username.github.com&quot;</span><span class="o">&gt;</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;</span><span class="sr">/a&gt;&amp;rsquo;)&amp;rdquo;</span>
+</span><span class='line'><span class="sr">    repo_url = get_stdin(&amp;ldquo;Repository url: &amp;rdquo;)</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;repo_url = args.repo</span>
-</span><span class='line'><span class="sr">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;</span><span class="sr">/pre&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">protocol</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/(^git)@/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">https</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">protocol</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/github.com\/([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  else&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">puts</span> <span class="s2">&quot;Enter the read/write url for your repository&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;(For example, &#39;git@github.com:your_username/your_username.github.com&#39;&quot;</span>
-</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;           or &#39;https://github.com/your_username/your_username.github.com&#39;)&quot;</span>
-</span><span class='line'><span class="n">repo_url</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="s2">&quot;Repository url: &quot;</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  protocol = (repo_url.match(/</span><span class="p">(</span><span class="o">&lt;</span><span class="n">sup</span><span class="o">&gt;</span><span class="n">git</span><span class="p">)</span><span class="err">@</span><span class="o">/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span><span class="o">&lt;</span><span class="sr">/sup&gt; ? &#39;https&#39; : &#39;git&#39;</span>
-</span><span class='line'><span class="sr">  if protocol == &#39;git&#39;&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">else</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;pre&gt;&lt;code&gt;user = repo_url.match(/</span><span class="n">github</span><span class="p">\</span><span class="o">.</span><span class="n">com</span><span class="p">\</span><span class="o">/</span><span class="p">(</span><span class="o">[^</span><span class="p">\</span><span class="o">/]+</span><span class="p">)</span><span class="o">/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="o">&lt;</span><span class="sr">/code&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="sr">&lt;p&gt;  branch = (repo_url.match(/</span><span class="p">\</span><span class="o">/[</span><span class="p">\</span><span class="n">w</span><span class="o">-]+.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s1">&#39;gh-pages&#39;</span> <span class="p">:</span> <span class="s1">&#39;master&#39;</span>
-</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;gh-pages&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([&lt;sup&gt;.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]&lt;</span><span class="sr">/sup&gt; : &#39;&#39;</span>
+</span><span class='line'><span class="sr">&lt;p&gt;  branch = (repo_url.match(/</span><span class="p">\</span><span class="o">/[</span><span class="p">\</span><span class="n">w</span><span class="o">-]+.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">master</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>After that, <code>rake</code> can support <code>https</code>. Others, I only follow the official guideline, now you can see this post means I have successfully built up my blogs, and post blogs in office.</p>

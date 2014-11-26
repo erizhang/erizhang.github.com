@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: management | Actionary]]></title>
-  <link href="http://erizhang.github.io/blog/categories/management/atom.xml" rel="self"/>
-  <link href="http://erizhang.github.io/"/>
-  <updated>2014-11-12T15:07:06+08:00</updated>
-  <id>http://erizhang.github.io/</id>
+  <title><![CDATA[Category: Management | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/management/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-11-26T22:08:27+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,12 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
-    <link href="http://erizhang.github.io/blog/2013/04/18/why-i-translate-codermetrics/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/"/>
     <updated>2013-04-18T10:51:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/04/18/why-i-translate-codermetrics</id>
+    <id>http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics</id>
     <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
 
-<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博....以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
+<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
 
 <p>又记得当年做team leader时，部门里实行TPE(Team Performance Evaluation)政策，定好诸多KPI，如完成的story points，支持其他团队次数，bug数量，bug修改时间，是否正确填写各种报表等等，每个迭代周期结束后，由分管的各种manager或owner打分，加权计算，最后得出一张团队绩效排名表，前三名给予奖励，而排在后面的总是工作在愧疚与难堪当中，不幸的是，我们组总是在这样的难堪中。我不敢妄加评论其好坏，只是在我们团队决心参与这场得分游戏后，我们连续获得了靠前的排名，但团队能力水平并没有因此而得到真正的提高，反而我有一种参与了这种斤斤计较的得分游戏的愧疚。</p>
 
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[Team Gathering Game]]></title>
-    <link href="http://erizhang.github.io/blog/2013/03/23/team-gethering-game/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game/"/>
     <updated>2013-03-23T00:00:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/03/23/team-gethering-game</id>
+    <id>http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game</id>
     <content type="html"><![CDATA[<p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
 
 <h2>The rule of the game:</h2>
@@ -85,7 +85,7 @@
 <li>All members stand as matrix (row*coloumn), the lines like we did physical exercise in childhood, you can stretch your arm, but cannot touch another person who closes to you.</li>
 <li>Facilitator asks all member close eyes, and from now on to the end, every attendee shall keep their eyes closed.</li>
 <li>Facilitator asks every select a number in their heart, everyone keep one number, do not tell the number to any one now. (for example, if there are 100 attendees, facilitator can ask attendee select one number between 1 and 100).</li>
-<li>Facilitator give an instruction: "please turn around, and stretch your hand, try to touch another person who closed to you"</li>
+<li>Facilitator give an instruction: &ldquo;please turn around, and stretch your hand, try to touch another person who closed to you&rdquo;</li>
 <li>Attendee share the number to another, and hand in hand, try to group more people, but shall be keep the number in order</li>
 <li>Once all attendee are in an ordered group or time out, facilitator asks attendee open their eyes.</li>
 </ul>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Actionary]]></title>
-  <link href="http://erizhang.github.io/atom.xml" rel="self"/>
-  <link href="http://erizhang.github.io/"/>
-  <updated>2014-11-12T15:07:06+08:00</updated>
-  <id>http://erizhang.github.io/</id>
+  <link href="http://zhangliaoyuan.me/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-11-26T22:08:27+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -14,33 +14,43 @@
 
   
   <entry>
-    <title type="html"><![CDATA[关于结对开发的那些事儿]]></title>
-    <link href="http://erizhang.github.io/blog/2014/11/11/pair-work/"/>
-    <updated>2014-11-11T21:12:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2014/11/11/pair-work</id>
-    <content type="html"><![CDATA[<p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
+    <title type="html"><![CDATA[What I Learned in Global Day of Coderetreat]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2014/11/16/what-i-learned-in-coderetreat/"/>
+    <updated>2014-11-16T21:12:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2014/11/16/what-i-learned-in-coderetreat</id>
+    <content type="html"><![CDATA[<p>We&rsquo;re now the 3rd times hosting and facilitating the Global Day of Coderetreat in Hangzhou, China. Compared with Jim Hurne coordinating the globally events, be frankly, our work is easier. Yes, it&rsquo;s easier, but I do not think it&rsquo;s not important. It always request the host and facilitator spends much more effort to prepare and continuiously improve. Personally, beside those Global Day of Coderetreat (GDCR in short), we still spended much time hosting and facilitating such like coding dojo, coding rally etc. which help programmer to practice their software design, coding skill and agile engineering practices. Here I&rsquo;d like to share what I learned from coderetreat.</p>
 
-<p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
+<p><img src="http://zhangliaoyuan.me/images/2014-11-16-what-i-learned-in-coderetreat/coding.jpg" title="In Coding" alt="Alt text" /></p>
 
-<p>我们认为，结对开发是用于团队的ramp up的利器之一。团队建立，先分析人，结对开发是一种加强团队成员彼此了解的好机会，这是一种交换学习的形式，设想一下，团队里有7位同事，如果大家都曾彼此结对工作过，大家彼此的了解会更深入，哪些人擅长什么都很清楚。</p>
+<h2>Prepare as earlier as possible</h2>
 
-<p>以老带新的形式进行结对，或者以交换学习新知识和新技能的需要进行结对。需要注意的是，结对的时候，两个人的能力水平差距不宜过大，这样会影响结对工作的效果。多鼓励团队成员自发结对工作，当然，做为经理，可以对结对进行调整，如job rotation的形式等等，多创造一些结对工作的机会。如两个程序员一起结对，程序员和测试人员结对，tutor跟newcomer结对等等。</p>
+<p>Even coderetreat&rsquo;s organizing is lightweight compares what&rsquo;s conference. But prepare as earler as possible makes sense. What&rsquo;re you have to prepare:</p>
 
-<p>我们会问，如果大家结对，有没有什么形式来保证大家在开发过程中不会走错路？其实这个问题跟结不结对没有关系，一般来说，架构师会做一个全局的考虑来避免走错路，另外，在daily meeting上也可以通过对任务的更新来发现并避免走错路，每次会议，都问一句能力比较强的同事：有没有什么建议或不同意见？</p>
+<ul>
+<li><p>Keep the connection with coderetreat.org, and keep you can touch the global organizer via email, if you hosted the GDCR in last year, you mail will be record in historial host naming lsit. So that, you can received first hand news from coderetreat community, about the schedule, host and faclitate guideline, experience sharing, some issues discussion. This is great opportunity to learn from expereienced person, also it&rsquo;s great time to build your reputation.</p></li>
+<li><p>Join regional GDCR community. Regional community can help you prepare your event better, most of members in regional community are expert or activator in they lived city, they are more experienced in community hosting and facilitating, they can give you suggestions, their lesson and learn is indirect knowladge to you. You can copy their way of working, even share the local sponsors.</p></li>
+<li><p>Look for the sponsors. GDCR is day-long event, and programmer deserved free lunch and snack, so we need sponsor supply the money and place. As an activity organizor, you can help the sponsor&rsquo;s branding. And involve more people from their company to join the community. Another way to find the money is connecting with other communities who has activity budget. For me, that&rsquo;s always not a problem, since we can align our activity with our belonged company&rsquo;s business value, boss buying our idea, and sponsor it.</p></li>
+<li><p>Prepare the topic and constraits. As we know, the problem topic is always Game of Life, I&rsquo;m not going to explain why we choose Game of Life in this post. We haven&rsquo;t changed the problem topic in our three years GDCR, personally think the problem topic is not a problem since most of participants are different in different year, instead, we have to consider the contraits more carefully, and we think that, the most excited part is the constraints adding.</p></li>
+<li><p>Facility. Prepare some funny video such like &ldquo;Delete your code, Yes, You&rdquo; and the movie clip of game of life, some different color post-it for the retrospective of each session, check the network connecting works well with other cities. If there is no official video channel providing, establish some hangout will be fine.</p></li>
+<li><p>Advertise the event. twitter, facebook, meetup, WeChat, Weibo, and G+ such social network will be good place to market the event to audience. eventbrite, google form can be good tool for event enroll. Don&rsquo;t forget do some pre-survey to know the participants knowladge and skill level clearly.</p></li>
+</ul>
 
-<p>采用这样的结对方式，可以有效地提高团队的能力，达到团队能力的最优，我们需要的是团队能力的最优，而不是单个个体的最优。如果我们在结对的过程中发现团队的合作或配比不是最优，我们可以打乱团队，重新洗牌。</p>
 
-<p>能不能做到结对开发，这是文化的问题。我们可以通过对能力比较强的同事设定这样的KPI来解决，如，考核该员工结对培养了多少人，另外做360度feedback来考核员工，他所曾经结对过的同事给他反馈。所以我们建议，针对刚成立起来的团队，必须做到100%的结对工作，越是关键，越是困难时期，越是要快速的将团队整体的实力进行提升，而提升的过程必须是learning through work，而结对工作就是一个比较好的手段。我们可以给团队建立一个结对工作图，只有之间有结对工作，将两者之间用线连接起来，以此来跟踪团队结对工作情况。</p>
+<h2>Facilitating</h2>
 
-<p><img src="http://erizhang.github.io/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
+<p>There is a video sharing for the GDCR facilitating. And thanks for GDCR global organizors, they supply the the <a href="http://gdcr.coderetreat.org/hosts/guide.html," title="hosting guideline">guideline</a> for your hosting and facilitating. In the first year we hosted and facilitated the event, we strictly follow the guideline and rules what the session shall be in 45 minutes, and then remove all code in next session. But we found that, there might be some problems for example, since all implementation has been removed, some programmer lack the sense of achievement, and each session&rsquo;s restrospetive cost a lot of time. So in this year, in the first two sessions, we let the programmers try their best to finish the basic implementation. And from the third session, we strictly require them to remove the source code, and we give a time-box for each person to share the feeling and learn and strictly to follow the rules. We also change some constraints, to practice our engineers OO design, and also give some funny contraints making a happy event.</p>
 
-<p>是不是所有工作都应该结对？很显然，不是，结对工作的目的如果是想做团队的能力培养，那么结对的工作内容应该是那些可以让一部分能力强的员工帮助这一块比较弱的员工的工作，如对某个业务模块的编程，测试用例的编写等等，而那些适合独立思考的任务，则给员工留足独立思考的空间吧。所以，员工之间可以达成一个agreement，比如，每天下午的13:00 - 16:00之间会用于pair work，而其他的时间留给各自吧。</p>
+<p>After each session, we facilitator will give brief introduction about why we add the constraints, and what&rsquo;s the essential behind the constraints, and how do we adapt good practice in daily work, such sharing will help people learn more from just experiened.</p>
 
-<p>为了保证团队建设的可持续性，我们建议直线经理的关注点做如下分配，50%的时间用于团队人员相关事务，30%用于项目相关的事务，而20%的时间则用于hands on的团队工作，如跟团队成员以结对的形式进行工作。这样的直线经理，才能对团队的动态进行洞悉。</p>
+<h2>Summary and retrospective</h2>
 
-<p>其实结对工作可以让参与者完全投入，并能产生积极的工作压力，从这个角度来说，是有助于工作效率的提升，谁也不知道一个看似独自努力工作的人是不是在努力工作，但是，两个在一起努力工作的人肯定是在努力工作。当然，在这样的过程中，做为直线经理，需要关注并影响团队的负面情绪。做为结对开发的推广，我们可能通过KPI考核方式的改变，如考核合作这一块，鼓励尝试使用好的方法，双向推进，真下而上去educate你的经理，自上而上的要求你的团队成员。</p>
+<p>After finish the sessions, we will gather all programmers, and do a quick retrospective of this event, 10 persons in a group, and select an A0 size paper, to draw 3 circle in the same center. give them each person 3 green color post-it, and answer this question: What&rsquo;s your feeling about this event, write 3? And let them write down and paste on the outside circle, and share the feeling each other in they belonged group. and then, every one has 2 yellow color post-it, and write down the answer for this question: What&rsquo;s you learned from event, write 2? and paste the answer around the middle circle, and then share each other. At last, every one has 1 red color post-it, and write down the answer for this question: What&rsquo;s you next action which is related this topic, write 1? And paste the answer around the inner side circle.</p>
 
-<p>通过结对开发，我们可以有效保证产品的质量和开发效率的基础上，做好团队整体能力的提升。</p>
+<p><img src="http://zhangliaoyuan.me/images/2014-11-16-what-i-learned-in-coderetreat/group-picture.jpg" title="Retrospective result" alt="Alt text" /></p>
+
+<p>As a host and facilitator, we can clearly get the feedback from their sharing, for example, if the feeling is boring, there might be some facilitating problem, LOL.</p>
+
+<p>Have a nice summary will help us to record what we did, like now, write down a post, and create a picture album, that&rsquo;s good choice. Have a fun.</p>
 
 <p>-EOF-</p>
 ]]></content>
@@ -48,26 +58,24 @@
   
   <entry>
     <title type="html"><![CDATA[2B青年欢乐多之敏捷扫盲]]></title>
-    <link href="http://erizhang.github.io/blog/2014/09/02/talk-about-agile/"/>
+    <link href="http://zhangliaoyuan.me/blog/2014/09/02/talk-about-agile/"/>
     <updated>2014-09-02T23:12:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2014/09/02/talk-about-agile</id>
-    <content type="html"><![CDATA[<p>我不知道为什么要说这个话题，我想有一部分原因是因为将近半年博客没有更新，一时半会儿想不到其他什么东西好写，刚好最近常常有人常常问我一堆敏捷相关的问题？</p>
+    <id>http://zhangliaoyuan.me/blog/2014/09/02/talk-about-agile</id>
+    <content type="html"><![CDATA[<p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
 
-<p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
-
-<p>可是，可是&#8230;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
+<p>可是，可是&hellip;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
 
 <p>讨论敏捷，肯定会提到敏捷宣言等等各种资料、引用、权威著作等等。但是这里水太深，一般人一时半会儿还真理解不了。那么，我想从我个人的理解试着说说，如果读者朋友觉得我说错了，也请给个comments，提醒一下，当然以后就称我为编程教练好了，如果你赞同的话，那以后就叫我为敏捷教练好了.</p>
 
 <p>我觉得在敏捷里一个比较重要的概念就是Inspect&amp;Adapt，检视并适应。如果理解了这个概念，顺着往下理解，就很容易了。这里举个例子，有汽车驾驶经验的人一般都知道，从一个驾驶新手到熟练驾驶这个周期不会太长，一般每天上下班开车的话，一两个月就够了。作为在全国第二拥堵城市开车的我来说，从新手，到自认为老手，也就不到两个月，为什么会这么快呢？前两个月还战战兢兢，过两个月就敢跟别人卡车位，原因出在上班路上有太多的锻炼机会，从家里到单位，红绿灯几十个，十字路口N个，加上咱们国家特有的着急文化，路上状况百出，极其复杂，这样，给了我们学习足够的<strong>频度</strong>进行锻炼。另一个原因，汽车驾驶中，从做出每一个驾驶动作，到驾驶员获得<strong>反馈时间非常短</strong>，这样一个<strong>高频度</strong>和<strong>快反馈</strong>让我们很快获得了汽车驾驶能力的提升，因为，我们在驾驶过程中不停地做<strong>Inspect</strong>和<strong>Adapt</strong>。另一个例子是驾驶海上货轮，学习成本明显比汽车要高出许多，加上海上也没见多少红绿灯啊，<strong>频率低</strong>，货轮入港时的转舵，<strong>反馈周期长</strong>，也些原因决定了学习轮船驾驶要比汽车驾驶困难许多。由于不确定性因素，根据不断变化的情况，对反馈进行检视，然后对下一步的行动做出调整，以适应后续发展，快速的反馈减少我们应对单一反馈周期里的成本。应对不断变化的不确定因素，反馈是获得改进的唯一方式，这就不难理解&#8221;别人给你feedback是对你好&#8221;这句话了。</p>
 
-<p><img src="http://erizhang.github.io/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
 
-<p>以此，我们对应软件开发中，软件开发常常碰到的问题是不确定因素很多，客户随时可能改变需求，这有点像开车，路况总是处在变化中，软件研发团队提交产品给客户，而客户将反馈给研发团队。如果想有效地应对来自客户的变化，那么保持一定频率的反馈及快速的反馈时间将有助于及时让团队做出调整，这样，不断的调整改善，对团队而言，就是一个持续改善的过程。我们试着问，要不断从客户那边获得反馈，前提就是要可持续地提交产品给客户，就这引入了Continuous Delivery的概念（我们不再这里深入更多细节），要做好Continuous Delivery，我们必须做好持续集成Continuous Integration，要做到持续集成，我们可以通过ATDD保证需求是可迭代的持续验证，并且同时做好测试自动化。要做好持续集成，咱们得做好持续开发编译，要做好持续开发编译，咱们都做好TDD，Pairing&#8230; 随着一步步向下挖掘，我们发现，可以将很多工程实践，放到里头，如果想保证这些事情能够顺利地做好，我们定义了不同的角色，不同的check list，backlog，这样就很容易地顺着这个思路去自圆其说了，:p。当然，这时还一个概念就是迭代周期，迭代周期就是开发团队用于Inspect &amp; Adapt的节奏。迭代周期多长合适呢？</p>
+<p>以此，我们对应软件开发中，软件开发常常碰到的问题是不确定因素很多，客户随时可能改变需求，这有点像开车，路况总是处在变化中，软件研发团队提交产品给客户，而客户将反馈给研发团队。如果想有效地应对来自客户的变化，那么保持一定频率的反馈及快速的反馈时间将有助于及时让团队做出调整，这样，不断的调整改善，对团队而言，就是一个持续改善的过程。我们试着问，要不断从客户那边获得反馈，前提就是要可持续地提交产品给客户，就这引入了Continuous Delivery的概念（我们不再这里深入更多细节），要做好Continuous Delivery，我们必须做好持续集成Continuous Integration，要做到持续集成，我们可以通过ATDD保证需求是可迭代的持续验证，并且同时做好测试自动化。要做好持续集成，咱们得做好持续开发编译，要做好持续开发编译，咱们都做好TDD，Pairing&hellip; 随着一步步向下挖掘，我们发现，可以将很多工程实践，放到里头，如果想保证这些事情能够顺利地做好，我们定义了不同的角色，不同的check list，backlog，这样就很容易地顺着这个思路去自圆其说了，:p。当然，这时还一个概念就是迭代周期，迭代周期就是开发团队用于Inspect &amp; Adapt的节奏。迭代周期多长合适呢？</p>
 
-<p>从产品开发的这条线走，如上所述。那么要开发产品，团队很重要，从团队角度又可以引申到哪些概念呢？如团队建设要做到Continuous Improvement，那么我们是不是得做好Retrospective，然后是Daily Meeting， working agreement &#8230;</p>
+<p>从产品开发的这条线走，如上所述。那么要开发产品，团队很重要，从团队角度又可以引申到哪些概念呢？如团队建设要做到Continuous Improvement，那么我们是不是得做好Retrospective，然后是Daily Meeting， working agreement &hellip;</p>
 
-<p><img src="http://erizhang.github.io/images/2014-09-02-talk-about-agile/concepts_links.png" title="Concepts Link" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2014-09-02-talk-about-agile/concepts_links.png" title="Concepts Link" alt="Alt text" /></p>
 
 <p>把这些想通了，再去顺着想别的概念就容易多了。当然，这不是敏捷的全部，否则做个大师就太容易了。这里只是想写个引子，帮助大家站在自己的角度来思考问题，希望能对大家有所帮助。对了，写到这里，我是不是得问几个问题：</p>
 
@@ -91,10 +99,10 @@
   
   <entry>
     <title type="html"><![CDATA[驱魔人 ——《软件驱魔术》译者序]]></title>
-    <link href="http://erizhang.github.io/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
+    <link href="http://zhangliaoyuan.me/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
     <updated>2014-02-24T16:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2014/02/24/translating-preface-of-software-exorcism</id>
-    <content type="html"><![CDATA[<p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&#8230;&#8230;</p>
+    <id>http://zhangliaoyuan.me/blog/2014/02/24/translating-preface-of-software-exorcism</id>
+    <content type="html"><![CDATA[<p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&hellip;&hellip;</p>
 
 <p>我本人所在项目的代码库里，包含了从上世纪八十年代到现在，跨度将近三十年的代码，这个样本都适合做代码考古了，而公司目前有几百人正在从事这套软件的维护工作，维护工作的绝大多数时间就是在与遗留代码战斗。他们需要深入代码洞穴，攀登代码树，在错综复杂的逻辑结构中跟踪每一步可能的分支结点；除了要抓到贻害一方的缺陷，并且还必须在有限的时间里完成这一切工作，这就像美剧里演的一样，一个人拿着枪指着你的头，掐着秒表，逼着你在秒表归零之前完成复杂的网络攻击任务。作者把软件维护工程师们比做软件驱魔人，这是多么贴切的比喻。我现在才惊醒，原来我身边的人本应如孙俪一样俊俏，像古天乐一样有型，似文章一般阳光清纯，而“伟大”的降妖除魔工作，却让他们一个个如降魔人，猎妖师和陈玄奘一般狼狈不堪。</p>
 
@@ -122,9 +130,9 @@
   
   <entry>
     <title type="html"><![CDATA[一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记]]></title>
-    <link href="http://erizhang.github.io/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
+    <link href="http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
     <updated>2014-02-17T15:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2014/02/17/Hatching-twitter-reading-notes</id>
+    <id>http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes</id>
     <content type="html"><![CDATA[<p>这是一本闲书，适合枕边阅读，看这本书，就像看电视剧一样，每个场景描述得就像真的出现在眼前一样，一群IT屌丝的欢声笑语与恩怨情仇。如果要给这本书一个更恰当的副标题的话，就是“一群IT屌丝成为高富帅的故事”。</p>
 
 <p>作者也有意的在书中给每位角色给出前后反差的描写：</p>
@@ -139,7 +147,7 @@
 
 <p>作者从几任CEO的维度来组织描写，下图是我从时间的维度给出的一个简介。</p>
 
-<p><img src="http://erizhang.github.io/images/2014-02-17-read-hatching-twitter/twitter.png" title="twitter" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2014-02-17-read-hatching-twitter/twitter.png" title="twitter" alt="Alt text" /></p>
 
 <p>从书中总结的几点：</p>
 
@@ -161,15 +169,15 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Build CI environment with Gerrit, Jenkins and Subverison]]></title>
-    <link href="http://erizhang.github.io/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
+    <title type="html"><![CDATA[Build CI Environment With Gerrit, Jenkins and Subverison]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
     <updated>2013-10-10T11:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
+    <id>http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
     <content type="html"><![CDATA[<h2>1. Overview</h2>
 
 <h3>1.1. Purpose</h3>
 
-<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&#8217;d like mark my practice notes here.</p>
+<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&rsquo;d like mark my practice notes here.</p>
 
 <ul>
 <li>Gerrit is <code>git</code> repository management tools, more external reference you can read about the benefits of <code>git</code></li>
@@ -184,7 +192,7 @@
 
 <h3>1.2. Architecture</h3>
 
-<p><img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
 
 <p>Team can use subgit mirror the project to team owned gerrit server, and then team member clone the project to their local disk. Any changes making will be happen in local repository, after changes done. Developer can push the changes to remote repository (i.e., the gerrit server git repository). Once the changes is pushed to the server, gerrit will trigger jenkins to verify the changes (Compiling, unit testing, regression testing etc. CI jobs will be ran), and meanwhile, gerrit will send the review request mail to dedicated reviewer. After the reviewer approved the changes and jenkins verified okay, the source code changes can be merged into project master which is located in gerrit git repository. Otherwise, developer shall rework and push new patch again.</p>
 
@@ -228,13 +236,13 @@ to start it.</p>
 
 <h4>Login the gerrit web UI</h4>
 
-<p>Type the http address of gerrit service on browser, in this case, it&#8217;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
+<p>Type the http address of gerrit service on browser, in this case, it&rsquo;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
 
 <h4>Create new project</h4>
 
-<p>Create new project, and &#8220;Rights Inherit From&#8221; shall be &#8220;All-Projects&#8221;, it means current you created project configuration(such as access control) will inherit from &#8220;All-Projects&#8221; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
+<p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
 
-<p><img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
+<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
 Figure 1-1</p>
 
 <p>After create this project, it means create a new project git repository under gerrit git repositories folder. In this case, the new project git repository is <a href="http://192.168.1.100:8081/gameoflife_java" title="project repository">http://192.168.1.100:8081/gameoflife_java</a>. You can clone this project in your local PC by execute this command.</p>
@@ -321,8 +329,8 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 </pre>
 
 
-<p>Please notice that there is <code>remote:   http://192.168.1.100:8081/1</code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&#8217;s open this link with our web browser:
-<img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
+<p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
+<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
 
 <p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
 
@@ -330,15 +338,15 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 
 <h4>Create ReviewBoard group and add the members</h4>
 
-<p>Login gerrit web UI with administrator, select &#8220;People&#8221; -> &#8220;Create New Group&#8221;
-<img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
+<p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
+<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
 
 <h4>Access control of the new create group</h4>
 
-<p>Select our created project, there is &#8220;Access&#8221;, click and edit it. &#8220;Add reference&#8221; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
-<img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
+<p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
+<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
 
-<p>Till now, we have create new Group named &#8220;ReviewBoard&#8221;, and all members in this group have &#8220;Label Review&#8221; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
+<p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
 
 <h2>3. Jenkins deployment</h2>
 
@@ -374,13 +382,13 @@ jenkins@jenkins-Workstation:~$
 
 <h3>4.1. Install the <code>Gerrit Trigger</code> Plugin</h3>
 
-<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &#8220;Manage Jenkins&#8221; -> &#8220;Manage Plugin&#8221;, and then you can find the <code>Gerrit Trigger</code> in the &#8220;Available&#8221; tab.</p>
+<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &ldquo;Manage Jenkins&rdquo; -> &ldquo;Manage Plugin&rdquo;, and then you can find the <code>Gerrit Trigger</code> in the &ldquo;Available&rdquo; tab.</p>
 
-<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &#8220;Available&#8221; tab, maybe you should select &#8220;Advanced&#8221; tab, and click &#8220;Check Now&#8221; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &#8220;Advanced&#8221; tab as well.</em></p></blockquote>
+<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &ldquo;Available&rdquo; tab, maybe you should select &ldquo;Advanced&rdquo; tab, and click &ldquo;Check Now&rdquo; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &ldquo;Advanced&rdquo; tab as well.</em></p></blockquote>
 
 <p>Select the plugin, and install without restart, the process which shows like this.</p>
 
-<p><img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
 
 <h3>4.2. Generate jenkins needs ssh-key for <code>Gerrit Trigger</code> usage</h3>
 
@@ -428,17 +436,17 @@ jenkins@jenkins-Workstation:~/gerrit/review_site/bin$
 
 <h3>4.4. Configure <code>Gerrit Trigger</code></h3>
 
-<p>Select &#8220;Manage Jenkins&#8221; &#8211;> &#8220;Gerrit Trigger&#8221;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &#8220;Test Connection&#8221;. It will show success or not. See below diagram shows.</p>
+<p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
 
-<p><img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
 
-<p>After then, save your settings and restart the connection in the &#8220;Control&#8221; section at the bottom of the page:</p>
+<p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
 
-<p><img src="http://erizhang.github.io/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
 
 <h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
 
-<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &#8220;Label Verified&#8221; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
+<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &ldquo;Label Verified&rdquo; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
 
 <pre>
 client@client-Workstation:~/tmp/a$ git init
@@ -500,16 +508,16 @@ client@client-Workstation:~/tmp/a$
 
 <h3>4.7. Create the jenkins job</h3>
 
-<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&#8217;m not going to repeat it in this post again.</p>
+<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Why we need visual task board]]></title>
-    <link href="http://erizhang.github.io/blog/2013/08/30/why-we-need-visual-task-board/"/>
+    <title type="html"><![CDATA[Why We Need Visual Task Board]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board/"/>
     <updated>2013-08-30T11:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/08/30/why-we-need-visual-task-board</id>
-    <content type="html"><![CDATA[<p>The department which I&#8217;m working on, it&#8217;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
+    <id>http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board</id>
+    <content type="html"><![CDATA[<p>The department which I&rsquo;m working on, it&rsquo;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
 
 <p>Today, let’s clarify why we need visual task board? Why we not use excel instead, or some on-line task management tools such like Trello?</p>
 
@@ -542,7 +550,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>During the daily meeting, Scrum Master opens the laptop, and then all team member gather around the only 15 inch laptop screen, you guys open your big eyes as bigger as possible, and focus on only 10 font size words to make the task updating. In another scenarios, you do not expect the lazybones never will open this document any more, since opening this excel will cost too many steps – and then in time task updating is a problem.</p>
 
-<p>If we have task board, all tasks are written on the cards, and they&#8217;re clearly pasted on the wall. You just give a sight, you can find out the task, for the task updating, you only need to move the cards. See, easy.</p>
+<p>If we have task board, all tasks are written on the cards, and they&rsquo;re clearly pasted on the wall. You just give a sight, you can find out the task, for the task updating, you only need to move the cards. See, easy.</p>
 
 <h2>It’s not only a wall, it’s team flag</h2>
 
@@ -561,9 +569,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[程序员上网扫盲]]></title>
-    <link href="http://erizhang.github.io/blog/2013/07/26/how-programmer-surf-internet/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet/"/>
     <updated>2013-07-26T11:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/07/26/how-programmer-surf-internet</id>
+    <id>http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet</id>
     <content type="html"><![CDATA[<p>最近常常被很多朋友问到这样的问题：</p>
 
 <ul>
@@ -686,10 +694,10 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Speaking Codermetrics in ScrumGathering Shanghai 2013]]></title>
-    <link href="http://erizhang.github.io/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
     <updated>2013-07-08T11:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/07/08/codermetrics-in-scrumgathering</id>
-    <content type="html"><![CDATA[<p>因为一篇post &#8211; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
+    <id>http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering</id>
+    <content type="html"><![CDATA[<p>因为一篇post &ndash; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/23992242 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen></iframe>
 
@@ -726,12 +734,12 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Bee Watcher]]></title>
-    <link href="http://erizhang.github.io/blog/2013/06/25/bee-watcher/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/06/25/bee-watcher/"/>
     <updated>2013-06-25T17:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/06/25/bee-watcher</id>
-    <content type="html"><![CDATA[<p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&#8230;看峰人(Bee Watcher Watcher &#8230;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
+    <id>http://zhangliaoyuan.me/blog/2013/06/25/bee-watcher</id>
+    <content type="html"><![CDATA[<p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&hellip;看峰人(Bee Watcher Watcher &hellip;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
 
-<p><img src="http://erizhang.github.io/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
 
 <p><em>picture from <a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">The Bee Watcher - The Art of Dr. Seuss</a></em></p>
 
@@ -740,32 +748,32 @@ client@client-Workstation:~/tmp/a$
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Exception has been normal]]></title>
-    <link href="http://erizhang.github.io/blog/2013/05/30/exception-has-been-normal/"/>
+    <title type="html"><![CDATA[Exception Has Been Normal]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/05/30/exception-has-been-normal/"/>
     <updated>2013-05-30T18:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/05/30/exception-has-been-normal</id>
-    <content type="html"><![CDATA[<p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&#8217;s a replacement of milk, but it&#8217;s bad for human health. Any way, it&#8217;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
+    <id>http://zhangliaoyuan.me/blog/2013/05/30/exception-has-been-normal</id>
+    <content type="html"><![CDATA[<p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
 
-<p>Another story what I heard there is a government department named as &#8220;temporary emergency processing center for cover of sewer well&#8221; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &#8220;temporary&#8221;, the reason is they have to alwyas handle the &#8220;temporary&#8221; &amp; &#8220;emergency&#8221; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
+<p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
 
-<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&#8230;. This is a temporary solution for traffic jam issue, but currently, it&#8217;s becoming a final solution, it&#8217;s normal for administration department.</p>
+<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&hellip;. This is a temporary solution for traffic jam issue, but currently, it&rsquo;s becoming a final solution, it&rsquo;s normal for administration department.</p>
 
-<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &#8220;workaround&#8221;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &#8220;workaround&#8221; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&#8230;.</p>
+<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &ldquo;workaround&rdquo;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &ldquo;workaround&rdquo; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&hellip;.</p>
 
-<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&#8217;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&#8217;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
+<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&rsquo;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&rsquo;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
 
 <p>If exception has been normal, around of you use workaround solve another problem of workaround, it means the situation around of you has been worse, you need to consider quit only if you can solve it. :\</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Take care of your integer variables]]></title>
-    <link href="http://erizhang.github.io/blog/2013/04/27/take-care-of-your-integer-variable/"/>
+    <title type="html"><![CDATA[Take Care of Your Integer Variables]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable/"/>
     <updated>2013-04-27T13:19:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/04/27/take-care-of-your-integer-variable</id>
+    <id>http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable</id>
     <content type="html"><![CDATA[<p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
 
-<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&#8217;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&#8217;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
+<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
 
 <ul>
 <li>No overflow exception</li>
@@ -774,13 +782,13 @@ client@client-Workstation:~/tmp/a$
 </ul>
 
 
-<p>That&#8217;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&#8217;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
+<p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
 
-<p><img src="http://erizhang.github.io/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
 
-<p>It&#8217;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&#8217;s look at this code snippet:</p>
+<p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -807,9 +815,9 @@ client@client-Workstation:~/tmp/a$
 
 <p>Could you please tell me is there any problem if you stop here and do not plan to go through this post? Of cause, there is a big problem once assign a negative value to parameter <code>len</code>, for example, we assign the <code>len</code> is <code>-1</code>, the program can be executed in <code>memcpy(dest, src, len)</code>, and <code>-1</code> will be casted to unsigned value <code>0xffffffff</code>, and lead the program Segmentation fault, this problem is called <strong>Signedness bug</strong>.</p>
 
-<p>Okay, let&#8217;s see another code snippet here:</p>
+<p>Okay, let&rsquo;s see another code snippet here:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -840,7 +848,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>one more, this will be easily to spot with previous experience:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -877,25 +885,25 @@ client@client-Workstation:~/tmp/a$
 
 <p>If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
 
-<p><img src="http://erizhang.github.io/images/2013-04-27/integer-ranges.png" title="integer ranges
+<p><img src="http://zhangliaoyuan.me/images/2013-04-27/integer-ranges.png" title="integer ranges
 " alt="Alt text" /></p>
 
-<p>And now it&#8217;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
+<p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
 
 <p>Be careful! :\</p>
 
-<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&#8217;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
+<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
-    <link href="http://erizhang.github.io/blog/2013/04/18/why-i-translate-codermetrics/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/"/>
     <updated>2013-04-18T10:51:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/04/18/why-i-translate-codermetrics</id>
+    <id>http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics</id>
     <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
 
-<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&#8230;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
+<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
 
 <p>又记得当年做team leader时，部门里实行TPE(Team Performance Evaluation)政策，定好诸多KPI，如完成的story points，支持其他团队次数，bug数量，bug修改时间，是否正确填写各种报表等等，每个迭代周期结束后，由分管的各种manager或owner打分，加权计算，最后得出一张团队绩效排名表，前三名给予奖励，而排在后面的总是工作在愧疚与难堪当中，不幸的是，我们组总是在这样的难堪中。我不敢妄加评论其好坏，只是在我们团队决心参与这场得分游戏后，我们连续获得了靠前的排名，但团队能力水平并没有因此而得到真正的提高，反而我有一种参与了这种斤斤计较的得分游戏的愧疚。</p>
 
@@ -908,7 +916,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>而之于团队和程序员的度量，应该从多个维度进行，从产品类型的不同，从角色的要求不同等等，单一的数据可能毫无意义，但数据的组合可能会帮助我们发现隐藏在数据背后的洞察力。跟踪一段时间的响应度量，可以帮助我们对现实的工作做出调整，不断完善，做到可持续性。</p>
 
-<p><img src="http://erizhang.github.io/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
 
 <p>主要内容包括：</p>
 
@@ -948,15 +956,15 @@ client@client-Workstation:~/tmp/a$
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Coderetreat: programming game of life under 'no conditional expression' restriction]]></title>
-    <link href="http://erizhang.github.io/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
+    <title type="html"><![CDATA[Coderetreat: Programming Game of Life Under 'No Conditional Expression' Restriction]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
     <updated>2013-04-12T23:51:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
-    <content type="html"><![CDATA[<p>If you search this topic with &#8220;coderetreat&#8221;, &#8220;no if&#8221; or &#8220;no conditional expression&#8221; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
+    <id>http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
+    <content type="html"><![CDATA[<p>If you search this topic with &ldquo;coderetreat&rdquo;, &ldquo;no if&rdquo; or &ldquo;no conditional expression&rdquo; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
 
-<p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&#8217;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &#8220;while loop&#8221; or &#8220;for loop&#8221;instead of &#8220;if&#8221;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
+<p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&rsquo;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &ldquo;while loop&rdquo; or &ldquo;for loop&#8221;instead of &#8220;if&rdquo;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
 
-<p>So how, is there any trick, I can only say don&#8217;t know, but here I can give a sample of how to resolve the major logic of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Game of Life">&#8220;Conway&#8217;s Game of Life&#8221;</a>, rules of the game is:</p>
+<p>So how, is there any trick, I can only say don&rsquo;t know, but here I can give a sample of how to resolve the major logic of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Game of Life">&ldquo;Conway&rsquo;s Game of Life&rdquo;</a>, rules of the game is:</p>
 
 <blockquote><ol>
 <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
@@ -968,11 +976,10 @@ client@client-Workstation:~/tmp/a$
 
 <p> So we can understand the next generation state will be based on two factors: current generation state (live or dead) and live neighours amount. We can define a two-dimensional array like below diagram illustrates:</p>
 
-<p> <img src="http://erizhang.github.io/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
+<p> <img src="http://zhangliaoyuan.me/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
 
-<p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&#8217;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:</p>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&rsquo;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:
+ <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -983,7 +990,7 @@ client@client-Workstation:~/tmp/a$
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'> <span class="cm">/*0 means dead, 1 means live*/</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'> <span class="cm">/<em>0 means dead, 1 means live</em>/</span>
 </span><span class='line'> <span class="kt">int</span> <span class="n">rule_map</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">{</span>
 </span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
 </span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
@@ -994,18 +1001,17 @@ client@client-Workstation:~/tmp/a$
 </span><span class='line'>     <span class="k">return</span> <span class="n">rule_map</span><span class="p">[</span><span class="n">cur_state</span><span class="p">][</span><span class="n">neighbours</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
 </span><span class='line'> <span class="p">}</span>
 </span><span class='line'>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&#8217;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
+<p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&rsquo;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Team Gathering Game]]></title>
-    <link href="http://erizhang.github.io/blog/2013/03/23/team-gethering-game/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game/"/>
     <updated>2013-03-23T00:00:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/03/23/team-gethering-game</id>
+    <id>http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game</id>
     <content type="html"><![CDATA[<p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
 
 <h2>The rule of the game:</h2>
@@ -1014,7 +1020,7 @@ client@client-Workstation:~/tmp/a$
 <li>All members stand as matrix (row*coloumn), the lines like we did physical exercise in childhood, you can stretch your arm, but cannot touch another person who closes to you.</li>
 <li>Facilitator asks all member close eyes, and from now on to the end, every attendee shall keep their eyes closed.</li>
 <li>Facilitator asks every select a number in their heart, everyone keep one number, do not tell the number to any one now. (for example, if there are 100 attendees, facilitator can ask attendee select one number between 1 and 100).</li>
-<li>Facilitator give an instruction: &#8220;please turn around, and stretch your hand, try to touch another person who closed to you&#8221;</li>
+<li>Facilitator give an instruction: &ldquo;please turn around, and stretch your hand, try to touch another person who closed to you&rdquo;</li>
 <li>Attendee share the number to another, and hand in hand, try to group more people, but shall be keep the number in order</li>
 <li>Once all attendee are in an ordered group or time out, facilitator asks attendee open their eyes.</li>
 </ul>
@@ -1037,15 +1043,15 @@ client@client-Workstation:~/tmp/a$
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[structure assignment and its pitfall in C language]]></title>
-    <link href="http://erizhang.github.io/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
+    <title type="html"><![CDATA[Structure Assignment and Its Pitfall in C Language]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
     <updated>2013-01-28T21:47:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
+    <id>http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
     <content type="html"><![CDATA[<h2>Problem</h2>
 
 <p>There is a structure type defined as below:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1060,7 +1066,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>If we want to assign <code>map_t</code> type variable <code>struct2</code> to <code>sturct1</code>, we usually have below 3 ways:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1083,23 +1089,23 @@ client@client-Workstation:~/tmp/a$
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Consider above ways, most of programmer won&#8217;t use way #1, since it&#8217;s so stupid ways compare to other twos, only if we are defining an structure assignment function. So, <strong><em>what&#8217;s the difference between way #2 and way #3? And what&#8217;s the pitfall of the structure assignment once there is array or pointer member existed?</em></strong> Coming sections maybe helpful for your understanding.</p>
+<p>Consider above ways, most of programmer won&rsquo;t use way #1, since it&rsquo;s so stupid ways compare to other twos, only if we are defining an structure assignment function. So, <strong><em>what&rsquo;s the difference between way #2 and way #3? And what&rsquo;s the pitfall of the structure assignment once there is array or pointer member existed?</em></strong> Coming sections maybe helpful for your understanding.</p>
 
-<h2>The difference between <strong><em>&#8217;=&#8217; straight assignment</em></strong> and <strong><em>memcpy</em></strong></h2>
+<h2>The difference between <strong><em>&lsquo;=&rsquo; straight assignment</em></strong> and <strong><em>memcpy</em></strong></h2>
 
-<p>The <code>struct1=struct2;</code> notation is not only <strong>more concise</strong>, but also <strong>shorter</strong> and <strong>leaves more optimization opportunities to the compiler</strong>. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That&#8217;s a huge <strong>difference in readability</strong> as well, although <code>memcpy</code> does the same in this case.</p>
+<p>The <code>struct1=struct2;</code> notation is not only <strong>more concise</strong>, but also <strong>shorter</strong> and <strong>leaves more optimization opportunities to the compiler</strong>. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That&rsquo;s a huge <strong>difference in readability</strong> as well, although <code>memcpy</code> does the same in this case.</p>
 
-<p>Copying by straight assignment is probably best, since it&#8217;s shorter, easier to read, and has a higher level of abstraction. Instead of saying (to the human reader of the code) &#8220;copy these bits from here to there&#8221;, and requiring the reader to think about the size argument to the copy, you&#8217;re just doing a straight assignment (&#8220;copy this value from here to here&#8221;). There can be no hesitation about whether or not the size is correct.</p>
+<p>Copying by straight assignment is probably best, since it&rsquo;s shorter, easier to read, and has a higher level of abstraction. Instead of saying (to the human reader of the code) &ldquo;copy these bits from here to there&rdquo;, and requiring the reader to think about the size argument to the copy, you&rsquo;re just doing a straight assignment (&ldquo;copy this value from here to here&rdquo;). There can be no hesitation about whether or not the size is correct.</p>
 
-<p>Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (<em>It will be introduced below section</em>). If we use straight structure assignment &#8216;=&#8217; in C++, we <strong>can consider to overload the <code>operator=</code> function</strong>, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.</p>
+<p>Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (<em>It will be introduced below section</em>). If we use straight structure assignment &lsquo;=&rsquo; in C++, we <strong>can consider to overload the <code>operator=</code> function</strong>, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.</p>
 
 <h2>The pitfall of structure assignment:</h2>
 
-<p>Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you&#8217;re aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.</p>
+<p>Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you&rsquo;re aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.</p>
 
 <p>If the structures are of compatible types, yes, you can, with something like:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1107,20 +1113,20 @@ client@client-Workstation:~/tmp/a$
 <p>}
 The only thing you need to be aware of is that this is a shallow copy. In other words, if you have a <code>char *</code> pointing to a specific string, both structures will point to the same string.</p>
 
-<p>And changing the contents of one of those string fields (the data that the <code>char <em></code> points to, not the <code>char </em></code> itself) will change the other as well. For these situations a &#8220;deep copy&#8221; is really the only choice, and that needs to go in a function. If you want a easy copy without having to manually do each field but with the added bonus of non-shallow string copies, use strdup:</p>
+<p>And changing the contents of one of those string fields (the data that the <code>char <em></code> points to, not the <code>char </em></code> itself) will change the other as well. For these situations a &ldquo;deep copy&rdquo; is really the only choice, and that needs to go in a function. If you want a easy copy without having to manually do each field but with the added bonus of non-shallow string copies, use strdup:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
 </span><span class='line'><span class="n">dest_struct</span><span class="o">-&gt;</span><span class="n">strptr</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="n">source_struct</span><span class="o">-&gt;</span><span class="n">strptr</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn&#8217;t have a strdup (it&#8217;s not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.</p>
+<p>This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn&rsquo;t have a strdup (it&rsquo;s not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.</p>
 
 <h3>Example of trap:</h3>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1179,14 +1185,14 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&#8217;s dangerous!!</strong></p>
+<p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&rsquo;s dangerous!!</strong></p>
 
-<p><img src="http://erizhang.github.io/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
 
 <h2>Conclusion</h2>
 
 <ul>
-<li>Recommend use straight assignment &#8216;=&#8217; instead of memcpy.</li>
+<li>Recommend use straight assignment &lsquo;=&rsquo; instead of memcpy.</li>
 <li>If structure has pointer or array member, please consider the pointer alias problem, it will lead dangling pointer once incorrect use. Better way is implement structure assignment function in C, and overload the operator= function in C++.</li>
 </ul>
 
@@ -1204,13 +1210,13 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Retrospective of my 2012]]></title>
-    <link href="http://erizhang.github.io/blog/2013/01/14/retrospective-of-my-2012/"/>
+    <title type="html"><![CDATA[Retrospective of My 2012]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2013/01/14/retrospective-of-my-2012/"/>
     <updated>2013-01-14T21:47:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/01/14/retrospective-of-my-2012</id>
+    <id>http://zhangliaoyuan.me/blog/2013/01/14/retrospective-of-my-2012</id>
     <content type="html"><![CDATA[<p>In our organization, we have a basic rule is: If you make retrospective for one specific sprint, you shall finish it in the sprint time slot. So it against our rule since I make 2012 retrospective in 2013, but later than never. I believe retrospective since I have ran agile for several years, I know it can benefit me.</p>
 
-<p>My grandpa told my mother, and my mother told me that you have to look back and reflect on your life every night before you go to bed. It’s difficult for me, because I always tell story to my kid during that time, or do others, you know that&#8230; So I demand me shall make retrospective at least once annually.</p>
+<p>My grandpa told my mother, and my mother told me that you have to look back and reflect on your life every night before you go to bed. It’s difficult for me, because I always tell story to my kid during that time, or do others, you know that&hellip; So I demand me shall make retrospective at least once annually.</p>
 
 <h2>How have things gone?</h2>
 
@@ -1236,9 +1242,9 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 <h3>Books I’m reading:</h3>
 
 <ul>
-<li><a href="http://www.amazon.com/Black-Swan-Improbable-Robustness-Fragility/dp/081297381X" title="The Black Swan"><em>The Black Swan: Second Edition: The Impact of the Highly Improbable: With a new section: &#8220;On Robustness and Fragility</em></a></li>
+<li><a href="http://www.amazon.com/Black-Swan-Improbable-Robustness-Fragility/dp/081297381X" title="The Black Swan"><em>The Black Swan: Second Edition: The Impact of the Highly Improbable: With a new section: &ldquo;On Robustness and Fragility</em></a></li>
 <li><a href="http://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374275637" title="Thinking, Fast and Slow"><em>Thinking, Fast and Slow</em></a></li>
-<li><a href="http://www.amazon.com/Software-Exorcism-Handbook-Debugging-Optimizing/dp/B008SMFV9W," title="Software Exorcism"><em>Software Exorcism: A Handbook for Debugging and Optimizing Legacy Code (Expert&#8217;s Voice)</em></a></li>
+<li><a href="http://www.amazon.com/Software-Exorcism-Handbook-Debugging-Optimizing/dp/B008SMFV9W," title="Software Exorcism"><em>Software Exorcism: A Handbook for Debugging and Optimizing Legacy Code (Expert&rsquo;s Voice)</em></a></li>
 </ul>
 
 
@@ -1249,31 +1255,31 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Build up octopress style blog site]]></title>
-    <link href="http://erizhang.github.io/blog/2012/12/20/build-up-octopress-blog/"/>
+    <title type="html"><![CDATA[Build Up Octopress Style Blog Site]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog/"/>
     <updated>2012-12-20T00:00:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2012/12/20/build-up-octopress-blog</id>
+    <id>http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog</id>
     <content type="html"><![CDATA[<h2>Why I choose octopress?</h2>
 
-<p>I&#8217;m a programmer, and I&#8217;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&#8217;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
+<p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
 
-<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&#8217;m not a proffsional editor, and I&#8217;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
+<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&rsquo;m not a proffsional editor, and I&rsquo;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
 
-<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&#8230;., thank god, thank author, thank all the people who guide me know this.</p>
+<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&hellip;., thank god, thank author, thank all the people who guide me know this.</p>
 
 <h2>My octopress git repository</h2>
 
-<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&#8217;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
+<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&rsquo;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
 
-<p><img src="http://erizhang.github.io/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
 
-<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&#8217;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
+<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&rsquo;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
 
 <h2>Tips</h2>
 
 <p>Open the <code>Rakefile</code> which is under octopress folder, and jump to this code snippet:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1300,7 +1306,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 
 <p>You can change the code to support <code>https</code>url, the code like this:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1348,15 +1354,15 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Facilitate coderetreat global day of 2012]]></title>
-    <link href="http://erizhang.github.io/blog/2012/12/18/facilitate-coderetreat/"/>
+    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat/"/>
     <updated>2012-12-18T10:51:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2012/12/18/facilitate-coderetreat</id>
+    <id>http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat</id>
     <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
 
-<h2>What&#8217;s the coderetreat</h2>
+<h2>What&rsquo;s the coderetreat</h2>
 
-<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &#8216;getting things done&#8217;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
 
 <p>In the day, all participants practiced below modern development practices:</p>
 
@@ -1378,7 +1384,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 <li>RULE #3. Clean Code is required</li>
 <li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
 <li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
-<li>RULE #6. No “if … else &#8230;”, “switch … case &#8230;” , “..? ..:..” condition expressions</li>
+<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
 </ul>
 
 
@@ -1386,9 +1392,9 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 
 <p>We took 6 sessions for each rule, and wrap up in the end. Also had video connecting with other cities (Beijing, Shanghai, Taiyuan, Tokyo, Singapore, Hanoi, Ho Chi Minh) via google hangout.</p>
 
-<p><img src="http://erizhang.github.io/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
 
-<p><img src="http://erizhang.github.io/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
 
 <h2>Sponsor</h2>
 
@@ -1398,7 +1404,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 
 <p>Since this is an open event, we were looking forward to more programmers come from different company and industry, and coding in different programming language, it will increase the idea diversity, so we advertise on social networks. But later just come 2 persons from outside our company, it prove our advertisement was failed. So, if we plan to facilitate same event, we will advertise on some programming community will be better.</p>
 
-<p><img src="http://erizhang.github.io/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
 
 <p>Of cause, the advertisement inside our company is quite good, there were more then 20 programmers coming.</p>
 
@@ -1416,9 +1422,9 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   
   <entry>
     <title type="html"><![CDATA[怎样创建一家软件公司]]></title>
-    <link href="http://erizhang.github.io/blog/2012/01/12/how-to-start-a-software-company/"/>
+    <link href="http://zhangliaoyuan.me/blog/2012/01/12/how-to-start-a-software-company/"/>
     <updated>2012-01-12T23:06:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2012/01/12/how-to-start-a-software-company</id>
+    <id>http://zhangliaoyuan.me/blog/2012/01/12/how-to-start-a-software-company</id>
     <content type="html"><![CDATA[<p>在Quora里，无意中看到这样一个问题: <a href="http://www.quora.com/I-want-to-start-a-software-company-in-India-how-shall-I-start-and-plan-that-currently-i-work-as-IT-project-manager" title="Question">我目前是IT项目经理，想在印度创建一家公司，我应该如何开始和规划？</a>
 名叫Unni Krishnan Koroth的人回答到：</p>
 

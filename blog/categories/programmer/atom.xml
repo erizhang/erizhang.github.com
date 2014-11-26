@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: programmer | Actionary]]></title>
-  <link href="http://erizhang.github.io/blog/categories/programmer/atom.xml" rel="self"/>
-  <link href="http://erizhang.github.io/"/>
-  <updated>2014-11-12T15:07:06+08:00</updated>
-  <id>http://erizhang.github.io/</id>
+  <title><![CDATA[Category: Programmer | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/programmer/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-11-26T22:08:27+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[程序员上网扫盲]]></title>
-    <link href="http://erizhang.github.io/blog/2013/07/26/how-programmer-surf-internet/"/>
+    <link href="http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet/"/>
     <updated>2013-07-26T11:31:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2013/07/26/how-programmer-surf-internet</id>
+    <id>http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet</id>
     <content type="html"><![CDATA[<p>最近常常被很多朋友问到这样的问题：</p>
 
 <ul>
@@ -48,7 +48,7 @@
 
 <p>Sourceforge，google code离我们越来越远，而github却离我们却越来越近。这家公司虽然地处湾区，在地理位置上来说，与我们隔着一个太平洋的距离，可是<a href="http://github.com" title="github">github.com</a>却成为每一个geek必去的网站，越来越多的开源项目进驻，越来越多的公司用它来做项目开发。这是一家提倡社交化开源，社交化开发的公司，该公司只有一个员工有一个固定的title，那就是CEO，其他员工的title都是经常性的变更，有时叫“黑暗骑士”，有时叫“终结者”，员工遍布全球，办公地点有的在家里，咖啡店，Office，而有的则可能在旅行的路上。</p>
 
-<p>软件开发已经没有传统的地域限制，github提供了这样的一个技术平台，提供社交化的虚拟社区，人人可以提交代码，人人可以review代码。要开展一个项目，你只需在网站上建一个repository，剩下的就去邀请那些极客了，给他们一根网线，他们会用各种名词"clone"，"fork"，"pull request"跟你交流。如果有一天，你听到一个人跟你讲，请fork一下我，千万别感到奇怪。你需要掌握的知识就是编程和git的使用，很高兴，互联网给了免费的图书让你<a href="http://git-scm.com/book/zh" title="Pro Git">学习git</a>。据说，现在很多大公司会通过github上的信息，网罗他们需要的程序员，又一个<a href="http://www.guokr.com/article/437170/" title="How Big Data Is Playing Recruiter for Specialized Workers">大数据的案例</a>。</p>
+<p>软件开发已经没有传统的地域限制，github提供了这样的一个技术平台，提供社交化的虚拟社区，人人可以提交代码，人人可以review代码。要开展一个项目，你只需在网站上建一个repository，剩下的就去邀请那些极客了，给他们一根网线，他们会用各种名词&#8221;clone&#8221;，&#8221;fork&#8221;，&#8221;pull request&#8221;跟你交流。如果有一天，你听到一个人跟你讲，请fork一下我，千万别感到奇怪。你需要掌握的知识就是编程和git的使用，很高兴，互联网给了免费的图书让你<a href="http://git-scm.com/book/zh" title="Pro Git">学习git</a>。据说，现在很多大公司会通过github上的信息，网罗他们需要的程序员，又一个<a href="http://www.guokr.com/article/437170/" title="How Big Data Is Playing Recruiter for Specialized Workers">大数据的案例</a>。</p>
 
 <p>又据说，现在美国白宫也在正尝试通过github的协作方式来完成一些文章和政策文档的编撰工作。白宫已经开始了，你还等什么呢？登录<a href="http://github.com" title="github">github.com</a>，fork我吧。</p>
 

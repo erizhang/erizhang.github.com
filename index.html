@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。 在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL) &hellip;">
+  <meta name="description" content="We&rsquo;re now the 3rd times hosting and facilitating the Global Day of Coderetreat in Hangzhou, China. Compared with Jim Hurne coordinating the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,17 +18,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://erizhang.github.io">
+  <link rel="canonical" href="http://zhangliaoyuan.me">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -62,7 +62,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:erizhang.github.io" />
+    <input type="hidden" name="q" value="site:zhangliaoyuan.me" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -83,7 +83,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/11/11/pair-work/">关于结对开发的那些事儿</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/11/16/what-i-learned-in-coderetreat/">What I Learned in Global Day of Coderetreat</a></h1>
     
     
       <p class="meta">
@@ -92,43 +92,46 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-11-11T21:12:00+08:00" pubdate data-updated="true">Nov 11<span>th</span>, 2014</time>
+<time class='entry-date' datetime='2014-11-16T21:12:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
+  <div class="entry-content"><p>We&rsquo;re now the 3rd times hosting and facilitating the Global Day of Coderetreat in Hangzhou, China. Compared with Jim Hurne coordinating the globally events, be frankly, our work is easier. Yes, it&rsquo;s easier, but I do not think it&rsquo;s not important. It always request the host and facilitator spends much more effort to prepare and continuiously improve. Personally, beside those Global Day of Coderetreat (GDCR in short), we still spended much time hosting and facilitating such like coding dojo, coding rally etc. which help programmer to practice their software design, coding skill and agile engineering practices. Here I&rsquo;d like to share what I learned from coderetreat.</p>
 
-<p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
+<p><img src="/images/2014-11-16-what-i-learned-in-coderetreat/coding.jpg" title="In Coding" alt="Alt text" /></p>
 
-<p>我们认为，结对开发是用于团队的ramp up的利器之一。团队建立，先分析人，结对开发是一种加强团队成员彼此了解的好机会，这是一种交换学习的形式，设想一下，团队里有7位同事，如果大家都曾彼此结对工作过，大家彼此的了解会更深入，哪些人擅长什么都很清楚。</p>
+<h2>Prepare as earlier as possible</h2>
 
-<p>以老带新的形式进行结对，或者以交换学习新知识和新技能的需要进行结对。需要注意的是，结对的时候，两个人的能力水平差距不宜过大，这样会影响结对工作的效果。多鼓励团队成员自发结对工作，当然，做为经理，可以对结对进行调整，如job rotation的形式等等，多创造一些结对工作的机会。如两个程序员一起结对，程序员和测试人员结对，tutor跟newcomer结对等等。</p>
+<p>Even coderetreat&rsquo;s organizing is lightweight compares what&rsquo;s conference. But prepare as earler as possible makes sense. What&rsquo;re you have to prepare:</p>
 
-<p>我们会问，如果大家结对，有没有什么形式来保证大家在开发过程中不会走错路？其实这个问题跟结不结对没有关系，一般来说，架构师会做一个全局的考虑来避免走错路，另外，在daily meeting上也可以通过对任务的更新来发现并避免走错路，每次会议，都问一句能力比较强的同事：有没有什么建议或不同意见？</p>
+<ul>
+<li><p>Keep the connection with coderetreat.org, and keep you can touch the global organizer via email, if you hosted the GDCR in last year, you mail will be record in historial host naming lsit. So that, you can received first hand news from coderetreat community, about the schedule, host and faclitate guideline, experience sharing, some issues discussion. This is great opportunity to learn from expereienced person, also it&rsquo;s great time to build your reputation.</p></li>
+<li><p>Join regional GDCR community. Regional community can help you prepare your event better, most of members in regional community are expert or activator in they lived city, they are more experienced in community hosting and facilitating, they can give you suggestions, their lesson and learn is indirect knowladge to you. You can copy their way of working, even share the local sponsors.</p></li>
+<li><p>Look for the sponsors. GDCR is day-long event, and programmer deserved free lunch and snack, so we need sponsor supply the money and place. As an activity organizor, you can help the sponsor&rsquo;s branding. And involve more people from their company to join the community. Another way to find the money is connecting with other communities who has activity budget. For me, that&rsquo;s always not a problem, since we can align our activity with our belonged company&rsquo;s business value, boss buying our idea, and sponsor it.</p></li>
+<li><p>Prepare the topic and constraits. As we know, the problem topic is always Game of Life, I&rsquo;m not going to explain why we choose Game of Life in this post. We haven&rsquo;t changed the problem topic in our three years GDCR, personally think the problem topic is not a problem since most of participants are different in different year, instead, we have to consider the contraits more carefully, and we think that, the most excited part is the constraints adding.</p></li>
+<li><p>Facility. Prepare some funny video such like &ldquo;Delete your code, Yes, You&rdquo; and the movie clip of game of life, some different color post-it for the retrospective of each session, check the network connecting works well with other cities. If there is no official video channel providing, establish some hangout will be fine.</p></li>
+<li><p>Advertise the event. twitter, facebook, meetup, WeChat, Weibo, and G+ such social network will be good place to market the event to audience. eventbrite, google form can be good tool for event enroll. Don&rsquo;t forget do some pre-survey to know the participants knowladge and skill level clearly.</p></li>
+</ul>
 
-<p>采用这样的结对方式，可以有效地提高团队的能力，达到团队能力的最优，我们需要的是团队能力的最优，而不是单个个体的最优。如果我们在结对的过程中发现团队的合作或配比不是最优，我们可以打乱团队，重新洗牌。</p>
 
-<p>能不能做到结对开发，这是文化的问题。我们可以通过对能力比较强的同事设定这样的KPI来解决，如，考核该员工结对培养了多少人，另外做360度feedback来考核员工，他所曾经结对过的同事给他反馈。所以我们建议，针对刚成立起来的团队，必须做到100%的结对工作，越是关键，越是困难时期，越是要快速的将团队整体的实力进行提升，而提升的过程必须是learning through work，而结对工作就是一个比较好的手段。我们可以给团队建立一个结对工作图，只有之间有结对工作，将两者之间用线连接起来，以此来跟踪团队结对工作情况。</p>
+<h2>Facilitating</h2>
 
-<p><img src="/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
+<p>There is a video sharing for the GDCR facilitating. And thanks for GDCR global organizors, they supply the the <a href="http://gdcr.coderetreat.org/hosts/guide.html," title="hosting guideline">guideline</a> for your hosting and facilitating. In the first year we hosted and facilitated the event, we strictly follow the guideline and rules what the session shall be in 45 minutes, and then remove all code in next session. But we found that, there might be some problems for example, since all implementation has been removed, some programmer lack the sense of achievement, and each session&rsquo;s restrospetive cost a lot of time. So in this year, in the first two sessions, we let the programmers try their best to finish the basic implementation. And from the third session, we strictly require them to remove the source code, and we give a time-box for each person to share the feeling and learn and strictly to follow the rules. We also change some constraints, to practice our engineers OO design, and also give some funny contraints making a happy event.</p>
 
-<p>是不是所有工作都应该结对？很显然，不是，结对工作的目的如果是想做团队的能力培养，那么结对的工作内容应该是那些可以让一部分能力强的员工帮助这一块比较弱的员工的工作，如对某个业务模块的编程，测试用例的编写等等，而那些适合独立思考的任务，则给员工留足独立思考的空间吧。所以，员工之间可以达成一个agreement，比如，每天下午的13:00 - 16:00之间会用于pair work，而其他的时间留给各自吧。</p>
+<p>After each session, we facilitator will give brief introduction about why we add the constraints, and what&rsquo;s the essential behind the constraints, and how do we adapt good practice in daily work, such sharing will help people learn more from just experiened.</p>
 
-<p>为了保证团队建设的可持续性，我们建议直线经理的关注点做如下分配，50%的时间用于团队人员相关事务，30%用于项目相关的事务，而20%的时间则用于hands on的团队工作，如跟团队成员以结对的形式进行工作。这样的直线经理，才能对团队的动态进行洞悉。</p>
+<h2>Summary and retrospective</h2>
 
-<p>其实结对工作可以让参与者完全投入，并能产生积极的工作压力，从这个角度来说，是有助于工作效率的提升，谁也不知道一个看似独自努力工作的人是不是在努力工作，但是，两个在一起努力工作的人肯定是在努力工作。当然，在这样的过程中，做为直线经理，需要关注并影响团队的负面情绪。做为结对开发的推广，我们可能通过KPI考核方式的改变，如考核合作这一块，鼓励尝试使用好的方法，双向推进，真下而上去educate你的经理，自上而上的要求你的团队成员。</p>
+<p>After finish the sessions, we will gather all programmers, and do a quick retrospective of this event, 10 persons in a group, and select an A0 size paper, to draw 3 circle in the same center. give them each person 3 green color post-it, and answer this question: What&rsquo;s your feeling about this event, write 3? And let them write down and paste on the outside circle, and share the feeling each other in they belonged group. and then, every one has 2 yellow color post-it, and write down the answer for this question: What&rsquo;s you learned from event, write 2? and paste the answer around the middle circle, and then share each other. At last, every one has 1 red color post-it, and write down the answer for this question: What&rsquo;s you next action which is related this topic, write 1? And paste the answer around the inner side circle.</p>
 
-<p>通过结对开发，我们可以有效保证产品的质量和开发效率的基础上，做好团队整体能力的提升。</p>
+<p><img src="/images/2014-11-16-what-i-learned-in-coderetreat/group-picture.jpg" title="Retrospective result" alt="Alt text" /></p>
+
+<p>As a host and facilitator, we can clearly get the feedback from their sharing, for example, if the feeling is boring, there might be some facilitating problem, LOL.</p>
+
+<p>Have a nice summary will help us to record what we did, like now, write down a post, and create a picture album, that&rsquo;s good choice. Have a fun.</p>
 
 <p>-EOF-</p>
 </div>
@@ -152,25 +155,16 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-09-02T23:12:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2014</time>
+<time class='entry-date' datetime='2014-09-02T23:12:00+08:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>11:12 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>我不知道为什么要说这个话题，我想有一部分原因是因为将近半年博客没有更新，一时半会儿想不到其他什么东西好写，刚好最近常常有人常常问我一堆敏捷相关的问题？</p>
+  <div class="entry-content"><p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
 
-<p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
-
-<p>可是，可是&#8230;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
+<p>可是，可是&hellip;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
 
 <p>讨论敏捷，肯定会提到敏捷宣言等等各种资料、引用、权威著作等等。但是这里水太深，一般人一时半会儿还真理解不了。那么，我想从我个人的理解试着说说，如果读者朋友觉得我说错了，也请给个comments，提醒一下，当然以后就称我为编程教练好了，如果你赞同的话，那以后就叫我为敏捷教练好了.</p>
 
@@ -178,9 +172,9 @@
 
 <p><img src="/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
 
-<p>以此，我们对应软件开发中，软件开发常常碰到的问题是不确定因素很多，客户随时可能改变需求，这有点像开车，路况总是处在变化中，软件研发团队提交产品给客户，而客户将反馈给研发团队。如果想有效地应对来自客户的变化，那么保持一定频率的反馈及快速的反馈时间将有助于及时让团队做出调整，这样，不断的调整改善，对团队而言，就是一个持续改善的过程。我们试着问，要不断从客户那边获得反馈，前提就是要可持续地提交产品给客户，就这引入了Continuous Delivery的概念（我们不再这里深入更多细节），要做好Continuous Delivery，我们必须做好持续集成Continuous Integration，要做到持续集成，我们可以通过ATDD保证需求是可迭代的持续验证，并且同时做好测试自动化。要做好持续集成，咱们得做好持续开发编译，要做好持续开发编译，咱们都做好TDD，Pairing&#8230; 随着一步步向下挖掘，我们发现，可以将很多工程实践，放到里头，如果想保证这些事情能够顺利地做好，我们定义了不同的角色，不同的check list，backlog，这样就很容易地顺着这个思路去自圆其说了，:p。当然，这时还一个概念就是迭代周期，迭代周期就是开发团队用于Inspect &amp; Adapt的节奏。迭代周期多长合适呢？</p>
+<p>以此，我们对应软件开发中，软件开发常常碰到的问题是不确定因素很多，客户随时可能改变需求，这有点像开车，路况总是处在变化中，软件研发团队提交产品给客户，而客户将反馈给研发团队。如果想有效地应对来自客户的变化，那么保持一定频率的反馈及快速的反馈时间将有助于及时让团队做出调整，这样，不断的调整改善，对团队而言，就是一个持续改善的过程。我们试着问，要不断从客户那边获得反馈，前提就是要可持续地提交产品给客户，就这引入了Continuous Delivery的概念（我们不再这里深入更多细节），要做好Continuous Delivery，我们必须做好持续集成Continuous Integration，要做到持续集成，我们可以通过ATDD保证需求是可迭代的持续验证，并且同时做好测试自动化。要做好持续集成，咱们得做好持续开发编译，要做好持续开发编译，咱们都做好TDD，Pairing&hellip; 随着一步步向下挖掘，我们发现，可以将很多工程实践，放到里头，如果想保证这些事情能够顺利地做好，我们定义了不同的角色，不同的check list，backlog，这样就很容易地顺着这个思路去自圆其说了，:p。当然，这时还一个概念就是迭代周期，迭代周期就是开发团队用于Inspect &amp; Adapt的节奏。迭代周期多长合适呢？</p>
 
-<p>从产品开发的这条线走，如上所述。那么要开发产品，团队很重要，从团队角度又可以引申到哪些概念呢？如团队建设要做到Continuous Improvement，那么我们是不是得做好Retrospective，然后是Daily Meeting， working agreement &#8230;</p>
+<p>从产品开发的这条线走，如上所述。那么要开发产品，团队很重要，从团队角度又可以引申到哪些概念呢？如团队建设要做到Continuous Improvement，那么我们是不是得做好Retrospective，然后是Daily Meeting， working agreement &hellip;</p>
 
 <p><img src="/images/2014-09-02-talk-about-agile/concepts_links.png" title="Concepts Link" alt="Alt text" /></p>
 
@@ -222,21 +216,14 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T16:31:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+<time class='entry-date' datetime='2014-02-24T16:31:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:31 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&#8230;&#8230;</p>
+  <div class="entry-content"><p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&hellip;&hellip;</p>
 
 <p>我本人所在项目的代码库里，包含了从上世纪八十年代到现在，跨度将近三十年的代码，这个样本都适合做代码考古了，而公司目前有几百人正在从事这套软件的维护工作，维护工作的绝大多数时间就是在与遗留代码战斗。他们需要深入代码洞穴，攀登代码树，在错综复杂的逻辑结构中跟踪每一步可能的分支结点；除了要抓到贻害一方的缺陷，并且还必须在有限的时间里完成这一切工作，这就像美剧里演的一样，一个人拿着枪指着你的头，掐着秒表，逼着你在秒表归零之前完成复杂的网络攻击任务。作者把软件维护工程师们比做软件驱魔人，这是多么贴切的比喻。我现在才惊醒，原来我身边的人本应如孙俪一样俊俏，像古天乐一样有型，似文章一般阳光清纯，而“伟大”的降妖除魔工作，却让他们一个个如降魔人，猎妖师和陈玄奘一般狼狈不堪。</p>
 
@@ -280,14 +267,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2014-02-17T15:31:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time>
+<time class='entry-date' datetime='2014-02-17T15:31:00+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:31 pm</span></time>
         
       </p>
     
@@ -347,14 +327,7 @@
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-10-10T11:31:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-10-10T11:31:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
         
       </p>
     
@@ -365,7 +338,7 @@
 
 <h3>1.1. Purpose</h3>
 
-<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&#8217;d like mark my practice notes here.</p>
+<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&rsquo;d like mark my practice notes here.</p>
 
 <ul>
 <li>Gerrit is <code>git</code> repository management tools, more external reference you can read about the benefits of <code>git</code></li>
@@ -424,11 +397,11 @@ to start it.</p>
 
 <h4>Login the gerrit web UI</h4>
 
-<p>Type the http address of gerrit service on browser, in this case, it&#8217;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
+<p>Type the http address of gerrit service on browser, in this case, it&rsquo;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
 
 <h4>Create new project</h4>
 
-<p>Create new project, and &#8220;Rights Inherit From&#8221; shall be &#8220;All-Projects&#8221;, it means current you created project configuration(such as access control) will inherit from &#8220;All-Projects&#8221; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
+<p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
 
 <p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
 Figure 1-1</p>
@@ -517,7 +490,7 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 </pre>
 
 
-<p>Please notice that there is <code>remote:   http://192.168.1.100:8081/1</code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&#8217;s open this link with our web browser:
+<p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
 <img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
 
 <p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
@@ -526,15 +499,15 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 
 <h4>Create ReviewBoard group and add the members</h4>
 
-<p>Login gerrit web UI with administrator, select &#8220;People&#8221; -> &#8220;Create New Group&#8221;
+<p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
 <img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
 
 <h4>Access control of the new create group</h4>
 
-<p>Select our created project, there is &#8220;Access&#8221;, click and edit it. &#8220;Add reference&#8221; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
+<p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
 <img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
 
-<p>Till now, we have create new Group named &#8220;ReviewBoard&#8221;, and all members in this group have &#8220;Label Review&#8221; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
+<p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
 
 <h2>3. Jenkins deployment</h2>
 
@@ -570,9 +543,9 @@ jenkins@jenkins-Workstation:~$
 
 <h3>4.1. Install the <code>Gerrit Trigger</code> Plugin</h3>
 
-<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &#8220;Manage Jenkins&#8221; -> &#8220;Manage Plugin&#8221;, and then you can find the <code>Gerrit Trigger</code> in the &#8220;Available&#8221; tab.</p>
+<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &ldquo;Manage Jenkins&rdquo; -> &ldquo;Manage Plugin&rdquo;, and then you can find the <code>Gerrit Trigger</code> in the &ldquo;Available&rdquo; tab.</p>
 
-<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &#8220;Available&#8221; tab, maybe you should select &#8220;Advanced&#8221; tab, and click &#8220;Check Now&#8221; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &#8220;Advanced&#8221; tab as well.</em></p></blockquote>
+<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &ldquo;Available&rdquo; tab, maybe you should select &ldquo;Advanced&rdquo; tab, and click &ldquo;Check Now&rdquo; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &ldquo;Advanced&rdquo; tab as well.</em></p></blockquote>
 
 <p>Select the plugin, and install without restart, the process which shows like this.</p>
 
@@ -624,17 +597,17 @@ jenkins@jenkins-Workstation:~/gerrit/review_site/bin$
 
 <h3>4.4. Configure <code>Gerrit Trigger</code></h3>
 
-<p>Select &#8220;Manage Jenkins&#8221; &#8211;> &#8220;Gerrit Trigger&#8221;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &#8220;Test Connection&#8221;. It will show success or not. See below diagram shows.</p>
+<p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
 
 <p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
 
-<p>After then, save your settings and restart the connection in the &#8220;Control&#8221; section at the bottom of the page:</p>
+<p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
 
 <p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
 
 <h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
 
-<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &#8220;Label Verified&#8221; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
+<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &ldquo;Label Verified&rdquo; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
 
 <pre>
 client@client-Workstation:~/tmp/a$ git init
@@ -696,7 +669,7 @@ client@client-Workstation:~/tmp/a$
 
 <h3>4.7. Create the jenkins job</h3>
 
-<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&#8217;m not going to repeat it in this post again.</p>
+<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
 </div>
   
   
@@ -718,21 +691,14 @@ client@client-Workstation:~/tmp/a$
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-08-30T11:31:00+08:00" pubdate data-updated="true">Aug 30<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-08-30T11:31:00+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>The department which I&#8217;m working on, it&#8217;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
+  <div class="entry-content"><p>The department which I&rsquo;m working on, it&rsquo;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
 
 <p>Today, let’s clarify why we need visual task board? Why we not use excel instead, or some on-line task management tools such like Trello?</p>
 
@@ -765,7 +731,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>During the daily meeting, Scrum Master opens the laptop, and then all team member gather around the only 15 inch laptop screen, you guys open your big eyes as bigger as possible, and focus on only 10 font size words to make the task updating. In another scenarios, you do not expect the lazybones never will open this document any more, since opening this excel will cost too many steps – and then in time task updating is a problem.</p>
 
-<p>If we have task board, all tasks are written on the cards, and they&#8217;re clearly pasted on the wall. You just give a sight, you can find out the task, for the task updating, you only need to move the cards. See, easy.</p>
+<p>If we have task board, all tasks are written on the cards, and they&rsquo;re clearly pasted on the wall. You just give a sight, you can find out the task, for the task updating, you only need to move the cards. See, easy.</p>
 
 <h2>It’s not only a wall, it’s team flag</h2>
 
@@ -800,14 +766,7 @@ client@client-Workstation:~/tmp/a$
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-07-26T11:31:00+08:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-07-26T11:31:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
         
       </p>
     
@@ -952,21 +911,14 @@ client@client-Workstation:~/tmp/a$
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-07-08T11:31:00+08:00" pubdate data-updated="true">Jul 8<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-07-08T11:31:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>因为一篇post &#8211; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
+  <div class="entry-content"><p>因为一篇post &ndash; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/23992242 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen></iframe>
 
@@ -1019,21 +971,14 @@ client@client-Workstation:~/tmp/a$
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-06-25T17:31:00+08:00" pubdate data-updated="true">Jun 25<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-06-25T17:31:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>5:31 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&#8230;看峰人(Bee Watcher Watcher &#8230;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
+  <div class="entry-content"><p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&hellip;看峰人(Bee Watcher Watcher &hellip;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
 
 <p><img src="/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
 
@@ -1061,29 +1006,22 @@ client@client-Workstation:~/tmp/a$
 
 
 
-
-
-
-
-  
-
-
-<time datetime="2013-05-30T18:31:00+08:00" pubdate data-updated="true">May 30<span>th</span>, 2013</time>
+<time class='entry-date' datetime='2013-05-30T18:31:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:31 pm</span></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&#8217;s a replacement of milk, but it&#8217;s bad for human health. Any way, it&#8217;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
+  <div class="entry-content"><p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
 
-<p>Another story what I heard there is a government department named as &#8220;temporary emergency processing center for cover of sewer well&#8221; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &#8220;temporary&#8221;, the reason is they have to alwyas handle the &#8220;temporary&#8221; &amp; &#8220;emergency&#8221; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
+<p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
 
-<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&#8230;. This is a temporary solution for traffic jam issue, but currently, it&#8217;s becoming a final solution, it&#8217;s normal for administration department.</p>
+<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&hellip;. This is a temporary solution for traffic jam issue, but currently, it&rsquo;s becoming a final solution, it&rsquo;s normal for administration department.</p>
 
-<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &#8220;workaround&#8221;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &#8220;workaround&#8221; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&#8230;.</p>
+<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &ldquo;workaround&rdquo;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &ldquo;workaround&rdquo; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&hellip;.</p>
 
-<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&#8217;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&#8217;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
+<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&rsquo;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&rsquo;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
 
 <p>If exception has been normal, around of you use workaround solve another problem of workaround, it means the situation around of you has been worse, you need to consider quit only if you can solve it. :\</p>
 </div>
@@ -1095,7 +1033,7 @@ client@client-Workstation:~/tmp/a$
   
   <div class="pagination">
     
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
+      <a class="prev" href="/posts/2">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -1108,7 +1046,7 @@ client@client-Workstation:~/tmp/a$
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/11/11/pair-work/">关于结对开发的那些事儿</a>
+        <a href="/blog/2014/11/16/what-i-learned-in-coderetreat/">What I Learned in Global Day of Coderetreat</a>
       </li>
     
       <li class="post">
@@ -1124,11 +1062,11 @@ client@client-Workstation:~/tmp/a$
       </li>
     
       <li class="post">
-        <a href="/blog/2013/10/10/gerrit-jenkins-subversion-integration/">Build CI environment with Gerrit, Jenkins and Subverison</a>
+        <a href="/blog/2013/10/10/gerrit-jenkins-subversion-integration/">Build CI Environment With Gerrit, Jenkins and Subverison</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/08/30/why-we-need-visual-task-board/">Why we need visual task board</a>
+        <a href="/blog/2013/08/30/why-we-need-visual-task-board/">Why We Need Visual Task Board</a>
       </li>
     
       <li class="post">
@@ -1144,7 +1082,7 @@ client@client-Workstation:~/tmp/a$
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/30/exception-has-been-normal/">Exception has been normal</a>
+        <a href="/blog/2013/05/30/exception-has-been-normal/">Exception Has Been Normal</a>
       </li>
     
   </ul>
@@ -1182,7 +1120,7 @@ client@client-Workstation:~/tmp/a$
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -1207,7 +1145,7 @@ client@client-Workstation:~/tmp/a$
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

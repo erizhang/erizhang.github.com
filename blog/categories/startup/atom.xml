@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: startup | Actionary]]></title>
-  <link href="http://erizhang.github.io/blog/categories/startup/atom.xml" rel="self"/>
-  <link href="http://erizhang.github.io/"/>
-  <updated>2014-11-12T15:07:06+08:00</updated>
-  <id>http://erizhang.github.io/</id>
+  <title><![CDATA[Category: Startup | Actionary]]></title>
+  <link href="http://zhangliaoyuan.me/blog/categories/startup/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.me/"/>
+  <updated>2014-11-26T22:08:27+08:00</updated>
+  <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[怎样创建一家软件公司]]></title>
-    <link href="http://erizhang.github.io/blog/2012/01/12/how-to-start-a-software-company/"/>
+    <link href="http://zhangliaoyuan.me/blog/2012/01/12/how-to-start-a-software-company/"/>
     <updated>2012-01-12T23:06:00+08:00</updated>
-    <id>http://erizhang.github.io/blog/2012/01/12/how-to-start-a-software-company</id>
+    <id>http://zhangliaoyuan.me/blog/2012/01/12/how-to-start-a-software-company</id>
     <content type="html"><![CDATA[<p>在Quora里，无意中看到这样一个问题: <a href="http://www.quora.com/I-want-to-start-a-software-company-in-India-how-shall-I-start-and-plan-that-currently-i-work-as-IT-project-manager" title="Question">我目前是IT项目经理，想在印度创建一家公司，我应该如何开始和规划？</a>
 名叫Unni Krishnan Koroth的人回答到：</p>
 
