@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://zhangliaoyuan.me/blog/2015/01/20/understand-d3js-data-binding/</loc>
+    <lastmod>2015-01-20T22:14:00+08:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://zhangliaoyuan.me/blog/2014/11/16/what-i-learned-in-coderetreat/</loc>
     <lastmod>2014-11-16T21:12:00+08:00</lastmod>
     <priority>0.8</priority>
@@ -125,14 +131,14 @@
   
   <url>
     <loc>http://zhangliaoyuan.me/blog/archives/</loc>
-    <lastmod>2015-01-14T00:22:08+08:00</lastmod>
+    <lastmod>2015-01-25T23:10:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://zhangliaoyuan.me/</loc>
-    <lastmod>2015-01-14T00:22:08+08:00</lastmod>
+    <lastmod>2015-01-25T23:10:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-14T00:22:08+08:00</updated>
+  <updated>2015-01-25T23:10:29+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -12,6 +12,258 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2015/01/20/understand-d3js-data-binding/"/>
+    <updated>2015-01-20T22:14:00+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2015/01/20/understand-d3js-data-binding</id>
+    <content type="html"><![CDATA[<p>To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. Here I write down my understanding here, hope it can help some d3js newbie like me.</p>
+
+<h2>Basic concepts</h2>
+
+<h3>Select data/DOM element pair</h3>
+
+<p>First of all, if we would like to create a svg picture, we have to create a <code>&lt;svg&gt;</code> DOM element first in html, use below code snippet will implemet it.
+<code>javascript
+var svg = d3.select('#chart').append('svg').attr('width', 900);
+</code>
+It means select an exsited element which its id equals <code>chart</code>, and append a child element <code>&lt;svg&gt;</code> under this selected element, give the attribute width equals 900px.</p>
+
+<p>Do you know what&rsquo;s the meaning of <code>d3.selectAll()</code> during we use d3js? It means there will be several data/element(s) pair(s) be selected. We can image that, in d3js concept, every DOM element has corresponding data, it called data/element pair, like below picture shows:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/pairs.png" width="300" title="data/element pairs" alt="Alt text" /></p>
+
+<p>Okay, let&rsquo;s see what&rsquo;s happened after below source code be executed.</p>
+
+<p>&#8220;`html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;).attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&ldquo;rect&rdquo;).data(data);
+    </script>
+</body>
+</html>
+&#8220;`</p>
+
+<p>After <code>d3.selectAll('rect')</code>, we can image it will return a list of pair which consists of data and elements, but now, the data area is empty. You will ask, how many pairs in the list after only <code>selectAll()</code> executed, and there is no previous <code>&lt;rect&gt;</code> existed? Actually, the number is not identified if only execute this code.</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_empty_data.png" width="500" title="data/element pairs without data" alt="Alt text" /></p>
+
+<p>After exectue <code>data()</code> methoed, the data and elements have been binded together, the data area will be filled the data, and the pairs number will be identified, here, the data has 3 values, so the there are 3 pairs of data/element pairs, like below picture shows:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_data.png" width="500" title="data/element pairs with data" alt="Alt text" /></p>
+
+<p>Now, the pairs has been selected, but the html file, there is no real DOM generated, we can image that, after this code snippet execution, there is only generate pair list in memory, and next, we can finish the html DOM element generating.</p>
+
+<h3>Combile the data with element via <code>enter().append(element)</code> method</h3>
+
+<p>&#8220;`html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src='http://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <script type='text/javascript'>
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;).attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&lsquo;rect&rsquo;).data(data).enter().append(&lsquo;rect&rsquo;);
+    </script>
+</body>
+</html>
+<code>``
+</code>enter()<code>method is invoke, we can image the new added binding pairs be selected, the method will return a list of data/unknown object, actually unknown object will be identified by next method</code>append(&lsquo;rect&rsquo;)<code>, in another words, data/htmlElement pairs will be returned by</code>append(&lsquo;rect&rsquo;)<code>method. let's see what's difference bewteen</code>enter()<code>and</code>append(&lsquo;rect)`:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
+
+<p>And now, we can give the <code>&lt;rect&gt;</code> attributes to draw svg, for example <code>attr('width', 10)</code>, <code>attr('x', 0)</code> and <code>attr('y', 0)</code> etc.
+&#8220;`html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src='http://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <div id='chart'></div>
+    <script type='text/javascript'>
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;)
+                .attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&lsquo;rect&rsquo;)
+                .data(data)
+                .enter()
+                .append(&lsquo;rect&rsquo;)
+                .style(&lsquo;fill&rsquo;, &lsquo;green&rsquo;)
+                .attr(&lsquo;width&rsquo;, function(d){return d * 10;})
+                .attr(&lsquo;height&rsquo;, function(d){return d * 10;})                          <br/>
+                .attr(&lsquo;x&rsquo;, function(d){return d * 100});
+    </script>
+</body>
+</html>
+&#8220;`
+according above code snippet, the html shall be like this.</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>
+
+<p>But, if there are 3 <code>&lt;rect&gt;</code> exist, and later we would like to add more according to the data chagne, for exampe: <code>[1,2,3]</code> to <code>[1,2,3,4,5]</code>, check below code snippet.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src='http://d3js.org/d3.v3.min.js' charset='utf-8'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    &lt;div id='chart'&gt;
+        &lt;svg width='900'&gt;
+            &lt;rect width='10' height='10' x='100' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='20' height='20' x='200' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='30' height='30' x='300' style='fill: #008000'&gt;&lt;/rect&gt;
+        &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;script type='text/javascript'&gt;
+        var data = [1, 2, 3, 4, 5];
+        var svg = d3.select('svg')
+                .attr('width', 900);
+        var s1 = svg.selectAll('rect');
+        console.log(s1);
+        var s2 = s1
+                .data(data);
+        console.log(s2);
+        var s3 = s2
+                .enter();
+        console.log(s3);
+        var s4 = s3.append('rect');
+        console.log(s4);
+                 s4.attr("width", function(d){return d * 10;})
+                    .attr("height", function(d){return d * 10})                            
+                    .attr("x", function(d){return d * 100})
+                    .style('fill', 'red');
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>the corresponding html like this:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/append_two_objects.png" width="600" title="Append two objects" alt="Alt text" /></p>
+
+<p>first after <code>selectAll('rect')</code>, return previous existed ones, and <code>data(data)</code> method will bind two more objects, the data mapping with the element by index. <code>enter()</code> method will still keep the length of data/element pair, but only keep the two new added one, others left empty. And next call <code>append('rect')</code>, and <code>append('rect')</code> return the new two objects, coming attribute, style setting are for the new two, that&rsquo;s why we see the previous three rects are in green color, and new two are in red color.</p>
+
+<h3>Remove the no exist data/element pair via <code>exit().remove()</code> method</h3>
+
+<p>If there are elements existed, and we would like to remove some ones according to the data has been changed. See below code snippet shows.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src='http://d3js.org/d3.v3.min.js' charset='utf-8'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    &lt;div id='chart'&gt;
+        &lt;svg width='900'&gt;
+            &lt;rect width='10' height='10' x='100' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='20' height='20' x='200' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='30' height='30' x='300' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='40' height='40' x='400' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='50' height='50' x='500' style='fill: #008000'&gt;&lt;/rect&gt;
+        &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;script type='text/javascript'&gt;
+        var data = [1, 2];
+        var svg = d3.select('svg')
+                .attr('width', 900);
+        var s1 = svg.selectAll('rect');
+        console.log(s1);
+        var s2 = s1
+                .data(data);
+        console.log(s2);
+        var s3 = s2
+                .exit();
+        console.log(s3);
+        var s4 = s3.remove();
+        console.log(s4);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png%20=500px" title="Remove three objects" alt="Alt text" /></p>
+
+<p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
+
+<h2>Update parttern</h2>
+
+<p>According above section experiment, now let&rsquo;s implement an update implementation here, the DOM element adding and removal according to the data updating.
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;h1&gt;Demo&lt;/h1&gt;
+        Data: &lt;input id="data" type="text" name="data"&gt;&lt;br&gt;
+        &lt;input type="button" value="Submit" onclick="upate()"&gt;
+        &lt;div id="chart"&gt;&lt;/div&gt;
+        &lt;script type="text/javascript"&gt;
+                var svg = d3.select("#chart")
+                        .append("svg")
+                        .attr("width", 900)
+                        .attr("height", 400)
+                        .append("g")
+                        .attr("transform", "translate(20, 20)");
+                function upate() {
+                        var inputValue = document.getElementById("data").value;
+                        data = inputValue.split(",");
+                        var s = svg.selectAll("rect")
+                                .data(data).style("fill", "red");
+                        s.enter()
+                                .append("rect").style("fill", "green");
+                        s.exit()
+                                .remove();
+                        s.attr("width", function(d){return d * 10;})
+                                .attr("height", function(d){return d * 10})                            
+                                .attr("x", function(d){return d * 100});
+                }
+        &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+We enther the data via input box, and generate the svg according the data, we can set different color to the existed and new added data, that can clear to know the attributes setting for which objects.
+The pattern shall be like this:
+- data bind
+- update the existed objects attributes and style
+- enter().append()
+- exit().remove()
+- setting new added objects attributes and style</p>
+
+<p>Another example, please check the source code which is implemented by my colleague Simon: <a href="http://jsfiddle.net/simshi/jmvbcwru/2/">http://jsfiddle.net/simshi/jmvbcwru/2/</a></p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What I Learned in Global Day of Coderetreat]]></title>
@@ -585,175 +837,6 @@ If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&rsquo;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Structure Assignment and Its Pitfall in C Language]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
-    <updated>2013-01-28T21:47:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
-    <content type="html"><![CDATA[<h2>Problem</h2>
-
-<p>There is a structure type defined as below:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">__map_t</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">alias</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="kt">map_t</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-If we want to assign <code>map_t</code> type variable <code>struct2</code> to <code>sturct1</code>, we usually have below 3 ways:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">/&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">1</span><span class="o">:</span> <span class="n">assign</span> <span class="n">the</span> <span class="n">members</span> <span class="n">one</span> <span class="n">by</span> <span class="n">one</span> <span class="err">*/</span>
-</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">code</span><span class="p">;</span>
-</span><span class='line'><span class="n">strncpy</span><span class="p">(</span><span class="n">struct1</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">struct2</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">);</span>
-</span><span class='line'><span class="n">struct1</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">.</span><span class="n">alias</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">2</span><span class="o">:</span> <span class="n">memcpy</span> <span class="n">the</span> <span class="n">whole</span> <span class="n">memory</span> <span class="n">content</span> <span class="n">of</span> <span class="n">struct2</span> <span class="n">to</span> <span class="n">struct1</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
-</span><span class='line'><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">struct1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">struct2</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">struct1</span><span class="p">));</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;/&lt;</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">Way</span> <span class="err">#</span><span class="mi">3</span><span class="o">:</span> <span class="n">straight</span> <span class="n">assignment</span> <span class="n">with</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">=&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
-</span><span class='line'><span class="n">struct1</span> <span class="o">=</span> <span class="n">struct2</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-Consider above ways, most of programmer won&rsquo;t use way #1, since it&rsquo;s so stupid ways compare to other twos, only if we are defining an structure assignment function. So, <strong><em>what&rsquo;s the difference between way #2 and way #3? And what&rsquo;s the pitfall of the structure assignment once there is array or pointer member existed?</em></strong> Coming sections maybe helpful for your understanding.</p>
-
-<h2>The difference between <strong><em>&lsquo;=&rsquo; straight assignment</em></strong> and <strong><em>memcpy</em></strong></h2>
-
-<p>The <code>struct1=struct2;</code> notation is not only <strong>more concise</strong>, but also <strong>shorter</strong> and <strong>leaves more optimization opportunities to the compiler</strong>. The semantic meaning of = is an assignment, while <code>memcpy</code> just copies memory. That&rsquo;s a huge <strong>difference in readability</strong> as well, although <code>memcpy</code> does the same in this case.</p>
-
-<p>Copying by straight assignment is probably best, since it&rsquo;s shorter, easier to read, and has a higher level of abstraction. Instead of saying (to the human reader of the code) &ldquo;copy these bits from here to there&rdquo;, and requiring the reader to think about the size argument to the copy, you&rsquo;re just doing a straight assignment (&ldquo;copy this value from here to here&rdquo;). There can be no hesitation about whether or not the size is correct.</p>
-
-<p>Consider that, above source code also has pitfall about the pointer alias, it will lead dangling pointer problem (<em>It will be introduced below section</em>). If we use straight structure assignment &lsquo;=&rsquo; in C++, we <strong>can consider to overload the <code>operator=</code> function</strong>, that can dissolve the problem, and the structure assignment usage does not need to do any changes, but structure memcpy does not have such opportunity.</p>
-
-<h2>The pitfall of structure assignment:</h2>
-
-<p>Beware though, that copying structs that contain pointers to heap-allocated memory can be a bit dangerous, since by doing so you&rsquo;re aliasing the pointer, and typically making it ambiguous who owns the pointer after the copying operation.</p>
-
-<p>If the structures are of compatible types, yes, you can, with something like:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>}
-The only thing you need to be aware of is that this is a shallow copy. In other words, if you have a <code>char *</code> pointing to a specific string, both structures will point to the same string.</p>
-
-<p>And changing the contents of one of those string fields (the data that the <code>char <em></code> points to, not the <code>char </em></code> itself) will change the other as well. For these situations a &ldquo;deep copy&rdquo; is really the only choice, and that needs to go in a function. If you want a easy copy without having to manually do each field but with the added bonus of non-shallow string copies, use strdup:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">memcpy</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">,</span> <span class="n">source_struct</span><span class="p">,</span> <span class="k">sizeof</span> <span class="p">(</span><span class="n">dest_struct</span><span class="p">));</span>
-</span><span class='line'><span class="n">dest_struct</span><span class="o">-&gt;</span><span class="n">strptr</span> <span class="o">=</span> <span class="n">strdup</span><span class="p">(</span><span class="n">source_struct</span><span class="o">-&gt;</span><span class="n">strptr</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>This will copy the entire contents of the structure, then deep-copy the string, effectively giving a separate string to each structure. And, if your C implementation doesn&rsquo;t have a strdup (it&rsquo;s not part of the ISO standard), you have to allocate new memory for <code>dest_struct</code> pointer member, and copy the data to memory address.</p>
-
-<h3>Example of trap:</h3>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdlib</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">string</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">NAME_SIZE</span>   <span class="mi">16</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">typedef</span> <span class="k">struct</span> <span class="kt">_map_t</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kt">int</span> <span class="n">code</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="n">NAME_SIZE</span><span class="p">];</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">alias</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span> <span class="kt">map_t</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">map_t</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="cm">/* initialize the a&#39;s members value */</span>
-</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">code</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
-</span><span class='line'><span class="n">snprintf</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">NAME_SIZE</span><span class="p">,</span> <span class="s">&quot;Controller SW3&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="kt">char</span> <span class="o">*</span><span class="n">alias</span> <span class="o">=</span> <span class="s">&quot;RNC&amp;amp;IPA&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">a</span><span class="p">.</span><span class="n">alias</span> <span class="o">=</span> <span class="n">alias</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/* assign the value via memcpy */</span>
-</span><span class='line'><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">b</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">a</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
-</span><span class='line'>
-</span><span class='line'><span class="cm">/* assign the value via &#39;=&#39; */</span>
-</span><span class='line'><span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
-</span><span class='line'><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&rsquo;s dangerous!!</strong></p>
-
-<p><img src="/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
-
-<h2>Conclusion</h2>
-
-<ul>
-<li>Recommend use straight assignment &lsquo;=&rsquo; instead of memcpy.</li>
-<li>If structure has pointer or array member, please consider the pointer alias problem, it will lead dangling pointer once incorrect use. Better way is implement structure assignment function in C, and overload the operator= function in C++.</li>
-</ul>
-
-
-<h2>Reference:</h2>
-
-<ul>
-<li><a href="http://stackoverflow.com/questions/5383318/struct-assignment-or-memcpy" title="struct assignment">stackoverflow.com: structure assignment or memcpy</a></li>
-<li><a href="http://stackoverflow.com/questions/2302351/assign-one-struct-to-another-in-c" title="assign one struct to another">stackoverflow.com: assign one struct to another in C</a></li>
-<li><a href="http://bytes.com/topic/c/answers/215832-structures-assignment" title="structures assignment">bytes.com: structures assignment</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29" title="struct in C programming language">wikipedia: struct in C programming language</a></li>
-</ul>
-
 ]]></content>
   </entry>
   
