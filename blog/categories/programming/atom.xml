@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-25T23:23:47+08:00</updated>
+  <updated>2015-01-25T23:29:16+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -223,41 +223,45 @@ according above code snippet, the html shall be like this.</p>
         &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-        &lt;h1&gt;Demo&lt;/h1&gt;
-        Data: &lt;input id="data" type="text" name="data"&gt;&lt;br&gt;
-        &lt;input type="button" value="Submit" onclick="upate()"&gt;
-        &lt;div id="chart"&gt;&lt;/div&gt;
-        &lt;script type="text/javascript"&gt;
-                var svg = d3.select("#chart")
-                        .append("svg")
-                        .attr("width", 900)
-                        .attr("height", 400)
-                        .append("g")
-                        .attr("transform", "translate(20, 20)");
-                function upate() {
-                        var inputValue = document.getElementById("data").value;
-                        data = inputValue.split(",");
-                        var s = svg.selectAll("rect")
-                                .data(data).style("fill", "red");
-                        s.enter()
-                                .append("rect").style("fill", "green");
-                        s.exit()
-                                .remove();
-                        s.attr("width", function(d){return d * 10;})
-                                .attr("height", function(d){return d * 10})                            
-                                .attr("x", function(d){return d * 100});
-                }
-        &lt;/script&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    Data: &lt;input id="data" type="text" name="data"&gt;&lt;br&gt;
+    &lt;input type="button" value="Submit" onclick="upate()"&gt;
+    &lt;div id="chart"&gt;&lt;/div&gt;
+    &lt;script type="text/javascript"&gt;
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", 900)
+            .attr("height", 400)
+            .append("g")
+            .attr("transform", "translate(20, 20)");
+        function upate() {
+            var inputValue = document.getElementById("data").value;
+            data = inputValue.split(",");
+            var s = svg.selectAll("rect")
+                .data(data).style("fill", "red");
+            s.enter()
+                .append("rect").style("fill", "green");
+            s.exit()
+                .remove();
+            s.attr("width", function(d){return d * 10;})
+                .attr("height", function(d){return d * 10})                            
+                .attr("x", function(d){return d * 100});
+        }
+    &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code>
 We enther the data via input box, and generate the svg according the data, we can set different color to the existed and new added data, that can clear to know the attributes setting for which objects.
-The pattern shall be like this:
-- data bind
-- update the existed objects attributes and style
-- enter().append()
-- exit().remove()
-- setting new added objects attributes and style</p>
+The pattern shall be like this:</p>
+
+<ul>
+<li>data bind</li>
+<li>update the existed objects attributes and style</li>
+<li>enter().append()</li>
+<li>exit().remove()</li>
+<li>setting new added objects attributes and style</li>
+</ul>
+
 
 <p>Another example, please check the source code which is implemented by my colleague Simon: <a href="http://jsfiddle.net/simshi/jmvbcwru/2/">http://jsfiddle.net/simshi/jmvbcwru/2/</a></p>
 
