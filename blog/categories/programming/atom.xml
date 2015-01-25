@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-25T23:15:31+08:00</updated>
+  <updated>2015-01-25T23:21:02+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -209,7 +209,7 @@ according above code snippet, the html shall be like this.</p>
 &lt;/html&gt;
 </code></pre>
 
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png%20=500px" title="Remove three objects" alt="Alt text" /></p>
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="500" title="Remove three objects" alt="Alt text" /></p>
 
 <p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
 

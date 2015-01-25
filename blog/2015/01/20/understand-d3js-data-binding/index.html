@@ -406,7 +406,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png%20=500px" title="Remove three objects" alt="Alt text" /></p>
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="500" title="Remove three objects" alt="Alt text" /></p>
 
 <p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
 
