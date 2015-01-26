@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-25T23:29:16+08:00</updated>
+  <updated>2015-01-26T15:38:16+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -256,10 +256,11 @@ The pattern shall be like this:</p>
 
 <ul>
 <li>data bind</li>
-<li>update the existed objects attributes and style</li>
+<li>update the existed objects attributes and style etc.</li>
 <li>enter().append()</li>
+<li>setting new added objects attributes and style etc.</li>
 <li>exit().remove()</li>
-<li>setting new added objects attributes and style</li>
+<li>setting all objects attributes and style</li>
 </ul>
 
 
