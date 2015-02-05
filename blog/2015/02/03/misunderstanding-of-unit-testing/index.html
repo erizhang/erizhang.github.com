@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="In software development, unit testing is used for method/function verification, and most of people agree that, unit testing helps software quality is &hellip;">
+  <meta name="description" content="In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,33 +96,33 @@
   </header>
 
 
-<div class="entry-content"><p>In software development, unit testing is used for method/function verification, and most of people agree that, unit testing helps software quality is common understanding, but rarely deep dive. I prefer any discussion shall be based on expclit concept definition.</p>
+<div class="entry-content"><p>In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality improvement, but no many people deep dive. Have you really understand the relationship between unit testing and quality?</p>
 
-<p>But corresponding unit testing during coding is common sense in software development, so here I&rsquo;d like to introduce some misuderstanding area of unit testing here.</p>
+<p>Most of people knows while coding a method/function, the corresponding unit testing shall be added as well. But, why? And a lot of people has misunderstanding about unit testing, I&rsquo;d like to list some ones here.</p>
 
 <h2>Misunderstandings</h2>
 
 <h3>1. Ask newbie to write unit testing</h3>
 
-<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a method called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any unit testing else is optional. If you are key person, another task will be assigned to you, and the unit testing will be low prioirty task, and be assigned to newbie.</p>
+<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a practice called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any else (unit testing) is optional. If you are key person, another task will be assigned to you, and the unit testing always will be the low prioirty task, and finally, it&rsquo;s assigned to a newbie who has the competence to take the &ldquo;low level&rdquo; tasks.</p>
 
-<p>But unit testing purpose is to facilitate source code change, and safety tools during coding, and in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
+<p>But unit testing purpose is to facilitate source code change, and acts as safety during coding, in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
 
-<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, you verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
+<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, your unit testing case to verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
 
 <h3>2. Expect to find bug through unit testing</h3>
 
-<p>As we know, there are two type of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method fulfill the requirements or not. Unit testing is the method/function requirement implementation in test case way.</p>
+<p>As we know, there are two types of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method/function does fulfill the requirements or not. Unit testing the executable requirement specification of the product method/function.</p>
 
-<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the method/function untill all of corresponding unit testing cases are passed.</p>
+<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the product method/function untill all of related unit testing cases are passed.</p>
 
 <p>If you would like to find more bug, please make exploratory testing manually, it requires experienced tester, and be more creative.</p>
 
-<h3>3. Pursue high coverage</h3>
+<h3>3. Pursue high coverage rate</h3>
 
-<p>I know, there might be a KPI for your team, the unit testing line coverage shall be 80+%, function coverage shall be 100%, and branch coverage, conditional coverage. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage, did you think that is it worth?</p>
+<p>I know, there might be a KPI in your team, the unit testing line coverage rate shall be higher 80%, function coverage rate shall be 100%, and branch coverage rate, conditional coverage rate. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage rate, did you think that does it worth?</p>
 
-<p>Let&rsquo;s check below source code</p>
+<p>Let&rsquo;s look below source code</p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -143,7 +143,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-<p>We use <code>assertEquals(2, foo(2, 2))</code> can tough all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
+<p>We use <code>assertEquals(2, foo(2, 2))</code> can touch all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
 
 <p>Source code metrics somehow likes the weather forecast report indicates, single metric does not make sense, you have to combine all of the metrics, and give you insight. Metrics just tell you there may be something wrong, you need to spend time deep dive in the source code.</p>
 
@@ -153,7 +153,7 @@
 
 <h3>4. Write unit testing for legacy code</h3>
 
-<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager require his team soruce code (including legacy code) unit testing coverage rate shall reach above 80%, so team member spend a lot of time to write the unit testing for the legacy code, and try their best time to cover each line of code, branch, and conditions. The unit testing totally is implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
+<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager required his team soruce code (including legacy code) unit testing coverage rate shall reach higher 80%, so team member spent a lot of time to write the unit testing for the legacy code, and tried their best time to cover each line of code, branch, and conditions. The unit testing totally was implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
 
 <p>My question is:</p>
 
@@ -163,11 +163,15 @@
 </ul>
 
 
-<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing.</p>
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing according to the cost and benefit balance.</p>
 
 <h3>5. Treat unit testing as white-box testing</h3>
 
-<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds way of implementation for same requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+<p> As academism, the unit testing is white-box testing, but I&rsquo;m hard to agree that, I suggest people write unit testing as black-box rather than white-box.</p>
+
+<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds of implementations for same one requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+
+<p>Unit testing implemention shall be align the requirement, not the implementation logic.</p>
 
 <h2>Reference:</h2>
 
