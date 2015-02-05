@@ -4,7 +4,7 @@
   <title><![CDATA[Actionary]]></title>
   <link href="http://zhangliaoyuan.me/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-26T16:59:55+08:00</updated>
+  <updated>2015-02-05T23:49:19+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
+    <updated>2015-02-03T22:01:06+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing</id>
+    <content type="html"><![CDATA[<p>In software development, unit testing is used for method/function verification, and most of people agree that, unit testing helps software quality is common understanding, but rarely deep dive. I prefer any discussion shall be based on expclit concept definition.</p>
+
+<p>But corresponding unit testing during coding is common sense in software development, so here I&rsquo;d like to introduce some misuderstanding area of unit testing here.</p>
+
+<h2>Misunderstandings</h2>
+
+<h3>1. Ask newbie to write unit testing</h3>
+
+<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a method called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any unit testing else is optional. If you are key person, another task will be assigned to you, and the unit testing will be low prioirty task, and be assigned to newbie.</p>
+
+<p>But unit testing purpose is to facilitate source code change, and safety tools during coding, and in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
+
+<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, you verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
+
+<h3>2. Expect to find bug through unit testing</h3>
+
+<p>As we know, there are two type of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method fulfill the requirements or not. Unit testing is the method/function requirement implementation in test case way.</p>
+
+<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the method/function untill all of corresponding unit testing cases are passed.</p>
+
+<p>If you would like to find more bug, please make exploratory testing manually, it requires experienced tester, and be more creative.</p>
+
+<h3>3. Pursue high coverage</h3>
+
+<p>I know, there might be a KPI for your team, the unit testing line coverage shall be 80+%, function coverage shall be 100%, and branch coverage, conditional coverage. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage, did you think that is it worth?</p>
+
+<p>Let&rsquo;s check below source code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use <code>assertEquals(2, foo(2, 2))</code> can tough all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
+
+<p>Source code metrics somehow likes the weather forecast report indicates, single metric does not make sense, you have to combine all of the metrics, and give you insight. Metrics just tell you there may be something wrong, you need to spend time deep dive in the source code.</p>
+
+<p>Some managers are used to challenge team with metrics, because they read excel daily, but never read your source code.</p>
+
+<p>Josphal has written a blog to introduce the <a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">test coverage rate role</a>, above example is from his blog.</p>
+
+<h3>4. Write unit testing for legacy code</h3>
+
+<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager require his team soruce code (including legacy code) unit testing coverage rate shall reach above 80%, so team member spend a lot of time to write the unit testing for the legacy code, and try their best time to cover each line of code, branch, and conditions. The unit testing totally is implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
+
+<p>My question is:</p>
+
+<ul>
+<li>Is your legacy code testable?</li>
+<li>Is your new added unit testing case maintainable?</li>
+</ul>
+
+
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing.</p>
+
+<h3>5. Treat unit testing as white-box testing</h3>
+
+<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds way of implementation for same requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing - Cost and Benefits</a></li>
+<li><a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">Test Coverage Rate Role</a></li>
+</ul>
+
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
@@ -1794,73 +1884,6 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 <p>After that, <code>rake</code> can support <code>https</code>. Others, I only follow the official guideline, now you can see this post means I have successfully built up my blogs, and post blogs in office.</p>
 
 <p>Post blogs like programming, if you are programmer, just do it. Cheers!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat/"/>
-    <updated>2012-12-18T10:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2012/12/18/facilitate-coderetreat</id>
-    <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
-
-<h2>What&rsquo;s the coderetreat</h2>
-
-<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
-
-<p>In the day, all participants practiced below modern development practices:</p>
-
-<ul>
-<li>Pair-programming</li>
-<li>Unit test</li>
-<li>Test-Driven Development (TDD)</li>
-<li>Code refactoring</li>
-</ul>
-
-
-<h2>Rules and practice</h2>
-
-<p>In each session there were some interesting rules/limitation, to guide people go beyond the border of their programming habits, and re-think of important aspects of programming.</p>
-
-<ul>
-<li>RULE #1. Pair-programming is requried</li>
-<li>RULE #2. TDD (Test-Driven Development) is required</li>
-<li>RULE #3. Clean Code is required</li>
-<li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
-<li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
-<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
-</ul>
-
-
-<p>Beside these rules, each session is finished, programmer shall switch pair and permanent remove the previous typing code, we demand this since there would be more chance to share the idea as more as possiable, demand to remove the source code because we were willing to make programmer understand and believe they will coding better.</p>
-
-<p>We took 6 sessions for each rule, and wrap up in the end. Also had video connecting with other cities (Beijing, Shanghai, Taiyuan, Tokyo, Singapore, Hanoi, Ho Chi Minh) via google hangout.</p>
-
-<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
-
-<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
-
-<h2>Sponsor</h2>
-
-<p>This event is for free, and attendee deserve one lunch which better than pizza, and some soft drink, fruit. So we need some budget, luckly we address a mail to our head, and tell her this event is align with organization goal, and will help to promote the programming competence development in our organization, and finally, she nod for the buget plan, the cost was around 800RMB.</p>
-
-<h2>Attendee</h2>
-
-<p>Since this is an open event, we were looking forward to more programmers come from different company and industry, and coding in different programming language, it will increase the idea diversity, so we advertise on social networks. But later just come 2 persons from outside our company, it prove our advertisement was failed. So, if we plan to facilitate same event, we will advertise on some programming community will be better.</p>
-
-<p><img src="http://zhangliaoyuan.me/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
-
-<p>Of cause, the advertisement inside our company is quite good, there were more then 20 programmers coming.</p>
-
-<p><em>Suggest the number limited in 30 will better to organize.</em></p>
-
-<h2>Problem for programming</h2>
-
-<p>The problem is <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Conway's Game of Life">Game of life</a>, programming language is no restrict, actually, we encourage people use strange language.</p>
-
-<p>As my feeling, the event is successful, and quite many people ask me when we will facilitate same event after then. Also, help people to build the modern programming awareness, and change the mindset of that limitation (restriction) is not impediment, instead it demends you think more, it likes the matchstick to light your thinking, open your mind.</p>
-
-<p>More pictures from Hangzhou GDCR 2012, please click <a href="http://coderetreat.org/photo/album/show?id=6456126%3AAlbum%3A18835&amp;xg_source=activity" title="GDCR2012 Hangzhou">here</a>.</p>
 ]]></content>
   </entry>
   

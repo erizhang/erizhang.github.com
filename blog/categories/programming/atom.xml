@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://zhangliaoyuan.me/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-01-26T16:59:55+08:00</updated>
+  <updated>2015-02-05T23:49:19+08:00</updated>
   <id>http://zhangliaoyuan.me/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
+    <link href="http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
+    <updated>2015-02-03T22:01:06+08:00</updated>
+    <id>http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing</id>
+    <content type="html"><![CDATA[<p>In software development, unit testing is used for method/function verification, and most of people agree that, unit testing helps software quality is common understanding, but rarely deep dive. I prefer any discussion shall be based on expclit concept definition.</p>
+
+<p>But corresponding unit testing during coding is common sense in software development, so here I&rsquo;d like to introduce some misuderstanding area of unit testing here.</p>
+
+<h2>Misunderstandings</h2>
+
+<h3>1. Ask newbie to write unit testing</h3>
+
+<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a method called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any unit testing else is optional. If you are key person, another task will be assigned to you, and the unit testing will be low prioirty task, and be assigned to newbie.</p>
+
+<p>But unit testing purpose is to facilitate source code change, and safety tools during coding, and in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
+
+<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, you verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
+
+<h3>2. Expect to find bug through unit testing</h3>
+
+<p>As we know, there are two type of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method fulfill the requirements or not. Unit testing is the method/function requirement implementation in test case way.</p>
+
+<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the method/function untill all of corresponding unit testing cases are passed.</p>
+
+<p>If you would like to find more bug, please make exploratory testing manually, it requires experienced tester, and be more creative.</p>
+
+<h3>3. Pursue high coverage</h3>
+
+<p>I know, there might be a KPI for your team, the unit testing line coverage shall be 80+%, function coverage shall be 100%, and branch coverage, conditional coverage. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage, did you think that is it worth?</p>
+
+<p>Let&rsquo;s check below source code
+<code>c
+int foo(int x, int y)
+{
+    int z = 0;
+    if ((x &gt; 0) &amp;&amp; (y &gt; 0)) {
+        z = x;
+    }
+    return z;
+}
+</code>
+We use <code>assertEquals(2, foo(2, 2))</code> can tough all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
+
+<p>Source code metrics somehow likes the weather forecast report indicates, single metric does not make sense, you have to combine all of the metrics, and give you insight. Metrics just tell you there may be something wrong, you need to spend time deep dive in the source code.</p>
+
+<p>Some managers are used to challenge team with metrics, because they read excel daily, but never read your source code.</p>
+
+<p>Josphal has written a blog to introduce the <a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">test coverage rate role</a>, above example is from his blog.</p>
+
+<h3>4. Write unit testing for legacy code</h3>
+
+<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager require his team soruce code (including legacy code) unit testing coverage rate shall reach above 80%, so team member spend a lot of time to write the unit testing for the legacy code, and try their best time to cover each line of code, branch, and conditions. The unit testing totally is implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
+
+<p>My question is:</p>
+
+<ul>
+<li>Is your legacy code testable?</li>
+<li>Is your new added unit testing case maintainable?</li>
+</ul>
+
+
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing.</p>
+
+<h3>5. Treat unit testing as white-box testing</h3>
+
+<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds way of implementation for same requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing - Cost and Benefits</a></li>
+<li><a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">Test Coverage Rate Role</a></li>
+</ul>
+
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
@@ -790,58 +870,6 @@ If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>
 <p>Be careful! :\</p>
 
 <p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Coderetreat: Programming Game of Life Under 'No Conditional Expression' Restriction]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
-    <updated>2013-04-12T23:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
-    <content type="html"><![CDATA[<p>If you search this topic with &ldquo;coderetreat&rdquo;, &ldquo;no if&rdquo; or &ldquo;no conditional expression&rdquo; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
-
-<p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&rsquo;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &ldquo;while loop&rdquo; or &ldquo;for loop&#8221;instead of &#8220;if&rdquo;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
-
-<p>So how, is there any trick, I can only say don&rsquo;t know, but here I can give a sample of how to resolve the major logic of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Game of Life">&ldquo;Conway&rsquo;s Game of Life&rdquo;</a>, rules of the game is:</p>
-
-<blockquote><ol>
-<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
-<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
-<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-</ol>
-</blockquote>
-
-<p> So we can understand the next generation state will be based on two factors: current generation state (live or dead) and live neighours amount. We can define a two-dimensional array like below diagram illustrates:</p>
-
-<p> <img src="/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
-
-<p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&rsquo;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:
- <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'> <span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="mi">0</span> <span class="n">means</span> <span class="n">dead</span><span class="p">,</span> <span class="mi">1</span> <span class="n">means</span> <span class="n">live</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;/</span>
-</span><span class='line'> <span class="kt">int</span> <span class="n">rule_map</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
-</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
-</span><span class='line'> <span class="p">};</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span> <span class="kt">int</span> <span class="n">next_state</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur_state</span><span class="p">,</span> <span class="kt">int</span> <span class="n">neighbours</span><span class="p">)</span>
-</span><span class='line'> <span class="p">{</span>
-</span><span class='line'>     <span class="k">return</span> <span class="n">rule_map</span><span class="p">[</span><span class="n">cur_state</span><span class="p">][</span><span class="n">neighbours</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span><span class='line'> <span class="p">}</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&rsquo;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
 ]]></content>
   </entry>
   
