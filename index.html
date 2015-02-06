@@ -166,7 +166,17 @@
 </ul>
 
 
-<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing according to the cost and benefit balance.</p>
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing according to the cost and benefit balance. The article shows the legacy code can be identfied four types according to the benefit and cost. As we know, the unit testing implementation cost depends on the source code dependancy, high code dependancy means high unit testing cost:</p>
+
+<p><img src="http://blog.stevensanderson.com/wp-content/uploads/2009/11/image.png" title="selective unit testing" alt="Alt text" /></p>
+
+<ul>
+<li><strong>Algorithm</strong>: This kind of code has complex calculation logic, but lack dependancy, all calculation is depends on the argument input value, and then give out an output. This code is exterem important, any error will lead the program computing failed. So we called it&rsquo;s high benefit and low cost, the unit testing for this kind of code is required.</li>
+<li><strong>Trivial</strong>: This kind of code has simple logic, sometimes, the method just several LoC, and there is more dependancy with other source code, we call it low benefit and low cost. So we think the unit testing for this code is optional.</li>
+<li><strong>Coordinator</strong>: This code acts as coordinator role, it coordinate methods/functions work, it helps the methods integration, and used to describe a specific functional scenario, for example, the initialization, main etc. It has a lot of dependancy with other source code, because it needs to invoke other functions/methods. We call it high cost, but low benefit, because the logic is simple. A lot of dependancies means you need to stub or mock, that&rsquo;s high cost. For legacy code, we won&rsquo;t make unit testing for it. Instead, we use functional testing or module testing to cover the sceniro requirements.</li>
+<li><strong>Overcomplicated</strong>: This kind of code has the characters of Algorithm and Coodinator code, complex logic, and has a lot of dependancies with other code. For this kind of code, we have to refactor it to Algorithm and Coordinator codes, and then based on above strategy to decide to make unit testing or not.</li>
+</ul>
+
 
 <h3>5. Treat unit testing as white-box testing</h3>
 
