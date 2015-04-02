@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Agile | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/agile/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/blog/categories/agile/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[关于结对开发的那些事儿]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/11/11/pair-work/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/11/11/pair-work/"/>
     <updated>2014-11-11T21:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/11/11/pair-work</id>
+    <id>http://zhangliaoyuan.com/blog/2014/11/11/pair-work</id>
     <content type="html"><![CDATA[<p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
 
 <p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[Why We Need Visual Task Board]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/08/30/why-we-need-visual-task-board/"/>
     <updated>2013-08-30T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board</id>
+    <id>http://zhangliaoyuan.com/blog/2013/08/30/why-we-need-visual-task-board</id>
     <content type="html"><![CDATA[<p>The department which I&rsquo;m working on, it&rsquo;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
 
 <p>Today, let’s clarify why we need visual task board? Why we not use excel instead, or some on-line task management tools such like Trello?</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Reading | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/reading/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/blog/categories/reading/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
     <updated>2014-02-17T15:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes</id>
+    <id>http://zhangliaoyuan.com/blog/2014/02/17/Hatching-twitter-reading-notes</id>
     <content type="html"><![CDATA[<p>这是一本闲书，适合枕边阅读，看这本书，就像看电视剧一样，每个场景描述得就像真的出现在眼前一样，一群IT屌丝的欢声笑语与恩怨情仇。如果要给这本书一个更恰当的副标题的话，就是“一群IT屌丝成为高富帅的故事”。</p>
 
 <p>作者也有意的在书中给每位角色给出前后反差的描写：</p>

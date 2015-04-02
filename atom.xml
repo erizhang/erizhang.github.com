@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Domain Name of This Site Will Be Changed Soon]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2015/04/02/use-new-domain-name/"/>
+    <link href="http://zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name/"/>
     <updated>2015-04-02T22:01:06+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2015/04/02/use-new-domain-name</id>
+    <id>http://zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name</id>
     <content type="html"><![CDATA[<p>Hi, my dear friends,</p>
 
 <p>I setup zhangliaoyuan.me for two years, now the domain name will be expired soon.
@@ -31,9 +31,9 @@ But good news is, I have got new domain name with my full name dot com, so after
   
   <entry>
     <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
+    <link href="http://zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
     <updated>2015-02-03T22:01:06+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2015/02/03/misunderstanding-of-unit-testing</id>
+    <id>http://zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing</id>
     <content type="html"><![CDATA[<p>In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality improvement, but no many people deep dive. Have you really understand the relationship between unit testing and quality?</p>
 
 <p>Most of people knows while coding a method/function, the corresponding unit testing shall be added as well. But, why? And a lot of people has misunderstanding about unit testing, I&rsquo;d like to list some ones here.</p>
@@ -135,9 +135,9 @@ But good news is, I have got new domain name with my full name dot com, so after
   
   <entry>
     <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2015/01/20/understand-d3js-data-binding/"/>
+    <link href="http://zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding/"/>
     <updated>2015-01-20T22:14:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2015/01/20/understand-d3js-data-binding</id>
+    <id>http://zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding</id>
     <content type="html"><![CDATA[<p>To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. Here I write down my understanding here, hope it can help some d3js newbie like me.</p>
 
 <h2>Basic concepts</h2>
@@ -155,7 +155,7 @@ But good news is, I have got new domain name with my full name dot com, so after
 
 <p>Do you know what&rsquo;s the meaning of <code>d3.selectAll()</code> during we use d3js? It means there will be several data/element(s) pair(s) be selected. We can image that, in d3js concept, every DOM element has corresponding data, it called data/element pair, like below picture shows:</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/pairs.png" width="300" title="data/element pairs" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/pairs.png" width="300" title="data/element pairs" alt="Alt text" /></p>
 
 <p>Okay, let&rsquo;s see what&rsquo;s happened after below source code be executed.</p>
 
@@ -194,11 +194,11 @@ But good news is, I have got new domain name with my full name dot com, so after
 
 <p>After <code>d3.selectAll('rect')</code>, we can image it will return a list of pair which consists of data and elements, but now, the data area is empty. You will ask, how many pairs in the list after only <code>selectAll()</code> executed, and there is no previous <code>&lt;rect&gt;</code> existed? Actually, the number is not identified if only execute this code.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/element_with_empty_data.png" width="500" title="data/element pairs without data" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/element_with_empty_data.png" width="500" title="data/element pairs without data" alt="Alt text" /></p>
 
 <p>After exectue <code>data()</code> methoed, the data and elements have been binded together, the data area will be filled the data, and the pairs number will be identified, here, the data has 3 values, so the there are 3 pairs of data/element pairs, like below picture shows:</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/element_with_data.png" width="500" title="data/element pairs with data" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/element_with_data.png" width="500" title="data/element pairs with data" alt="Alt text" /></p>
 
 <p>Now, the pairs has been selected, but the html file, there is no real DOM generated, we can image that, after this code snippet execution, there is only generate pair list in memory, and next, we can finish the html DOM element generating.</p>
 
@@ -237,7 +237,7 @@ But good news is, I have got new domain name with my full name dot com, so after
 
 <p><code>enter()</code> method is invoke, we can image the new added binding pairs be selected, the method will return a list of data/unknown object, actually unknown object will be identified by next method <code>append('rect')</code>, in another words, data/htmlElement pairs will be returned by <code>append('rect')</code> method. let&rsquo;s see what&rsquo;s difference bewteen <code>enter()</code> and <code>append('rect)</code>:</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
 
 <p>And now, we can give the <code>&lt;rect&gt;</code> attributes to draw svg, for example <code>attr('width', 10)</code>, <code>attr('x', 0)</code> and <code>attr('y', 0)</code> etc.</p>
 
@@ -292,7 +292,7 @@ But good news is, I have got new domain name with my full name dot com, so after
 
 <p>according above code snippet, the html shall be like this.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>
 
 <p>But, if there are 3 <code>&lt;rect&gt;</code> exist, and later we would like to add more according to the data chagne, for exampe: <code>[1,2,3]</code> to <code>[1,2,3,4,5]</code>, check below code snippet.</p>
 
@@ -371,7 +371,7 @@ But good news is, I have got new domain name with my full name dot com, so after
 
 <p>the corresponding html like this:</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/append_two_objects.png" width="600" title="Append two objects" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/append_two_objects.png" width="600" title="Append two objects" alt="Alt text" /></p>
 
 <p>first after <code>selectAll('rect')</code>, return previous existed ones, and <code>data(data)</code> method will bind two more objects, the data mapping with the element by index. <code>enter()</code> method will still keep the length of data/element pair, but only keep the two new added one, others left empty. And next call <code>append('rect')</code>, and <code>append('rect')</code> return the new two objects, coming attribute, style setting are for the new two, that&rsquo;s why we see the previous three rects are in green color, and new two are in red color.</p>
 
@@ -448,7 +448,7 @@ But good news is, I have got new domain name with my full name dot com, so after
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><img src="http://zhangliaoyuan.me/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="350" title="Remove three objects" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="350" title="Remove three objects" alt="Alt text" /></p>
 
 <p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
 
@@ -546,12 +546,12 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[What I Learned in Global Day of Coderetreat]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/11/16/what-i-learned-in-coderetreat/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat/"/>
     <updated>2014-11-16T21:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/11/16/what-i-learned-in-coderetreat</id>
+    <id>http://zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat</id>
     <content type="html"><![CDATA[<p>We&rsquo;re now the 3rd times hosting and facilitating the Global Day of Coderetreat in Hangzhou, China. Compared with Jim Hurne coordinating the globally events, be frankly, our work is easier. Yes, it&rsquo;s easier, but I do not think it&rsquo;s not important. It always request the host and facilitator spends much more effort to prepare and continuiously improve. Personally, beside those Global Day of Coderetreat (GDCR in short), we still spended much time hosting and facilitating such like coding dojo, coding rally etc. which help programmer to practice their software design, coding skill and agile engineering practices. Here I&rsquo;d like to share what I learned from coderetreat.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-11-16-what-i-learned-in-coderetreat/coding.png" title="In Coding" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-11-16-what-i-learned-in-coderetreat/coding.png" title="In Coding" alt="Alt text" /></p>
 
 <h2>Prepare as earlier as possible</h2>
 
@@ -577,7 +577,7 @@ The pattern shall be like this:</p>
 
 <p>After finish the sessions, we will gather all programmers, and do a quick retrospective of this event, 10 persons in a group, and select an A0 size paper, to draw 3 circle in the same center. give them each person 3 green color post-it, and answer this question: What&rsquo;s your feeling about this event, write 3? And let them write down and paste on the outside circle, and share the feeling each other in they belonged group. and then, every one has 2 yellow color post-it, and write down the answer for this question: What&rsquo;s you learned from event, write 2? and paste the answer around the middle circle, and then share each other. At last, every one has 1 red color post-it, and write down the answer for this question: What&rsquo;s you next action which is related this topic, write 1? And paste the answer around the inner side circle.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-11-16-what-i-learned-in-coderetreat/group-picture.png" title="Retrospective result" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-11-16-what-i-learned-in-coderetreat/group-picture.png" title="Retrospective result" alt="Alt text" /></p>
 
 <p>As a host and facilitator, we can clearly get the feedback from their sharing, for example, if the feeling is boring, there might be some facilitating problem, LOL.</p>
 
@@ -589,9 +589,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[关于结对开发的那些事儿]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/11/11/pair-work/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/11/11/pair-work/"/>
     <updated>2014-11-11T21:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/11/11/pair-work</id>
+    <id>http://zhangliaoyuan.com/blog/2014/11/11/pair-work</id>
     <content type="html"><![CDATA[<p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
 
 <p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
@@ -606,7 +606,7 @@ The pattern shall be like this:</p>
 
 <p>能不能做到结对开发，这是文化的问题。我们可以通过对能力比较强的同事设定这样的KPI来解决，如，考核该员工结对培养了多少人，另外做360度feedback来考核员工，他所曾经结对过的同事给他反馈。所以我们建议，针对刚成立起来的团队，必须做到100%的结对工作，越是关键，越是困难时期，越是要快速的将团队整体的实力进行提升，而提升的过程必须是learning through work，而结对工作就是一个比较好的手段。我们可以给团队建立一个结对工作图，只有之间有结对工作，将两者之间用线连接起来，以此来跟踪团队结对工作情况。</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
 
 <p>是不是所有工作都应该结对？很显然，不是，结对工作的目的如果是想做团队的能力培养，那么结对的工作内容应该是那些可以让一部分能力强的员工帮助这一块比较弱的员工的工作，如对某个业务模块的编程，测试用例的编写等等，而那些适合独立思考的任务，则给员工留足独立思考的空间吧。所以，员工之间可以达成一个agreement，比如，每天下午的13:00 - 16:00之间会用于pair work，而其他的时间留给各自吧。</p>
 
@@ -622,9 +622,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[2B青年欢乐多之敏捷扫盲]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/09/02/talk-about-agile/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/09/02/talk-about-agile/"/>
     <updated>2014-09-02T23:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/09/02/talk-about-agile</id>
+    <id>http://zhangliaoyuan.com/blog/2014/09/02/talk-about-agile</id>
     <content type="html"><![CDATA[<p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
 
 <p>可是，可是&hellip;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
@@ -633,13 +633,13 @@ The pattern shall be like this:</p>
 
 <p>我觉得在敏捷里一个比较重要的概念就是Inspect&amp;Adapt，检视并适应。如果理解了这个概念，顺着往下理解，就很容易了。这里举个例子，有汽车驾驶经验的人一般都知道，从一个驾驶新手到熟练驾驶这个周期不会太长，一般每天上下班开车的话，一两个月就够了。作为在全国第二拥堵城市开车的我来说，从新手，到自认为老手，也就不到两个月，为什么会这么快呢？前两个月还战战兢兢，过两个月就敢跟别人卡车位，原因出在上班路上有太多的锻炼机会，从家里到单位，红绿灯几十个，十字路口N个，加上咱们国家特有的着急文化，路上状况百出，极其复杂，这样，给了我们学习足够的<strong>频度</strong>进行锻炼。另一个原因，汽车驾驶中，从做出每一个驾驶动作，到驾驶员获得<strong>反馈时间非常短</strong>，这样一个<strong>高频度</strong>和<strong>快反馈</strong>让我们很快获得了汽车驾驶能力的提升，因为，我们在驾驶过程中不停地做<strong>Inspect</strong>和<strong>Adapt</strong>。另一个例子是驾驶海上货轮，学习成本明显比汽车要高出许多，加上海上也没见多少红绿灯啊，<strong>频率低</strong>，货轮入港时的转舵，<strong>反馈周期长</strong>，也些原因决定了学习轮船驾驶要比汽车驾驶困难许多。由于不确定性因素，根据不断变化的情况，对反馈进行检视，然后对下一步的行动做出调整，以适应后续发展，快速的反馈减少我们应对单一反馈周期里的成本。应对不断变化的不确定因素，反馈是获得改进的唯一方式，这就不难理解&#8221;别人给你feedback是对你好&#8221;这句话了。</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
 
 <p>以此，我们对应软件开发中，软件开发常常碰到的问题是不确定因素很多，客户随时可能改变需求，这有点像开车，路况总是处在变化中，软件研发团队提交产品给客户，而客户将反馈给研发团队。如果想有效地应对来自客户的变化，那么保持一定频率的反馈及快速的反馈时间将有助于及时让团队做出调整，这样，不断的调整改善，对团队而言，就是一个持续改善的过程。我们试着问，要不断从客户那边获得反馈，前提就是要可持续地提交产品给客户，就这引入了Continuous Delivery的概念（我们不再这里深入更多细节），要做好Continuous Delivery，我们必须做好持续集成Continuous Integration，要做到持续集成，我们可以通过ATDD保证需求是可迭代的持续验证，并且同时做好测试自动化。要做好持续集成，咱们得做好持续开发编译，要做好持续开发编译，咱们都做好TDD，Pairing&hellip; 随着一步步向下挖掘，我们发现，可以将很多工程实践，放到里头，如果想保证这些事情能够顺利地做好，我们定义了不同的角色，不同的check list，backlog，这样就很容易地顺着这个思路去自圆其说了，:p。当然，这时还一个概念就是迭代周期，迭代周期就是开发团队用于Inspect &amp; Adapt的节奏。迭代周期多长合适呢？</p>
 
 <p>从产品开发的这条线走，如上所述。那么要开发产品，团队很重要，从团队角度又可以引申到哪些概念呢？如团队建设要做到Continuous Improvement，那么我们是不是得做好Retrospective，然后是Daily Meeting， working agreement &hellip;</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-09-02-talk-about-agile/concepts_links.png" title="Concepts Link" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-09-02-talk-about-agile/concepts_links.png" title="Concepts Link" alt="Alt text" /></p>
 
 <p>把这些想通了，再去顺着想别的概念就容易多了。当然，这不是敏捷的全部，否则做个大师就太容易了。这里只是想写个引子，帮助大家站在自己的角度来思考问题，希望能对大家有所帮助。对了，写到这里，我是不是得问几个问题：</p>
 
@@ -663,9 +663,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[驱魔人 ——《软件驱魔术》译者序]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
     <updated>2014-02-24T16:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/02/24/translating-preface-of-software-exorcism</id>
+    <id>http://zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism</id>
     <content type="html"><![CDATA[<p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&hellip;&hellip;</p>
 
 <p>我本人所在项目的代码库里，包含了从上世纪八十年代到现在，跨度将近三十年的代码，这个样本都适合做代码考古了，而公司目前有几百人正在从事这套软件的维护工作，维护工作的绝大多数时间就是在与遗留代码战斗。他们需要深入代码洞穴，攀登代码树，在错综复杂的逻辑结构中跟踪每一步可能的分支结点；除了要抓到贻害一方的缺陷，并且还必须在有限的时间里完成这一切工作，这就像美剧里演的一样，一个人拿着枪指着你的头，掐着秒表，逼着你在秒表归零之前完成复杂的网络攻击任务。作者把软件维护工程师们比做软件驱魔人，这是多么贴切的比喻。我现在才惊醒，原来我身边的人本应如孙俪一样俊俏，像古天乐一样有型，似文章一般阳光清纯，而“伟大”的降妖除魔工作，却让他们一个个如降魔人，猎妖师和陈玄奘一般狼狈不堪。</p>
@@ -694,9 +694,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
+    <link href="http://zhangliaoyuan.com/blog/2014/02/17/Hatching-twitter-reading-notes/"/>
     <updated>2014-02-17T15:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2014/02/17/Hatching-twitter-reading-notes</id>
+    <id>http://zhangliaoyuan.com/blog/2014/02/17/Hatching-twitter-reading-notes</id>
     <content type="html"><![CDATA[<p>这是一本闲书，适合枕边阅读，看这本书，就像看电视剧一样，每个场景描述得就像真的出现在眼前一样，一群IT屌丝的欢声笑语与恩怨情仇。如果要给这本书一个更恰当的副标题的话，就是“一群IT屌丝成为高富帅的故事”。</p>
 
 <p>作者也有意的在书中给每位角色给出前后反差的描写：</p>
@@ -711,7 +711,7 @@ The pattern shall be like this:</p>
 
 <p>作者从几任CEO的维度来组织描写，下图是我从时间的维度给出的一个简介。</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2014-02-17-read-hatching-twitter/twitter.png" title="twitter" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2014-02-17-read-hatching-twitter/twitter.png" title="twitter" alt="Alt text" /></p>
 
 <p>从书中总结的几点：</p>
 
@@ -734,9 +734,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[Build CI Environment With Gerrit, Jenkins and Subverison]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
     <updated>2013-10-10T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
+    <id>http://zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
     <content type="html"><![CDATA[<h2>1. Overview</h2>
 
 <h3>1.1. Purpose</h3>
@@ -756,7 +756,7 @@ The pattern shall be like this:</p>
 
 <h3>1.2. Architecture</h3>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
 
 <p>Team can use subgit mirror the project to team owned gerrit server, and then team member clone the project to their local disk. Any changes making will be happen in local repository, after changes done. Developer can push the changes to remote repository (i.e., the gerrit server git repository). Once the changes is pushed to the server, gerrit will trigger jenkins to verify the changes (Compiling, unit testing, regression testing etc. CI jobs will be ran), and meanwhile, gerrit will send the review request mail to dedicated reviewer. After the reviewer approved the changes and jenkins verified okay, the source code changes can be merged into project master which is located in gerrit git repository. Otherwise, developer shall rework and push new patch again.</p>
 
@@ -806,7 +806,7 @@ to start it.</p>
 
 <p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
+<p><img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
 Figure 1-1</p>
 
 <p>After create this project, it means create a new project git repository under gerrit git repositories folder. In this case, the new project git repository is <a href="http://192.168.1.100:8081/gameoflife_java" title="project repository">http://192.168.1.100:8081/gameoflife_java</a>. You can clone this project in your local PC by execute this command.</p>
@@ -894,7 +894,7 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 
 
 <p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
-<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
+<img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
 
 <p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
 
@@ -903,12 +903,12 @@ client@client-Workstation-Workstation:~/workspace/gameoflife_java$
 <h4>Create ReviewBoard group and add the members</h4>
 
 <p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
-<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
+<img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
 
 <h4>Access control of the new create group</h4>
 
 <p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
-<img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
+<img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
 
 <p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
 
@@ -952,7 +952,7 @@ jenkins@jenkins-Workstation:~$
 
 <p>Select the plugin, and install without restart, the process which shows like this.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
 
 <h3>4.2. Generate jenkins needs ssh-key for <code>Gerrit Trigger</code> usage</h3>
 
@@ -1002,11 +1002,11 @@ jenkins@jenkins-Workstation:~/gerrit/review_site/bin$
 
 <p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
 
 <p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
 
 <h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
 
@@ -1078,9 +1078,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Why We Need Visual Task Board]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/08/30/why-we-need-visual-task-board/"/>
     <updated>2013-08-30T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/08/30/why-we-need-visual-task-board</id>
+    <id>http://zhangliaoyuan.com/blog/2013/08/30/why-we-need-visual-task-board</id>
     <content type="html"><![CDATA[<p>The department which I&rsquo;m working on, it&rsquo;s thought be the first team adopted Scrum in China, so our people mostly seems ourselves is the Scrum forerunner in China althrough there might be another place is ahead of us. Year and year, day after day, we did various of Scrum practices, And while the R&amp;D is growing in size, and with people change in the organization, people have been forgetting the rationale behind these practices, and thinking Scrum is such practices, such practices are Scrum. But one day, we were questioned by our naive boy: Why?</p>
 
 <p>Today, let’s clarify why we need visual task board? Why we not use excel instead, or some on-line task management tools such like Trello?</p>
@@ -1133,9 +1133,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[程序员上网扫盲]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet/"/>
     <updated>2013-07-26T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/07/26/how-programmer-surf-internet</id>
+    <id>http://zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet</id>
     <content type="html"><![CDATA[<p>最近常常被很多朋友问到这样的问题：</p>
 
 <ul>
@@ -1258,9 +1258,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Speaking Codermetrics in ScrumGathering Shanghai 2013]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
     <updated>2013-07-08T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering</id>
+    <id>http://zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering</id>
     <content type="html"><![CDATA[<p>因为一篇post &ndash; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/23992242 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen></iframe>
@@ -1298,12 +1298,12 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Bee Watcher]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/06/25/bee-watcher/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/06/25/bee-watcher/"/>
     <updated>2013-06-25T17:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/06/25/bee-watcher</id>
+    <id>http://zhangliaoyuan.com/blog/2013/06/25/bee-watcher</id>
     <content type="html"><![CDATA[<p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&hellip;看峰人(Bee Watcher Watcher &hellip;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
 
 <p><em>picture from <a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">The Bee Watcher - The Art of Dr. Seuss</a></em></p>
 
@@ -1313,9 +1313,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Exception Has Been Normal]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/05/30/exception-has-been-normal/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/"/>
     <updated>2013-05-30T18:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/05/30/exception-has-been-normal</id>
+    <id>http://zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal</id>
     <content type="html"><![CDATA[<p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
 
 <p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
@@ -1332,9 +1332,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Take Care of Your Integer Variables]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable/"/>
     <updated>2013-04-27T13:19:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/04/27/take-care-of-your-integer-variable</id>
+    <id>http://zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable</id>
     <content type="html"><![CDATA[<p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
 
 <p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
@@ -1348,7 +1348,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
 
 <p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:</p>
 
@@ -1449,7 +1449,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-04-27/integer-ranges.png" title="integer ranges
+<p><img src="http://zhangliaoyuan.com/images/2013-04-27/integer-ranges.png" title="integer ranges
 " alt="Alt text" /></p>
 
 <p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
@@ -1462,9 +1462,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/"/>
     <updated>2013-04-18T10:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics</id>
+    <id>http://zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics</id>
     <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
 
 <p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
@@ -1480,7 +1480,7 @@ client@client-Workstation:~/tmp/a$
 
 <p>而之于团队和程序员的度量，应该从多个维度进行，从产品类型的不同，从角色的要求不同等等，单一的数据可能毫无意义，但数据的组合可能会帮助我们发现隐藏在数据背后的洞察力。跟踪一段时间的响应度量，可以帮助我们对现实的工作做出调整，不断完善，做到可持续性。</p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
 
 <p>主要内容包括：</p>
 
@@ -1521,9 +1521,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Coderetreat: Programming Game of Life Under 'No Conditional Expression' Restriction]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/"/>
     <updated>2013-04-12T23:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
+    <id>http://zhangliaoyuan.com/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction</id>
     <content type="html"><![CDATA[<p>If you search this topic with &ldquo;coderetreat&rdquo;, &ldquo;no if&rdquo; or &ldquo;no conditional expression&rdquo; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
 
 <p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&rsquo;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &ldquo;while loop&rdquo; or &ldquo;for loop&#8221;instead of &#8220;if&rdquo;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
@@ -1540,7 +1540,7 @@ client@client-Workstation:~/tmp/a$
 
 <p> So we can understand the next generation state will be based on two factors: current generation state (live or dead) and live neighours amount. We can define a two-dimensional array like below diagram illustrates:</p>
 
-<p> <img src="http://zhangliaoyuan.me/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
+<p> <img src="http://zhangliaoyuan.com/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
 
 <p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&rsquo;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:
  <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1573,9 +1573,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Team Gathering Game]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/03/23/team-gethering-game/"/>
     <updated>2013-03-23T00:00:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game</id>
+    <id>http://zhangliaoyuan.com/blog/2013/03/23/team-gethering-game</id>
     <content type="html"><![CDATA[<p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
 
 <h2>The rule of the game:</h2>
@@ -1608,9 +1608,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Structure Assignment and Its Pitfall in C Language]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language/"/>
     <updated>2013-01-28T21:47:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
+    <id>http://zhangliaoyuan.com/blog/2013/01/28/structure-assignment-and-its-pitfall-in-C-language</id>
     <content type="html"><![CDATA[<h2>Problem</h2>
 
 <p>There is a structure type defined as below:</p>
@@ -1751,7 +1751,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 
 <p>Below diagram illustrates above source memory layout, if there is a pointer field member, either the straight assignment or <code>memcpy</code>, that will be alias of pointer to point same address. For example, <code>b.alias</code> and <code>c.alias</code> both points to address of <code>a.alias</code>. Once one of them free the pointed address, it will cause another pointer as dangling pointer. <strong>It&rsquo;s dangerous!!</strong></p>
 
-<p><img src="http://zhangliaoyuan.me/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
+<p><img src="http://zhangliaoyuan.com/images/2013-01-28-structure-assignment-and-its-pitfall-in-C-language/structure_assignment.1-1.png" title="Illustrates above source code memory layout." alt="Alt text" /></p>
 
 <h2>Conclusion</h2>
 
@@ -1775,9 +1775,9 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   
   <entry>
     <title type="html"><![CDATA[Retrospective of My 2012]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/01/14/retrospective-of-my-2012/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012/"/>
     <updated>2013-01-14T21:47:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/01/14/retrospective-of-my-2012</id>
+    <id>http://zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012</id>
     <content type="html"><![CDATA[<p>In our organization, we have a basic rule is: If you make retrospective for one specific sprint, you shall finish it in the sprint time slot. So it against our rule since I make 2012 retrospective in 2013, but later than never. I believe retrospective since I have ran agile for several years, I know it can benefit me.</p>
 
 <p>My grandpa told my mother, and my mother told me that you have to look back and reflect on your life every night before you go to bed. It’s difficult for me, because I always tell story to my kid during that time, or do others, you know that&hellip; So I demand me shall make retrospective at least once annually.</p>

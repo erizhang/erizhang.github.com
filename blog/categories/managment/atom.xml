@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Managment | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/managment/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/blog/categories/managment/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Speaking Codermetrics in ScrumGathering Shanghai 2013]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
     <updated>2013-07-08T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/07/08/codermetrics-in-scrumgathering</id>
+    <id>http://zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering</id>
     <content type="html"><![CDATA[<p>因为一篇post &ndash; <a href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
 
 <p><iframe src="http://www.slideshare.net/slideshow/embed_code/23992242 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen></iframe> </p>

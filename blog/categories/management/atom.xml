@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Management | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/management/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/blog/categories/management/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/"/>
     <updated>2013-04-18T10:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/04/18/why-i-translate-codermetrics</id>
+    <id>http://zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics</id>
     <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
 
 <p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
@@ -74,9 +74,9 @@
   
   <entry>
     <title type="html"><![CDATA[Team Gathering Game]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game/"/>
+    <link href="http://zhangliaoyuan.com/blog/2013/03/23/team-gethering-game/"/>
     <updated>2013-03-23T00:00:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2013/03/23/team-gethering-game</id>
+    <id>http://zhangliaoyuan.com/blog/2013/03/23/team-gethering-game</id>
     <content type="html"><![CDATA[<p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
 
 <h2>The rule of the game:</h2>

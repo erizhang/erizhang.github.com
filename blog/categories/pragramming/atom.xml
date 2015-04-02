@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Pragramming | Actionary]]></title>
-  <link href="http://zhangliaoyuan.me/blog/categories/pragramming/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.me/"/>
-  <updated>2015-04-03T00:17:13+08:00</updated>
-  <id>http://zhangliaoyuan.me/</id>
+  <link href="http://zhangliaoyuan.com/blog/categories/pragramming/atom.xml" rel="self"/>
+  <link href="http://zhangliaoyuan.com/"/>
+  <updated>2015-04-03T00:19:47+08:00</updated>
+  <id>http://zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Build Up Octopress Style Blog Site]]></title>
-    <link href="http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog/"/>
+    <link href="http://zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog/"/>
     <updated>2012-12-20T00:00:00+08:00</updated>
-    <id>http://zhangliaoyuan.me/blog/2012/12/20/build-up-octopress-blog</id>
+    <id>http://zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog</id>
     <content type="html"><![CDATA[<h2>Why I choose octopress?</h2>
 
 <p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
