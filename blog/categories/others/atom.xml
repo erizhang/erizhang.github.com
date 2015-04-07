@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Others | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/others/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/others/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Domain Name of This Site Will Be Changed Soon]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name/"/>
     <updated>2015-04-02T22:01:06+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name</id>
     <content type="html"><![CDATA[<p>Hi, my dear friends,</p>
 
 <p>I setup zhangliaoyuan.me for two years, now the domain name will be expired soon.

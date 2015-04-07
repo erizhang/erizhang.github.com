@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Thinking | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/thinking/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/thinking/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[2B青年欢乐多之敏捷扫盲]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2014/09/02/talk-about-agile/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2014/09/02/talk-about-agile/"/>
     <updated>2014-09-02T23:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2014/09/02/talk-about-agile</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2014/09/02/talk-about-agile</id>
     <content type="html"><![CDATA[<p>其实，我有自知之明，我并不是最合适回答这个问题的人，因为现在大师有很多，不管是李奎也好，李鬼也罢，反正就是很多。也因为真假莫辩的原因，搞得圈里圈外各种叽叽喳喳。这不，要想在圈里圈外出个名什么的，要么旗帜鲜时的挺个流派，或者倒个敏捷，或挺或倒，一定要言辞凿凿，越激烈，越极端，就越容易博得点击量，当然，这是有风险的，要么名声大振，要么声誉扫地。其实我是挺偑服那些人的，多有勇气啊，而我就不行，只能闷头干活，不敢过多言语，为什么？怕讲错啊，万一被哪个神经病缠上，就我这压力承受能力，还不直接被K.O了。况且，就我这水平，能让自己搞明白就已经不错了。</p>
 
 <p>可是，可是&hellip;由于工作的原因，最近我常常遇到不明真相的群众，直呼我张老师，然后请教诸这般那般。其实叫我张老师，我应得也自然，因为曾经当过老师，也乐得学生这么叫我。就我个人而言，我更愿意广义意义上就敏捷这个基础上就事论事。</p>
@@ -56,9 +56,9 @@
   
   <entry>
     <title type="html"><![CDATA[驱魔人 ——《软件驱魔术》译者序]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
     <updated>2014-02-24T16:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism</id>
     <content type="html"><![CDATA[<p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&hellip;&hellip;</p>
 
 <p>我本人所在项目的代码库里，包含了从上世纪八十年代到现在，跨度将近三十年的代码，这个样本都适合做代码考古了，而公司目前有几百人正在从事这套软件的维护工作，维护工作的绝大多数时间就是在与遗留代码战斗。他们需要深入代码洞穴，攀登代码树，在错综复杂的逻辑结构中跟踪每一步可能的分支结点；除了要抓到贻害一方的缺陷，并且还必须在有限的时间里完成这一切工作，这就像美剧里演的一样，一个人拿着枪指着你的头，掐着秒表，逼着你在秒表归零之前完成复杂的网络攻击任务。作者把软件维护工程师们比做软件驱魔人，这是多么贴切的比喻。我现在才惊醒，原来我身边的人本应如孙俪一样俊俏，像古天乐一样有型，似文章一般阳光清纯，而“伟大”的降妖除魔工作，却让他们一个个如降魔人，猎妖师和陈玄奘一般狼狈不堪。</p>
@@ -87,9 +87,9 @@
   
   <entry>
     <title type="html"><![CDATA[Bee Watcher]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/06/25/bee-watcher/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/06/25/bee-watcher/"/>
     <updated>2013-06-25T17:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/06/25/bee-watcher</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/06/25/bee-watcher</id>
     <content type="html"><![CDATA[<p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&hellip;看峰人(Bee Watcher Watcher &hellip;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
 
 <p><img src="/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
@@ -102,9 +102,9 @@
   
   <entry>
     <title type="html"><![CDATA[Exception Has Been Normal]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/"/>
     <updated>2013-05-30T18:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal</id>
     <content type="html"><![CDATA[<p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
 
 <p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>

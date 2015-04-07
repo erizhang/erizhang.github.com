@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Programmer | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/programmer/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/programmer/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[程序员上网扫盲]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet/"/>
     <updated>2013-07-26T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/07/26/how-programmer-surf-internet</id>
     <content type="html"><![CDATA[<p>最近常常被很多朋友问到这样的问题：</p>
 
 <ul>

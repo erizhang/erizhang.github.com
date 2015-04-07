@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Self-managment | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/self-managment/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/self-managment/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Retrospective of My 2012]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012/"/>
     <updated>2013-01-14T21:47:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/01/14/retrospective-of-my-2012</id>
     <content type="html"><![CDATA[<p>In our organization, we have a basic rule is: If you make retrospective for one specific sprint, you shall finish it in the sprint time slot. So it against our rule since I make 2012 retrospective in 2013, but later than never. I believe retrospective since I have ran agile for several years, I know it can benefit me.</p>
 
 <p>My grandpa told my mother, and my mother told me that you have to look back and reflect on your life every night before you go to bed. It’s difficult for me, because I always tell story to my kid during that time, or do others, you know that&hellip; So I demand me shall make retrospective at least once annually.</p>

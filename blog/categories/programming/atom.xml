@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Programming | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
     <updated>2015-02-03T22:01:06+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing</id>
     <content type="html"><![CDATA[<p>In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality improvement, but no many people deep dive. Have you really understand the relationship between unit testing and quality?</p>
 
 <p>Most of people knows while coding a method/function, the corresponding unit testing shall be added as well. But, why? And a lot of people has misunderstanding about unit testing, I&rsquo;d like to list some ones here.</p>
@@ -109,9 +109,9 @@ We use <code>assertEquals(2, foo(2, 2))</code> can touch all line of the code, i
   
   <entry>
     <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding/"/>
     <updated>2015-01-20T22:14:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding</id>
     <content type="html"><![CDATA[<p>To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. Here I write down my understanding here, hope it can help some d3js newbie like me.</p>
 
 <h2>Basic concepts</h2>
@@ -366,9 +366,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[What I Learned in Global Day of Coderetreat]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat/"/>
     <updated>2014-11-16T21:12:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2014/11/16/what-i-learned-in-coderetreat</id>
     <content type="html"><![CDATA[<p>We&rsquo;re now the 3rd times hosting and facilitating the Global Day of Coderetreat in Hangzhou, China. Compared with Jim Hurne coordinating the globally events, be frankly, our work is easier. Yes, it&rsquo;s easier, but I do not think it&rsquo;s not important. It always request the host and facilitator spends much more effort to prepare and continuiously improve. Personally, beside those Global Day of Coderetreat (GDCR in short), we still spended much time hosting and facilitating such like coding dojo, coding rally etc. which help programmer to practice their software design, coding skill and agile engineering practices. Here I&rsquo;d like to share what I learned from coderetreat.</p>
 
 <p><img src="/images/2014-11-16-what-i-learned-in-coderetreat/coding.png" title="In Coding" alt="Alt text" /></p>
@@ -409,9 +409,9 @@ The pattern shall be like this:</p>
   
   <entry>
     <title type="html"><![CDATA[Build CI Environment With Gerrit, Jenkins and Subverison]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
     <updated>2013-10-10T11:31:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
     <content type="html"><![CDATA[<h2>1. Overview</h2>
 
 <h3>1.1. Purpose</h3>
@@ -753,9 +753,9 @@ client@client-Workstation:~/tmp/a$
   
   <entry>
     <title type="html"><![CDATA[Take Care of Your Integer Variables]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable/"/>
     <updated>2013-04-27T13:19:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable</id>
     <content type="html"><![CDATA[<p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
 
 <p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>

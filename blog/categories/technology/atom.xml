@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Technology | Actionary]]></title>
-  <link href="http://zhangliaoyuan.com/blog/categories/technology/atom.xml" rel="self"/>
-  <link href="http://zhangliaoyuan.com/"/>
-  <updated>2015-04-03T00:19:47+08:00</updated>
-  <id>http://zhangliaoyuan.com/</id>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-04-07T19:05:03+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
     <email><![CDATA[zhang.lyuan@gmail.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
-    <link href="http://zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat/"/>
+    <link href="http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat/"/>
     <updated>2012-12-18T10:51:00+08:00</updated>
-    <id>http://zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat</id>
+    <id>http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat</id>
     <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
 
 <h2>What&rsquo;s the coderetreat</h2>
