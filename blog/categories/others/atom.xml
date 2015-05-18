@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Others | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-05-18T23:34:27+08:00</updated>
+  <updated>2015-05-18T23:37:09+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -289,7 +289,7 @@ public:
 
 <h2>Summary</h2>
 
-<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements?</p>
+<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements? Refactor your source code often, make it better.</p>
 
 <p>Treat the unit testing as design tool, helps you make better design; treat unit testing as safety tools, facilitates you make source code change.</p>
 
