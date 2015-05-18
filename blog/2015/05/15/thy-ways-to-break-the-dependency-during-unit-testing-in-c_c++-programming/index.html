@@ -387,11 +387,13 @@ For example, during <code>isWin()</code> invoke <code>dice_points()</code>, we c
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_is_bigger_than_3_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
 </span><span class='line'>    <span class="n">stubInfo</span> <span class="n">si</span><span class="p">;</span>
 </span><span class='line'>    <span class="n">set_stup</span><span class="p">(</span><span class="n">dice_points</span><span class="p">,</span> <span class="n">stub_dice_points</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">reset_stub</span><span class="p">(</span><span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 

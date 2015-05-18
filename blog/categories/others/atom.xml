@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Others | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/others/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-05-18T23:30:45+08:00</updated>
+  <updated>2015-05-18T23:34:27+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -192,8 +192,9 @@ void reset_stub(stubInfo *si)
 TEST(VerifyGame, test_the_dice_points_is_bigger_than_3_points_shall_be_win) {
     stubInfo si;
     set_stup(dice_points, stub_dice_points, &amp;si);
-    set_stub_dice_points(3 + 2)
+    set_stub_dice_points(3 + 2);
     CHECK(is_win());
+    reset_stub(&amp;si);
 }
 </code></p>
 
