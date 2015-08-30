@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="We encourage people writes unit testing shall follow F.I.R.S.T principle, but dependency gets in the way. Especially you make unit testing under &hellip;">
+  <meta name="description" content="These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,191 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How to Support LaTeX Chinese Editing in TeXstudio Under Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-15T22:01:06+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font support, and Windows OS is popular used in Chinese forum. For English supporting is not a problem in LaTeX, but Chinese edit problem I encounter under Mac OS. I&rsquo;m trying to make the notes to remember the steps here in case of somebody needs it as well.</p>
+
+<h3>Step 1.  Choose good editor and compiler package</h3>
+
+<p>As friend recommend, I used <a href="http://www.texstudio.org" title="texstudio">TeXstudio</a> for my LaTeX document editing, this tool was quite good when I used under Windows, I suppose it will do great job under Mac OS as well. And Install the <a href="http://www.tug.org/mactex/" title="mactex">MacTeX</a> the LaTeX compiling supporting.</p>
+
+<h3>Step 2. Change the <code>PDFLaTeX</code> command to <code>XeLaTeX</code></h3>
+
+<p>The first problem I encounter is when I finish a sample document editing, and tried to compile it, TeXstudio will use the default command <code>PDFLaTeX</code> to compile it. It works under PC, but failed under Mac system. So the first thing you need to set the default command to <code>XeLaTeX</code>.
+In TeXstudio, you can change the option via &ldquo;Preferences&rdquo; -> &ldquo;Build&rdquo; -> &ldquo;Default compiler&rdquo;, select the value as <code>XeLaTeX</code>. Now if you compile this document, it works fine:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+</span><span class='line'><span class="k">\title</span><span class="nb">{</span>Hello World<span class="nb">}</span>
+</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
+</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\maketitle</span>
+</span><span class='line'>  This is my first sound.
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the result is like this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/first-result.png" title="works well" alt="Alt text" /></p>
+
+<h3>Step 3. Support Chinese words editing</h3>
+
+<p>But if we change the English content to Chinese, it doesn&rsquo;t work well, such like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+</span><span class='line'><span class="k">\title</span><span class="nb">{</span>你好，世界<span class="nb">}</span>
+</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
+</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\maketitle</span>
+</span><span class='line'>  这是我呐喊出来的第一句话。
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Except the English words can be displayed well, everything is mass, unreadable. So we need use <code>ctex</code> package to support it. so add the <code>\usepackage{ctex}</code> after <code>\documentclass{article}</code>, the result is still bad. So I realize the problem might be caused by the fonts supporting. And then I inserted these lines before <code>\begin{document}</code>, the document like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
+</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>ctex<span class="nb">}</span>
+</span><span class='line'><span class="k">\title</span><span class="nb">{</span>你好，世界<span class="nb">}</span>
+</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKmainfont</span><span class="nb">{</span>Kaiti TC Regular<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKsansfont</span><span class="nb">{</span>Songti TC Regular<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKmonofont</span><span class="nb">{</span>Heiti TC Regular<span class="nb">}</span>
+</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class='line'>  <span class="k">\maketitle</span>
+</span><span class='line'>  这是我呐喊出来的第一句话。
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and change the encoding to <code>UTF-8</code></p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/encoding.png" width="500" title="select encoding" alt="Alt text" /></p>
+
+<p>then the final result likes this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/chinese-result.png" width="500" title="Chinese result" alt="Alt text" /></p>
+
+<h3>Step 4. How do I know the font&rsquo;s name</h3>
+
+<p>As you see, I insert these line about the font supporting, but you may ask why I know the Chinese font name. Yes, it&rsquo;s tricky, :p
+Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can find the font name from the font dropbox, after you selected a font, the font text box will show its name. See, that&rsquo;s why I know the font name exactly.</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/font-select.png" width="400" title="font select" alt="Alt text" /></p>
+
+<h3>In the eend</h3>
+
+<p>Here I give an example of the Chinese words editing, hope it&rsquo;s useful for your reference.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>ctexart<span class="nb">}</span>
+</span><span class='line'><span class="c">%\usepackage{ctex}</span>
+</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>xeCJK<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKmainfont</span><span class="nb">{</span>Kaiti TC Regular<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKsansfont</span><span class="nb">{</span>Songti TC Regular<span class="nb">}</span>
+</span><span class='line'><span class="k">\setCJKmonofont</span><span class="nb">{</span>Heiti TC Regular<span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\tableofcontents</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>abstract<span class="nb">}</span>
+</span><span class='line'>这是在文件的开头的介绍文字.本文的主要话题的简短说明.
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>abstract<span class="nb">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">\section</span><span class="nb">{</span> 前言 <span class="nb">}</span>
+</span><span class='line'>在该第一部分中的一些额外的元素可以被添加。巴贝尔包将采取的翻译服务.
+</span><span class='line'>
+</span><span class='line'><span class="k">\section</span><span class="nb">{</span>关于数学部分<span class="nb">}</span>
+</span><span class='line'>在本节中的一些数学会使用数学模型含中文字符显示。
+</span><span class='line'>
+</span><span class='line'>這是一個傳統的中國文字
+</span><span class='line'>
+</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>-EOF-</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1451,370 +1636,6 @@ The pattern shall be like this:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/10/gerrit-jenkins-subversion-integration/">Build CI Environment With Gerrit, Jenkins and Subverison</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-10-10T11:31:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>1. Overview</h2>
-
-<h3>1.1. Purpose</h3>
-
-<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&rsquo;d like mark my practice notes here.</p>
-
-<ul>
-<li>Gerrit is <code>git</code> repository management tools, more external reference you can read about the benefits of <code>git</code></li>
-<li>Gerrit provides good source code review web UI</li>
-<li>Gerrit is easier to integrate with jenkins</li>
-</ul>
-
-
-<p>So, from developer perspective of view, he/she can focus on source code changing/implementation, no more interruption from process manager or quality manager. From process manager view, he/she can define the source code commit and review process easier via gerrit configuration. From quality manager view, he/she can easier get the source code and review quality metrics which via developed metrics system (cooperate with jenkins and gerrit through REST query API).</p>
-
-<p>Of cause, if your organization still using subversion, you can use subgit to sync the changes between subversion and gerrit.</p>
-
-<h3>1.2. Architecture</h3>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
-
-<p>Team can use subgit mirror the project to team owned gerrit server, and then team member clone the project to their local disk. Any changes making will be happen in local repository, after changes done. Developer can push the changes to remote repository (i.e., the gerrit server git repository). Once the changes is pushed to the server, gerrit will trigger jenkins to verify the changes (Compiling, unit testing, regression testing etc. CI jobs will be ran), and meanwhile, gerrit will send the review request mail to dedicated reviewer. After the reviewer approved the changes and jenkins verified okay, the source code changes can be merged into project master which is located in gerrit git repository. Otherwise, developer shall rework and push new patch again.</p>
-
-<h2>2. Gerrit Deployment</h2>
-
-<h3>2.1. Installation</h3>
-
-<pre>
-gerrit@gerrit-Workstation:~/gerrit$ java -jar gerrit-2.6.1.war init -d review_site
-</pre>
-
-
-<p>Once finish the installation of gerrit, it will be started automatically, or you can switch to <code>$(ROOT)/bin</code> folder, and execute command</p>
-
-<pre>
-gerrit@gerrit-Workstation:~/gerrit/review_site/bin$ ./gerrit.sh start
-Starting Gerrit Code Review: OK
-</pre>
-
-
-<p>
-to start it.</p>
-
-<h3>2.2. LDAP Configuration</h3>
-
-<p>To support the LDAP authentication, you have to change the gerrit configuration under <code>$(ROOT)/etc/gerrit.config</code>, so that, you can use the LDAP type to authenticate the gerrit login and git operates.</p>
-
-<pre>
-[auth]
-        type = LDAP
-        gitBasicAuth = true  #This option means user can push source via ldap authentication during execute git related comments.
-[ldap]
-        server = ldap://ldap-server-address:389 #fill yours
-        username = cn=BOOTMAN_Acc,ou=SystemUsers,ou=Accounts,o=... #fill yours
-        accountBase = ou=People,o=xxx #fill yours
-        accountPattern = (uid=${username})
-</pre>
-
-
-<h3>2.3. Create a new project</h3>
-
-<h4>Login the gerrit web UI</h4>
-
-<p>Type the http address of gerrit service on browser, in this case, it&rsquo;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
-
-<h4>Create new project</h4>
-
-<p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
-Figure 1-1</p>
-
-<p>After create this project, it means create a new project git repository under gerrit git repositories folder. In this case, the new project git repository is <a href="http://192.168.1.100:8081/gameoflife_java" title="project repository">http://192.168.1.100:8081/gameoflife_java</a>. You can clone this project in your local PC by execute this command.</p>
-
-<pre>
-client@client-Workstation:~/workspace$ git clone http://192.168.1.100:8081/gameoflife_java
-Cloning into 'gameoflife_java'...
-warning: You appear to have cloned an empty repository.
-</pre>
-
-
-<p>Now you have cloned the repository, because this repository is empty, so there is warning prompted.</p>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ git remote -v
-origin  http://192.168.1.100:8081/gameoflife_java (fetch)
-origin  http://192.168.1.100:8081/gameoflife_java (push)
-</pre>
-
-
-<h3>2.4. Client works</h3>
-
-<p>As developer, the most of works are done in client site, since your local git repository will cooperate with remote gerrit git repository, we have to do some initial step firstly.</p>
-
-<h5>Get the commit-msg which is used for generate the changed-id:</h5>
-
-<pre>
-client@client-Workstation:~/workspace$ cd gameoflife_java/
-client@client-Workstation:~/workspace/gameoflife_java$ curl -o .git/hooks/commit-msg http://192.168.1.100:8081/tools/hooks/commit-msg
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  4276  100  4276    0     0   3515      0  0:00:01  0:00:01 --:--:--  4341
-client@client-Workstation:~/tmp/gameoflife_java$ chmod u+x .git/hooks/commit-msg
-client@client-Workstation:~/tmp/gameoflife_java$ 
-</pre>
-
-
-<h5>Configure the git user properties:</h5>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ git config remote.origin.push HEAD:refs/for/master
-client@client-Workstation:~/workspace/gameoflife_java$ git config user.name erizhang
-client@client-Workstation:~/workspace/gameoflife_java$ git config user.email eric.zhang@xxx.com
-client@client-Workstation:~/workspace/gameoflife_java$ 
-</pre>
-
-
-<p>Okay, from here, you can execute general git command to commit and push your source code changes.</p>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ vim README.md 
-client@client-Workstation:~/workspace/gameoflife_java$ git status
-# On branch master
-#
-# Initial commit
-#
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#   README.md
-nothing added to commit but untracked files present (use "git add" to track)
-client@client-Workstation:~/workspace/gameoflife_java$ git add .
-client@client-Workstation:~/workspace/gameoflife_java$ git commit -m 'add README.md to initialize this repository'
-[master (root-commit) 585f136] add README.md to initialize this repository
- 1 file changed, 18 insertions(+)
- create mode 100644 README.md
-</pre>
-
-
-<p>Execute above command, we have already commit the source code changes in local git repository, and then we have to push them to our gerrit server git repository:</p>
-
-<pre>
-client@client-Workstation-Workstation:~/workspace/gameoflife_java$ git push origin
-Username for 'http://192.168.1.100:8081': erizhang
-Password for 'http://erizhang@192.168.1.100:8081': 
-remote: Processing changes: new: 1, refs: 1, done    
-remote: 
-remote: New Changes:
-remote:   http://192.168.1.100:8081/1
-remote: 
-To http://192.168.1.100:8081/gameoflife_java
- * [new branch]      HEAD -> refs/for/master
-client@client-Workstation-Workstation:~/workspace/gameoflife_java$ 
-</pre>
-
-
-<p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
-
-<p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
-
-<h3>2.5. Create ReviewBoard group and access control</h3>
-
-<h4>Create ReviewBoard group and add the members</h4>
-
-<p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
-
-<h4>Access control of the new create group</h4>
-
-<p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
-
-<p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
-
-<h2>3. Jenkins deployment</h2>
-
-<h3>3.1. Install Jenkins</h3>
-
-<pre>
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get update
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get install jenkins
-</pre>
-
-
-<h3>3.2. Start jenkins</h3>
-
-<p>If you want to start jenkins with another port rather than default port 8080，you can modify below configuration file, and set the httpPort to your prefer:</p>
-
-<pre>
-jenkins@jenkins-Workstation:~$ sudo vim /etc/default/jenkins
-</pre>
-
-
-<p>Start jenkins:</p>
-
-<pre>
-jenkins@jenkins-Workstation:~$ sudo /etc/init.d/jenkins start
- * Starting Jenkins Continuous Integration Server jenkins                                                   [ OK ]
-jenkins@jenkins-Workstation:~$
-</pre>
-
-
-<h2>4. Gerrit Trigger</h2>
-
-<h3>4.1. Install the <code>Gerrit Trigger</code> Plugin</h3>
-
-<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &ldquo;Manage Jenkins&rdquo; -> &ldquo;Manage Plugin&rdquo;, and then you can find the <code>Gerrit Trigger</code> in the &ldquo;Available&rdquo; tab.</p>
-
-<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &ldquo;Available&rdquo; tab, maybe you should select &ldquo;Advanced&rdquo; tab, and click &ldquo;Check Now&rdquo; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &ldquo;Advanced&rdquo; tab as well.</em></p></blockquote>
-
-<p>Select the plugin, and install without restart, the process which shows like this.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
-
-<h3>4.2. Generate jenkins needs ssh-key for <code>Gerrit Trigger</code> usage</h3>
-
-<p>Since jenkins will operate gerrit via SSH protocol, to Gerrit, there will be a gerrit user account represents jenkins. So, this step is generate rsa key first.</p>
-
-<pre>
-jenkins@jenkins-Workstation:/var/lib/jenkins$ sudo ssh-keygen                                   -t rsa -C "jenkins@xxx.com"
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): /var/lib/jenkins/.ssh/i                                  d_rsa
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /var/lib/jenkins/.ssh/id_rsa.
-Your public key has been saved in /var/lib/jenkins/.ssh/id_rsa.pub.
-The key fingerprint is:
-8d:e6:0c:42:cf:3b:d6:52:63:e8:a0:d7:9a:7b:5f:bd jenkins@xxx.com
-The key's randomart image is:
-+--[ RSA 2048]----+
-|                 |
-|                 |
-|    .            |
-|   . o . o       |
-|    o = S .      |
-|   . = X . .     |
-|  . . B + . .    |
-|   . +.o .   .   |
-|    +o ..   E    |
-+-----------------+
-</pre>
-
-
-<h3>4.3. Create <code>jenkins</code> user account for jenkins</h3>
-
-<p>In jenkins server, generate the jenkins rsa public key by this command:</p>
-
-<p>Create a new gerrit user <code> jenkins </code></p>
-
-<pre>
-jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ ssh -p 29418 erizhang@192.168.1.100 gerrit create-account --ssh-key - jenkins < /var/lib/jenkins/.ssh/id_rsa.pub
-Enter passphrase for key '/home/erizhang/.ssh/id_rsa':
-jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ 
-</pre>
-
-
-<p>Now we have create a new gerrit account <code>jenkins</code>, this account will be used for the gerrit automatically trigger jenkins job purpose. Of cause, you can use <code>gerrit set-account</code> command to change the or add the account properties.</p>
-
-<h3>4.4. Configure <code>Gerrit Trigger</code></h3>
-
-<p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
-
-<p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
-
-<h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
-
-<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &ldquo;Label Verified&rdquo; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
-
-<pre>
-client@client-Workstation:~/tmp/a$ git init
-Initialized empty Git repository in /home/erizhang/tmp/a/.git/
-client@client-Workstation:~/tmp/a$ git remote add origin ssh://erizhang@192.168.1.100:29418/All-Projects
-client@client-Workstation:~/tmp/a$ git fetch origin refs/meta/config:refs/remotes/origin/meta/config
-remote: Counting objects: 4, done
-remote: Finding sources: 100% (4/4)
-remote: Total 4 (delta 0), reused 0 (delta 0)
-Unpacking objects: 100% (4/4), done.
-From ssh://192.168.1.100:29418/All-Projects
- * [new branch]      refs/meta/config -> origin/meta/config
-client@client-Workstation:~/tmp/a$ ls
-client@client-Workstation:~/tmp/a$ git config user.email eric.zhang@xxx.com
-client@client-Workstation:~/tmp/a$ git config user.name erizhang
-client@client-Workstation:~/tmp/a$ ls
-client@client-Workstation:~/tmp/a$ git co meta/config
-Branch meta/config set up to track remote branch meta/config from origin.
-Switched to a new branch 'meta/config'
-client@client-Workstation:~/tmp/a$ ls
-groups  project.config
-</pre>
-
-
-<p>Open <code>project.config</code>, and append below lines into the file.</p>
-
-<pre>
-[label "Verified"]
-       function = MaxWithBlock
-       value = -1 Fails
-       value =  0 No score
-       value = +1 Verified
-</pre>
-
-
-<p>Execute below commands, to update the configuration.</p>
-
-<pre>
-client@client-Workstation:~/tmp/a$ git commit -a -m 'add verified label'
-[meta/config 09b3910] add verified label
- 1 file changed, 6 insertions(+)
-client@client-Workstation:~/tmp/a$ git push origin meta/config:meta/config
-Counting objects: 5, done.
-Delta compression using up to 2 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 395 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1)
-remote: Processing changes: refs: 2, done
-To ssh://erizhang@192.168.1.100:29418/All-Projects
-   7fa7742..09b3910  meta/config -> refs/meta/config
-client@client-Workstation:~/tmp/a$
-</pre>
-
-
-<h3>4.6. Create <code>VerifyBoard</code> Group and add <code>jenkins</code> user account in this group</h3>
-
-<p>Can follow section 2.5 to implement it.</p>
-
-<h3>4.7. Create the jenkins job</h3>
-
-<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -1828,6 +1649,10 @@ client@client-Workstation:~/tmp/a$
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How to Support LaTeX Chinese Editing in TeXstudio Under Mac</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
@@ -1863,10 +1688,6 @@ client@client-Workstation:~/tmp/a$
     
       <li class="post">
         <a href="/blog/2014/02/17/Hatching-twitter-reading-notes/">一群IT屌丝成为高富帅的故事 ——《孵化Twitter: 从蛮荒到IPO的狂野旅程》读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/10/gerrit-jenkins-subversion-integration/">Build CI Environment With Gerrit, Jenkins and Subverison</a>
       </li>
     
   </ul>

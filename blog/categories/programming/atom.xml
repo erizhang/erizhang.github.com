@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-05-18T23:37:09+08:00</updated>
+  <updated>2015-08-31T00:31:20+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Support LaTeX Chinese Editing in TeXstudio Under Mac]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/"/>
+    <updated>2015-08-15T22:01:06+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac</id>
+    <content type="html"><![CDATA[<p>These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font support, and Windows OS is popular used in Chinese forum. For English supporting is not a problem in LaTeX, but Chinese edit problem I encounter under Mac OS. I&rsquo;m trying to make the notes to remember the steps here in case of somebody needs it as well.</p>
+
+<h3>Step 1.  Choose good editor and compiler package</h3>
+
+<p>As friend recommend, I used <a href="http://www.texstudio.org" title="texstudio">TeXstudio</a> for my LaTeX document editing, this tool was quite good when I used under Windows, I suppose it will do great job under Mac OS as well. And Install the <a href="http://www.tug.org/mactex/" title="mactex">MacTeX</a> the LaTeX compiling supporting.</p>
+
+<h3>Step 2. Change the <code>PDFLaTeX</code> command to <code>XeLaTeX</code></h3>
+
+<p>The first problem I encounter is when I finish a sample document editing, and tried to compile it, TeXstudio will use the default command <code>PDFLaTeX</code> to compile it. It works under PC, but failed under Mac system. So the first thing you need to set the default command to <code>XeLaTeX</code>.
+In TeXstudio, you can change the option via &ldquo;Preferences&rdquo; -> &ldquo;Build&rdquo; -> &ldquo;Default compiler&rdquo;, select the value as <code>XeLaTeX</code>. Now if you compile this document, it works fine:
+<code>LaTeX
+\documentclass{article}
+\title{Hello World}
+\author{Mac}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    This is my first sound.
+\end{document}
+</code>
+and the result is like this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/first-result.png" title="works well" alt="Alt text" /></p>
+
+<h3>Step 3. Support Chinese words editing</h3>
+
+<p>But if we change the English content to Chinese, it doesn&rsquo;t work well, such like this:
+<code>LaTeX
+\documentclass{article}
+\title{你好，世界}
+\author{Mac}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    这是我呐喊出来的第一句话。
+\end{document}
+</code>
+Except the English words can be displayed well, everything is mass, unreadable. So we need use <code>ctex</code> package to support it. so add the <code>\usepackage{ctex}</code> after <code>\documentclass{article}</code>, the result is still bad. So I realize the problem might be caused by the fonts supporting. And then I inserted these lines before <code>\begin{document}</code>, the document like this:
+<code>LaTeX
+\documentclass{article}
+\usepackage{ctex}
+\title{你好，世界}
+\author{Mac}
+\setCJKmainfont{Kaiti TC Regular}
+\setCJKsansfont{Songti TC Regular}
+\setCJKmonofont{Heiti TC Regular}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    这是我呐喊出来的第一句话。
+\end{document}
+</code>
+and change the encoding to <code>UTF-8</code></p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/encoding.png" width="500" title="select encoding" alt="Alt text" /></p>
+
+<p>then the final result likes this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/chinese-result.png" width="500" title="Chinese result" alt="Alt text" /></p>
+
+<h3>Step 4. How do I know the font&rsquo;s name</h3>
+
+<p>As you see, I insert these line about the font supporting, but you may ask why I know the Chinese font name. Yes, it&rsquo;s tricky, :p
+Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can find the font name from the font dropbox, after you selected a font, the font text box will show its name. See, that&rsquo;s why I know the font name exactly.</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/font-select.png" width="400" title="font select" alt="Alt text" /></p>
+
+<h3>In the eend</h3>
+
+<p>Here I give an example of the Chinese words editing, hope it&rsquo;s useful for your reference.
+&#8220;`LaTeX
+\documentclass{ctexart}
+%\usepackage{ctex}
+\usepackage{xeCJK}
+\setCJKmainfont{Kaiti TC Regular}
+\setCJKsansfont{Songti TC Regular}
+\setCJKmonofont{Heiti TC Regular}</p>
+
+<p>\begin{document}</p>
+
+<p>\tableofcontents</p>
+
+<p>\begin{abstract}
+这是在文件的开头的介绍文字.本文的主要话题的简短说明.
+\end{abstract}</p>
+
+<p>\section{ 前言 }
+在该第一部分中的一些额外的元素可以被添加。巴贝尔包将采取的翻译服务.</p>
+
+<p>\section{关于数学部分}
+在本节中的一些数学会使用数学模型含中文字符显示。</p>
+
+<p>這是一個傳統的中國文字</p>
+
+<p>\end{document}
+&#8220;`</p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
@@ -748,142 +854,6 @@ client@client-Workstation:~/tmp/a$
 <h3>4.7. Create the jenkins job</h3>
 
 <p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Take Care of Your Integer Variables]]></title>
-    <link href="http://blog.zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable/"/>
-    <updated>2013-04-27T13:19:00+08:00</updated>
-    <id>http://blog.zhangliaoyuan.com/blog/2013/04/27/take-care-of-your-integer-variable</id>
-    <content type="html"><![CDATA[<p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
-
-<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
-
-<ul>
-<li>No overflow exception</li>
-<li>No run-time detection if a negative integer is converted to an unsigned value</li>
-<li>No checks whether a larger integer value is put into a shorter variable</li>
-</ul>
-
-
-<p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
-
-<p><img src="/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
-
-<p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
-</span><span class='line'>    <span class="c1">//TODO: use dest here&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-Could you please tell me is there any problem if you stop here and do not plan to go through this post? Of cause, there is a big problem once assign a negative value to parameter <code>len</code>, for example, we assign the <code>len</code> is <code>-1</code>, the program can be executed in <code>memcpy(dest, src, len)</code>, and <code>-1</code> will be casted to unsigned value <code>0xffffffff</code>, and lead the program Segmentation fault, this problem is called <strong>Signedness bug</strong>.</p>
-
-<p>Okay, let&rsquo;s see another code snippet here:
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">append</span><span class="p">(</span><span class="kt">char</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">str1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">str2</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len2</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">dest_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">len1</span> <span class="o">+</span> <span class="n">len2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="n">len1</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span> <span class="o">+</span> <span class="n">len1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">len2</span><span class="p">);</span>
-</span><span class='line'>    <span class="c1">//TODO: dest_buf usage can be added here&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-How about this one, is there any problem? In case of <code>len1</code> is huge number, and <code>len1+len2</code> can be overflow to a small number. For example, <code>len1 = 4294967198</code>, and <code>len2 = 100</code>, and then <code>len1 + len2 = 4294967298 (0x100000002)</code>. We call this problem is <strong>Arithmetical overflow</strong>.</p>
-
-<p>one more, this will be easily to spot with previous experience:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">string</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">s</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">string</span> <span class="n">is</span> <span class="n">too</span> <span class="kt">long</span><span class="o">!</span><span class="err">\</span><span class="n">n</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">buf</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">\</span><span class="mi">0</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
-
-<p><img src="/images/2013-04-27/integer-ranges.png" title="integer ranges
-" alt="Alt text" /></p>
-
-<p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
-
-<p>Be careful! :\</p>
-
-<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
 ]]></content>
   </entry>
   
