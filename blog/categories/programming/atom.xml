@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-08-31T13:53:26+08:00</updated>
+  <updated>2015-08-31T15:15:18+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -114,6 +114,290 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
 
 <p>\end{document}
 &#8220;`</p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Ways to Break the Dependency During Unit Testing in C/C++ Programming]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/"/>
+    <updated>2015-05-15T23:01:06+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming</id>
+    <content type="html"><![CDATA[<p>We encourage people writes unit testing shall follow <a href="http://agileinaflash.blogspot.de/2009/02/first.html" title="Fast, Isolated, Repeatable, Self-Validating and Timely">F.I.R.S.T principle</a>, but dependency gets in the way. Especially you make unit testing under legacy code, that&rsquo;s mess. That&rsquo;s the excuse we plan to ignore unit testing during coding.</p>
+
+<p>For example, there is SUT code is <code>game.c</code>:</p>
+
+<pre><code class="c++">bool is_win() {
+    printf("is_win is invoked!\n");
+    if (dice_points() &gt; 3) {
+        return true;
+    }
+    return false;
+}
+</code></pre>
+
+<p>function <code>is_win()</code> relies on the return value of function <code>dice_points()</code> which is defined in another file called <code>dice.c</code>:</p>
+
+<pre><code class="c++">int dice_points() {
+    printf("dice_points is invoked!\n");
+    return rand() % 6 + 1;
+}
+</code></pre>
+
+<p>If we would like to test <code>is_win()</code>, see the test case like this:</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_game_is_win) {
+    CHECK(is_win());
+}
+</code></pre>
+
+<p>The problem is you don&rsquo;t know the case will be pass or not, since the dependent function <code>dice_points()</code> return value is volatile, this test case is unrepeatable. So we need define a test double called <code>stub_dice_points()</code> to replace real implementation of <code>dice_points()</code>, and return a value which is configurable, like this:</p>
+
+<pre><code class="c++">static int m_points = 0;
+
+void set_stub_dice_points(int point){
+    m_points = point;
+}
+
+int stub_dice_points() {
+    return m_points;
+}
+</code></pre>
+
+<p> And during you execute <code>is_win()</code> function, use <code>stub_dice_points()</code> instead of <code>dice_points()</code>, when you implement the unit testing like this:
+<code>c++
+ TEST (VerifyGame, test_bigger_than_three_points_shall_be_win) {
+     set_stub_dice_points(3 + 2);
+     CHECK(is_win());
+}
+</code>
+But problem is how to replace the <code>dice_points()</code> with <code>stub_dice_points()</code>? There are some ways here:</p>
+
+<h2>1. Pre-compile macro</h2>
+
+<p>Macro <code>#ifdef</code>,  <code>#else</code> and <code>#endif</code> can be used during pre-compile phase, to select which source code statement can be compiled. So the SUT source code <code>game.c</code> can be modified like this:</p>
+
+<pre><code class="c++">bool is_win() {
+    printf("is_win is invoked!\n");
+#ifndef UNIT_TEST
+    if (dice_points() &gt; 3) {
+#else
+    if (stub_dice_points() &gt; 3) {
+#endif
+        return true;
+    }
+    return false;
+}
+</code></pre>
+
+<p>And during compile the source code for unit testing purpose, give the <code>-DUNIT_TEST</code> compilation option, to enable the replacement. But this way requires you modify productive source code, and there will be a lot of macro like this, too ugly, and the source code readability will be getting worse.</p>
+
+<h2>2. Function pointer replacement</h2>
+
+<p>Another way is define a function pointer, in production code, the pointer is points a real depended function, and during unit testing, the function pointer will point the stub function, but it requires programmer change the production code like this， for example, the <code>dice.h</code> change like this:</p>
+
+<pre><code class="c++">external int (*dice_pionts)();
+</code></pre>
+
+<p>and the <code>dice.c</code> change to this:</p>
+
+<pre><code class="c++">int dice_points_imp() {
+    printf("dice_points is invoked!\n");
+    return rand() % 6 + 1;
+}
+
+int (*dice_pionts)() = dice_points_imp;
+</code></pre>
+
+<p>After that, in the test case, you can use the function pointer re-assignment like below (in cpputest framework):</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_dice_points_is_bigger_than_3_points_shall_be_win) {
+    UT_PTR_SET(dice_points, stub_dice_points);
+    set_stub_dice_points(3 + 2)
+    CHECK(is_win());
+}
+</code></pre>
+
+<p>The obvious disadvantage is production code changing is needed. You can image that, every function dependency shall be replaced by function pointer way, too ugly.</p>
+
+<h2>3. Linker links replaced object</h2>
+
+<p>Above two ways require to change the production code, is there any can avoid the production code change to complete the function replacement.
+We assume the <code>game.c</code> includes <code>dice.h</code>, and <code>dice.c</code> is to implement the function <code>dice_ponits()</code> implementation. If we define another <code>stub.c</code> to implement the function <code>dice_points()</code> implementation in stub way. During compile the unit testing binary, don&rsquo;t compile the <code>dice.c</code>, just compile <code>game.c</code> and <code>stub.c</code>, and link them together to build a executable binary file.</p>
+
+<p>But there will be another problem occurs: How many <code>*.c</code> files under testing, there will be how many unit testing executable binary files. But, if the function <code>is_win()</code> and <code>dice_points()</code> in the same file, how to replace it? It will be difficult.</p>
+
+<h2>4. Dynamically replace</h2>
+
+<p>Is there any way to replace the dependency without do any production code change? The answer is yes, here we would like to introduce a tricky way to replace the dependency: During the function invoking, we let the invoking jump to our defined stub function.
+For example, during <code>isWin()</code> invoke <code>dice_points()</code>, we change the memory stack information, leads the invoking to jump to <code>stub_dice_points()</code>. The principle is first make the code page where <code>dice_points()</code> located writable using <code>mprotect()</code> in Linux or <code>VirtualProect()</code> in Win32. Then overwrite a <code>JMP</code> instructor which jump to <code>stub_dice_poinots()</code> at the begin of <code>dice_points()</code> binary code.</p>
+
+<p>For example, there is a assistant source code <code>assistant.c</code> which includes <code>set_stup()</code> and <code>reset_stub()</code> implementation. The two are used to the dependency replacement:</p>
+
+<pre><code class="c++">//assistant.h
+#ifndef __ASSISTANT_H__
+#define __ASSISTANT_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define JUMP_CODE_MAX   0x05
+#define JUMP_CODE_CMD   0xE9
+#define JUMP_CODE_RET   0xC3
+
+typedef struct stubInfo {
+  void *funcAddr;
+  unsigned char byteCode[5];
+} stubInfo;
+
+extern void set_stub(void *funcAddr, void *stubAddr, stubInfo *si);
+extern void reset_stub(stubInfo *si);
+#ifdef __cplusplus
+}
+#endif
+#endif /* __ASSISTANT_H__ */
+</code></pre>
+
+<p>And the <code>assistant.c</code> is here:</p>
+
+<pre><code class="c++">#include &lt;sys/mman.h&gt;
+#include &lt;unistd.h&gt;
+#include "assistant.h"
+
+static void set_jump_code(void *codeAddr, char jumpCode[JUMP_CODE_MAX]) {
+  int pagesize = sysconf(_SC_PAGE_SIZE);
+  if (mprotect((void*) ((unsigned long) codeAddr &amp; (~(pagesize - 1))), pagesize, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
+    return;
+  }
+  memcpy(codeAddr, jumpCode, JUMP_CODE_MAX);
+}
+
+void set_stub(void *funcAddr, void *stubAddr, stubInfo *si) {
+    char jumpCode[JUMP_CODE_MAX] = {JUMP_CODE_CMD};
+    int  dist = stubAddr - funcAddr - 5;
+
+    memcpy((void *)&amp;jumpCode[1], (void *)&amp;dist, sizeof(void *));
+    si-&gt;funcAddr = funcAddr;
+    memcpy((void *)&amp;si-&gt;byteCode[0], (void *)funcAddr, JUMP_CODE_MAX);
+
+    set_jump_code(funcAddr, jumpCode);
+}
+
+void reset_stub(stubInfo *si)
+{
+    char   jumpCode[JUMP_CODE_MAX];
+    memcpy((void *)&amp;jumpCode, (void *)&amp;si-&gt;byteCode[0], JUMP_CODE_MAX);
+    set_jump_code(si-&gt;funcAddr, jumpCode);
+}
+</code></pre>
+
+<p>And then in the unit test file, you can use the assistant function for the dependency replacement:
+<code>
+TEST(VerifyGame, test_the_dice_points_is_bigger_than_3_points_shall_be_win) {
+    stubInfo si;
+    set_stup(dice_points, stub_dice_points, &amp;si);
+    set_stub_dice_points(3 + 2);
+    CHECK(is_win());
+    reset_stub(&amp;si);
+}
+</code></p>
+
+<h2>5. Inherit from abstract class, replaced in dependency injection way</h2>
+
+<p>As we know, in OOP, there is interface concept, in C++, there is abstract class which used for interface purpose. If above the functions are defined as class way, there will be like this:</p>
+
+<pre><code class="c++">//game.h
+class Game {
+public:
+    bool isWin() {
+        Dice dice;
+        if (dice.points() &gt; 3) {
+            return true;
+        }
+        return false;
+    }
+};
+</code></pre>
+
+<p>and the <code>dice</code> class is like this:
+<code>
+class Dice{
+public:
+    int points(){
+        return rand() % 6 + 1;
+    }
+};
+</code>
+If we would like to make the replacement, we have to define an abstract class called <code>Player</code> like this:</p>
+
+<pre><code class="c++">class Player{
+public:
+    int points() = 0;
+};
+</code></pre>
+
+<p>And the class <code>Dice</code> inherits from <code>Player</code> like this:</p>
+
+<pre><code class="c++">class Dice: public Player {
+public:
+    int points() {
+        return rand() % 6 + 1;
+    }
+};
+</code></pre>
+
+<p>And the <code>Game</code> class shall make some change as well:</p>
+
+<pre><code class="c++">class Game {
+private:
+    Player m_opponent;
+public:
+    Game(Player player) {
+        m_opponent = player;
+    }
+
+    bool isWin(){
+        if (m_opponent.points() &gt; 3){
+            return true;
+        }   
+        return false;
+    }
+};
+</code></pre>
+
+<p>The constructor function is used to <a href="http://martinfowler.com/articles/injection.html" title="Inject">dependency injection</a>. In test purpose, we will inherit a new class called <code>StubDice</code> from abstract class <code>Player</code>, and use the <code>StubDice</code> replace the real <code>Dice</code> in test case:</p>
+
+<pre><code class="c++">//stub_dice.h
+class StubDice: public Player {
+private:
+    int m_points = 0;
+public:
+    void set_points(int points) {
+        m_points = points;
+    }
+    int points() {
+        return m_points;
+    }
+}
+</code></pre>
+
+<p>In the test case, the implementation as below:</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_dice_points_less_3_points_shall_be_lose) {
+    StubDice stub;
+    Game *game = new Game(stub);
+    stub.set_points( 3 - 1);
+    CHECK(!game-&gt;isWin());
+}
+</code></pre>
+
+<h2>Summary</h2>
+
+<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements? Refactor your source code often, make it better.</p>
+
+<p>Treat the unit testing as design tool, helps you make better design; treat unit testing as safety tools, facilitates you make source code change.</p>
 
 <p>-EOF-</p>
 ]]></content>
@@ -510,350 +794,6 @@ The pattern shall be like this:</p>
 <p>Have a nice summary will help us to record what we did, like now, write down a post, and create a picture album, that&rsquo;s good choice. Have a fun.</p>
 
 <p>-EOF-</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Build CI Environment With Gerrit, Jenkins and Subverison]]></title>
-    <link href="http://blog.zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration/"/>
-    <updated>2013-10-10T11:31:00+08:00</updated>
-    <id>http://blog.zhangliaoyuan.com/blog/2013/10/10/gerrit-jenkins-subversion-integration</id>
-    <content type="html"><![CDATA[<h2>1. Overview</h2>
-
-<h3>1.1. Purpose</h3>
-
-<p>This idea is addressed by Simon and I during discussion. And we found Andriod open source community is using this way for a long time. So I&rsquo;d like mark my practice notes here.</p>
-
-<ul>
-<li>Gerrit is <code>git</code> repository management tools, more external reference you can read about the benefits of <code>git</code></li>
-<li>Gerrit provides good source code review web UI</li>
-<li>Gerrit is easier to integrate with jenkins</li>
-</ul>
-
-
-<p>So, from developer perspective of view, he/she can focus on source code changing/implementation, no more interruption from process manager or quality manager. From process manager view, he/she can define the source code commit and review process easier via gerrit configuration. From quality manager view, he/she can easier get the source code and review quality metrics which via developed metrics system (cooperate with jenkins and gerrit through REST query API).</p>
-
-<p>Of cause, if your organization still using subversion, you can use subgit to sync the changes between subversion and gerrit.</p>
-
-<h3>1.2. Architecture</h3>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/Gerrit_Jenkins_Subversion_Inegration.png" title="Integration Architecture" alt="Alt text" /></p>
-
-<p>Team can use subgit mirror the project to team owned gerrit server, and then team member clone the project to their local disk. Any changes making will be happen in local repository, after changes done. Developer can push the changes to remote repository (i.e., the gerrit server git repository). Once the changes is pushed to the server, gerrit will trigger jenkins to verify the changes (Compiling, unit testing, regression testing etc. CI jobs will be ran), and meanwhile, gerrit will send the review request mail to dedicated reviewer. After the reviewer approved the changes and jenkins verified okay, the source code changes can be merged into project master which is located in gerrit git repository. Otherwise, developer shall rework and push new patch again.</p>
-
-<h2>2. Gerrit Deployment</h2>
-
-<h3>2.1. Installation</h3>
-
-<pre>
-gerrit@gerrit-Workstation:~/gerrit$ java -jar gerrit-2.6.1.war init -d review_site
-</pre>
-
-
-<p>Once finish the installation of gerrit, it will be started automatically, or you can switch to <code>$(ROOT)/bin</code> folder, and execute command</p>
-
-<pre>
-gerrit@gerrit-Workstation:~/gerrit/review_site/bin$ ./gerrit.sh start
-Starting Gerrit Code Review: OK
-</pre>
-
-
-<p>
-to start it.</p>
-
-<h3>2.2. LDAP Configuration</h3>
-
-<p>To support the LDAP authentication, you have to change the gerrit configuration under <code>$(ROOT)/etc/gerrit.config</code>, so that, you can use the LDAP type to authenticate the gerrit login and git operates.</p>
-
-<pre>
-[auth]
-        type = LDAP
-        gitBasicAuth = true  #This option means user can push source via ldap authentication during execute git related comments.
-[ldap]
-        server = ldap://ldap-server-address:389 #fill yours
-        username = cn=BOOTMAN_Acc,ou=SystemUsers,ou=Accounts,o=... #fill yours
-        accountBase = ou=People,o=xxx #fill yours
-        accountPattern = (uid=${username})
-</pre>
-
-
-<h3>2.3. Create a new project</h3>
-
-<h4>Login the gerrit web UI</h4>
-
-<p>Type the http address of gerrit service on browser, in this case, it&rsquo;s <a href="http://192.168.1.100:8081/" title="gerrit service">http://192.168.1.100:8081/</a>, sign in with your account which stored in the ldap.</p>
-
-<h4>Create new project</h4>
-
-<p>Create new project, and &ldquo;Rights Inherit From&rdquo; shall be &ldquo;All-Projects&rdquo;, it means current you created project configuration(such as access control) will inherit from &ldquo;All-Projects&rdquo; project, of cause, you can select inherit from empty, or define your project owned properties by yourself.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_new_gerrit_project.png" title="Create new project" alt="Alt text" />
-Figure 1-1</p>
-
-<p>After create this project, it means create a new project git repository under gerrit git repositories folder. In this case, the new project git repository is <a href="http://192.168.1.100:8081/gameoflife_java" title="project repository">http://192.168.1.100:8081/gameoflife_java</a>. You can clone this project in your local PC by execute this command.</p>
-
-<pre>
-client@client-Workstation:~/workspace$ git clone http://192.168.1.100:8081/gameoflife_java
-Cloning into 'gameoflife_java'...
-warning: You appear to have cloned an empty repository.
-</pre>
-
-
-<p>Now you have cloned the repository, because this repository is empty, so there is warning prompted.</p>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ git remote -v
-origin  http://192.168.1.100:8081/gameoflife_java (fetch)
-origin  http://192.168.1.100:8081/gameoflife_java (push)
-</pre>
-
-
-<h3>2.4. Client works</h3>
-
-<p>As developer, the most of works are done in client site, since your local git repository will cooperate with remote gerrit git repository, we have to do some initial step firstly.</p>
-
-<h5>Get the commit-msg which is used for generate the changed-id:</h5>
-
-<pre>
-client@client-Workstation:~/workspace$ cd gameoflife_java/
-client@client-Workstation:~/workspace/gameoflife_java$ curl -o .git/hooks/commit-msg http://192.168.1.100:8081/tools/hooks/commit-msg
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  4276  100  4276    0     0   3515      0  0:00:01  0:00:01 --:--:--  4341
-client@client-Workstation:~/tmp/gameoflife_java$ chmod u+x .git/hooks/commit-msg
-client@client-Workstation:~/tmp/gameoflife_java$ 
-</pre>
-
-
-<h5>Configure the git user properties:</h5>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ git config remote.origin.push HEAD:refs/for/master
-client@client-Workstation:~/workspace/gameoflife_java$ git config user.name erizhang
-client@client-Workstation:~/workspace/gameoflife_java$ git config user.email eric.zhang@xxx.com
-client@client-Workstation:~/workspace/gameoflife_java$ 
-</pre>
-
-
-<p>Okay, from here, you can execute general git command to commit and push your source code changes.</p>
-
-<pre>
-client@client-Workstation:~/workspace/gameoflife_java$ vim README.md 
-client@client-Workstation:~/workspace/gameoflife_java$ git status
-# On branch master
-#
-# Initial commit
-#
-# Untracked files:
-#   (use "git add <file>..." to include in what will be committed)
-#
-#   README.md
-nothing added to commit but untracked files present (use "git add" to track)
-client@client-Workstation:~/workspace/gameoflife_java$ git add .
-client@client-Workstation:~/workspace/gameoflife_java$ git commit -m 'add README.md to initialize this repository'
-[master (root-commit) 585f136] add README.md to initialize this repository
- 1 file changed, 18 insertions(+)
- create mode 100644 README.md
-</pre>
-
-
-<p>Execute above command, we have already commit the source code changes in local git repository, and then we have to push them to our gerrit server git repository:</p>
-
-<pre>
-client@client-Workstation-Workstation:~/workspace/gameoflife_java$ git push origin
-Username for 'http://192.168.1.100:8081': erizhang
-Password for 'http://erizhang@192.168.1.100:8081': 
-remote: Processing changes: new: 1, refs: 1, done    
-remote: 
-remote: New Changes:
-remote:   http://192.168.1.100:8081/1
-remote: 
-To http://192.168.1.100:8081/gameoflife_java
- * [new branch]      HEAD -> refs/for/master
-client@client-Workstation-Workstation:~/workspace/gameoflife_java$ 
-</pre>
-
-
-<p>Please notice that there is <code>remote:   <a href="http://192.168.1.100:8081/1">http://192.168.1.100:8081/1</a></code>, for this change, there is change-id generated, and developer can distribute this URL to reviewer for source code review. Let&rsquo;s open this link with our web browser:
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/change_webpage.png" title="Change web page" alt="Alt text" /></p>
-
-<p>Okay, reviewer or project owner can review this source code changes, approve the change and submit the change to master. Based on current basic configuration, only project owner and gerrit administrator have permission to approve the changes and submit the changes. In reality, the project process is not easy like that, we decide to nominate a group of people to take the key reviewer role of our project, only key reviewer can approve the final review.</p>
-
-<h3>2.5. Create ReviewBoard group and access control</h3>
-
-<h4>Create ReviewBoard group and add the members</h4>
-
-<p>Login gerrit web UI with administrator, select &ldquo;People&rdquo; -> &ldquo;Create New Group&rdquo;
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/create_reviewboard_group.png" title="Create ReviewBoard Group" alt="Alt text" /></p>
-
-<h4>Access control of the new create group</h4>
-
-<p>Select our created project, there is &ldquo;Access&rdquo;, click and edit it. &ldquo;Add reference&rdquo; for <code>refs/heads/*</code> and <code>refs/meta/config</code> separately, see below diagram illustrate:
-<img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/add_label_review_access_control.png" title="Add Lebel Review Access permission to ReviewBoard" alt="Alt text" /></p>
-
-<p>Till now, we have create new Group named &ldquo;ReviewBoard&rdquo;, and all members in this group have &ldquo;Label Review&rdquo; access control, in another words, they can approve the source code review. More information about access control, you can refer the gerrit official document <a href="http://gerrit.googlecode.com/svn/documentation/2.1/access-control.html" title="access control">Access Control</a> section.</p>
-
-<h2>3. Jenkins deployment</h2>
-
-<h3>3.1. Install Jenkins</h3>
-
-<pre>
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get update
-jenkins@jenkins-Workstation:~/gerrit/jenkins$ sudo apt-get install jenkins
-</pre>
-
-
-<h3>3.2. Start jenkins</h3>
-
-<p>If you want to start jenkins with another port rather than default port 8080，you can modify below configuration file, and set the httpPort to your prefer:</p>
-
-<pre>
-jenkins@jenkins-Workstation:~$ sudo vim /etc/default/jenkins
-</pre>
-
-
-<p>Start jenkins:</p>
-
-<pre>
-jenkins@jenkins-Workstation:~$ sudo /etc/init.d/jenkins start
- * Starting Jenkins Continuous Integration Server jenkins                                                   [ OK ]
-jenkins@jenkins-Workstation:~$
-</pre>
-
-
-<h2>4. Gerrit Trigger</h2>
-
-<h3>4.1. Install the <code>Gerrit Trigger</code> Plugin</h3>
-
-<p>Open your browser, and type the jenkins address, here we use <a href="http://192.168.1.200:8080" title="Jenkins">http://192.168.1.200:8080</a>, in the dashboard, choose &ldquo;Manage Jenkins&rdquo; -> &ldquo;Manage Plugin&rdquo;, and then you can find the <code>Gerrit Trigger</code> in the &ldquo;Available&rdquo; tab.</p>
-
-<blockquote><p><em><strong>NOTE</strong>: If there is empty in the &ldquo;Available&rdquo; tab, maybe you should select &ldquo;Advanced&rdquo; tab, and click &ldquo;Check Now&rdquo; which locates the right-bottom of the page. Of cause, if you encounter the problem of connect internet, perhaps you have to configure the proxy under &ldquo;Advanced&rdquo; tab as well.</em></p></blockquote>
-
-<p>Select the plugin, and install without restart, the process which shows like this.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_plugin_success_installed.png" title="Install Jenkins plugin successfully" alt="Alt text" /></p>
-
-<h3>4.2. Generate jenkins needs ssh-key for <code>Gerrit Trigger</code> usage</h3>
-
-<p>Since jenkins will operate gerrit via SSH protocol, to Gerrit, there will be a gerrit user account represents jenkins. So, this step is generate rsa key first.</p>
-
-<pre>
-jenkins@jenkins-Workstation:/var/lib/jenkins$ sudo ssh-keygen                                   -t rsa -C "jenkins@xxx.com"
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): /var/lib/jenkins/.ssh/i                                  d_rsa
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /var/lib/jenkins/.ssh/id_rsa.
-Your public key has been saved in /var/lib/jenkins/.ssh/id_rsa.pub.
-The key fingerprint is:
-8d:e6:0c:42:cf:3b:d6:52:63:e8:a0:d7:9a:7b:5f:bd jenkins@xxx.com
-The key's randomart image is:
-+--[ RSA 2048]----+
-|                 |
-|                 |
-|    .            |
-|   . o . o       |
-|    o = S .      |
-|   . = X . .     |
-|  . . B + . .    |
-|   . +.o .   .   |
-|    +o ..   E    |
-+-----------------+
-</pre>
-
-
-<h3>4.3. Create <code>jenkins</code> user account for jenkins</h3>
-
-<p>In jenkins server, generate the jenkins rsa public key by this command:</p>
-
-<p>Create a new gerrit user <code> jenkins </code></p>
-
-<pre>
-jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ ssh -p 29418 erizhang@192.168.1.100 gerrit create-account --ssh-key - jenkins < /var/lib/jenkins/.ssh/id_rsa.pub
-Enter passphrase for key '/home/erizhang/.ssh/id_rsa':
-jenkins@jenkins-Workstation:~/gerrit/review_site/bin$ 
-</pre>
-
-
-<p>Now we have create a new gerrit account <code>jenkins</code>, this account will be used for the gerrit automatically trigger jenkins job purpose. Of cause, you can use <code>gerrit set-account</code> command to change the or add the account properties.</p>
-
-<h3>4.4. Configure <code>Gerrit Trigger</code></h3>
-
-<p>Select &ldquo;Manage Jenkins&rdquo; &ndash;> &ldquo;Gerrit Trigger&rdquo;, you can enter into the <code>Gerrit Trigger</code> pages. Fill your Gerrit server host address, user name which represents jenkins to access gerrit, ssh keys etc., and click &ldquo;Test Connection&rdquo;. It will show success or not. See below diagram shows.</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/jenkins_gerrit_trigger_configure.png" title="Configure Gerrit Trigger" alt="Alt-text" /></p>
-
-<p>After then, save your settings and restart the connection in the &ldquo;Control&rdquo; section at the bottom of the page:</p>
-
-<p><img src="/images/2013-10-10-gerrit-jenkins-subversion-integration/gerrit_trigger_control_restart.png" alt="Alt-text" /></p>
-
-<h3>4.5. Add <code>Label Verified</code> Access Control to <code>jenkins</code> account</h3>
-
-<p>Firstly, please make sure, there is <code>Label Verified</code> of the project access control, by default, gerrit does not have this access control. You can refer the post <em><a href="http://blog.bruin.sg/?p=171" title="Add Label Verified">How to edit the project.config for all projects in Gerrit</a></em> to implement it. Here we add the &ldquo;Label Verified&rdquo; access control, and then any projects which inherited form <code>All-Projects</code> will have this access control label.</p>
-
-<pre>
-client@client-Workstation:~/tmp/a$ git init
-Initialized empty Git repository in /home/erizhang/tmp/a/.git/
-client@client-Workstation:~/tmp/a$ git remote add origin ssh://erizhang@192.168.1.100:29418/All-Projects
-client@client-Workstation:~/tmp/a$ git fetch origin refs/meta/config:refs/remotes/origin/meta/config
-remote: Counting objects: 4, done
-remote: Finding sources: 100% (4/4)
-remote: Total 4 (delta 0), reused 0 (delta 0)
-Unpacking objects: 100% (4/4), done.
-From ssh://192.168.1.100:29418/All-Projects
- * [new branch]      refs/meta/config -> origin/meta/config
-client@client-Workstation:~/tmp/a$ ls
-client@client-Workstation:~/tmp/a$ git config user.email eric.zhang@xxx.com
-client@client-Workstation:~/tmp/a$ git config user.name erizhang
-client@client-Workstation:~/tmp/a$ ls
-client@client-Workstation:~/tmp/a$ git co meta/config
-Branch meta/config set up to track remote branch meta/config from origin.
-Switched to a new branch 'meta/config'
-client@client-Workstation:~/tmp/a$ ls
-groups  project.config
-</pre>
-
-
-<p>Open <code>project.config</code>, and append below lines into the file.</p>
-
-<pre>
-[label "Verified"]
-       function = MaxWithBlock
-       value = -1 Fails
-       value =  0 No score
-       value = +1 Verified
-</pre>
-
-
-<p>Execute below commands, to update the configuration.</p>
-
-<pre>
-client@client-Workstation:~/tmp/a$ git commit -a -m 'add verified label'
-[meta/config 09b3910] add verified label
- 1 file changed, 6 insertions(+)
-client@client-Workstation:~/tmp/a$ git push origin meta/config:meta/config
-Counting objects: 5, done.
-Delta compression using up to 2 threads.
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 395 bytes, done.
-Total 3 (delta 1), reused 0 (delta 0)
-remote: Resolving deltas: 100% (1/1)
-remote: Processing changes: refs: 2, done
-To ssh://erizhang@192.168.1.100:29418/All-Projects
-   7fa7742..09b3910  meta/config -> refs/meta/config
-client@client-Workstation:~/tmp/a$
-</pre>
-
-
-<h3>4.6. Create <code>VerifyBoard</code> Group and add <code>jenkins</code> user account in this group</h3>
-
-<p>Can follow section 2.5 to implement it.</p>
-
-<h3>4.7. Create the jenkins job</h3>
-
-<p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
 ]]></content>
   </entry>
   

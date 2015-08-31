@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Self-managment | Actionary]]></title>
-  <link href="http://blog.zhangliaoyuan.com/blog/categories/self-managment/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Self-management | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/self-management/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-08-31T13:53:26+08:00</updated>
+  <updated>2015-08-31T15:15:18+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Domain Name of This Site Will Be Changed Soon]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name/"/>
+    <updated>2015-04-02T22:01:06+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/04/02/use-new-domain-name</id>
+    <content type="html"><![CDATA[<p>Hi, my dear friends,</p>
+
+<p>I setup zhangliaoyuan.me for two years, now the domain name will be expired soon.
+But good news is, I have got new domain name with my full name dot com, so after previous zhangliaoyuan.me domain name be expired in 2015/04/19, I&rsquo;ll use new domain name <strong><a href="http://blog.zhangliaoyuan.com" title="Eric's personal web site">blog.zhangliaoyuan.com</a></strong>, I&rsquo;m looking forward to your further supporting. A bundle of thanks for all of you, keep in touch.</p>
+
+<p>./Eric</p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Retrospective of My 2012]]></title>
