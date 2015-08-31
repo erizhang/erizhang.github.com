@@ -4,7 +4,7 @@
   <title><![CDATA[Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-08-31T00:31:20+08:00</updated>
+  <updated>2015-08-31T13:28:42+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -14,9 +14,9 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How to Support LaTeX Chinese Editing in TeXstudio Under Mac]]></title>
+    <title type="html"><![CDATA[How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac]]></title>
     <link href="http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/"/>
-    <updated>2015-08-15T22:01:06+08:00</updated>
+    <updated>2015-08-15T22:11:18+08:00</updated>
     <id>http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac</id>
     <content type="html"><![CDATA[<p>These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font support, and Windows OS is popular used in Chinese forum. For English supporting is not a problem in LaTeX, but Chinese edit problem I encounter under Mac OS. I&rsquo;m trying to make the notes to remember the steps here in case of somebody needs it as well.</p>
 
