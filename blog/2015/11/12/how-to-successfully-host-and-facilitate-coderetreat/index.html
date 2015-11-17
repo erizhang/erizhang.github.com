@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Successfully Host and Facilitate Coderetreat - Actionary</title>
+  <meta name="author" content="Eric Zhang">
+
+  
+  <meta name="description" content="1. What&rsquo;s coderetreat Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40225877-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Actionary</a></h1>
+  
+    <h2>A man is valued by his works, not his words!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.zhangliaoyuan.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Successfully Host and Facilitate Coderetreat</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-12T17:06:08+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:06 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/pair-work.png" title="coderetreat pair work" alt="Alt text" /></p>
+
+<h2>1. What&rsquo;s coderetreat</h2>
+
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement. You can visit <a href="http://www.coderetreat.org/" title="coderetreat">coderetreat.org</a> for details.</p>
+
+<h2>2. What consists of  the coderetreat day?</h2>
+
+<p>The day-long activity including: beginning, coding sessions and ending. Consider the time arrangement, there will be at least 5 sessions during that day. Beginning is reserved to introduce the coderetreat activity, sponsor, and the rules etc. The coding sessions are the major part of coderetreat day, the details will be described below. And ending part is used to retrospective of day-long whole coderetreat activity.</p>
+
+<h2>3. What&rsquo;s consists of the session?</h2>
+
+<p>In each session, there basically including below steps:</p>
+
+<h3>Step 1. Delete the source code what is written in previous sessions</h3>
+
+<p>I often was asked why we programmer shall delete the source code what is written in previous session by them, they treated the source code as asset, programmer always makes the increase the source code size, but has less opportunity to delete source code.  And remove the source code permanently helps programmers enter in new session with brand new status, new session with new constraint will make programmer has new idea.</p>
+
+<h3>Step 2. Add new constraint in constraints-list</h3>
+
+<p>The most interested part in coderetreat is coding under constraints. Image that, if your hands are tied, you will consider use other parts of your body. Before prepare coderetreat, facilitator shall prepare enough coding constraints carefully. Add one constraint in one session, current session shall be follow previous all constraints and new added in current session. For example, in the first session, the constraint is &ldquo;TDD is required&rdquo;, and in the second session, there is new constraint called &ldquo;No local/global variable used&rdquo;, it means in the second session, programmers shall follow two constraints.</p>
+
+<p>Add constraints can help programmer programming in different solution, one constraint would help programmer to realize his/her potential well.</p>
+
+<p>Some constraint examples:</p>
+
+<ul>
+<li><strong>TDD is required</strong></li>
+<li><strong>The LoC of each function shall be less than 6</strong></li>
+<li><strong>No conditional statement used</strong>, for example, &ldquo;<code>if</code>, <code>if else</code>, <code>?: etc</code>&rdquo; shall be forbidden, of cause, it does not allow use <code>for</code> or <code>while</code> loop to instead of conditional statement</li>
+<li><strong>Follow &ldquo;</strong>Tell, don&rsquo;t ask&rdquo; principle**</li>
+<li><strong>No loop</strong></li>
+<li><strong>Keyboard only</strong>, no mouse, no touchpad</li>
+<li><strong>Silent</strong>: all of the programmer shall be silent, no talking, it helps programmers use the source code and unit test case to make communication, test case and source code shall be readable</li>
+</ul>
+
+
+<h3>Step 3. Coding to solve the problem</h3>
+
+<p>Actually, in coderetreat, we suggest every two programmers pair programming together, and in different sessions, the pair partner shall be rotated. Alice pair programming with Denial in session 1, but Alice shall pair programming with someone else. It helps programmers get new idea, and help them how to work with new partner. During coding, as facilitator shall walk through all of pair, to get to know what&rsquo;s the situation, is there any problem, if someone stuck there, facilitator can give a clue to help them keep going forward.</p>
+
+<h3>Step 4. Debrief and share each other</h3>
+
+<p>In each session, shall reserve at least 5~10 minutes to collect the feedback from participants. As facilitator, you can ask &ldquo;What&rsquo;s your feeling in this session?&rdquo;, &ldquo;Is there any problem you encounter, and how do you resolve it?&rdquo;, ask programmers write down the answers on the post-it, and paste them on the wall. and share each other. To facilitator, frequency quick feedback can help to adjust coming session&rsquo;s plan. To participants, it&rsquo;s a easy way to learn other&rsquo;s idea well.</p>
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/session-type.jpg" width="400" title="session sharing" alt="Alt text" />
+<img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/session-sharing.jpg" width="400" title="share the idea" alt="Alt text" /></p>
+
+<h2>4. As a host, what&rsquo;s shall be prepared before the day?</h2>
+
+<p>As a host, you shall provide a comfortable workplace for programmers, so some logistics including:</p>
+
+<ul>
+<li>A good place</li>
+<li>Nice table and chair</li>
+<li>Food, snack and drinking</li>
+</ul>
+
+
+<p>Since in the activity, there are a lot of sharing to make, so below shall be prepare as well:</p>
+
+<ul>
+<li>Projector</li>
+<li>Whiteboard</li>
+<li>White paper</li>
+<li>Marker pen</li>
+<li>Post-it (more color)</li>
+</ul>
+
+
+<p>If you consider interact with other coderetreat place:</p>
+
+<ul>
+<li>Camera for live recorder</li>
+<li>Audio device for live broadcast play</li>
+</ul>
+
+
+<p>Enroll you coderetreat on <a href="https://www.coderetreat.org" title="coderetreat.org">coderetreat website</a> , if you&rsquo;re going to organize a GDCR (Global Day of Coderetreat), please don&rsquo;t forget register it on <a href="http://gdcr.coderetreat.org/" title="gdcr">gdcr website</a>, and create you owned registration, and publish it for participants enroll. Of cause, if you registered your activity in the gdcr website, you will get support from administrator. Post your activity on twitter with tag &ldquo;#gdcr&rdquo;, &ldquo;#gdcr15&rdquo; or &ldquo;#coderetreat&rdquo; etc. for great promotion.</p>
+
+<h2>5. As a facilitator, what&rsquo;s shall be focused on the sessions?</h2>
+
+<p>Remember that: YOU ARE FACILITATOR. This is important role during the activity, your passion can inspire people enjoy the activity well.</p>
+
+<ul>
+<li>First of all, you shall understand the whole process of coderetreat,</li>
+<li>Then understand the constraints well, you can explain every constraint,</li>
+<li>Know the problem well, and solve the problem under the constraint before the activity start.</li>
+<li>Before session, you shall clear delivery the requirements to participants, and inspire people</li>
+<li>In in the session, you shall walk through the pair, and getting to know the status, and facilitate the programmers in the right way</li>
+<li>In the end of the session, you shall use right tools to get enough feedback, and help participants share the idea each other.</li>
+<li>In the coderetreat ending part (the last activity of whole day), you shall make whole day retrospective.</li>
+</ul>
+
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/ending-retrospective.jpg" title="retrospective in ending" alt="Alt text" /></p>
+
+<h3>How to make whole day retrospective?</h3>
+
+<p> Actually, there are three questions facilitator shall ask:</p>
+
+<ol>
+<li>What&rsquo;s your feeling today?</li>
+<li>What&rsquo;s you learned today?</li>
+<li>What are you going to do related coderetreat?</li>
+</ol>
+
+
+<p>You can split the participants in different groups, each group has 10 persons, give everyone three green color post-it, and write down the first question&rsquo;s answer, write down 3 feelings, and paste them on the white paper external circle, and then give each member 30 seconds to share his/her feeling one by one in the group.</p>
+
+<p>Then give everyone two yellow post-it, and write down the second question&rsquo;s answer, write down 3 learning, and paste them on the white paper middle circle, share his/her learning one by one in the group.</p>
+
+<p>In the end, give each person one red post-it, and write down the third question&rsquo;s answer, write down the action plan, and paste it on the white paper inner circle, share the action plan one by one in the group.</p>
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/retrospective-way.jpg" title="retrospective way" alt="Alt text" /></p>
+
+<p>-EOF-</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric Zhang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-11-12T17:06:08+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:06 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/" data-via="zhangliaoyuan" data-counturl="http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/" title="Previous Post: How does TeXstudio support Chinese words edit in LaTeX under Mac">&laquo; How does TeXstudio support Chinese words edit in LaTeX under Mac</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+<li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
+<li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
+<li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
+<li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
+<li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
+<li class='category'><a href='/blog/categories/technology/'>technology (2)</a></li>
+<li class='category'><a href='/blog/categories/thinking/'>thinking (3)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <p><a class="twitter-timeline" href="https://twitter.com/zhangliaoyuan" data-widget-id="360654469018554368">Tweets by @zhangliaoyuan</a></p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eric Zhang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'actionary';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/';
+        var disqus_url = 'http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

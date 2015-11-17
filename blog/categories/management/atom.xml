@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Management | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/management/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-11-17T18:27:21+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Speaking Codermetrics in ScrumGathering Shanghai 2013]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering/"/>
+    <updated>2013-07-08T11:31:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/07/08/codermetrics-in-scrumgathering</id>
+    <content type="html"><![CDATA[<p>因为一篇post &ndash; <a href="http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
+
+<p>{% slideshare 23992242 %}</p>
+
+<p>现场的反映超出了我的预期，认识到有很多的朋友在关注这个问题，也有的朋友正在经历类似的煎熬和困惑：</p>
+
+<ul>
+<li>短期的激励无法满足长久的发展</li>
+<li>KPI来限制团队或成员的工作行为，发现长久之后，丢失了一个研发团队本应有的激情和创新</li>
+<li>绩效考核</li>
+<li>度量的数据无法收集，或无法保证数据的有效性及一致性</li>
+<li>是否需要花大量的精力来做这个事情</li>
+</ul>
+
+
+<p>可能持反对意见者从这些问题会立刻得出这样的结论：度量方法害死了。</p>
+
+<p>我本身亲历过这样的过程，而且很有幸多经历了几个角色，能更多地有同理心地去思考这些问题。如果真的需要度量，是否可以从几个方面做一些改进：</p>
+
+<ul>
+<li>不做排名比较</li>
+<li>不做限制工作行为的事</li>
+<li>只获取团队动态的洞察力，用于管理者对团队的认识及发展调整</li>
+<li>只做对你可以控制的面的度量，限定度量的范围</li>
+<li>从你开始一个度量，也从你结束一个度量，不留下给别人利用你的度量耍流氓的机会。A制定度量的时候是为了获取团队动态，而B可能就会用来做团队排名。</li>
+</ul>
+
+
+<p>说多无益，只是想请大家审慎地做出对人的度量这回事，目的和策略的不同，同样的事情，最后出来的结果是不同的。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/"/>
+    <updated>2013-04-18T10:51:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics</id>
+    <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
+
+<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
+
+<p>又记得当年做team leader时，部门里实行TPE(Team Performance Evaluation)政策，定好诸多KPI，如完成的story points，支持其他团队次数，bug数量，bug修改时间，是否正确填写各种报表等等，每个迭代周期结束后，由分管的各种manager或owner打分，加权计算，最后得出一张团队绩效排名表，前三名给予奖励，而排在后面的总是工作在愧疚与难堪当中，不幸的是，我们组总是在这样的难堪中。我不敢妄加评论其好坏，只是在我们团队决心参与这场得分游戏后，我们连续获得了靠前的排名，但团队能力水平并没有因此而得到真正的提高，反而我有一种参与了这种斤斤计较的得分游戏的愧疚。</p>
+
+<p>后来成为研发经理，对程序员度量这种事情更加萦绕在脑中，我一直很纠结于TPE给我带来的种种疑惑，曾带着问题请教过各路“大师“，也曾在社区活动中将这个话题提交到open space中与同行探讨，但结果总是不尽如人意，不是强调从人性的角度，提倡self management，就是从管理学的角度给我制定更多的KPI。</p>
+
+<p>带着疑问和不解，经朋友介绍，看到了<a href="http://www.amazon.com/Codermetrics-Analytics-Improving-Software-Teams/dp/1449305156" title=" &quot;Codermetrics"><em>Codermetrics: Analytics for Improving Software Teams</em></a>，我不能说这是一副包治百病的灵丹妙药，但是，多少帮助我澄清了心头的一些疑惑。看过《点球成金》(<a href="http://www.imdb.com/title/tt1210166/?ref_=fn_al_tt_1" title="moneyball">moneyball</a>)这部电影的朋友可能会记得，当运动家队的总经理Bill因为资金的问题而陷入困境时，真正帮助他走出困境，走向巅峰的，不是哪个大牌球员，而是一个小小的数据分析员。他们认为一个出色的球队在哪些位置需要什么样的球员，定好球队的profile，然后从二线球员中，完全可以找出满足这个条件的球员，充实团队的profile，再根据数据做出相应调整，从而使球队获得了巨大成功。</p>
+
+<p><a href="http://book.douban.com/subject/21365482/" title=" &quot;程序员度量">《程序员度量:改善软件团队的分析学》</a>
+这本书无异于是软件开发行业中的《点球成金》，作者认为，软件开发同样如此，我们的目标是打造成功的团队，而不是blame某一个程序员的绩效表现。确定好这样的目标之后，围绕团队和组织的目标，我们知道成功的团队模型应该是怎么样的，这可以从已知成功的团队中抽象出来，由此选择需要的程序员个体进入这样的团队，适当做出调整，打造成功的团队。作者同样在书中，对团队成功从不同的维度进行度量，以确定度量指标。</p>
+
+<p>而之于团队和程序员的度量，应该从多个维度进行，从产品类型的不同，从角色的要求不同等等，单一的数据可能毫无意义，但数据的组合可能会帮助我们发现隐藏在数据背后的洞察力。跟踪一段时间的响应度量，可以帮助我们对现实的工作做出调整，不断完善，做到可持续性。</p>
+
+<p><img src="/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
+
+<p>主要内容包括：</p>
+
+<ul>
+<li>学习如何通过程序员度量改变长期以来的假设，并且改善团队动态。</li>
+<li>获得将程序员度量集成到现有流程的建议。</li>
+<li>提出正确的问题来确定软件开发管理者需要收集的数据类型。</li>
+<li>使用度量来测量一段之间之后的程序员个体的技能和团队效率。</li>
+<li>确定每个程序员对团队所作的贡献。</li>
+<li>分析对所开发的软件及其特性的响应，并且验证是否正朝着团队和组织目标而努力。</li>
+<li>建设更好的团队，通过使用程序员度量来进行人员调整和补充。</li>
+</ul>
+
+
+<p>此外，作者还是一个棒球迷，用各种与球类运动类比的手法，比较形象地把一些晦涩难懂的概念表达出来，从这一点看，还是比较吸引人的，起码不会读起来太枯燥。</p>
+
+<p>作为一支球队，我们需要知道这些角色的组成应该达到一个什么样的水平，那么同样如此，软件开发团队也需要这样的角色来组成团队的profile。</p>
+
+<p>作者将软件开发团队中的角色与球队当中的角色对应起来：</p>
+
+<ul>
+<li>激励者，那些可真正激励团队，有助于凝聚团队的人，是团队的助推剂。</li>
+<li>得分手，那些面对棘手难题，攻关能够迎上的人，攻克开发过程中的难题，在产品的实现中有较多产出的人。</li>
+<li>防守专家，那些可以有助于保护团队免受外界干扰的人，如测试人员等，因为他们减少了团队bug的输出，从这个意义上来讲也是一个很好的防守。</li>
+<li>全能队员，那些什么都可以做的蓝领们，哪里需要哪里搬，多能就是他们最擅长的事，不管是让他去做代码的编写，特性的测试，还是技术支持，他们都能做，我是团队一块砖，哪里需要哪里搬。</li>
+</ul>
+
+
+<p>那么，我们需要如何定义度量指标呢，作者同样从体育运动中将一些概念延伸出来，对技能的度量有：得分，多能，火力，助攻，进攻影响力，救援，抢断，活动范围，防守影响力，失误，错误等。这样，我们可以很容易的定义出，什么样的程序员，他在这些度量指标上的分数如何？能够通过数据确定其后面的洞察力才是最牛B的事。</p>
+
+<p>而对团队产品的度量，作者引用了响应度量：胜场，胜场速度，胜率，推动力，输场，输场速度，罚球，罚球胜场比，增益，增速，加速度，胜场排名，能力排名等。而不同类型的产品，其分数的分布也是不同的。</p>
+
+<p>而最后定义的价值度量，是一种量化个体技能如何在团队中产生价值的指标：影响力，效率，领先份额，胜场份额，输场份额，团队合作，守场，爆发力，战斗力等，而团队在不同的成长阶段，其值的分布也是有区别的。真正的度量，应该是以团队建设为目标，好的度量会告诉我们团队目前在哪？团队的方向在哪？团队现在要解决什么问题？度量不是评级。度量的使用是一个不断试错的过程，建立良好的数据收集方式，选择性的挑选度量指标，评估结果并调整，建立可供讨论的平台是我们接下来可以做的事。</p>
+
+<p>基于以上表述，个人觉得国内会有很多人与我有相同的问题需要解决，说不定这本书还能起到一些帮助。在朋友的鼓励下，应承下本书的翻译工作，但发现翻译工作真的是体力活，一是要求把原书的原意翻译给大家，二又得保证适合中文阅读习惯，工作量非常大，对于完全没有书本翻译经验的我来说，这是一个无法完成的任务，能找到最佳拍档真的很不容易，多谢有几位好朋友的加入，本书才得以完成出版，在这里要对他们三呼万岁，谢主隆恩。后来，圈子里的朋友告诉我，做外语书翻译是最吃力不讨好的事，翻得差了，被人骂，翻得好，读者会说是原作者写得好。现在想想，中文译本的书是否好读，不仅仅取决于原作者的水平，翻译者的贡献可谓功不可没。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Team Gathering Game]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/03/23/team-gethering-game/"/>
+    <updated>2013-03-23T00:00:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/03/23/team-gethering-game</id>
+    <content type="html"><![CDATA[<p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
+
+<h2>The rule of the game:</h2>
+
+<ul>
+<li>All members stand as matrix (row*coloumn), the lines like we did physical exercise in childhood, you can stretch your arm, but cannot touch another person who closes to you.</li>
+<li>Facilitator asks all member close eyes, and from now on to the end, every attendee shall keep their eyes closed.</li>
+<li>Facilitator asks every select a number in their heart, everyone keep one number, do not tell the number to any one now. (for example, if there are 100 attendees, facilitator can ask attendee select one number between 1 and 100).</li>
+<li>Facilitator give an instruction: &ldquo;please turn around, and stretch your hand, try to touch another person who closed to you&rdquo;</li>
+<li>Attendee share the number to another, and hand in hand, try to group more people, but shall be keep the number in order</li>
+<li>Once all attendee are in an ordered group or time out, facilitator asks attendee open their eyes.</li>
+</ul>
+
+
+<h2>What we learn from this game:</h2>
+
+<ul>
+<li>There must be someone will stand out from chaos, and give some instruction to others</li>
+<li>If there is no hand hold with you, you will be feel unsafe</li>
+<li>The one tell you the order is clockwise or anticlockwise, but the final order is follow the basic small group, the team culture can be bred.</li>
+<li>Every one has same goal</li>
+<li>Small team will follow bigger team</li>
+<li>Give team a clearly goal and rules, team can be self-organized</li>
+</ul>
+
+
+<p>Definitely, this game is funny, if you like this, you can copy this way, and play it with your members.</p>
+]]></content>
+  </entry>
+  
+</feed>

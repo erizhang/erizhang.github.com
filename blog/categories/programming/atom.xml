@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programming | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-11-17T18:27:21+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to Successfully Host and Facilitate Coderetreat]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/"/>
+    <updated>2015-11-12T17:06:08+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat</id>
+    <content type="html"><![CDATA[<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/pair-work.png" title="coderetreat pair work" alt="Alt text" /></p>
+
+<h2>1. What&rsquo;s coderetreat</h2>
+
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement. You can visit <a href="http://www.coderetreat.org/" title="coderetreat">coderetreat.org</a> for details.</p>
+
+<h2>2. What consists of  the coderetreat day?</h2>
+
+<p>The day-long activity including: beginning, coding sessions and ending. Consider the time arrangement, there will be at least 5 sessions during that day. Beginning is reserved to introduce the coderetreat activity, sponsor, and the rules etc. The coding sessions are the major part of coderetreat day, the details will be described below. And ending part is used to retrospective of day-long whole coderetreat activity.</p>
+
+<h2>3. What&rsquo;s consists of the session?</h2>
+
+<p>In each session, there basically including below steps:</p>
+
+<h3>Step 1. Delete the source code what is written in previous sessions</h3>
+
+<p>I often was asked why we programmer shall delete the source code what is written in previous session by them, they treated the source code as asset, programmer always makes the increase the source code size, but has less opportunity to delete source code.  And remove the source code permanently helps programmers enter in new session with brand new status, new session with new constraint will make programmer has new idea.</p>
+
+<h3>Step 2. Add new constraint in constraints-list</h3>
+
+<p>The most interested part in coderetreat is coding under constraints. Image that, if your hands are tied, you will consider use other parts of your body. Before prepare coderetreat, facilitator shall prepare enough coding constraints carefully. Add one constraint in one session, current session shall be follow previous all constraints and new added in current session. For example, in the first session, the constraint is &ldquo;TDD is required&rdquo;, and in the second session, there is new constraint called &ldquo;No local/global variable used&rdquo;, it means in the second session, programmers shall follow two constraints.</p>
+
+<p>Add constraints can help programmer programming in different solution, one constraint would help programmer to realize his/her potential well.</p>
+
+<p>Some constraint examples:</p>
+
+<ul>
+<li><strong>TDD is required</strong></li>
+<li><strong>The LoC of each function shall be less than 6</strong></li>
+<li><strong>No conditional statement used</strong>, for example, &ldquo;<code>if</code>, <code>if else</code>, <code>?: etc</code>&rdquo; shall be forbidden, of cause, it does not allow use <code>for</code> or <code>while</code> loop to instead of conditional statement</li>
+<li><strong>Follow &ldquo;</strong>Tell, don&rsquo;t ask&rdquo; principle**</li>
+<li><strong>No loop</strong></li>
+<li><strong>Keyboard only</strong>, no mouse, no touchpad</li>
+<li><strong>Silent</strong>: all of the programmer shall be silent, no talking, it helps programmers use the source code and unit test case to make communication, test case and source code shall be readable</li>
+</ul>
+
+
+<h3>Step 3. Coding to solve the problem</h3>
+
+<p>Actually, in coderetreat, we suggest every two programmers pair programming together, and in different sessions, the pair partner shall be rotated. Alice pair programming with Denial in session 1, but Alice shall pair programming with someone else. It helps programmers get new idea, and help them how to work with new partner. During coding, as facilitator shall walk through all of pair, to get to know what&rsquo;s the situation, is there any problem, if someone stuck there, facilitator can give a clue to help them keep going forward.</p>
+
+<h3>Step 4. Debrief and share each other</h3>
+
+<p>In each session, shall reserve at least 5~10 minutes to collect the feedback from participants. As facilitator, you can ask &ldquo;What&rsquo;s your feeling in this session?&rdquo;, &ldquo;Is there any problem you encounter, and how do you resolve it?&rdquo;, ask programmers write down the answers on the post-it, and paste them on the wall. and share each other. To facilitator, frequency quick feedback can help to adjust coming session&rsquo;s plan. To participants, it&rsquo;s a easy way to learn other&rsquo;s idea well.</p>
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/session-type.jpg" width="400" title="session sharing" alt="Alt text" />
+<img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/session-sharing.jpg" width="400" title="share the idea" alt="Alt text" /></p>
+
+<h2>4. As a host, what&rsquo;s shall be prepared before the day?</h2>
+
+<p>As a host, you shall provide a comfortable workplace for programmers, so some logistics including:</p>
+
+<ul>
+<li>A good place</li>
+<li>Nice table and chair</li>
+<li>Food, snack and drinking</li>
+</ul>
+
+
+<p>Since in the activity, there are a lot of sharing to make, so below shall be prepare as well:</p>
+
+<ul>
+<li>Projector</li>
+<li>Whiteboard</li>
+<li>White paper</li>
+<li>Marker pen</li>
+<li>Post-it (more color)</li>
+</ul>
+
+
+<p>If you consider interact with other coderetreat place:</p>
+
+<ul>
+<li>Camera for live recorder</li>
+<li>Audio device for live broadcast play</li>
+</ul>
+
+
+<p>Enroll you coderetreat on <a href="https://www.coderetreat.org" title="coderetreat.org">coderetreat website</a> , if you&rsquo;re going to organize a GDCR (Global Day of Coderetreat), please don&rsquo;t forget register it on <a href="http://gdcr.coderetreat.org/" title="gdcr">gdcr website</a>, and create you owned registration, and publish it for participants enroll. Of cause, if you registered your activity in the gdcr website, you will get support from administrator. Post your activity on twitter with tag &ldquo;#gdcr&rdquo;, &ldquo;#gdcr15&rdquo; or &ldquo;#coderetreat&rdquo; etc. for great promotion.</p>
+
+<h2>5. As a facilitator, what&rsquo;s shall be focused on the sessions?</h2>
+
+<p>Remember that: YOU ARE FACILITATOR. This is important role during the activity, your passion can inspire people enjoy the activity well.</p>
+
+<ul>
+<li>First of all, you shall understand the whole process of coderetreat,</li>
+<li>Then understand the constraints well, you can explain every constraint,</li>
+<li>Know the problem well, and solve the problem under the constraint before the activity start.</li>
+<li>Before session, you shall clear delivery the requirements to participants, and inspire people</li>
+<li>In in the session, you shall walk through the pair, and getting to know the status, and facilitate the programmers in the right way</li>
+<li>In the end of the session, you shall use right tools to get enough feedback, and help participants share the idea each other.</li>
+<li>In the coderetreat ending part (the last activity of whole day), you shall make whole day retrospective.</li>
+</ul>
+
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/ending-retrospective.jpg" title="retrospective in ending" alt="Alt text" /></p>
+
+<h3>How to make whole day retrospective?</h3>
+
+<p> Actually, there are three questions facilitator shall ask:</p>
+
+<ol>
+<li>What&rsquo;s your feeling today?</li>
+<li>What&rsquo;s you learned today?</li>
+<li>What are you going to do related coderetreat?</li>
+</ol>
+
+
+<p>You can split the participants in different groups, each group has 10 persons, give everyone three green color post-it, and write down the first question&rsquo;s answer, write down 3 feelings, and paste them on the white paper external circle, and then give each member 30 seconds to share his/her feeling one by one in the group.</p>
+
+<p>Then give everyone two yellow post-it, and write down the second question&rsquo;s answer, write down 3 learning, and paste them on the white paper middle circle, share his/her learning one by one in the group.</p>
+
+<p>In the end, give each person one red post-it, and write down the third question&rsquo;s answer, write down the action plan, and paste it on the white paper inner circle, share the action plan one by one in the group.</p>
+
+<p><img src="/images/2015-11-12-how-to-successfully-host-and-facilitate-coderetreat/retrospective-way.jpg" title="retrospective way" alt="Alt text" /></p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/"/>
+    <updated>2015-08-15T22:11:18+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac</id>
+    <content type="html"><![CDATA[<p>These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font support, and Windows OS is popular used in Chinese forum. For English supporting is not a problem in LaTeX, but Chinese edit problem I encounter under Mac OS. I&rsquo;m trying to make the notes to remember the steps here in case of somebody needs it as well.</p>
+
+<h3>Step 1.  Choose good editor and compiler package</h3>
+
+<p>As friend recommend, I used <a href="http://www.texstudio.org" title="texstudio">TeXstudio</a> for my LaTeX document editing, this tool was quite good when I used under Windows, I suppose it will do great job under Mac OS as well. And Install the <a href="http://www.tug.org/mactex/" title="mactex">MacTeX</a> the LaTeX compiling supporting.</p>
+
+<h3>Step 2. Change the <code>PDFLaTeX</code> command to <code>XeLaTeX</code></h3>
+
+<p>The first problem I encounter is when I finish a sample document editing, and tried to compile it, TeXstudio will use the default command <code>PDFLaTeX</code> to compile it. It works under PC, but failed under Mac system. So the first thing you need to set the default command to <code>XeLaTeX</code>.
+In TeXstudio, you can change the option via &ldquo;Preferences&rdquo; -> &ldquo;Build&rdquo; -> &ldquo;Default compiler&rdquo;, select the value as <code>XeLaTeX</code>. Now if you compile this document, it works fine:
+<code>LaTeX
+\documentclass{article}
+\title{Hello World}
+\author{Mac}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    This is my first sound.
+\end{document}
+</code>
+and the result is like this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/first-result.png" title="works well" alt="Alt text" /></p>
+
+<h3>Step 3. Support Chinese words editing</h3>
+
+<p>But if we change the English content to Chinese, it doesn&rsquo;t work well, such like this:
+<code>LaTeX
+\documentclass{article}
+\title{你好，世界}
+\author{Mac}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    这是我呐喊出来的第一句话。
+\end{document}
+</code>
+Except the English words can be displayed well, everything is mass, unreadable. So we need use <code>ctex</code> package to support it. so add the <code>\usepackage{ctex}</code> after <code>\documentclass{article}</code>, the result is still bad. So I realize the problem might be caused by the fonts supporting. And then I inserted these lines before <code>\begin{document}</code>, the document like this:
+<code>LaTeX
+\documentclass{article}
+\usepackage{ctex}
+\title{你好，世界}
+\author{Mac}
+\setCJKmainfont{Kaiti TC Regular}
+\setCJKsansfont{Songti TC Regular}
+\setCJKmonofont{Heiti TC Regular}
+\date{2015, July 4}
+\begin{document}
+    \maketitle
+    这是我呐喊出来的第一句话。
+\end{document}
+</code>
+and change the encoding to <code>UTF-8</code></p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/encoding.png" width="500" title="select encoding" alt="Alt text" /></p>
+
+<p>then the final result likes this:</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/chinese-result.png" width="500" title="Chinese result" alt="Alt text" /></p>
+
+<h3>Step 4. How do I know the font&rsquo;s name</h3>
+
+<p>As you see, I insert these line about the font supporting, but you may ask why I know the Chinese font name. Yes, it&rsquo;s tricky, :p
+Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can find the font name from the font dropbox, after you selected a font, the font text box will show its name. See, that&rsquo;s why I know the font name exactly.</p>
+
+<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/font-select.png" width="400" title="font select" alt="Alt text" /></p>
+
+<h3>In the eend</h3>
+
+<p>Here I give an example of the Chinese words editing, hope it&rsquo;s useful for your reference.
+```LaTeX
+\documentclass{ctexart}
+%\usepackage{ctex}
+\usepackage{xeCJK}
+\setCJKmainfont{Kaiti TC Regular}
+\setCJKsansfont{Songti TC Regular}
+\setCJKmonofont{Heiti TC Regular}</p>
+
+<p>\begin{document}</p>
+
+<p>\tableofcontents</p>
+
+<p>\begin{abstract}
+这是在文件的开头的介绍文字.本文的主要话题的简短说明.
+\end{abstract}</p>
+
+<p>\section{ 前言 }
+在该第一部分中的一些额外的元素可以被添加。巴贝尔包将采取的翻译服务.</p>
+
+<p>\section{关于数学部分}
+在本节中的一些数学会使用数学模型含中文字符显示。</p>
+
+<p>這是一個傳統的中國文字</p>
+
+<p>\end{document}
+```</p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Ways to Break the Dependency During Unit Testing in C/C++ Programming]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/"/>
+    <updated>2015-05-15T23:01:06+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming</id>
+    <content type="html"><![CDATA[<p>We encourage people writes unit testing shall follow <a href="http://agileinaflash.blogspot.de/2009/02/first.html" title="Fast, Isolated, Repeatable, Self-Validating and Timely">F.I.R.S.T principle</a>, but dependency gets in the way. Especially you make unit testing under legacy code, that&rsquo;s mess. That&rsquo;s the excuse we plan to ignore unit testing during coding.</p>
+
+<p>For example, there is SUT code is <code>game.c</code>:</p>
+
+<pre><code class="c++">bool is_win() {
+    printf("is_win is invoked!\n");
+    if (dice_points() &gt; 3) {
+        return true;
+    }
+    return false;
+}
+</code></pre>
+
+<p>function <code>is_win()</code> relies on the return value of function <code>dice_points()</code> which is defined in another file called <code>dice.c</code>:</p>
+
+<pre><code class="c++">int dice_points() {
+    printf("dice_points is invoked!\n");
+    return rand() % 6 + 1;
+}
+</code></pre>
+
+<p>If we would like to test <code>is_win()</code>, see the test case like this:</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_game_is_win) {
+    CHECK(is_win());
+}
+</code></pre>
+
+<p>The problem is you don&rsquo;t know the case will be pass or not, since the dependent function <code>dice_points()</code> return value is volatile, this test case is unrepeatable. So we need define a test double called <code>stub_dice_points()</code> to replace real implementation of <code>dice_points()</code>, and return a value which is configurable, like this:</p>
+
+<pre><code class="c++">static int m_points = 0;
+
+void set_stub_dice_points(int point){
+    m_points = point;
+}
+
+int stub_dice_points() {
+    return m_points;
+}
+</code></pre>
+
+<p> And during you execute <code>is_win()</code> function, use <code>stub_dice_points()</code> instead of <code>dice_points()</code>, when you implement the unit testing like this:
+<code>c++
+ TEST (VerifyGame, test_bigger_than_three_points_shall_be_win) {
+     set_stub_dice_points(3 + 2);
+     CHECK(is_win());
+}
+</code>
+But problem is how to replace the <code>dice_points()</code> with <code>stub_dice_points()</code>? There are some ways here:</p>
+
+<h2>1. Pre-compile macro</h2>
+
+<p>Macro <code>#ifdef</code>,  <code>#else</code> and <code>#endif</code> can be used during pre-compile phase, to select which source code statement can be compiled. So the SUT source code <code>game.c</code> can be modified like this:</p>
+
+<pre><code class="c++">bool is_win() {
+    printf("is_win is invoked!\n");
+#ifndef UNIT_TEST
+    if (dice_points() &gt; 3) {
+#else
+    if (stub_dice_points() &gt; 3) {
+#endif
+        return true;
+    }
+    return false;
+}
+</code></pre>
+
+<p>And during compile the source code for unit testing purpose, give the <code>-DUNIT_TEST</code> compilation option, to enable the replacement. But this way requires you modify productive source code, and there will be a lot of macro like this, too ugly, and the source code readability will be getting worse.</p>
+
+<h2>2. Function pointer replacement</h2>
+
+<p>Another way is define a function pointer, in production code, the pointer is points a real depended function, and during unit testing, the function pointer will point the stub function, but it requires programmer change the production code like this， for example, the <code>dice.h</code> change like this:</p>
+
+<pre><code class="c++">external int (*dice_pionts)();
+</code></pre>
+
+<p>and the <code>dice.c</code> change to this:</p>
+
+<pre><code class="c++">int dice_points_imp() {
+    printf("dice_points is invoked!\n");
+    return rand() % 6 + 1;
+}
+
+int (*dice_pionts)() = dice_points_imp;
+</code></pre>
+
+<p>After that, in the test case, you can use the function pointer re-assignment like below (in cpputest framework):</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_dice_points_is_bigger_than_3_points_shall_be_win) {
+    UT_PTR_SET(dice_points, stub_dice_points);
+    set_stub_dice_points(3 + 2)
+    CHECK(is_win());
+}
+</code></pre>
+
+<p>The obvious disadvantage is production code changing is needed. You can image that, every function dependency shall be replaced by function pointer way, too ugly.</p>
+
+<h2>3. Linker links replaced object</h2>
+
+<p>Above two ways require to change the production code, is there any can avoid the production code change to complete the function replacement.
+We assume the <code>game.c</code> includes <code>dice.h</code>, and <code>dice.c</code> is to implement the function <code>dice_ponits()</code> implementation. If we define another <code>stub.c</code> to implement the function <code>dice_points()</code> implementation in stub way. During compile the unit testing binary, don&rsquo;t compile the <code>dice.c</code>, just compile <code>game.c</code> and <code>stub.c</code>, and link them together to build a executable binary file.</p>
+
+<p>But there will be another problem occurs: How many <code>*.c</code> files under testing, there will be how many unit testing executable binary files. But, if the function <code>is_win()</code> and <code>dice_points()</code> in the same file, how to replace it? It will be difficult.</p>
+
+<h2>4. Dynamically replace</h2>
+
+<p>Is there any way to replace the dependency without do any production code change? The answer is yes, here we would like to introduce a tricky way to replace the dependency: During the function invoking, we let the invoking jump to our defined stub function.
+For example, during <code>isWin()</code> invoke <code>dice_points()</code>, we change the memory stack information, leads the invoking to jump to <code>stub_dice_points()</code>. The principle is first make the code page where <code>dice_points()</code> located writable using <code>mprotect()</code> in Linux or <code>VirtualProect()</code> in Win32. Then overwrite a <code>JMP</code> instructor which jump to <code>stub_dice_poinots()</code> at the begin of <code>dice_points()</code> binary code.</p>
+
+<p>For example, there is a assistant source code <code>assistant.c</code> which includes <code>set_stup()</code> and <code>reset_stub()</code> implementation. The two are used to the dependency replacement:</p>
+
+<pre><code class="c++">//assistant.h
+#ifndef __ASSISTANT_H__
+#define __ASSISTANT_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define JUMP_CODE_MAX   0x05
+#define JUMP_CODE_CMD   0xE9
+#define JUMP_CODE_RET   0xC3
+
+typedef struct stubInfo {
+  void *funcAddr;
+  unsigned char byteCode[5];
+} stubInfo;
+
+extern void set_stub(void *funcAddr, void *stubAddr, stubInfo *si);
+extern void reset_stub(stubInfo *si);
+#ifdef __cplusplus
+}
+#endif
+#endif /* __ASSISTANT_H__ */
+</code></pre>
+
+<p>And the <code>assistant.c</code> is here:</p>
+
+<pre><code class="c++">#include &lt;sys/mman.h&gt;
+#include &lt;unistd.h&gt;
+#include "assistant.h"
+
+static void set_jump_code(void *codeAddr, char jumpCode[JUMP_CODE_MAX]) {
+  int pagesize = sysconf(_SC_PAGE_SIZE);
+  if (mprotect((void*) ((unsigned long) codeAddr &amp; (~(pagesize - 1))), pagesize, PROT_READ | PROT_WRITE | PROT_EXEC) != 0) {
+    return;
+  }
+  memcpy(codeAddr, jumpCode, JUMP_CODE_MAX);
+}
+
+void set_stub(void *funcAddr, void *stubAddr, stubInfo *si) {
+    char jumpCode[JUMP_CODE_MAX] = {JUMP_CODE_CMD};
+    int  dist = stubAddr - funcAddr - 5;
+
+    memcpy((void *)&amp;jumpCode[1], (void *)&amp;dist, sizeof(void *));
+    si-&gt;funcAddr = funcAddr;
+    memcpy((void *)&amp;si-&gt;byteCode[0], (void *)funcAddr, JUMP_CODE_MAX);
+
+    set_jump_code(funcAddr, jumpCode);
+}
+
+void reset_stub(stubInfo *si)
+{
+    char   jumpCode[JUMP_CODE_MAX];
+    memcpy((void *)&amp;jumpCode, (void *)&amp;si-&gt;byteCode[0], JUMP_CODE_MAX);
+    set_jump_code(si-&gt;funcAddr, jumpCode);
+}
+</code></pre>
+
+<p>And then in the unit test file, you can use the assistant function for the dependency replacement:
+<code>
+TEST(VerifyGame, test_the_dice_points_is_bigger_than_3_points_shall_be_win) {
+    stubInfo si;
+    set_stup(dice_points, stub_dice_points, &amp;si);
+    set_stub_dice_points(3 + 2);
+    CHECK(is_win());
+    reset_stub(&amp;si);
+}
+</code></p>
+
+<h2>5. Inherit from abstract class, replaced in dependency injection way</h2>
+
+<p>As we know, in OOP, there is interface concept, in C++, there is abstract class which used for interface purpose. If above the functions are defined as class way, there will be like this:</p>
+
+<pre><code class="c++">//game.h
+class Game {
+public:
+    bool isWin() {
+        Dice dice;
+        if (dice.points() &gt; 3) {
+            return true;
+        }
+        return false;
+    }
+};
+</code></pre>
+
+<p>and the <code>dice</code> class is like this:
+<code>
+class Dice{
+public:
+    int points(){
+        return rand() % 6 + 1;
+    }
+};
+</code>
+If we would like to make the replacement, we have to define an abstract class called <code>Player</code> like this:</p>
+
+<pre><code class="c++">class Player{
+public:
+    int points() = 0;
+};
+</code></pre>
+
+<p>And the class <code>Dice</code> inherits from <code>Player</code> like this:</p>
+
+<pre><code class="c++">class Dice: public Player {
+public:
+    int points() {
+        return rand() % 6 + 1;
+    }
+};
+</code></pre>
+
+<p>And the <code>Game</code> class shall make some change as well:</p>
+
+<pre><code class="c++">class Game {
+private:
+    Player m_opponent;
+public:
+    Game(Player player) {
+        m_opponent = player;
+    }
+
+    bool isWin(){
+        if (m_opponent.points() &gt; 3){
+            return true;
+        }   
+        return false;
+    }
+};
+</code></pre>
+
+<p>The constructor function is used to <a href="http://martinfowler.com/articles/injection.html" title="Inject">dependency injection</a>. In test purpose, we will inherit a new class called <code>StubDice</code> from abstract class <code>Player</code>, and use the <code>StubDice</code> replace the real <code>Dice</code> in test case:</p>
+
+<pre><code class="c++">//stub_dice.h
+class StubDice: public Player {
+private:
+    int m_points = 0;
+public:
+    void set_points(int points) {
+        m_points = points;
+    }
+    int points() {
+        return m_points;
+    }
+}
+</code></pre>
+
+<p>In the test case, the implementation as below:</p>
+
+<pre><code class="c++">TEST(VerifyGame, test_the_dice_points_less_3_points_shall_be_lose) {
+    StubDice stub;
+    Game *game = new Game(stub);
+    stub.set_points( 3 - 1);
+    CHECK(!game-&gt;isWin());
+}
+</code></pre>
+
+<h2>Summary</h2>
+
+<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements? Refactor your source code often, make it better.</p>
+
+<p>Treat the unit testing as design tool, helps you make better design; treat unit testing as safety tools, facilitates you make source code change.</p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Misunderstanding of Unit Testing]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing/"/>
+    <updated>2015-02-03T22:01:06+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/02/03/misunderstanding-of-unit-testing</id>
+    <content type="html"><![CDATA[<p>In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality improvement, but no many people deep dive. Have you really understand the relationship between unit testing and quality?</p>
+
+<p>Most of people knows while coding a method/function, the corresponding unit testing shall be added as well. But, why? And a lot of people has misunderstanding about unit testing, I&rsquo;d like to list some ones here.</p>
+
+<h2>Misunderstandings</h2>
+
+<h3>1. Ask newbie to write unit testing</h3>
+
+<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a practice called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any else (unit testing) is optional. If you are key person, another task will be assigned to you, and the unit testing always will be the low prioirty task, and finally, it&rsquo;s assigned to a newbie who has the competence to take the &ldquo;low level&rdquo; tasks.</p>
+
+<p>But unit testing purpose is to facilitate source code change, and acts as safety during coding, in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
+
+<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, your unit testing case to verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
+
+<h3>2. Expect to find bug through unit testing</h3>
+
+<p>As we know, there are two types of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method/function does fulfill the requirements or not. Unit testing the executable requirement specification of the product method/function.</p>
+
+<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the product method/function untill all of related unit testing cases are passed.</p>
+
+<p>If you would like to find more bug, please make exploratory testing manually, it requires experienced tester, and be more creative.</p>
+
+<h3>3. Pursue high coverage rate</h3>
+
+<p>I know, there might be a KPI in your team, the unit testing line coverage rate shall be higher 80%, function coverage rate shall be 100%, and branch coverage rate, conditional coverage rate. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage rate, did you think that does it worth?</p>
+
+<p>Let&rsquo;s look below source code
+<code>c
+int foo(int x, int y)
+{
+    int z = 0;
+    if ((x &gt; 0) &amp;&amp; (y &gt; 0)) {
+        z = x;
+    }
+    return z;
+}
+</code>
+We use <code>assertEquals(2, foo(2, 2))</code> can touch all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
+
+<p>Source code metrics somehow likes the weather forecast report indicates, single metric does not make sense, you have to combine all of the metrics, and give you insight. Metrics just tell you there may be something wrong, you need to spend time deep dive in the source code.</p>
+
+<p>Some managers are used to challenge team with metrics, because they read excel daily, but never read your source code.</p>
+
+<p>Josphal has written a blog to introduce the <a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">test coverage rate role</a>, above example is from his blog.</p>
+
+<h3>4. Write unit testing for legacy code</h3>
+
+<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager required his team soruce code (including legacy code) unit testing coverage rate shall reach higher 80%, so team member spent a lot of time to write the unit testing for the legacy code, and tried their best time to cover each line of code, branch, and conditions. The unit testing totally was implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
+
+<p>My question is:</p>
+
+<ul>
+<li>Is your legacy code testable?</li>
+<li>Is your new added unit testing case maintainable?</li>
+</ul>
+
+
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing according to the cost and benefit balance. The article shows the legacy code can be identfied four types according to the benefit and cost. As we know, the unit testing implementation cost depends on the source code dependancy, high code dependancy means high unit testing cost:</p>
+
+<p><img src="http://blog.stevensanderson.com/wp-content/uploads/2009/11/image.png" title="selective unit testing" alt="Alt text" /></p>
+
+<ul>
+<li><strong>Algorithm</strong>: This kind of code has complex calculation logic, but lack dependancy, all calculation is depends on the argument input value, and then give out an output. This code is exterem important, any error will lead the program computing failed. So we called it&rsquo;s high benefit and low cost, the unit testing for this kind of code is required.</li>
+<li><strong>Trivial</strong>: This kind of code has simple logic, sometimes, the method just several LoC, and there is more dependancy with other source code, we call it low benefit and low cost. So we think the unit testing for this code is optional.</li>
+<li><strong>Coordinator</strong>: This code acts as coordinator role, it coordinate methods/functions work, it helps the methods integration, and used to describe a specific functional scenario, for example, the initialization, main etc. It has a lot of dependancy with other source code, because it needs to invoke other functions/methods. We call it high cost, but low benefit, because the logic is simple. A lot of dependancies means you need to stub or mock, that&rsquo;s high cost. For legacy code, we won&rsquo;t make unit testing for it. Instead, we use functional testing or module testing to cover the sceniro requirements.</li>
+<li><strong>Overcomplicated</strong>: This kind of code has the characters of Algorithm and Coodinator code, complex logic, and has a lot of dependancies with other code. For this kind of code, we have to refactor it to Algorithm and Coordinator codes, and then based on above strategy to decide to make unit testing or not.</li>
+</ul>
+
+
+<h3>5. Treat unit testing as white-box testing</h3>
+
+<p> As academism, the unit testing is white-box testing, but I&rsquo;m hard to agree that, I suggest people write unit testing as black-box rather than white-box.</p>
+
+<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds of implementations for same one requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+
+<p>Unit testing implemention shall be align the requirement, not the implementation logic.</p>
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing - Cost and Benefits</a></li>
+<li><a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">Test Coverage Rate Role</a></li>
+</ul>
+
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Understand the D3js Data Binding]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding/"/>
+    <updated>2015-01-20T22:14:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/01/20/understand-d3js-data-binding</id>
+    <content type="html"><![CDATA[<p>To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. Here I write down my understanding here, hope it can help some d3js newbie like me.</p>
+
+<h2>Basic concepts</h2>
+
+<h3>Select data/DOM element pair</h3>
+
+<p>First of all, if we would like to create a svg picture, we have to create a <code>&lt;svg&gt;</code> DOM element first in html, use below code snippet will implemet it.
+<code>javascript
+var svg = d3.select('#chart').append('svg').attr('width', 900);
+</code>
+It means select an exsited element which its id equals <code>chart</code>, and append a child element <code>&lt;svg&gt;</code> under this selected element, give the attribute width equals 900px.</p>
+
+<p>Do you know what&rsquo;s the meaning of <code>d3.selectAll()</code> during we use d3js? It means there will be several data/element(s) pair(s) be selected. We can image that, in d3js concept, every DOM element has corresponding data, it called data/element pair, like below picture shows:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/pairs.png" width="300" title="data/element pairs" alt="Alt text" /></p>
+
+<p>Okay, let&rsquo;s see what&rsquo;s happened after below source code be executed.</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;).attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&ldquo;rect&rdquo;).data(data);
+    </script>
+</body>
+</html>
+```</p>
+
+<p>After <code>d3.selectAll('rect')</code>, we can image it will return a list of pair which consists of data and elements, but now, the data area is empty. You will ask, how many pairs in the list after only <code>selectAll()</code> executed, and there is no previous <code>&lt;rect&gt;</code> existed? Actually, the number is not identified if only execute this code.</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_empty_data.png" width="500" title="data/element pairs without data" alt="Alt text" /></p>
+
+<p>After exectue <code>data()</code> methoed, the data and elements have been binded together, the data area will be filled the data, and the pairs number will be identified, here, the data has 3 values, so the there are 3 pairs of data/element pairs, like below picture shows:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_data.png" width="500" title="data/element pairs with data" alt="Alt text" /></p>
+
+<p>Now, the pairs has been selected, but the html file, there is no real DOM generated, we can image that, after this code snippet execution, there is only generate pair list in memory, and next, we can finish the html DOM element generating.</p>
+
+<h3>Combile the data with element via <code>enter().append(element)</code> method</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src='http://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <script type='text/javascript'>
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;).attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&lsquo;rect&rsquo;).data(data).enter().append(&lsquo;rect&rsquo;);
+    </script>
+</body>
+</html>
+<code>``
+</code>enter()<code>method is invoke, we can image the new added binding pairs be selected, the method will return a list of data/unknown object, actually unknown object will be identified by next method</code>append(&lsquo;rect&rsquo;)<code>, in another words, data/htmlElement pairs will be returned by</code>append(&lsquo;rect&rsquo;)<code>method. let's see what's difference bewteen</code>enter()<code>and</code>append(&lsquo;rect)`:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
+
+<p>And now, we can give the <code>&lt;rect&gt;</code> attributes to draw svg, for example <code>attr('width', 10)</code>, <code>attr('x', 0)</code> and <code>attr('y', 0)</code> etc.
+```html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<script src='http://d3js.org/d3.v3.min.js' charset='utf-8'></script>
+
+
+<p></head>
+<body>
+    <h1>Demo</h1>
+    <div id='chart'></div>
+    <script type='text/javascript'>
+        var data = [1, 2, 3];
+        var svg = d3.select(&lsquo;#chart&rsquo;).append(&lsquo;svg&rsquo;)
+                .attr(&lsquo;width&rsquo;, 900);
+        var s = svg.selectAll(&lsquo;rect&rsquo;)
+                .data(data)
+                .enter()
+                .append(&lsquo;rect&rsquo;)
+                .style(&lsquo;fill&rsquo;, &lsquo;green&rsquo;)
+                .attr(&lsquo;width&rsquo;, function(d){return d * 10;})
+                .attr(&lsquo;height&rsquo;, function(d){return d * 10;})                          <br/>
+                .attr(&lsquo;x&rsquo;, function(d){return d * 100});
+    </script>
+</body>
+</html>
+```
+according above code snippet, the html shall be like this.</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>
+
+<p>But, if there are 3 <code>&lt;rect&gt;</code> exist, and later we would like to add more according to the data chagne, for exampe: <code>[1,2,3]</code> to <code>[1,2,3,4,5]</code>, check below code snippet.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src='http://d3js.org/d3.v3.min.js' charset='utf-8'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    &lt;div id='chart'&gt;
+        &lt;svg width='900'&gt;
+            &lt;rect width='10' height='10' x='100' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='20' height='20' x='200' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='30' height='30' x='300' style='fill: #008000'&gt;&lt;/rect&gt;
+        &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;script type='text/javascript'&gt;
+        var data = [1, 2, 3, 4, 5];
+        var svg = d3.select('svg')
+                .attr('width', 900);
+        var s1 = svg.selectAll('rect');
+        console.log(s1);
+        var s2 = s1
+                .data(data);
+        console.log(s2);
+        var s3 = s2
+                .enter();
+        console.log(s3);
+        var s4 = s3.append('rect');
+        console.log(s4);
+                 s4.attr("width", function(d){return d * 10;})
+                    .attr("height", function(d){return d * 10})                            
+                    .attr("x", function(d){return d * 100})
+                    .style('fill', 'red');
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>the corresponding html like this:</p>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/append_two_objects.png" width="600" title="Append two objects" alt="Alt text" /></p>
+
+<p>first after <code>selectAll('rect')</code>, return previous existed ones, and <code>data(data)</code> method will bind two more objects, the data mapping with the element by index. <code>enter()</code> method will still keep the length of data/element pair, but only keep the two new added one, others left empty. And next call <code>append('rect')</code>, and <code>append('rect')</code> return the new two objects, coming attribute, style setting are for the new two, that&rsquo;s why we see the previous three rects are in green color, and new two are in red color.</p>
+
+<h3>Remove the no exist data/element pair via <code>exit().remove()</code> method</h3>
+
+<p>If there are elements existed, and we would like to remove some ones according to the data has been changed. See below code snippet shows.</p>
+
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src='http://d3js.org/d3.v3.min.js' charset='utf-8'&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    &lt;div id='chart'&gt;
+        &lt;svg width='900'&gt;
+            &lt;rect width='10' height='10' x='100' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='20' height='20' x='200' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='30' height='30' x='300' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='40' height='40' x='400' style='fill: #008000'&gt;&lt;/rect&gt;
+            &lt;rect width='50' height='50' x='500' style='fill: #008000'&gt;&lt;/rect&gt;
+        &lt;/svg&gt;
+    &lt;/div&gt;
+    &lt;script type='text/javascript'&gt;
+        var data = [1, 2];
+        var svg = d3.select('svg')
+                .attr('width', 900);
+        var s1 = svg.selectAll('rect');
+        console.log(s1);
+        var s2 = s1
+                .data(data);
+        console.log(s2);
+        var s3 = s2
+                .exit();
+        console.log(s3);
+        var s4 = s3.remove();
+        console.log(s4);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="350" title="Remove three objects" alt="Alt text" /></p>
+
+<p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
+
+<h2>Update parttern</h2>
+
+<p>According above section experiment, now let&rsquo;s implement an update implementation here, the DOM element adding and removal according to the data updating.
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+        &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Demo&lt;/h1&gt;
+    Data: &lt;input id="data" type="text" name="data"&gt;&lt;br&gt;
+    &lt;input type="button" value="Submit" onclick="upate()"&gt;
+    &lt;div id="chart"&gt;&lt;/div&gt;
+    &lt;script type="text/javascript"&gt;
+        var svg = d3.select("#chart")
+            .append("svg")
+            .attr("width", 900)
+            .attr("height", 400)
+            .append("g")
+            .attr("transform", "translate(20, 20)");
+        function upate() {
+            var inputValue = document.getElementById("data").value;
+            data = inputValue.split(",");
+            var s = svg.selectAll("rect")
+                .data(data).style("fill", "red");
+            s.enter()
+                .append("rect").style("fill", "green");
+            s.exit()
+                .remove();
+            s.attr("width", function(d){return d * 10;})
+                .attr("height", function(d){return d * 10})                            
+                .attr("x", function(d){return d * 100});
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+We enther the data via input box, and generate the svg according the data, we can set different color to the existed and new added data, that can clear to know the attributes setting for which objects.
+The pattern shall be like this:</p>
+
+<ul>
+<li>data bind</li>
+<li>update the existed objects attributes and style etc.</li>
+<li>enter().append()</li>
+<li>setting new added objects attributes and style etc.</li>
+<li>exit().remove()</li>
+<li>setting all objects attributes and style</li>
+</ul>
+
+
+<p>Another example, please check the source code which is implemented by my colleague Simon: <a href="http://jsfiddle.net/simshi/jmvbcwru/2/">http://jsfiddle.net/simshi/jmvbcwru/2/</a></p>
+
+<p>-EOF-</p>
+]]></content>
+  </entry>
+  
+</feed>

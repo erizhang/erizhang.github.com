@@ -1,0 +1,747 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The Ways to Break the Dependency During Unit Testing in C/C++ Programming - Actionary</title>
+  <meta name="author" content="Eric Zhang">
+
+  
+  <meta name="description" content="We encourage people writes unit testing shall follow F.I.R.S.T principle, but dependency gets in the way. Especially you make unit testing under &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40225877-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Actionary</a></h1>
+  
+    <h2>A man is valued by his works, not his words!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.zhangliaoyuan.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-15T23:01:06+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We encourage people writes unit testing shall follow <a href="http://agileinaflash.blogspot.de/2009/02/first.html" title="Fast, Isolated, Repeatable, Self-Validating and Timely">F.I.R.S.T principle</a>, but dependency gets in the way. Especially you make unit testing under legacy code, that&rsquo;s mess. That&rsquo;s the excuse we plan to ignore unit testing during coding.</p>
+
+<p>For example, there is SUT code is <code>game.c</code>:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">is_win</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is_win is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>function <code>is_win()</code> relies on the return value of function <code>dice_points()</code> which is defined in another file called <code>dice.c</code>:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">int</span> <span class="nf">dice_points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dice_points is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>If we would like to test <code>is_win()</code>, see the test case like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_game_is_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>The problem is you don&rsquo;t know the case will be pass or not, since the dependent function <code>dice_points()</code> return value is volatile, this test case is unrepeatable. So we need define a test double called <code>stub_dice_points()</code> to replace real implementation of <code>dice_points()</code>, and return a value which is configurable, like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">static</span> <span class="kt">int</span> <span class="n">m_points</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">set_stub_dice_points</span><span class="p">(</span><span class="kt">int</span> <span class="n">point</span><span class="p">){</span>
+</span><span class='line'>  <span class="n">m_points</span> <span class="o">=</span> <span class="n">point</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">stub_dice_points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">m_points</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p> And during you execute <code>is_win()</code> function, use <code>stub_dice_points()</code> instead of <code>dice_points()</code>, when you implement the unit testing like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'> <span class="n">TEST</span> <span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_bigger_than_three_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>   <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>But problem is how to replace the <code>dice_points()</code> with <code>stub_dice_points()</code>? There are some ways here:</p>
+
+<h2>1. Pre-compile macro</h2>
+
+<p>Macro <code>#ifdef</code>,  <code>#else</code> and <code>#endif</code> can be used during pre-compile phase, to select which source code statement can be compiled. So the SUT source code <code>game.c</code> can be modified like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">is_win</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is_win is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="cp">#ifndef UNIT_TEST</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#else</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">stub_dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>And during compile the source code for unit testing purpose, give the <code>-DUNIT_TEST</code> compilation option, to enable the replacement. But this way requires you modify productive source code, and there will be a lot of macro like this, too ugly, and the source code readability will be getting worse.</p>
+
+<h2>2. Function pointer replacement</h2>
+
+<p>Another way is define a function pointer, in production code, the pointer is points a real depended function, and during unit testing, the function pointer will point the stub function, but it requires programmer change the production code like this， for example, the <code>dice.h</code> change like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">external</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">dice_pionts</span><span class="p">)();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>and the <code>dice.c</code> change to this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">int</span> <span class="nf">dice_points_imp</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dice_points is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">dice_pionts</span><span class="p">)()</span> <span class="o">=</span> <span class="n">dice_points_imp</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>After that, in the test case, you can use the function pointer re-assignment like below (in cpputest framework):</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_is_bigger_than_3_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">UT_PTR_SET</span><span class="p">(</span><span class="n">dice_points</span><span class="p">,</span> <span class="n">stub_dice_points</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>The obvious disadvantage is production code changing is needed. You can image that, every function dependency shall be replaced by function pointer way, too ugly.</p>
+
+<h2>3. Linker links replaced object</h2>
+
+<p>Above two ways require to change the production code, is there any can avoid the production code change to complete the function replacement.
+We assume the <code>game.c</code> includes <code>dice.h</code>, and <code>dice.c</code> is to implement the function <code>dice_ponits()</code> implementation. If we define another <code>stub.c</code> to implement the function <code>dice_points()</code> implementation in stub way. During compile the unit testing binary, don&rsquo;t compile the <code>dice.c</code>, just compile <code>game.c</code> and <code>stub.c</code>, and link them together to build a executable binary file.</p>
+
+<p>But there will be another problem occurs: How many <code>*.c</code> files under testing, there will be how many unit testing executable binary files. But, if the function <code>is_win()</code> and <code>dice_points()</code> in the same file, how to replace it? It will be difficult.</p>
+
+<h2>4. Dynamically replace</h2>
+
+<p>Is there any way to replace the dependency without do any production code change? The answer is yes, here we would like to introduce a tricky way to replace the dependency: During the function invoking, we let the invoking jump to our defined stub function.
+For example, during <code>isWin()</code> invoke <code>dice_points()</code>, we change the memory stack information, leads the invoking to jump to <code>stub_dice_points()</code>. The principle is first make the code page where <code>dice_points()</code> located writable using <code>mprotect()</code> in Linux or <code>VirtualProect()</code> in Win32. Then overwrite a <code>JMP</code> instructor which jump to <code>stub_dice_poinots()</code> at the begin of <code>dice_points()</code> binary code.</p>
+
+<p>For example, there is a assistant source code <code>assistant.c</code> which includes <code>set_stup()</code> and <code>reset_stub()</code> implementation. The two are used to the dependency replacement:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//assistant.h</span>
+</span><span class='line'><span class="cp">#ifndef __ASSISTANT_H__</span>
+</span><span class='line'><span class="cp">#define __ASSISTANT_H__</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#ifdef __cplusplus</span>
+</span><span class='line'><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define JUMP_CODE_MAX   0x05</span>
+</span><span class='line'><span class="cp">#define JUMP_CODE_CMD   0xE9</span>
+</span><span class='line'><span class="cp">#define JUMP_CODE_RET   0xC3</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="n">stubInfo</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">byteCode</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span> <span class="n">stubInfo</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">extern</span> <span class="kt">void</span> <span class="nf">set_stub</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">stubAddr</span><span class="p">,</span> <span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="k">extern</span> <span class="kt">void</span> <span class="nf">reset_stub</span><span class="p">(</span><span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="cp">#ifdef __cplusplus</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'><span class="cp">#endif </span><span class="cm">/* __ASSISTANT_H__ */</span><span class="cp"></span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>And the <code>assistant.c</code> is here:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;sys/mman.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
+</span><span class='line'><span class="cp">#include &quot;assistant.h&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="nf">set_jump_code</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">codeAddr</span><span class="p">,</span> <span class="kt">char</span> <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">pagesize</span> <span class="o">=</span> <span class="n">sysconf</span><span class="p">(</span><span class="n">_SC_PAGE_SIZE</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">mprotect</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">codeAddr</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">pagesize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))),</span> <span class="n">pagesize</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span> <span class="o">|</span> <span class="n">PROT_EXEC</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">memcpy</span><span class="p">(</span><span class="n">codeAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">,</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">set_stub</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">stubAddr</span><span class="p">,</span> <span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">JUMP_CODE_CMD</span><span class="p">};</span>
+</span><span class='line'>    <span class="kt">int</span>  <span class="n">dist</span> <span class="o">=</span> <span class="n">stubAddr</span> <span class="o">-</span> <span class="n">funcAddr</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">jumpCode</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dist</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">));</span>
+</span><span class='line'>    <span class="n">si</span><span class="o">-&gt;</span><span class="n">funcAddr</span> <span class="o">=</span> <span class="n">funcAddr</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">byteCode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">set_jump_code</span><span class="p">(</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">reset_stub</span><span class="p">(</span><span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span>   <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">jumpCode</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">byteCode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">set_jump_code</span><span class="p">(</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>And then in the unit test file, you can use the assistant function for the dependency replacement:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_is_bigger_than_3_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">stubInfo</span> <span class="n">si</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">set_stup</span><span class="p">(</span><span class="n">dice_points</span><span class="p">,</span> <span class="n">stub_dice_points</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">reset_stub</span><span class="p">(</span><span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>5. Inherit from abstract class, replaced in dependency injection way</h2>
+
+<p>As we know, in OOP, there is interface concept, in C++, there is abstract class which used for interface purpose. If above the functions are defined as class way, there will be like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//game.h</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Game</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isWin</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Dice</span> <span class="n">dice</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">dice</span><span class="p">.</span><span class="n">points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>and the <code>dice</code> class is like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Dice</span><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>If we would like to make the replacement, we have to define an abstract class called <code>Player</code> like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Player</span><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>And the class <code>Dice</code> inherits from <code>Player</code> like this:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Dice</span><span class="o">:</span> <span class="k">public</span> <span class="n">Player</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>And the <code>Game</code> class shall make some change as well:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Game</span> <span class="p">{</span>
+</span><span class='line'><span class="k">private</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">Player</span> <span class="n">m_opponent</span><span class="p">;</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">Game</span><span class="p">(</span><span class="n">Player</span> <span class="n">player</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">m_opponent</span> <span class="o">=</span> <span class="n">player</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">bool</span> <span class="n">isWin</span><span class="p">(){</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">m_opponent</span><span class="p">.</span><span class="n">points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">){</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>    
+</span><span class='line'>      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>The constructor function is used to <a href="http://martinfowler.com/articles/injection.html" title="Inject">dependency injection</a>. In test purpose, we will inherit a new class called <code>StubDice</code> from abstract class <code>Player</code>, and use the <code>StubDice</code> replace the real <code>Dice</code> in test case:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//stub_dice.h</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">StubDice</span><span class="o">:</span> <span class="k">public</span> <span class="n">Player</span> <span class="p">{</span>
+</span><span class='line'><span class="k">private</span><span class="o">:</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">m_points</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">set_points</span><span class="p">(</span><span class="kt">int</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">m_points</span> <span class="o">=</span> <span class="n">points</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">m_points</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>In the test case, the implementation as below:</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_less_3_points_shall_be_lose</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">StubDice</span> <span class="n">stub</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">Game</span> <span class="o">*</span><span class="n">game</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Game</span><span class="p">(</span><span class="n">stub</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">stub</span><span class="p">.</span><span class="n">set_points</span><span class="p">(</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">isWin</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>Summary</h2>
+
+<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements? Refactor your source code often, make it better.</p>
+
+<p>Treat the unit testing as design tool, helps you make better design; treat unit testing as safety tools, facilitates you make source code change.</p>
+
+<p>-EOF-</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric Zhang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-05-15T23:01:06+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:01 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/" data-via="zhangliaoyuan" data-counturl="http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/04/02/use-new-domain-name/" title="Previous Post: Domain Name of This Site Will be Changed soon">&laquo; Domain Name of This Site Will be Changed soon</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/" title="Next Post: How does TeXstudio support Chinese words edit in LaTeX under Mac">How does TeXstudio support Chinese words edit in LaTeX under Mac &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+<li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
+<li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
+<li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
+<li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
+<li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
+<li class='category'><a href='/blog/categories/technology/'>technology (2)</a></li>
+<li class='category'><a href='/blog/categories/thinking/'>thinking (3)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <p><a class="twitter-timeline" href="https://twitter.com/zhangliaoyuan" data-widget-id="360654469018554368">Tweets by @zhangliaoyuan</a></p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Eric Zhang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'actionary';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/';
+        var disqus_url = 'http://blog.zhangliaoyuan.com/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

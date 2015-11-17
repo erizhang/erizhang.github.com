@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technology | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2015-11-17T18:27:21+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Build Up Octopress Style Blog Site]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog/"/>
+    <updated>2012-12-20T00:00:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog</id>
+    <content type="html"><![CDATA[<h2>Why I choose octopress?</h2>
+
+<p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
+
+<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&rsquo;m not a proffsional editor, and I&rsquo;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
+
+<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&hellip;., thank god, thank author, thank all the people who guide me know this.</p>
+
+<h2>My octopress git repository</h2>
+
+<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&rsquo;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
+
+<p><img src="/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
+
+<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&rsquo;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
+
+<h2>Tips</h2>
+
+<p>Open the <code>Rakefile</code> which is under octopress folder, and jump to this code snippet:
+{% codeblock lang:ruby %}</p>
+
+<p>task :setup_github_pages, :repo do |t, args|
+  if args.repo
+    repo_url = args.repo
+  else
+    puts &ldquo;Enter the read/write url for your repository&rdquo;
+    puts &ldquo;(For example, &lsquo;git@github.com:your_username/your_username.github.com)&rdquo;
+    repo_url = get_stdin(&ldquo;Repository url: &rdquo;)
+  end
+  user = repo_url.match(/:([^\/]+)/)[1]
+  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? 'gh-pages&rsquo; : &lsquo;master&rsquo;
+  project = (branch == &lsquo;gh-pages&rsquo;) ? repo_url.match(/\/([^.]+)/)[1] : &lsquo;&rsquo;</p>
+
+<p>{% endcodeblock %}</p>
+
+<p>You can change the code to support <code>https</code>url, the code like this:</p>
+
+<p>{% codeblock lang:ruby %}
+task :setup_github_pages, :repo do |t, args|
+  if args.repo
+    repo_url = args.repo
+  else
+    puts &ldquo;Enter the read/write url for your repository&rdquo;
+    puts &ldquo;(For example, &lsquo;git@github.com:your_username/your_username.github.com&rsquo;&rdquo;
+    puts &ldquo;           or &lsquo;<a href="https://github.com/your_username/your_username.github.com">https://github.com/your_username/your_username.github.com</a>&rsquo;)&rdquo;
+    repo_url = get_stdin(&ldquo;Repository url: &rdquo;)
+  end</p>
+
+<p>  protocol = (repo_url.match(/(^git)@/).nil?) ? &lsquo;https&rsquo; : &lsquo;git&rsquo;
+  if protocol == &lsquo;git&rsquo;
+    user = repo_url.match(/:([^\/]+)/)[1]
+  else
+    user = repo_url.match(/github.com\/([^\/]+)/)[1]
+  end</p>
+
+<p>  branch = (repo_url.match(/\/[\w-]+.github.com/).nil?) ? &lsquo;gh-pages&rsquo; : &lsquo;master&rsquo;
+  project = (branch == &lsquo;gh-pages&rsquo;) ? repo_url.match(/\/([^.]+)/)[1] : &lsquo;&rsquo;
+{% endcodeblock %}</p>
+
+<p>After that, <code>rake</code> can support <code>https</code>. Others, I only follow the official guideline, now you can see this post means I have successfully built up my blogs, and post blogs in office.</p>
+
+<p>Post blogs like programming, if you are programmer, just do it. Cheers!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat/"/>
+    <updated>2012-12-18T10:51:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat</id>
+    <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
+
+<h2>What&rsquo;s the coderetreat</h2>
+
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
+
+<p>In the day, all participants practiced below modern development practices:</p>
+
+<ul>
+<li>Pair-programming</li>
+<li>Unit test</li>
+<li>Test-Driven Development (TDD)</li>
+<li>Code refactoring</li>
+</ul>
+
+
+<h2>Rules and practice</h2>
+
+<p>In each session there were some interesting rules/limitation, to guide people go beyond the border of their programming habits, and re-think of important aspects of programming.</p>
+
+<ul>
+<li>RULE #1. Pair-programming is requried</li>
+<li>RULE #2. TDD (Test-Driven Development) is required</li>
+<li>RULE #3. Clean Code is required</li>
+<li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
+<li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
+<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
+</ul>
+
+
+<p>Beside these rules, each session is finished, programmer shall switch pair and permanent remove the previous typing code, we demand this since there would be more chance to share the idea as more as possiable, demand to remove the source code because we were willing to make programmer understand and believe they will coding better.</p>
+
+<p>We took 6 sessions for each rule, and wrap up in the end. Also had video connecting with other cities (Beijing, Shanghai, Taiyuan, Tokyo, Singapore, Hanoi, Ho Chi Minh) via google hangout.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
+
+<h2>Sponsor</h2>
+
+<p>This event is for free, and attendee deserve one lunch which better than pizza, and some soft drink, fruit. So we need some budget, luckly we address a mail to our head, and tell her this event is align with organization goal, and will help to promote the programming competence development in our organization, and finally, she nod for the buget plan, the cost was around 800RMB.</p>
+
+<h2>Attendee</h2>
+
+<p>Since this is an open event, we were looking forward to more programmers come from different company and industry, and coding in different programming language, it will increase the idea diversity, so we advertise on social networks. But later just come 2 persons from outside our company, it prove our advertisement was failed. So, if we plan to facilitate same event, we will advertise on some programming community will be better.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
+
+<p>Of cause, the advertisement inside our company is quite good, there were more then 20 programmers coming.</p>
+
+<p><em>Suggest the number limited in 30 will better to organize.</em></p>
+
+<h2>Problem for programming</h2>
+
+<p>The problem is <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Conway's Game of Life">Game of life</a>, programming language is no restrict, actually, we encourage people use strange language.</p>
+
+<p>As my feeling, the event is successful, and quite many people ask me when we will facilitate same event after then. Also, help people to build the modern programming awareness, and change the mindset of that limitation (restriction) is not impediment, instead it demends you think more, it likes the matchstick to light your thinking, open your mind.</p>
+
+<p>More pictures from Hangzhou GDCR 2012, please click <a href="http://coderetreat.org/photo/album/show?id=6456126%3AAlbum%3A18835&amp;xg_source=activity" title="GDCR2012 Hangzhou">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
