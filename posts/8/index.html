@@ -9,13 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="Problem There is a structure type defined as below: 1
-2
-3
-4
-5
-typedef struct __map_t { int code; char name[NAME_SIZE]; char *alias;
-}map_t; If we &hellip;">
+  <meta name="description" content="There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +77,61 @@ typedef struct __map_t { int code; char name[NAME_SIZE]; char *alias;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/23/team-gethering-game/">Team Gathering Game</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-03-23'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
+
+<h2>The rule of the game:</h2>
+
+<ul>
+<li>All members stand as matrix (row*coloumn), the lines like we did physical exercise in childhood, you can stretch your arm, but cannot touch another person who closes to you.</li>
+<li>Facilitator asks all member close eyes, and from now on to the end, every attendee shall keep their eyes closed.</li>
+<li>Facilitator asks every select a number in their heart, everyone keep one number, do not tell the number to any one now. (for example, if there are 100 attendees, facilitator can ask attendee select one number between 1 and 100).</li>
+<li>Facilitator give an instruction: &ldquo;please turn around, and stretch your hand, try to touch another person who closed to you&rdquo;</li>
+<li>Attendee share the number to another, and hand in hand, try to group more people, but shall be keep the number in order</li>
+<li>Once all attendee are in an ordered group or time out, facilitator asks attendee open their eyes.</li>
+</ul>
+
+
+<h2>What we learn from this game:</h2>
+
+<ul>
+<li>There must be someone will stand out from chaos, and give some instruction to others</li>
+<li>If there is no hand hold with you, you will be feel unsafe</li>
+<li>The one tell you the order is clockwise or anticlockwise, but the final order is follow the basic small group, the team culture can be bred.</li>
+<li>Every one has same goal</li>
+<li>Small team will follow bigger team</li>
+<li>Give team a clearly goal and rules, team can be self-organized</li>
+</ul>
+
+
+<p>Definitely, this game is funny, if you like this, you can copy this way, and play it with your members.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -336,125 +385,6 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/20/build-up-octopress-blog/">Build Up Octopress Style Blog Site</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2012-12-20'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Why I choose octopress?</h2>
-
-<p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
-
-<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&rsquo;m not a proffsional editor, and I&rsquo;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
-
-<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&hellip;., thank god, thank author, thank all the people who guide me know this.</p>
-
-<h2>My octopress git repository</h2>
-
-<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&rsquo;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
-
-<p><img src="/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
-
-<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&rsquo;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
-
-<h2>Tips</h2>
-
-<p>Open the <code>Rakefile</code> which is under octopress folder, and jump to this code snippet:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">task</span> <span class="ss">:setup_github_pages</span><span class="p">,</span> <span class="ss">:repo</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
-</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Enter the read/write url for your repository&quot;</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;(For example, &#39;git@github.com:your_username/your_username.github.com)&quot;</span>
-</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="s2">&quot;Repository url: &quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'>  <span class="n">branch</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/[\w-]+\.github\.com/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s1">&#39;gh-pages&#39;</span> <span class="p">:</span> <span class="s1">&#39;master&#39;</span>
-</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;gh-pages&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^\.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can change the code to support <code>https</code>url, the code like this:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">task</span> <span class="ss">:setup_github_pages</span><span class="p">,</span> <span class="ss">:repo</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
-</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Enter the read/write url for your repository&quot;</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;(For example, &#39;git@github.com:your_username/your_username.github.com&#39;&quot;</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;           or &#39;https://github.com/your_username/your_username.github.com&#39;)&quot;</span>
-</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="s2">&quot;Repository url: &quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">protocol</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/(^git)@/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s1">&#39;https&#39;</span> <span class="p">:</span> <span class="s1">&#39;git&#39;</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">protocol</span> <span class="o">==</span> <span class="s1">&#39;git&#39;</span>
-</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/github\.com\/([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">branch</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/[\w-]+\.github\.com/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s1">&#39;gh-pages&#39;</span> <span class="p">:</span> <span class="s1">&#39;master&#39;</span>
-</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="s1">&#39;gh-pages&#39;</span><span class="p">)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^\.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="s1">&#39;&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After that, <code>rake</code> can support <code>https</code>. Others, I only follow the official guideline, now you can see this post means I have successfully built up my blogs, and post blogs in office.</p>
-
-<p>Post blogs like programming, if you are programmer, just do it. Cheers!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/9">&larr; Older</a>
@@ -470,7 +400,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
     <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
 <li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
@@ -487,6 +417,10 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -500,10 +434,6 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
     
       <li class="post">
         <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
       </li>
     
   </ul>
@@ -526,7 +456,7 @@ The only thing you need to be aware of is that this is a shallow copy. In other 
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Eric Zhang -
+  Copyright &copy; 2016 - Eric Zhang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

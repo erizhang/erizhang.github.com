@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。 很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动， &hellip;">
+  <meta name="description" content="We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,156 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/27/take-care-of-your-integer-variable/">Take Care of Your Integer Variables</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-04-27T13:19:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:19 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
+
+<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
+
+<ul>
+<li>No overflow exception</li>
+<li>No run-time detection if a negative integer is converted to an unsigned value</li>
+<li>No checks whether a larger integer value is put into a shorter variable</li>
+</ul>
+
+
+<p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
+
+<p><img src="/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
+
+<p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</span><span class='line'>  <span class="c1">//TODO: use dest here</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Could you please tell me is there any problem if you stop here and do not plan to go through this post? Of cause, there is a big problem once assign a negative value to parameter <code>len</code>, for example, we assign the <code>len</code> is <code>-1</code>, the program can be executed in <code>memcpy(dest, src, len)</code>, and <code>-1</code> will be casted to unsigned value <code>0xffffffff</code>, and lead the program Segmentation fault, this problem is called <strong>Signedness bug</strong>.</p>
+
+<p>Okay, let&rsquo;s see another code snippet here:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">append</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str2</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len2</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">dest_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">len1</span> <span class="o">+</span> <span class="n">len2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="n">len1</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span> <span class="o">+</span> <span class="n">len1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">len2</span><span class="p">);</span>
+</span><span class='line'>    <span class="c1">//TODO: dest_buf usage can be added here</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>How about this one, is there any problem? In case of <code>len1</code> is huge number, and <code>len1+len2</code> can be overflow to a small number. For example, <code>len1 = 4294967198</code>, and <code>len2 = 100</code>, and then <code>len1 + len2 = 4294967298 (0x100000002)</code>. We call this problem is <strong>Arithmetical overflow</strong>.</p>
+
+<p>one more, this will be easily to spot with previous experience:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">s</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;string is too long!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
+
+<p><img src="/images/2013-04-27/integer-ranges.png" title="integer ranges
+" alt="Alt text" /></p>
+
+<p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
+
+<p>Be careful! :\</p>
+
+<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -229,61 +379,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/23/team-gethering-game/">Team Gathering Game</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-03-23'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>12:00 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There is a team gathering game what I learned from Shanghai Scrum Gathering in 2011, there was one facilitator from Taiwan shared to us, and I always play it with my trainee and team members.</p>
-
-<h2>The rule of the game:</h2>
-
-<ul>
-<li>All members stand as matrix (row*coloumn), the lines like we did physical exercise in childhood, you can stretch your arm, but cannot touch another person who closes to you.</li>
-<li>Facilitator asks all member close eyes, and from now on to the end, every attendee shall keep their eyes closed.</li>
-<li>Facilitator asks every select a number in their heart, everyone keep one number, do not tell the number to any one now. (for example, if there are 100 attendees, facilitator can ask attendee select one number between 1 and 100).</li>
-<li>Facilitator give an instruction: &ldquo;please turn around, and stretch your hand, try to touch another person who closed to you&rdquo;</li>
-<li>Attendee share the number to another, and hand in hand, try to group more people, but shall be keep the number in order</li>
-<li>Once all attendee are in an ordered group or time out, facilitator asks attendee open their eyes.</li>
-</ul>
-
-
-<h2>What we learn from this game:</h2>
-
-<ul>
-<li>There must be someone will stand out from chaos, and give some instruction to others</li>
-<li>If there is no hand hold with you, you will be feel unsafe</li>
-<li>The one tell you the order is clockwise or anticlockwise, but the final order is follow the basic small group, the team culture can be bred.</li>
-<li>Every one has same goal</li>
-<li>Small team will follow bigger team</li>
-<li>Give team a clearly goal and rules, team can be self-organized</li>
-</ul>
-
-
-<p>Definitely, this game is funny, if you like this, you can copy this way, and play it with your members.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/8">&larr; Older</a>
@@ -299,7 +394,7 @@
     <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
 <li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
@@ -316,6 +411,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -329,10 +428,6 @@
     
       <li class="post">
         <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
       </li>
     
   </ul>
@@ -355,7 +450,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Eric Zhang -
+  Copyright &copy; 2016 - Eric Zhang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

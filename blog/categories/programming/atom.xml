@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-11-17T18:41:19+08:00</updated>
+  <updated>2016-03-10T14:21:14+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -213,7 +213,7 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
 <h3>In the eend</h3>
 
 <p>Here I give an example of the Chinese words editing, hope it&rsquo;s useful for your reference.
-```LaTeX
+&#8220;`LaTeX
 \documentclass{ctexart}
 %\usepackage{ctex}
 \usepackage{xeCJK}
@@ -238,7 +238,7 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
 <p>這是一個傳統的中國文字</p>
 
 <p>\end{document}
-```</p>
+&#8220;`</p>
 
 <p>-EOF-</p>
 ]]></content>
@@ -645,7 +645,7 @@ It means select an exsited element which its id equals <code>chart</code>, and a
 
 <p>Okay, let&rsquo;s see what&rsquo;s happened after below source code be executed.</p>
 
-<p>```html
+<p>&#8220;`html
 &lt;!DOCTYPE html>
 <html>
 <head></p>
@@ -664,7 +664,7 @@ It means select an exsited element which its id equals <code>chart</code>, and a
     </script>
 </body>
 </html>
-```</p>
+&#8220;`</p>
 
 <p>After <code>d3.selectAll('rect')</code>, we can image it will return a list of pair which consists of data and elements, but now, the data area is empty. You will ask, how many pairs in the list after only <code>selectAll()</code> executed, and there is no previous <code>&lt;rect&gt;</code> existed? Actually, the number is not identified if only execute this code.</p>
 
@@ -678,7 +678,7 @@ It means select an exsited element which its id equals <code>chart</code>, and a
 
 <h3>Combile the data with element via <code>enter().append(element)</code> method</h3>
 
-<p>```html
+<p>&#8220;`html
 &lt;!DOCTYPE html>
 <html>
 <head></p>
@@ -702,7 +702,7 @@ It means select an exsited element which its id equals <code>chart</code>, and a
 <p><img src="/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
 
 <p>And now, we can give the <code>&lt;rect&gt;</code> attributes to draw svg, for example <code>attr('width', 10)</code>, <code>attr('x', 0)</code> and <code>attr('y', 0)</code> etc.
-```html
+&#8220;`html
 &lt;!DOCTYPE html>
 <html>
 <head></p>
@@ -729,7 +729,7 @@ It means select an exsited element which its id equals <code>chart</code>, and a
     </script>
 </body>
 </html>
-```
+&#8220;`
 according above code snippet, the html shall be like this.</p>
 
 <p><img src="/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>

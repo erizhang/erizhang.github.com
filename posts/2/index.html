@@ -9,8 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="Hi, my dear friends, I setup zhangliaoyuan.me for two years, now the domain name will be expired soon.
-But good news is, I have got new domain name &hellip;">
+  <meta name="description" content="We encourage people writes unit testing shall follow F.I.R.S.T principle, but dependency gets in the way. Especially you make unit testing under &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +77,500 @@ But good news is, I have got new domain name &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-15T23:01:06+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>11:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We encourage people writes unit testing shall follow <a href="http://agileinaflash.blogspot.de/2009/02/first.html" title="Fast, Isolated, Repeatable, Self-Validating and Timely">F.I.R.S.T principle</a>, but dependency gets in the way. Especially you make unit testing under legacy code, that&rsquo;s mess. That&rsquo;s the excuse we plan to ignore unit testing during coding.</p>
+
+<p>For example, there is SUT code is <code>game.c</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">is_win</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is_win is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>function <code>is_win()</code> relies on the return value of function <code>dice_points()</code> which is defined in another file called <code>dice.c</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">int</span> <span class="nf">dice_points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dice_points is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we would like to test <code>is_win()</code>, see the test case like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_game_is_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The problem is you don&rsquo;t know the case will be pass or not, since the dependent function <code>dice_points()</code> return value is volatile, this test case is unrepeatable. So we need define a test double called <code>stub_dice_points()</code> to replace real implementation of <code>dice_points()</code>, and return a value which is configurable, like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">static</span> <span class="kt">int</span> <span class="n">m_points</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">set_stub_dice_points</span><span class="p">(</span><span class="kt">int</span> <span class="n">point</span><span class="p">){</span>
+</span><span class='line'>  <span class="n">m_points</span> <span class="o">=</span> <span class="n">point</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="nf">stub_dice_points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">m_points</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> And during you execute <code>is_win()</code> function, use <code>stub_dice_points()</code> instead of <code>dice_points()</code>, when you implement the unit testing like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'> <span class="n">TEST</span> <span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_bigger_than_three_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>   <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>   <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But problem is how to replace the <code>dice_points()</code> with <code>stub_dice_points()</code>? There are some ways here:</p>
+
+<h2>1. Pre-compile macro</h2>
+
+<p>Macro <code>#ifdef</code>,  <code>#else</code> and <code>#endif</code> can be used during pre-compile phase, to select which source code statement can be compiled. So the SUT source code <code>game.c</code> can be modified like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">bool</span> <span class="nf">is_win</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is_win is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="cp">#ifndef UNIT_TEST</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#else</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">stub_dice_points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And during compile the source code for unit testing purpose, give the <code>-DUNIT_TEST</code> compilation option, to enable the replacement. But this way requires you modify productive source code, and there will be a lot of macro like this, too ugly, and the source code readability will be getting worse.</p>
+
+<h2>2. Function pointer replacement</h2>
+
+<p>Another way is define a function pointer, in production code, the pointer is points a real depended function, and during unit testing, the function pointer will point the stub function, but it requires programmer change the production code like this， for example, the <code>dice.h</code> change like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">external</span> <span class="nf">int</span> <span class="p">(</span><span class="o">*</span><span class="n">dice_pionts</span><span class="p">)();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the <code>dice.c</code> change to this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="kt">int</span> <span class="nf">dice_points_imp</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;dice_points is invoked!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">dice_pionts</span><span class="p">)()</span> <span class="o">=</span> <span class="n">dice_points_imp</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After that, in the test case, you can use the function pointer re-assignment like below (in cpputest framework):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_is_bigger_than_3_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">UT_PTR_SET</span><span class="p">(</span><span class="n">dice_points</span><span class="p">,</span> <span class="n">stub_dice_points</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The obvious disadvantage is production code changing is needed. You can image that, every function dependency shall be replaced by function pointer way, too ugly.</p>
+
+<h2>3. Linker links replaced object</h2>
+
+<p>Above two ways require to change the production code, is there any can avoid the production code change to complete the function replacement.
+We assume the <code>game.c</code> includes <code>dice.h</code>, and <code>dice.c</code> is to implement the function <code>dice_ponits()</code> implementation. If we define another <code>stub.c</code> to implement the function <code>dice_points()</code> implementation in stub way. During compile the unit testing binary, don&rsquo;t compile the <code>dice.c</code>, just compile <code>game.c</code> and <code>stub.c</code>, and link them together to build a executable binary file.</p>
+
+<p>But there will be another problem occurs: How many <code>*.c</code> files under testing, there will be how many unit testing executable binary files. But, if the function <code>is_win()</code> and <code>dice_points()</code> in the same file, how to replace it? It will be difficult.</p>
+
+<h2>4. Dynamically replace</h2>
+
+<p>Is there any way to replace the dependency without do any production code change? The answer is yes, here we would like to introduce a tricky way to replace the dependency: During the function invoking, we let the invoking jump to our defined stub function.
+For example, during <code>isWin()</code> invoke <code>dice_points()</code>, we change the memory stack information, leads the invoking to jump to <code>stub_dice_points()</code>. The principle is first make the code page where <code>dice_points()</code> located writable using <code>mprotect()</code> in Linux or <code>VirtualProect()</code> in Win32. Then overwrite a <code>JMP</code> instructor which jump to <code>stub_dice_poinots()</code> at the begin of <code>dice_points()</code> binary code.</p>
+
+<p>For example, there is a assistant source code <code>assistant.c</code> which includes <code>set_stup()</code> and <code>reset_stub()</code> implementation. The two are used to the dependency replacement:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//assistant.h</span>
+</span><span class='line'><span class="cp">#ifndef __ASSISTANT_H__</span>
+</span><span class='line'><span class="cp">#define __ASSISTANT_H__</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#ifdef __cplusplus</span>
+</span><span class='line'><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'>
+</span><span class='line'><span class="cp">#define JUMP_CODE_MAX   0x05</span>
+</span><span class='line'><span class="cp">#define JUMP_CODE_CMD   0xE9</span>
+</span><span class='line'><span class="cp">#define JUMP_CODE_RET   0xC3</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">typedef</span> <span class="k">struct</span> <span class="n">stubInfo</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">;</span>
+</span><span class='line'>  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">byteCode</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span> <span class="n">stubInfo</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">extern</span> <span class="kt">void</span> <span class="nf">set_stub</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">stubAddr</span><span class="p">,</span> <span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="k">extern</span> <span class="kt">void</span> <span class="nf">reset_stub</span><span class="p">(</span><span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="cp">#ifdef __cplusplus</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span><span class='line'><span class="cp">#endif </span><span class="cm">/* __ASSISTANT_H__ */</span><span class="cp"></span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the <code>assistant.c</code> is here:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &lt;sys/mman.h&gt;</span>
+</span><span class='line'><span class="cp">#include &lt;unistd.h&gt;</span>
+</span><span class='line'><span class="cp">#include &quot;assistant.h&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">static</span> <span class="kt">void</span> <span class="nf">set_jump_code</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">codeAddr</span><span class="p">,</span> <span class="kt">char</span> <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">])</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">pagesize</span> <span class="o">=</span> <span class="n">sysconf</span><span class="p">(</span><span class="n">_SC_PAGE_SIZE</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">mprotect</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">codeAddr</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="p">(</span><span class="n">pagesize</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))),</span> <span class="n">pagesize</span><span class="p">,</span> <span class="n">PROT_READ</span> <span class="o">|</span> <span class="n">PROT_WRITE</span> <span class="o">|</span> <span class="n">PROT_EXEC</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">memcpy</span><span class="p">(</span><span class="n">codeAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">,</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">set_stub</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">funcAddr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">stubAddr</span><span class="p">,</span> <span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">JUMP_CODE_CMD</span><span class="p">};</span>
+</span><span class='line'>    <span class="kt">int</span>  <span class="n">dist</span> <span class="o">=</span> <span class="n">stubAddr</span> <span class="o">-</span> <span class="n">funcAddr</span> <span class="o">-</span> <span class="mi">5</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">jumpCode</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dist</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">));</span>
+</span><span class='line'>    <span class="n">si</span><span class="o">-&gt;</span><span class="n">funcAddr</span> <span class="o">=</span> <span class="n">funcAddr</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">byteCode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">set_jump_code</span><span class="p">(</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">void</span> <span class="nf">reset_stub</span><span class="p">(</span><span class="n">stubInfo</span> <span class="o">*</span><span class="n">si</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span>   <span class="n">jumpCode</span><span class="p">[</span><span class="n">JUMP_CODE_MAX</span><span class="p">];</span>
+</span><span class='line'>    <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">jumpCode</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">byteCode</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">JUMP_CODE_MAX</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">set_jump_code</span><span class="p">(</span><span class="n">si</span><span class="o">-&gt;</span><span class="n">funcAddr</span><span class="p">,</span> <span class="n">jumpCode</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And then in the unit test file, you can use the assistant function for the dependency replacement:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_is_bigger_than_3_points_shall_be_win</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">stubInfo</span> <span class="n">si</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">set_stup</span><span class="p">(</span><span class="n">dice_points</span><span class="p">,</span> <span class="n">stub_dice_points</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">set_stub_dice_points</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CHECK</span><span class="p">(</span><span class="n">is_win</span><span class="p">());</span>
+</span><span class='line'>    <span class="n">reset_stub</span><span class="p">(</span><span class="o">&amp;</span><span class="n">si</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>5. Inherit from abstract class, replaced in dependency injection way</h2>
+
+<p>As we know, in OOP, there is interface concept, in C++, there is abstract class which used for interface purpose. If above the functions are defined as class way, there will be like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//game.h</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Game</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isWin</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">Dice</span> <span class="n">dice</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">dice</span><span class="p">.</span><span class="n">points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and the <code>dice</code> class is like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Dice</span><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">(){</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we would like to make the replacement, we have to define an abstract class called <code>Player</code> like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Player</span><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the class <code>Dice</code> inherits from <code>Player</code> like this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Dice</span><span class="o">:</span> <span class="k">public</span> <span class="n">Player</span> <span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And the <code>Game</code> class shall make some change as well:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">Game</span> <span class="p">{</span>
+</span><span class='line'><span class="k">private</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">Player</span> <span class="n">m_opponent</span><span class="p">;</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">Game</span><span class="p">(</span><span class="n">Player</span> <span class="n">player</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">m_opponent</span> <span class="o">=</span> <span class="n">player</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="kt">bool</span> <span class="n">isWin</span><span class="p">(){</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">m_opponent</span><span class="p">.</span><span class="n">points</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">){</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>    
+</span><span class='line'>      <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The constructor function is used to <a href="http://martinfowler.com/articles/injection.html" title="Inject">dependency injection</a>. In test purpose, we will inherit a new class called <code>StubDice</code> from abstract class <code>Player</code>, and use the <code>StubDice</code> replace the real <code>Dice</code> in test case:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//stub_dice.h</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">StubDice</span><span class="o">:</span> <span class="k">public</span> <span class="n">Player</span> <span class="p">{</span>
+</span><span class='line'><span class="k">private</span><span class="o">:</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">m_points</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">set_points</span><span class="p">(</span><span class="kt">int</span> <span class="n">points</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">m_points</span> <span class="o">=</span> <span class="n">points</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="kt">int</span> <span class="n">points</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">m_points</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In the test case, the implementation as below:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="n">TEST</span><span class="p">(</span><span class="n">VerifyGame</span><span class="p">,</span> <span class="n">test_the_dice_points_less_3_points_shall_be_lose</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="n">StubDice</span> <span class="n">stub</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">Game</span> <span class="o">*</span><span class="n">game</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Game</span><span class="p">(</span><span class="n">stub</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">stub</span><span class="p">.</span><span class="n">set_points</span><span class="p">(</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span><span class='line'>  <span class="n">CHECK</span><span class="p">(</span><span class="o">!</span><span class="n">game</span><span class="o">-&gt;</span><span class="n">isWin</span><span class="p">());</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Summary</h2>
+
+<p>We list the 5 ways of dependency breaking, it doesn&rsquo;t mean that we suggest you use the ways in unit testing. During unit testing, if we find that it&rsquo;s hard to make unit testing, we have to look back, check why it&rsquo;s too hard to implement unit testing. Is it the design problem? Is it too many dependency, why? Is there any other way to implement same requirements? Refactor your source code often, make it better.</p>
+
+<p>Treat the unit testing as design tool, helps you make better design; treat unit testing as safety tools, facilitates you make source code change.</p>
+
+<p>-EOF-</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -239,437 +732,6 @@ But good news is, I have got new domain name with my full name dot com, so after
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/01/20/understand-d3js-data-binding/">Understand the D3js Data Binding</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-01-20T22:14:00+08:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:14 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. Here I write down my understanding here, hope it can help some d3js newbie like me.</p>
-
-<h2>Basic concepts</h2>
-
-<h3>Select data/DOM element pair</h3>
-
-<p>First of all, if we would like to create a svg picture, we have to create a <code>&lt;svg&gt;</code> DOM element first in html, use below code snippet will implemet it.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#chart&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It means select an exsited element which its id equals <code>chart</code>, and append a child element <code>&lt;svg&gt;</code> under this selected element, give the attribute width equals 900px.</p>
-
-<p>Do you know what&rsquo;s the meaning of <code>d3.selectAll()</code> during we use d3js? It means there will be several data/element(s) pair(s) be selected. We can image that, in d3js concept, every DOM element has corresponding data, it called data/element pair, like below picture shows:</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/pairs.png" width="300" title="data/element pairs" alt="Alt text" /></p>
-
-<p>Okay, let&rsquo;s see what&rsquo;s happened after below source code be executed.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://d3js.org/d3.v3.min.js&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;chart&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#chart&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After <code>d3.selectAll('rect')</code>, we can image it will return a list of pair which consists of data and elements, but now, the data area is empty. You will ask, how many pairs in the list after only <code>selectAll()</code> executed, and there is no previous <code>&lt;rect&gt;</code> existed? Actually, the number is not identified if only execute this code.</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_empty_data.png" width="500" title="data/element pairs without data" alt="Alt text" /></p>
-
-<p>After exectue <code>data()</code> methoed, the data and elements have been binded together, the data area will be filled the data, and the pairs number will be identified, here, the data has 3 values, so the there are 3 pairs of data/element pairs, like below picture shows:</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/element_with_data.png" width="500" title="data/element pairs with data" alt="Alt text" /></p>
-
-<p>Now, the pairs has been selected, but the html file, there is no real DOM generated, we can image that, after this code snippet execution, there is only generate pair list in memory, and next, we can finish the html DOM element generating.</p>
-
-<h3>Combile the data with element via <code>enter().append(element)</code> method</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;http://d3js.org/d3.v3.min.js&#39;</span> <span class="na">charset=</span><span class="s">&#39;utf-8&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#chart&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>enter()</code> method is invoke, we can image the new added binding pairs be selected, the method will return a list of data/unknown object, actually unknown object will be identified by next method <code>append('rect')</code>, in another words, data/htmlElement pairs will be returned by <code>append('rect')</code> method. let&rsquo;s see what&rsquo;s difference bewteen <code>enter()</code> and <code>append('rect)</code>:</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/enter_vs_append.png" width="500" title="Difference between enter() and append() returning" alt="Alt text" /></p>
-
-<p>And now, we can give the <code>&lt;rect&gt;</code> attributes to draw svg, for example <code>attr('width', 10)</code>, <code>attr('x', 0)</code> and <code>attr('y', 0)</code> etc.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;http://d3js.org/d3.v3.min.js&#39;</span> <span class="na">charset=</span><span class="s">&#39;utf-8&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;chart&#39;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;#chart&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span><span class='line'>          <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;})</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;})</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">100</span><span class="p">});</span>
-</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>according above code snippet, the html shall be like this.</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/pure_new_added_objects.png" width="500" title="Add new three rects" alt="Alt text" /></p>
-
-<p>But, if there are 3 <code>&lt;rect&gt;</code> exist, and later we would like to add more according to the data chagne, for exampe: <code>[1,2,3]</code> to <code>[1,2,3,4,5]</code>, check below code snippet.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;http://d3js.org/d3.v3.min.js&#39;</span> <span class="na">charset=</span><span class="s">&#39;utf-8&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;chart&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">&#39;900&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;10&#39;</span> <span class="na">height=</span><span class="s">&#39;10&#39;</span> <span class="na">x=</span><span class="s">&#39;100&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;20&#39;</span> <span class="na">height=</span><span class="s">&#39;20&#39;</span> <span class="na">x=</span><span class="s">&#39;200&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;30&#39;</span> <span class="na">height=</span><span class="s">&#39;30&#39;</span> <span class="na">x=</span><span class="s">&#39;300&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/svg&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span><span class='line'>          <span class="kd">var</span> <span class="nx">s1</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1</span><span class="p">);</span>
-</span><span class='line'>          <span class="kd">var</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s1</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s2</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">s3</span> <span class="o">=</span> <span class="nx">s2</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">enter</span><span class="p">();</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s3</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">s4</span> <span class="o">=</span> <span class="nx">s3</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s4</span><span class="p">);</span>
-</span><span class='line'>               <span class="nx">s4</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;})</span>
-</span><span class='line'>                      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">})</span>
-</span><span class='line'>                  <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">100</span><span class="p">})</span>
-</span><span class='line'>                  <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">);</span>
-</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>the corresponding html like this:</p>
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/append_two_objects.png" width="600" title="Append two objects" alt="Alt text" /></p>
-
-<p>first after <code>selectAll('rect')</code>, return previous existed ones, and <code>data(data)</code> method will bind two more objects, the data mapping with the element by index. <code>enter()</code> method will still keep the length of data/element pair, but only keep the two new added one, others left empty. And next call <code>append('rect')</code>, and <code>append('rect')</code> return the new two objects, coming attribute, style setting are for the new two, that&rsquo;s why we see the previous three rects are in green color, and new two are in red color.</p>
-
-<h3>Remove the no exist data/element pair via <code>exit().remove()</code> method</h3>
-
-<p>If there are elements existed, and we would like to remove some ones according to the data has been changed. See below code snippet shows.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&#39;http://d3js.org/d3.v3.min.js&#39;</span> <span class="na">charset=</span><span class="s">&#39;utf-8&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&#39;chart&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">&#39;900&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;10&#39;</span> <span class="na">height=</span><span class="s">&#39;10&#39;</span> <span class="na">x=</span><span class="s">&#39;100&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;20&#39;</span> <span class="na">height=</span><span class="s">&#39;20&#39;</span> <span class="na">x=</span><span class="s">&#39;200&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;30&#39;</span> <span class="na">height=</span><span class="s">&#39;30&#39;</span> <span class="na">x=</span><span class="s">&#39;300&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;40&#39;</span> <span class="na">height=</span><span class="s">&#39;40&#39;</span> <span class="na">x=</span><span class="s">&#39;400&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&#39;50&#39;</span> <span class="na">height=</span><span class="s">&#39;50&#39;</span> <span class="na">x=</span><span class="s">&#39;500&#39;</span> <span class="na">style=</span><span class="s">&#39;fill: #008000&#39;</span><span class="nt">&gt;&lt;/rect&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/svg&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">];</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">)</span>
-</span><span class='line'>              <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="mi">900</span><span class="p">);</span>
-</span><span class='line'>          <span class="kd">var</span> <span class="nx">s1</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s1</span><span class="p">);</span>
-</span><span class='line'>          <span class="kd">var</span> <span class="nx">s2</span> <span class="o">=</span> <span class="nx">s1</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s2</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">s3</span> <span class="o">=</span> <span class="nx">s2</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">exit</span><span class="p">();</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s3</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">s4</span> <span class="o">=</span> <span class="nx">s3</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">s4</span><span class="p">);</span>
-</span><span class='line'>  <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><img src="/images/2015-01-20-understand-d3js-data-binding/remove_three_objects.png" width="350" title="Remove three objects" alt="Alt text" /></p>
-
-<p><code>svg.selectAll('rect')</code> will return the existed DOM elements, in this case, the previous existed <code>&lt;rect&gt;</code> is 5, and the <code>data(data)</code> methed will combine the data, the data only two data values, after binding, return the objects which mapping previous exist data, here mapping key is the data index. We can make an easy calculation, <code>s1</code> has 5 objects, and <code>s2</code> has 2 objects, so the <code>s3</code> will store 3 objects which is waiting to remove. So later invoke <code>exit().remove()</code> methods will remove the DOM element from html.</p>
-
-<h2>Update parttern</h2>
-
-<p>According above section experiment, now let&rsquo;s implement an update implementation here, the DOM element adding and removal according to the data updating.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;http://d3js.org/d3.v3.min.js&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;h1&gt;</span>Demo<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    Data: <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;data&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;data&quot;</span><span class="nt">&gt;&lt;br&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span> <span class="na">value=</span><span class="s">&quot;Submit&quot;</span> <span class="na">onclick=</span><span class="s">&quot;upate()&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;chart&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#chart&quot;</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">900</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-</span><span class='line'>            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(20, 20)&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="kd">function</span> <span class="nx">upate</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">inputValue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">).</span><span class="nx">value</span><span class="p">;</span>
-</span><span class='line'>            <span class="nx">data</span> <span class="o">=</span> <span class="nx">inputValue</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">);</span>
-</span><span class='line'>            <span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">).</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">);</span>
-</span><span class='line'>            <span class="nx">s</span><span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">);</span>
-</span><span class='line'>            <span class="nx">s</span><span class="p">.</span><span class="nx">exit</span><span class="p">()</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
-</span><span class='line'>            <span class="nx">s</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;})</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">10</span><span class="p">})</span>
-</span><span class='line'>                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="k">return</span> <span class="nx">d</span> <span class="o">*</span> <span class="mi">100</span><span class="p">});</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We enther the data via input box, and generate the svg according the data, we can set different color to the existed and new added data, that can clear to know the attributes setting for which objects.
-The pattern shall be like this:</p>
-
-<ul>
-<li>data bind</li>
-<li>update the existed objects attributes and style etc.</li>
-<li>enter().append()</li>
-<li>setting new added objects attributes and style etc.</li>
-<li>exit().remove()</li>
-<li>setting all objects attributes and style</li>
-</ul>
-
-
-<p>Another example, please check the source code which is implemented by my colleague Simon: <a href="http://jsfiddle.net/simshi/jmvbcwru/2/">http://jsfiddle.net/simshi/jmvbcwru/2/</a></p>
-
-<p>-EOF-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -685,7 +747,7 @@ The pattern shall be like this:</p>
     <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
 <li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
@@ -702,6 +764,10 @@ The pattern shall be like this:</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -715,10 +781,6 @@ The pattern shall be like this:</p>
     
       <li class="post">
         <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
       </li>
     
   </ul>
@@ -741,7 +803,7 @@ The pattern shall be like this:</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Eric Zhang -
+  Copyright &copy; 2016 - Eric Zhang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

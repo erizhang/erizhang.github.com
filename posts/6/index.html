@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="之前与Terry一起聊天，聊到一个叫做Bee Watcher的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法， &hellip;">
+  <meta name="description" content="因为一篇post &ndash; 我为什么翻译《程序员度量》，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/07/08/codermetrics-in-scrumgathering/">Speaking Codermetrics in ScrumGathering Shanghai 2013</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-08T11:31:00+08:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:31 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>因为一篇post &ndash; <a href="http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/" title="Why we translate Codermetrics">我为什么翻译《程序员度量》</a>，受邀参加Scrum Gathering Shanghai 2013的活动，话题是《程序员度量》。说真的，对这个话题我没有太大的自信，很容易触到一部分人的神经，而我本身又是一个不太善于争论的人。谢谢孙妮和老窦的鼓励。我决定从另外角度来说程序员度量的这件事——从我们之前的失败案例看起（起码从我的角度是这样）。我想从这样的角度会引起更大的共鸣，让大家明白其中的种种。作为一种反思的素材供大家参考，这是有帮助的。</p>
+
+<iframe src="http://www.slideshare.net/slideshow/embed_code/23992242 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen></iframe>
+
+
+<p></p>
+
+<p>现场的反映超出了我的预期，认识到有很多的朋友在关注这个问题，也有的朋友正在经历类似的煎熬和困惑：</p>
+
+<ul>
+<li>短期的激励无法满足长久的发展</li>
+<li>KPI来限制团队或成员的工作行为，发现长久之后，丢失了一个研发团队本应有的激情和创新</li>
+<li>绩效考核</li>
+<li>度量的数据无法收集，或无法保证数据的有效性及一致性</li>
+<li>是否需要花大量的精力来做这个事情</li>
+</ul>
+
+
+<p>可能持反对意见者从这些问题会立刻得出这样的结论：度量方法害死了。</p>
+
+<p>我本身亲历过这样的过程，而且很有幸多经历了几个角色，能更多地有同理心地去思考这些问题。如果真的需要度量，是否可以从几个方面做一些改进：</p>
+
+<ul>
+<li>不做排名比较</li>
+<li>不做限制工作行为的事</li>
+<li>只获取团队动态的洞察力，用于管理者对团队的认识及发展调整</li>
+<li>只做对你可以控制的面的度量，限定度量的范围</li>
+<li>从你开始一个度量，也从你结束一个度量，不留下给别人利用你的度量耍流氓的机会。A制定度量的时候是为了获取团队动态，而B可能就会用来做团队排名。</li>
+</ul>
+
+
+<p>说多无益，只是想请大家审慎地做出对人的度量这回事，目的和策略的不同，同样的事情，最后出来的结果是不同的。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -152,156 +212,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/27/take-care-of-your-integer-variable/">Take Care of Your Integer Variables</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-27T13:19:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>1:19 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high stability, high security. We would not like to see there will be a 911 phone call cannot be reachable since our software bug, or financial exchange be stuck since networking problem which is caused by our software bug.</p>
-
-<p>I recall that one day, Erno Jeges (who is secure coding expert) told us: you have to care your code as care your baby, otherwise you don&rsquo;t know what your baby will be. So that, we have to deal software security carefully: buffer overflow, print formatting, and integer overflow etc. I&rsquo;m not expert in this area, but I notice that at least we have to take care of our integer variable first since C/C++ languages handle integers in a very dangerous manner since there are:</p>
-
-<ul>
-<li>No overflow exception</li>
-<li>No run-time detection if a negative integer is converted to an unsigned value</li>
-<li>No checks whether a larger integer value is put into a shorter variable</li>
-</ul>
-
-
-<p>That&rsquo;s why in our source code hides one integer number multiply by one integer number, and leads software fiery crash. Of cause, sometimes, we can rely on static analysis tool such as Klocwork, cppcheck, but not all of problems can be filtered by tool, human shall participate in the process of software creation. As these reason, programmer who is programming in C/C++ language shall be carefully deal with the calculation or convention of integer variable, and it shall be basic knowledge of C/C++ programmer. That&rsquo;s why I act Longevity Monk who from <a href="http://en.wikipedia.org/wiki/A_Chinese_Odyssey" title="A Chinese Odyssey in Wikipedia">A Chinese Odyssey</a> here.</p>
-
-<p><img src="/images/2013-04-27/tangseng.jpeg" title="Longevity Monk" alt="Alt text" /></p>
-
-<p>It&rsquo;s time to start the puzzle game, please spot out the bomb which is hiden inside the code, let&rsquo;s look at this code snippet:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">dest</span><span class="p">[</span><span class="mi">50</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
-</span><span class='line'>  <span class="c1">//TODO: use dest here</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Could you please tell me is there any problem if you stop here and do not plan to go through this post? Of cause, there is a big problem once assign a negative value to parameter <code>len</code>, for example, we assign the <code>len</code> is <code>-1</code>, the program can be executed in <code>memcpy(dest, src, len)</code>, and <code>-1</code> will be casted to unsigned value <code>0xffffffff</code>, and lead the program Segmentation fault, this problem is called <strong>Signedness bug</strong>.</p>
-
-<p>Okay, let&rsquo;s see another code snippet here:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">append</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str1</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str2</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len1</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">len2</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">dest_buf</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">len1</span> <span class="o">+</span> <span class="n">len2</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="n">len1</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">dest_buf</span> <span class="o">+</span> <span class="n">len1</span><span class="p">,</span> <span class="n">str2</span><span class="p">,</span> <span class="n">len2</span><span class="p">);</span>
-</span><span class='line'>    <span class="c1">//TODO: dest_buf usage can be added here</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>How about this one, is there any problem? In case of <code>len1</code> is huge number, and <code>len1+len2</code> can be overflow to a small number. For example, <code>len1 = 4294967198</code>, and <code>len2 = 100</code>, and then <code>len1 + len2 = 4294967298 (0x100000002)</code>. We call this problem is <strong>Arithmetical overflow</strong>.</p>
-
-<p>one more, this will be easily to spot with previous experience:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#include &lt;stdio.h&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;string.h&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="kt">int</span> <span class="nf">copy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">s</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
-</span><span class='line'>    <span class="n">s</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;string is too long!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>    <span class="n">memcpy</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">buf</span><span class="p">[</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If the <code>len</code> is <code>65535</code>, the <code>s</code> will be <code>0</code>, and lead segmentation fault during <code>memcpy</code>, we call it <strong>Widthness integer overflow</strong>. So here we would like to highlight the ranges of integer, we believe professional programmer can deal it well.</p>
-
-<p><img src="/images/2013-04-27/integer-ranges.png" title="integer ranges
-" alt="Alt text" /></p>
-
-<p>And now it&rsquo;s time to review you owned source code, is there any same problem? Have you group the integer calculation invoking in some centralized place rather than spread everywhere of your program? Have you clearly understand using variable is 2bytes, 4bytes or 8bytes? signed or unsigned?</p>
-
-<p>Be careful! :\</p>
-
-<p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -317,7 +227,7 @@
     <section>
   <h1>Categories</h1>
   <ul id="categories">
-    <li class='category'><a href='/blog/categories/agile/'>agile (3)</a></li>
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
 <li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
@@ -334,6 +244,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -347,10 +261,6 @@
     
       <li class="post">
         <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a>
       </li>
     
   </ul>
@@ -373,7 +283,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Eric Zhang -
+  Copyright &copy; 2016 - Eric Zhang -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

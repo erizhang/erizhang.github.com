@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.zhangliaoyuan.com/blog/2016/03/09/know-xp/</loc>
+    <lastmod>2016-03-09T13:02:39+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://blog.zhangliaoyuan.com/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/</loc>
     <lastmod>2015-11-12T17:06:08+08:00</lastmod>
   </url>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Agile | Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2015-11-17T18:41:19+08:00</updated>
+  <updated>2016-03-10T14:21:14+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -14,11 +14,105 @@
 
   
   <entry>
+    <title type="html"><![CDATA[敏捷扫盲之XP(Extreme Programming)篇]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2016/03/09/know-xp/"/>
+    <updated>2016-03-09T13:02:39+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2016/03/09/know-xp</id>
+    <content type="html"><![CDATA[<h2>背景</h2>
+
+<p>常常被很多朋友问到关于XP的问题，如什么是XP，什么又是工程实践，跟敏捷啥关系等等这样的问题。相信这些看似简单的问题，有很多人抱有同样的疑问。</p>
+
+<p>本文旨在帮助工程师了解XP的知识点，更深入的话题请参考扩展阅读，对某一话题的辩论请移步至相应辩论区的文章，本文只做基本解释，不做更深入探讨。如果有陈述谬误，请在评论区注明，非常感谢。</p>
+
+<h2>什么是XP？<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></h2>
+
+<p>XP是Extreme Programming的缩写，中文译为极限编程，是Kent Beck<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人在上世级九十年代发明的一种软件工程方法。极限编程是一种强调团队工作的工作方式，它是多种敏捷方式的一种。与Scrum不同的是，Scrum是一种工作方式的框架，从组织到团队的设计，而XP关注的是具体的工程技术实践。XP旨在通过工程实践的合理搭配使用，使开发者们能够自信地响应客户需求。强调<strong>反馈环</strong>机制，客户与研发团队之间的反馈环，测试与开发的反馈环，具体代码实现跟单元测试之间的反馈环，结对之间的反馈环。极限编程认为在软件研发过程中，变化是无所不在的，人们不应回避变化，而应该适应变化，通过对反馈的检视，去适应变化。
+<img src="/images/2016-03-09-know-xp/Extreme_Programming.svg.png" alt="Alt" /> <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>在XP中，常见的工程实践有：</p>
+
+<h3>测试驱动开发 (TDD: Test-Driven Development)<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></h3>
+
+<p>也有人称之为单元测试先行。这是一种编程方式，在传统的瀑布软件开发中，人们习惯把单元测试当做测试的一部分，认为编程就是指产品代码的实现，只有在产品代码实现之后才能编写单元测试去验证代码的实现，在编程的过程中，人们更关注实现的部分，即所谓的<strong>HOW</strong>，单元测试是后置的。但是，在TDD中，单元测试被认为是描述单元需求（大部分是函数的需求）一种手段，测试用例成为一种自动化的单元测试代码，首先通过单元测试确定要实现什么，即所谓<strong>WAHT</strong>的部分，再实现产品代码，即<strong>HOW</strong>的部分，产品代码的编写始终以需求来驱动。</p>
+
+<p><img src="/images/2016-03-09-know-xp/red_green_refactor.jpg" alt="Alt" /></p>
+
+<p>测试驱动开发的原理是：</p>
+
+<ul>
+<li>没有单元测试，不实现任何功能代码；</li>
+<li>只编写仅能代表一种失败情况的测试代码；</li>
+<li>只编写恰好能通过单元测试的产品代码。</li>
+</ul>
+
+
+<h3>验收测试驱动开发(ATDD)</h3>
+
+<p>ATDD是Acceptance Test-Driven Development的缩写。很多的工程师把它理解为自动化测试驱动开发（Automatic Test Driven Development），因为在很多公司在强调测试的自动化，其实这两者之间并没有太大的联系。ATDD强调的也是需求的澄清，通过举例的手段对用户故事需求进行澄清，再接着让这些例子变成一个个的测试用例，在功能需求被实现后，用这些测试用例去验证功能实现是否满足需求，而这需求的澄清和测试用例的实现是前置在具体的开发实现之前的。因为是通过举例的形式来描述功能的需求说明，也称之为SbE（Specification by Example，中文译为实例化需求），其同样要求测试前置。可以比较着TDD的概念来理解，TDD是对函数级别的需求说明，再驱动实现，而ATDD是对用户故事的级别的需求说明，分析，再驱动实现，他们都要求测试前置，即关注<strong>WHAT</strong>。</p>
+
+<p><img src="/images/2016-03-09-know-xp/SbE.png" height="300" width="400" title="SbE" alt="Alt" /></p>
+
+<p>而测试自动化是一种缩短反馈周期，实现回归测试（Regression Test）的手段。结合着持续集成系统，可以实现一键自动化的集成与部署。</p>
+
+<h3>结对编程</h3>
+
+<p>结对编程（Pair Programming），即两个人一起编写代码，共享显示器及键盘，一位同事担任的是navigator的角色，另一位是driver的角色。结对编程的前提是代码集体所有制（Collective Code Ownership），即代码为团队所共有，团队为代码的质量共同承担责任。一般人理解结对编程是两个人干一件事，是对人力资源的浪费，实则不然。因为：</p>
+
+<ul>
+<li>结对编程可以及时的完成结对代码审查，减少代码的缺陷率</li>
+<li>结对编程可以帮助人员的能力提升</li>
+<li>结对编程可以帮助攻关</li>
+<li>结对编程可以提高编程工作的专注度</li>
+</ul>
+
+
+<p>想了解更多结对编程的内容，可以参考之前的文章：<a href="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/" title="Pair Programming">关于结对开发的那些事儿</a></p>
+
+<h3>持续集成 (Continuous Integration)</h3>
+
+<p>持续集成在XP的实践中占据着非常重要的位置。首先要了解什么是<strong>集成</strong>，然后再讨论<strong>持续</strong>的概念。集成无非就是收集、打包和验证的过程，这就是集成的概念。软件的代码由不同的人编写，需要将所有的代码从不同的位置收集到一处，然后进行编译，这就是一般SCM的概念（即软件配置管理），将编译出来的二进制文件部署到验证环境中，进行软件的验证，这就是一般传统理解的测试 <sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>的概念。
+为了让产品可以持续地交付到客户那里，从客户处获得客户的反馈，就有必要让产品可以持续地集成，加快集成的频率，缩短集成的周期，这就是持续的概念。为了让集成能够持续地运转，我们就有了持续集成系统，如Jekins帮助我们管理一个个持续集成的任务，Git或subversion做软件的配置管理，用自动化的编译工具对代码进行打包（因不同的开发语言而不同），自动化的单元测试，自动化的验收测试。提供一个清晰快速的反馈机制等等。进而可以演化为通过持续集成系统可以对整个开发工作进行可视化，精益方法运用到持续集成的工作中，指导项目的管理等等。进而延伸到持续部署、持续交付。</p>
+
+<p><img src="/images/2016-03-09-know-xp/CI.png" title="CI" alt="Alt" /> <sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></p>
+
+<p>如果XP的各个工程实践是珍珠的话，那么串起这些珍珠项链的绳子就是持续集成。</p>
+
+<h2>如何学习和实践XP</h2>
+
+<p>除了了解这些基本概念外，需要了解这些实践背后的本质：反馈环 —— 通过获得反馈，持续改进的方式来适应变化的能力。还有就是不断实践，这不像学习别的东西，听个概念就可以跟人辩驳，XP是一门实践性非常强的方法，与Scrum和Kanban有着非常大的不同，Scrum是组织框架设计，Kanban适用于团队局部优化，而XP却是实打实地技术实践。小到可以从单个工程师编写代码养成良好地单元测试的习惯，再到两个人结对开发，进行可以做团队的持续集成，大到整个产品级别或系统级别的持续集成和交付。不积跬步无以至千里；不积小流，无以成江海。</p>
+
+<h2>结尾</h2>
+
+<p>最后希望本文能够对需要了解XP的同学有所帮助，也希望有更多的朋友能够一道学习，我们不只是要成为了一名把活干完的工程师，而是成为一名如何把活干好的工程师，不是成为了一名只想着构造的工程师，而是在构造之前会想要构造什么的工程师，我们是要制造产品，而不是次品，我们不是码农，而是匠人。</p>
+
+<p>&ndash; EOF &ndash;</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>更多内容可以参考<a href="http://www.extremeprogramming.org/" title="XP">Extreme Programming: A gentle introduction</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Kent Beck也是敏捷宣言的十七位发起人之一，<em>Test-Driven Development: By Example</em>的作者<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>图片来源https://en.wikipedia.org/wiki/Extreme_programming#/media/File:Extreme_Programming.svg<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>可阅读Uncle Bob的<a href="http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html" title="TDD cycles">The Cycles of TDD</a><a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>这里指狭义理解的测试概念，测试的概念可以往验证、探索等各个方向延伸讨论，这里不做展开。<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>图片来自http://www.continuousautomation.com/<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[关于结对开发的那些事儿]]></title>
     <link href="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/"/>
     <updated>2014-11-11T21:12:00+08:00</updated>
     <id>http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work</id>
-    <content type="html"><![CDATA[<p>今天是"双11"，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
+    <content type="html"><![CDATA[<p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
 
 <p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
 
@@ -57,7 +151,7 @@
 
 <p>讨论敏捷，肯定会提到敏捷宣言等等各种资料、引用、权威著作等等。但是这里水太深，一般人一时半会儿还真理解不了。那么，我想从我个人的理解试着说说，如果读者朋友觉得我说错了，也请给个comments，提醒一下，当然以后就称我为编程教练好了，如果你赞同的话，那以后就叫我为敏捷教练好了.</p>
 
-<p>我觉得在敏捷里一个比较重要的概念就是Inspect&amp;Adapt，检视并适应。如果理解了这个概念，顺着往下理解，就很容易了。这里举个例子，有汽车驾驶经验的人一般都知道，从一个驾驶新手到熟练驾驶这个周期不会太长，一般每天上下班开车的话，一两个月就够了。作为在全国第二拥堵城市开车的我来说，从新手，到自认为老手，也就不到两个月，为什么会这么快呢？前两个月还战战兢兢，过两个月就敢跟别人卡车位，原因出在上班路上有太多的锻炼机会，从家里到单位，红绿灯几十个，十字路口N个，加上咱们国家特有的着急文化，路上状况百出，极其复杂，这样，给了我们学习足够的<strong>频度</strong>进行锻炼。另一个原因，汽车驾驶中，从做出每一个驾驶动作，到驾驶员获得<strong>反馈时间非常短</strong>，这样一个<strong>高频度</strong>和<strong>快反馈</strong>让我们很快获得了汽车驾驶能力的提升，因为，我们在驾驶过程中不停地做<strong>Inspect</strong>和<strong>Adapt</strong>。另一个例子是驾驶海上货轮，学习成本明显比汽车要高出许多，加上海上也没见多少红绿灯啊，<strong>频率低</strong>，货轮入港时的转舵，<strong>反馈周期长</strong>，也些原因决定了学习轮船驾驶要比汽车驾驶困难许多。由于不确定性因素，根据不断变化的情况，对反馈进行检视，然后对下一步的行动做出调整，以适应后续发展，快速的反馈减少我们应对单一反馈周期里的成本。应对不断变化的不确定因素，反馈是获得改进的唯一方式，这就不难理解"别人给你feedback是对你好"这句话了。</p>
+<p>我觉得在敏捷里一个比较重要的概念就是Inspect&amp;Adapt，检视并适应。如果理解了这个概念，顺着往下理解，就很容易了。这里举个例子，有汽车驾驶经验的人一般都知道，从一个驾驶新手到熟练驾驶这个周期不会太长，一般每天上下班开车的话，一两个月就够了。作为在全国第二拥堵城市开车的我来说，从新手，到自认为老手，也就不到两个月，为什么会这么快呢？前两个月还战战兢兢，过两个月就敢跟别人卡车位，原因出在上班路上有太多的锻炼机会，从家里到单位，红绿灯几十个，十字路口N个，加上咱们国家特有的着急文化，路上状况百出，极其复杂，这样，给了我们学习足够的<strong>频度</strong>进行锻炼。另一个原因，汽车驾驶中，从做出每一个驾驶动作，到驾驶员获得<strong>反馈时间非常短</strong>，这样一个<strong>高频度</strong>和<strong>快反馈</strong>让我们很快获得了汽车驾驶能力的提升，因为，我们在驾驶过程中不停地做<strong>Inspect</strong>和<strong>Adapt</strong>。另一个例子是驾驶海上货轮，学习成本明显比汽车要高出许多，加上海上也没见多少红绿灯啊，<strong>频率低</strong>，货轮入港时的转舵，<strong>反馈周期长</strong>，也些原因决定了学习轮船驾驶要比汽车驾驶困难许多。由于不确定性因素，根据不断变化的情况，对反馈进行检视，然后对下一步的行动做出调整，以适应后续发展，快速的反馈减少我们应对单一反馈周期里的成本。应对不断变化的不确定因素，反馈是获得改进的唯一方式，这就不难理解&#8221;别人给你feedback是对你好&#8221;这句话了。</p>
 
 <p><img src="/images/2014-09-02-talk-about-agile/inspect_adapt_cycle.png" title="Inspect &amp; Adapt" alt="Alt text" /></p>
 
