@@ -197,6 +197,107 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-05T22:46:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>1. install <code>zsh</code>:</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># install zsh-5.0.7
+</span><span class='line'># prerequisite: gcc ncurses-devel readline-devel pcre-devel zlib-devel
+</span><span class='line'>curl -L http://jaist.dl.sourceforge.net/project/zsh/zsh/5.0.7/zsh-5.0.7.tar.bz2 | tar jx
+</span><span class='line'>cd zsh-5.0.7/
+</span><span class='line'>./configure --prefix=/usr/local/zsh/5.0.7 --enable-cap --enable-pcre --enable-multibyte --disable-gdbm
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>sudo alternatives --install /usr/local/bin/zsh zsh /usr/local/zsh/5.0.7/bin/zsh 50000</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>2. set the default shell to <code>zsh</code>:</h2>
+
+<h3>2.1 update the <code>/etc/shells</code>, append <code>zsh</code> path there.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/bin/sh
+</span><span class='line'>/bin/bash
+</span><span class='line'>/sbin/nologin
+</span><span class='line'>/usr/bin/sh
+</span><span class='line'>/usr/bin/bash
+</span><span class='line'>/usr/sbin/nologin
+</span><span class='line'>/bin/tcsh
+</span><span class='line'>/bin/csh
+</span><span class='line'>/usr/local/bin/zsh
+</span><span class='line'>/usr/local/zsh</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2.2 change the default shell to <code>zsh</code></h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chsh -s `which zsh`
+</span><span class='line'>sudo shutdown -r 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Install the <code>oh-my-zsh</code></h2>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. cutomize the theme of terminal</h2>
+
+<p><a href="http://www.if-not-true-then-false.com/2012/solarized-linux/">http://www.if-not-true-then-false.com/2012/solarized-linux/</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'>gnome-terminal-colors-solarized/install.sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ndash; EOF &ndash;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a></h1>
     
     
@@ -337,191 +438,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-08-15T22:11:18+08:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:11 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>These days, I&rsquo;m trying to edit some Chinese text documents edit in LaTeX language. It&rsquo;s not a problem in Windows since Chinese font support, and Windows OS is popular used in Chinese forum. For English supporting is not a problem in LaTeX, but Chinese edit problem I encounter under Mac OS. I&rsquo;m trying to make the notes to remember the steps here in case of somebody needs it as well.</p>
-
-<h3>Step 1.  Choose good editor and compiler package</h3>
-
-<p>As friend recommend, I used <a href="http://www.texstudio.org" title="texstudio">TeXstudio</a> for my LaTeX document editing, this tool was quite good when I used under Windows, I suppose it will do great job under Mac OS as well. And Install the <a href="http://www.tug.org/mactex/" title="mactex">MacTeX</a> the LaTeX compiling supporting.</p>
-
-<h3>Step 2. Change the <code>PDFLaTeX</code> command to <code>XeLaTeX</code></h3>
-
-<p>The first problem I encounter is when I finish a sample document editing, and tried to compile it, TeXstudio will use the default command <code>PDFLaTeX</code> to compile it. It works under PC, but failed under Mac system. So the first thing you need to set the default command to <code>XeLaTeX</code>.
-In TeXstudio, you can change the option via &ldquo;Preferences&rdquo; -> &ldquo;Build&rdquo; -> &ldquo;Default compiler&rdquo;, select the value as <code>XeLaTeX</code>. Now if you compile this document, it works fine:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span><span class='line'><span class="k">\title</span><span class="nb">{</span>Hello World<span class="nb">}</span>
-</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
-</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
-</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span><span class='line'>  <span class="k">\maketitle</span>
-</span><span class='line'>  This is my first sound.
-</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and the result is like this:</p>
-
-<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/first-result.png" title="works well" alt="Alt text" /></p>
-
-<h3>Step 3. Support Chinese words editing</h3>
-
-<p>But if we change the English content to Chinese, it doesn&rsquo;t work well, such like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span><span class='line'><span class="k">\title</span><span class="nb">{</span>你好，世界<span class="nb">}</span>
-</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
-</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
-</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span><span class='line'>  <span class="k">\maketitle</span>
-</span><span class='line'>  这是我呐喊出来的第一句话。
-</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Except the English words can be displayed well, everything is mass, unreadable. So we need use <code>ctex</code> package to support it. so add the <code>\usepackage{ctex}</code> after <code>\documentclass{article}</code>, the result is still bad. So I realize the problem might be caused by the fonts supporting. And then I inserted these lines before <code>\begin{document}</code>, the document like this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>article<span class="nb">}</span>
-</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>ctex<span class="nb">}</span>
-</span><span class='line'><span class="k">\title</span><span class="nb">{</span>你好，世界<span class="nb">}</span>
-</span><span class='line'><span class="k">\author</span><span class="nb">{</span>Mac<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKmainfont</span><span class="nb">{</span>Kaiti TC Regular<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKsansfont</span><span class="nb">{</span>Songti TC Regular<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKmonofont</span><span class="nb">{</span>Heiti TC Regular<span class="nb">}</span>
-</span><span class='line'><span class="k">\date</span><span class="nb">{</span>2015, July 4<span class="nb">}</span>
-</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span><span class='line'>  <span class="k">\maketitle</span>
-</span><span class='line'>  这是我呐喊出来的第一句话。
-</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and change the encoding to <code>UTF-8</code></p>
-
-<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/encoding.png" width="500" title="select encoding" alt="Alt text" /></p>
-
-<p>then the final result likes this:</p>
-
-<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/chinese-result.png" width="500" title="Chinese result" alt="Alt text" /></p>
-
-<h3>Step 4. How do I know the font&rsquo;s name</h3>
-
-<p>As you see, I insert these line about the font supporting, but you may ask why I know the Chinese font name. Yes, it&rsquo;s tricky, :p
-Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can find the font name from the font dropbox, after you selected a font, the font text box will show its name. See, that&rsquo;s why I know the font name exactly.</p>
-
-<p><img src="/images/2015-08-15-how-to-support-latex-chinese-editing-in-texstudio-under-mac/font-select.png" width="400" title="font select" alt="Alt text" /></p>
-
-<h3>In the eend</h3>
-
-<p>Here I give an example of the Chinese words editing, hope it&rsquo;s useful for your reference.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='LaTeX'><span class='line'><span class="k">\documentclass</span><span class="nb">{</span>ctexart<span class="nb">}</span>
-</span><span class='line'><span class="c">%\usepackage{ctex}</span>
-</span><span class='line'><span class="k">\usepackage</span><span class="nb">{</span>xeCJK<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKmainfont</span><span class="nb">{</span>Kaiti TC Regular<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKsansfont</span><span class="nb">{</span>Songti TC Regular<span class="nb">}</span>
-</span><span class='line'><span class="k">\setCJKmonofont</span><span class="nb">{</span>Heiti TC Regular<span class="nb">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">\tableofcontents</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">\begin</span><span class="nb">{</span>abstract<span class="nb">}</span>
-</span><span class='line'>这是在文件的开头的介绍文字.本文的主要话题的简短说明.
-</span><span class='line'><span class="k">\end</span><span class="nb">{</span>abstract<span class="nb">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">\section</span><span class="nb">{</span> 前言 <span class="nb">}</span>
-</span><span class='line'>在该第一部分中的一些额外的元素可以被添加。巴贝尔包将采取的翻译服务.
-</span><span class='line'>
-</span><span class='line'><span class="k">\section</span><span class="nb">{</span>关于数学部分<span class="nb">}</span>
-</span><span class='line'>在本节中的一些数学会使用数学模型含中文字符显示。
-</span><span class='line'>
-</span><span class='line'>這是一個傳統的中國文字
-</span><span class='line'>
-</span><span class='line'><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>-EOF-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -538,7 +454,7 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
     <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
-<li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (11)</a></li>
 <li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
 <li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
 <li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
@@ -556,6 +472,10 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
       </li>
     
       <li class="post">
+        <a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -565,10 +485,6 @@ Firstly, I installed Microsoft Office, and I open the Microsoft Word, you can fi
     
       <li class="post">
         <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
       </li>
     
   </ul>

@@ -5,11 +5,21 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Exception Has Been Normal - Actionary</title>
+  <title>Customize Your Terminal - Actionary</title>
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one &hellip;">
+  <meta name="description" content="1. install zsh: 1
+2
+3
+4
+5
+6
+7
+8
+# install zsh-5.0.7
+# prerequisite: gcc ncurses-devel readline-devel pcre-devel zlib-devel
+curl -L http://jaist.dl. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +28,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal">
+  <link rel="canonical" href="http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
@@ -80,7 +90,7 @@
   
   <header>
     
-      <h1 class="entry-title">Exception Has Been Normal</h1>
+      <h1 class="entry-title">Customize Your Terminal</h1>
     
     
       <p class="meta">
@@ -89,24 +99,86 @@
 
 
 
-<time class='entry-date' datetime='2013-05-30T18:31:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:31 pm</span></time>
+<time class='entry-date' datetime='2015-12-05T22:46:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
+<div class="entry-content"><h2>1. install <code>zsh</code>:</h2>
 
-<p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># install zsh-5.0.7
+</span><span class='line'># prerequisite: gcc ncurses-devel readline-devel pcre-devel zlib-devel
+</span><span class='line'>curl -L http://jaist.dl.sourceforge.net/project/zsh/zsh/5.0.7/zsh-5.0.7.tar.bz2 | tar jx
+</span><span class='line'>cd zsh-5.0.7/
+</span><span class='line'>./configure --prefix=/usr/local/zsh/5.0.7 --enable-cap --enable-pcre --enable-multibyte --disable-gdbm
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>sudo alternatives --install /usr/local/bin/zsh zsh /usr/local/zsh/5.0.7/bin/zsh 50000</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&hellip;. This is a temporary solution for traffic jam issue, but currently, it&rsquo;s becoming a final solution, it&rsquo;s normal for administration department.</p>
 
-<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &ldquo;workaround&rdquo;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &ldquo;workaround&rdquo; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&hellip;.</p>
+<h2>2. set the default shell to <code>zsh</code>:</h2>
 
-<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&rsquo;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&rsquo;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
+<h3>2.1 update the <code>/etc/shells</code>, append <code>zsh</code> path there.</h3>
 
-<p>If exception has been normal, around of you use workaround solve another problem of workaround, it means the situation around of you has been worse, you need to consider quit only if you can solve it. :\</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/bin/sh
+</span><span class='line'>/bin/bash
+</span><span class='line'>/sbin/nologin
+</span><span class='line'>/usr/bin/sh
+</span><span class='line'>/usr/bin/bash
+</span><span class='line'>/usr/sbin/nologin
+</span><span class='line'>/bin/tcsh
+</span><span class='line'>/bin/csh
+</span><span class='line'>/usr/local/bin/zsh
+</span><span class='line'>/usr/local/zsh</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h3>2.2 change the default shell to <code>zsh</code></h3>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chsh -s `which zsh`
+</span><span class='line'>sudo shutdown -r 0</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>3. Install the <code>oh-my-zsh</code></h2>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h2>4. cutomize the theme of terminal</h2>
+
+<p><a href="http://www.if-not-true-then-false.com/2012/solarized-linux/">http://www.if-not-true-then-false.com/2012/solarized-linux/</a></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'>gnome-terminal-colors-solarized/install.sh</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>&ndash; EOF &ndash;</p>
 </div>
 
 
@@ -122,12 +194,12 @@
 
 
 
-<time class='entry-date' datetime='2013-05-30T18:31:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:31 pm</span></time>
+<time class='entry-date' datetime='2015-12-05T22:46:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/thinking/'>thinking</a>
+    <a class='category' href='/blog/categories/programming/'>programming</a>
   
 </span>
 
@@ -136,7 +208,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/" data-via="zhangliaoyuan" data-counturl="http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal/" data-via="zhangliaoyuan" data-counturl="http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -149,10 +221,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/04/27/take-care-of-your-integer-variable/" title="Previous Post: Take care of your integer variables">&laquo; Take care of your integer variables</a>
+        <a class="basic-alignment left" href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/" title="Previous Post: How to successfully host and facilitate coderetreat">&laquo; How to successfully host and facilitate coderetreat</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/06/25/bee-watcher/" title="Next Post: Bee Watcher">Bee Watcher &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2016/03/09/know-xp/" title="Next Post: 敏捷扫盲之XP(Extreme Programming)篇">敏捷扫盲之XP(Extreme Programming)篇 &raquo;</a>
       
     </p>
   </footer>
@@ -240,8 +312,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/';
-        var disqus_url = 'http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/';
+        var disqus_identifier = 'http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal/';
+        var disqus_url = 'http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal/';
         var disqus_script = 'embed.js';
       
     (function () {

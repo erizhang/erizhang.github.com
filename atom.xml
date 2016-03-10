@@ -4,7 +4,7 @@
   <title><![CDATA[Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2016-03-10T14:21:14+08:00</updated>
+  <updated>2016-03-10T15:03:55+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -104,6 +104,87 @@
 </ol>
 </div>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Customize Your Terminal]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal/"/>
+    <updated>2015-12-05T22:46:11+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2015/12/05/customize-the-terminal</id>
+    <content type="html"><![CDATA[<h2>1. install <code>zsh</code>:</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># install zsh-5.0.7
+</span><span class='line'># prerequisite: gcc ncurses-devel readline-devel pcre-devel zlib-devel
+</span><span class='line'>curl -L http://jaist.dl.sourceforge.net/project/zsh/zsh/5.0.7/zsh-5.0.7.tar.bz2 | tar jx
+</span><span class='line'>cd zsh-5.0.7/
+</span><span class='line'>./configure --prefix=/usr/local/zsh/5.0.7 --enable-cap --enable-pcre --enable-multibyte --disable-gdbm
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>sudo alternatives --install /usr/local/bin/zsh zsh /usr/local/zsh/5.0.7/bin/zsh 50000</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>2. set the default shell to <code>zsh</code>:</h2>
+
+<h3>2.1 update the <code>/etc/shells</code>, append <code>zsh</code> path there.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/bin/sh
+</span><span class='line'>/bin/bash
+</span><span class='line'>/sbin/nologin
+</span><span class='line'>/usr/bin/sh
+</span><span class='line'>/usr/bin/bash
+</span><span class='line'>/usr/sbin/nologin
+</span><span class='line'>/bin/tcsh
+</span><span class='line'>/bin/csh
+</span><span class='line'>/usr/local/bin/zsh
+</span><span class='line'>/usr/local/zsh</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2.2 change the default shell to <code>zsh</code></h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chsh -s `which zsh`
+</span><span class='line'>sudo shutdown -r 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Install the <code>oh-my-zsh</code></h2>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. cutomize the theme of terminal</h2>
+
+<p><a href="http://www.if-not-true-then-false.com/2012/solarized-linux/">http://www.if-not-true-then-false.com/2012/solarized-linux/</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'>gnome-terminal-colors-solarized/install.sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ndash; EOF &ndash;</p>
 ]]></content>
   </entry>
   
@@ -2315,65 +2396,6 @@ client@client-Workstation:~/tmp/a$
 <p>Be careful! :\</p>
 
 <p><em>(Knowledge I learned from <a href="http://www.amazon.com/Computer-Systems-A-Programmers-Perspective/dp/013034074X" title="Amazon link">Computer Systems: A programmer&rsquo;s perspective</a>, and emphasize the mindset in secure coding course, if you forget the knowledge, hope this post can remind you pick your book up.)</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我为什么翻译《程序员度量》—— 不以团队建设为目的的度量都是耍流氓]]></title>
-    <link href="http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics/"/>
-    <updated>2013-04-18T10:51:00+08:00</updated>
-    <id>http://blog.zhangliaoyuan.com/blog/2013/04/18/why-i-translate-codermetrics</id>
-    <content type="html"><![CDATA[<p>IT界大多数管理者都是从一线研发走过来的，我也如此，虽然，我现在又在尝试成为一名合格的程序员。</p>
-
-<p>很久以来的概念是，程序员的工作很难进行量化，你很难说写这一段代码真正需要花多少的时间，他坐在那里发愣，你很难说他是真的在发愣，还是在思考程序的逻辑实现，他的显示器屏幕在滚动，你很难发觉是他编写好的程序输出，还是他刚执行了几个<code>less</code>命令，或者执行了几个命令行批处理，打印出来应付你觉察的眼睛，他的键盘快速在响，你很难认为他不是在聊QQ或是在发微博&hellip;.以致于有段时间，办公室里流传着程序员需要读一读《演员的自我修养》这样的笑话，程序员工作的量化，取决于他的演技水平。</p>
-
-<p>又记得当年做team leader时，部门里实行TPE(Team Performance Evaluation)政策，定好诸多KPI，如完成的story points，支持其他团队次数，bug数量，bug修改时间，是否正确填写各种报表等等，每个迭代周期结束后，由分管的各种manager或owner打分，加权计算，最后得出一张团队绩效排名表，前三名给予奖励，而排在后面的总是工作在愧疚与难堪当中，不幸的是，我们组总是在这样的难堪中。我不敢妄加评论其好坏，只是在我们团队决心参与这场得分游戏后，我们连续获得了靠前的排名，但团队能力水平并没有因此而得到真正的提高，反而我有一种参与了这种斤斤计较的得分游戏的愧疚。</p>
-
-<p>后来成为研发经理，对程序员度量这种事情更加萦绕在脑中，我一直很纠结于TPE给我带来的种种疑惑，曾带着问题请教过各路“大师“，也曾在社区活动中将这个话题提交到open space中与同行探讨，但结果总是不尽如人意，不是强调从人性的角度，提倡self management，就是从管理学的角度给我制定更多的KPI。</p>
-
-<p>带着疑问和不解，经朋友介绍，看到了<a href="http://www.amazon.com/Codermetrics-Analytics-Improving-Software-Teams/dp/1449305156" title=" &quot;Codermetrics"><em>Codermetrics: Analytics for Improving Software Teams</em></a>，我不能说这是一副包治百病的灵丹妙药，但是，多少帮助我澄清了心头的一些疑惑。看过《点球成金》(<a href="http://www.imdb.com/title/tt1210166/?ref_=fn_al_tt_1" title="moneyball">moneyball</a>)这部电影的朋友可能会记得，当运动家队的总经理Bill因为资金的问题而陷入困境时，真正帮助他走出困境，走向巅峰的，不是哪个大牌球员，而是一个小小的数据分析员。他们认为一个出色的球队在哪些位置需要什么样的球员，定好球队的profile，然后从二线球员中，完全可以找出满足这个条件的球员，充实团队的profile，再根据数据做出相应调整，从而使球队获得了巨大成功。</p>
-
-<p><a href="http://book.douban.com/subject/21365482/" title=" &quot;程序员度量">《程序员度量:改善软件团队的分析学》</a>
-这本书无异于是软件开发行业中的《点球成金》，作者认为，软件开发同样如此，我们的目标是打造成功的团队，而不是blame某一个程序员的绩效表现。确定好这样的目标之后，围绕团队和组织的目标，我们知道成功的团队模型应该是怎么样的，这可以从已知成功的团队中抽象出来，由此选择需要的程序员个体进入这样的团队，适当做出调整，打造成功的团队。作者同样在书中，对团队成功从不同的维度进行度量，以确定度量指标。</p>
-
-<p>而之于团队和程序员的度量，应该从多个维度进行，从产品类型的不同，从角色的要求不同等等，单一的数据可能毫无意义，但数据的组合可能会帮助我们发现隐藏在数据背后的洞察力。跟踪一段时间的响应度量，可以帮助我们对现实的工作做出调整，不断完善，做到可持续性。</p>
-
-<p><img src="http://blog.zhangliaoyuan.com/images/2013-04-18-why-i-translate-codermetrics/codermetrics-cn.jpg" title="codermetrics Chinese version coverpage" alt="Alt text" /></p>
-
-<p>主要内容包括：</p>
-
-<ul>
-<li>学习如何通过程序员度量改变长期以来的假设，并且改善团队动态。</li>
-<li>获得将程序员度量集成到现有流程的建议。</li>
-<li>提出正确的问题来确定软件开发管理者需要收集的数据类型。</li>
-<li>使用度量来测量一段之间之后的程序员个体的技能和团队效率。</li>
-<li>确定每个程序员对团队所作的贡献。</li>
-<li>分析对所开发的软件及其特性的响应，并且验证是否正朝着团队和组织目标而努力。</li>
-<li>建设更好的团队，通过使用程序员度量来进行人员调整和补充。</li>
-</ul>
-
-
-<p>此外，作者还是一个棒球迷，用各种与球类运动类比的手法，比较形象地把一些晦涩难懂的概念表达出来，从这一点看，还是比较吸引人的，起码不会读起来太枯燥。</p>
-
-<p>作为一支球队，我们需要知道这些角色的组成应该达到一个什么样的水平，那么同样如此，软件开发团队也需要这样的角色来组成团队的profile。</p>
-
-<p>作者将软件开发团队中的角色与球队当中的角色对应起来：</p>
-
-<ul>
-<li>激励者，那些可真正激励团队，有助于凝聚团队的人，是团队的助推剂。</li>
-<li>得分手，那些面对棘手难题，攻关能够迎上的人，攻克开发过程中的难题，在产品的实现中有较多产出的人。</li>
-<li>防守专家，那些可以有助于保护团队免受外界干扰的人，如测试人员等，因为他们减少了团队bug的输出，从这个意义上来讲也是一个很好的防守。</li>
-<li>全能队员，那些什么都可以做的蓝领们，哪里需要哪里搬，多能就是他们最擅长的事，不管是让他去做代码的编写，特性的测试，还是技术支持，他们都能做，我是团队一块砖，哪里需要哪里搬。</li>
-</ul>
-
-
-<p>那么，我们需要如何定义度量指标呢，作者同样从体育运动中将一些概念延伸出来，对技能的度量有：得分，多能，火力，助攻，进攻影响力，救援，抢断，活动范围，防守影响力，失误，错误等。这样，我们可以很容易的定义出，什么样的程序员，他在这些度量指标上的分数如何？能够通过数据确定其后面的洞察力才是最牛B的事。</p>
-
-<p>而对团队产品的度量，作者引用了响应度量：胜场，胜场速度，胜率，推动力，输场，输场速度，罚球，罚球胜场比，增益，增速，加速度，胜场排名，能力排名等。而不同类型的产品，其分数的分布也是不同的。</p>
-
-<p>而最后定义的价值度量，是一种量化个体技能如何在团队中产生价值的指标：影响力，效率，领先份额，胜场份额，输场份额，团队合作，守场，爆发力，战斗力等，而团队在不同的成长阶段，其值的分布也是有区别的。真正的度量，应该是以团队建设为目标，好的度量会告诉我们团队目前在哪？团队的方向在哪？团队现在要解决什么问题？度量不是评级。度量的使用是一个不断试错的过程，建立良好的数据收集方式，选择性的挑选度量指标，评估结果并调整，建立可供讨论的平台是我们接下来可以做的事。</p>
-
-<p>基于以上表述，个人觉得国内会有很多人与我有相同的问题需要解决，说不定这本书还能起到一些帮助。在朋友的鼓励下，应承下本书的翻译工作，但发现翻译工作真的是体力活，一是要求把原书的原意翻译给大家，二又得保证适合中文阅读习惯，工作量非常大，对于完全没有书本翻译经验的我来说，这是一个无法完成的任务，能找到最佳拍档真的很不容易，多谢有几位好朋友的加入，本书才得以完成出版，在这里要对他们三呼万岁，谢主隆恩。后来，圈子里的朋友告诉我，做外语书翻译是最吃力不讨好的事，翻得差了，被人骂，翻得好，读者会说是原作者写得好。现在想想，中文译本的书是否好读，不仅仅取决于原作者的水平，翻译者的贡献可谓功不可没。</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="To be honest, it&rsquo;s not easy to understand the data binding and related DOM element updating via d3js, acutally, it&rsquo;s a basic of d3js. &hellip;">
+  <meta name="description" content="In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,130 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/03/misunderstanding-of-unit-testing/">Misunderstanding of Unit Testing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-03T22:01:06+08:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>10:01 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In software development, unit testing is used for method/function verification. Most of people agree that unit testing helps on software quality improvement, but no many people deep dive. Have you really understand the relationship between unit testing and quality?</p>
+
+<p>Most of people knows while coding a method/function, the corresponding unit testing shall be added as well. But, why? And a lot of people has misunderstanding about unit testing, I&rsquo;d like to list some ones here.</p>
+
+<h2>Misunderstandings</h2>
+
+<h3>1. Ask newbie to write unit testing</h3>
+
+<p>Who shall be the author of unit testing? definitely shall be the coder himself/herself. But the situation likes this: once you finish the function/method implementation, and use a practice called &ldquo;debug&rdquo; to verify your method/function works well, then you will think the task is done, any else (unit testing) is optional. If you are key person, another task will be assigned to you, and the unit testing always will be the low prioirty task, and finally, it&rsquo;s assigned to a newbie who has the competence to take the &ldquo;low level&rdquo; tasks.</p>
+
+<p>But unit testing purpose is to facilitate source code change, and acts as safety during coding, in TDD pratice, unit testing is used to drive development. Do you think your coding shall be driven by a newbie, how can you trust the newbie understand the requirement clearly. If you are rock climber, do you trust a newbie install a safety tool for your climbing?</p>
+
+<p>So, the correct pratice shall be experieced person do requirement analysis and write unit testing, let the newbie to implement the function/method, your unit testing case to verify the implementation is okay or not, you take the responsibility to facilitate the source change, you are the safety officer.</p>
+
+<h3>2. Expect to find bug through unit testing</h3>
+
+<p>As we know, there are two types of testing called: exploratory testing and verification testing. Unit testing is verification testing, it&rsquo;s used to verify the method/function does fulfill the requirements or not. Unit testing the executable requirement specification of the product method/function.</p>
+
+<p>The correct pratice shall be write the executable requirement as unit testing case, and implement the product method/function untill all of related unit testing cases are passed.</p>
+
+<p>If you would like to find more bug, please make exploratory testing manually, it requires experienced tester, and be more creative.</p>
+
+<h3>3. Pursue high coverage rate</h3>
+
+<p>I know, there might be a KPI in your team, the unit testing line coverage rate shall be higher 80%, function coverage rate shall be 100%, and branch coverage rate, conditional coverage rate. If you can reach 100% coverage for all of above four kinds of coverage, your manager will thumb up and say &ldquo;well done&rdquo;. We spend a lot of time to pursue high coverage rate, did you think that does it worth?</p>
+
+<p>Let&rsquo;s look below source code</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">z</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We use <code>assertEquals(2, foo(2, 2))</code> can touch all line of the code, it means the line coverage rate is 100%, but does it mean the source code has been approven okay, I don&rsquo;t think so.</p>
+
+<p>Source code metrics somehow likes the weather forecast report indicates, single metric does not make sense, you have to combine all of the metrics, and give you insight. Metrics just tell you there may be something wrong, you need to spend time deep dive in the source code.</p>
+
+<p>Some managers are used to challenge team with metrics, because they read excel daily, but never read your source code.</p>
+
+<p>Josphal has written a blog to introduce the <a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">test coverage rate role</a>, above example is from his blog.</p>
+
+<h3>4. Write unit testing for legacy code</h3>
+
+<p>I really appreciate people starts to care about the legacy code, start to make refactoring, that&rsquo;s good. But only add unit testing to legacy code without refactoring legacy code is dangerous. There is a manager required his team soruce code (including legacy code) unit testing coverage rate shall reach higher 80%, so team member spent a lot of time to write the unit testing for the legacy code, and tried their best time to cover each line of code, branch, and conditions. The unit testing totally was implemented in white-box, it means if the source code logic change, there will be unit testing case failed.</p>
+
+<p>My question is:</p>
+
+<ul>
+<li>Is your legacy code testable?</li>
+<li>Is your new added unit testing case maintainable?</li>
+</ul>
+
+
+<p>Your unit testing case will be technical debts as well as the legacy code, trust me. Several years ago, I read a post which is written by Steven Sanderson, called <a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing</a> gave a great strategy to handle legacy code unit testing according to the cost and benefit balance. The article shows the legacy code can be identfied four types according to the benefit and cost. As we know, the unit testing implementation cost depends on the source code dependancy, high code dependancy means high unit testing cost:</p>
+
+<p><img src="http://blog.stevensanderson.com/wp-content/uploads/2009/11/image.png" title="selective unit testing" alt="Alt text" /></p>
+
+<ul>
+<li><strong>Algorithm</strong>: This kind of code has complex calculation logic, but lack dependancy, all calculation is depends on the argument input value, and then give out an output. This code is exterem important, any error will lead the program computing failed. So we called it&rsquo;s high benefit and low cost, the unit testing for this kind of code is required.</li>
+<li><strong>Trivial</strong>: This kind of code has simple logic, sometimes, the method just several LoC, and there is more dependancy with other source code, we call it low benefit and low cost. So we think the unit testing for this code is optional.</li>
+<li><strong>Coordinator</strong>: This code acts as coordinator role, it coordinate methods/functions work, it helps the methods integration, and used to describe a specific functional scenario, for example, the initialization, main etc. It has a lot of dependancy with other source code, because it needs to invoke other functions/methods. We call it high cost, but low benefit, because the logic is simple. A lot of dependancies means you need to stub or mock, that&rsquo;s high cost. For legacy code, we won&rsquo;t make unit testing for it. Instead, we use functional testing or module testing to cover the sceniro requirements.</li>
+<li><strong>Overcomplicated</strong>: This kind of code has the characters of Algorithm and Coodinator code, complex logic, and has a lot of dependancies with other code. For this kind of code, we have to refactor it to Algorithm and Coordinator codes, and then based on above strategy to decide to make unit testing or not.</li>
+</ul>
+
+
+<h3>5. Treat unit testing as white-box testing</h3>
+
+<p> As academism, the unit testing is white-box testing, but I&rsquo;m hard to agree that, I suggest people write unit testing as black-box rather than white-box.</p>
+
+<p>If we write unit testing as black-box, in another words, the test cases describe the method/function requirement, as we know, there are kinds of implementations for same one requirement. If the implementation has been changed, the unit testing case still can be used to verify the method/function correct or not. But, if you implement the unit testing in white-box way, once the production code implementation changes (method/function signature is not changed), you have to update your test case as well. How bad.</p>
+
+<p>Unit testing implemention shall be align the requirement, not the implementation logic.</p>
+
+<h2>Reference:</h2>
+
+<ul>
+<li><a href="http://blog.stevensanderson.com/2009/11/04/selective-unit-testing-costs-and-benefits/" title="selective unit testing">Selective Unit Testing - Cost and Benefits</a></li>
+<li><a href="http://www.infoq.com/cn/articles/test-coverage-rate-role" title="test coverage rate role">Test Coverage Rate Role</a></li>
+</ul>
+
+
+<p>-EOF-</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -572,59 +696,6 @@ The pattern shall be like this:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/11/pair-work/">关于结对开发的那些事儿</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-11T21:12:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>今天是&#8221;双11&#8221;，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
-
-<p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
-
-<p>我们认为，结对开发是用于团队的ramp up的利器之一。团队建立，先分析人，结对开发是一种加强团队成员彼此了解的好机会，这是一种交换学习的形式，设想一下，团队里有7位同事，如果大家都曾彼此结对工作过，大家彼此的了解会更深入，哪些人擅长什么都很清楚。</p>
-
-<p>以老带新的形式进行结对，或者以交换学习新知识和新技能的需要进行结对。需要注意的是，结对的时候，两个人的能力水平差距不宜过大，这样会影响结对工作的效果。多鼓励团队成员自发结对工作，当然，做为经理，可以对结对进行调整，如job rotation的形式等等，多创造一些结对工作的机会。如两个程序员一起结对，程序员和测试人员结对，tutor跟newcomer结对等等。</p>
-
-<p>我们会问，如果大家结对，有没有什么形式来保证大家在开发过程中不会走错路？其实这个问题跟结不结对没有关系，一般来说，架构师会做一个全局的考虑来避免走错路，另外，在daily meeting上也可以通过对任务的更新来发现并避免走错路，每次会议，都问一句能力比较强的同事：有没有什么建议或不同意见？</p>
-
-<p>采用这样的结对方式，可以有效地提高团队的能力，达到团队能力的最优，我们需要的是团队能力的最优，而不是单个个体的最优。如果我们在结对的过程中发现团队的合作或配比不是最优，我们可以打乱团队，重新洗牌。</p>
-
-<p>能不能做到结对开发，这是文化的问题。我们可以通过对能力比较强的同事设定这样的KPI来解决，如，考核该员工结对培养了多少人，另外做360度feedback来考核员工，他所曾经结对过的同事给他反馈。所以我们建议，针对刚成立起来的团队，必须做到100%的结对工作，越是关键，越是困难时期，越是要快速的将团队整体的实力进行提升，而提升的过程必须是learning through work，而结对工作就是一个比较好的手段。我们可以给团队建立一个结对工作图，只有之间有结对工作，将两者之间用线连接起来，以此来跟踪团队结对工作情况。</p>
-
-<p><img src="/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
-
-<p>是不是所有工作都应该结对？很显然，不是，结对工作的目的如果是想做团队的能力培养，那么结对的工作内容应该是那些可以让一部分能力强的员工帮助这一块比较弱的员工的工作，如对某个业务模块的编程，测试用例的编写等等，而那些适合独立思考的任务，则给员工留足独立思考的空间吧。所以，员工之间可以达成一个agreement，比如，每天下午的13:00 - 16:00之间会用于pair work，而其他的时间留给各自吧。</p>
-
-<p>为了保证团队建设的可持续性，我们建议直线经理的关注点做如下分配，50%的时间用于团队人员相关事务，30%用于项目相关的事务，而20%的时间则用于hands on的团队工作，如跟团队成员以结对的形式进行工作。这样的直线经理，才能对团队的动态进行洞悉。</p>
-
-<p>其实结对工作可以让参与者完全投入，并能产生积极的工作压力，从这个角度来说，是有助于工作效率的提升，谁也不知道一个看似独自努力工作的人是不是在努力工作，但是，两个在一起努力工作的人肯定是在努力工作。当然，在这样的过程中，做为直线经理，需要关注并影响团队的负面情绪。做为结对开发的推广，我们可能通过KPI考核方式的改变，如考核合作这一块，鼓励尝试使用好的方法，双向推进，真下而上去educate你的经理，自上而上的要求你的团队成员。</p>
-
-<p>通过结对开发，我们可以有效保证产品的质量和开发效率的基础上，做好团队整体能力的提升。</p>
-
-<p>-EOF-</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -643,7 +714,7 @@ The pattern shall be like this:</p>
     <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
-<li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (11)</a></li>
 <li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
 <li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
 <li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
@@ -661,6 +732,10 @@ The pattern shall be like this:</p>
       </li>
     
       <li class="post">
+        <a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -670,10 +745,6 @@ The pattern shall be like this:</p>
     
       <li class="post">
         <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
       </li>
     
   </ul>

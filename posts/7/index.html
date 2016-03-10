@@ -9,7 +9,7 @@
   <meta name="author" content="Eric Zhang">
 
   
-  <meta name="description" content="We produce telecom equipment, the equipments will be deployed as infrastructure of telecommunication, internet etc., so it required product high &hellip;">
+  <meta name="description" content="My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/30/exception-has-been-normal/">Exception Has Been Normal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-05-30T18:31:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:31 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
+
+<p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
+
+<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&hellip;. This is a temporary solution for traffic jam issue, but currently, it&rsquo;s becoming a final solution, it&rsquo;s normal for administration department.</p>
+
+<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &ldquo;workaround&rdquo;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &ldquo;workaround&rdquo; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&hellip;.</p>
+
+<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&rsquo;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&rsquo;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
+
+<p>If exception has been normal, around of you use workaround solve another problem of workaround, it means the situation around of you has been worse, you need to consider quit only if you can solve it. :\</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -307,78 +346,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/12/programming-game-of-life-under-no-if-dot-else-dot-etc-condition-restriction/">Coderetreat: Programming Game of Life Under 'No Conditional Expression' Restriction</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-04-12T23:51:00+08:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:51 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you search this topic with &ldquo;coderetreat&rdquo;, &ldquo;no if&rdquo; or &ldquo;no conditional expression&rdquo; keywords, and if you are in coderetreat event right now, I suggest you close this topic, and after you finish the session, than open it again, and compare with your implementation, or comments your better implementation here.</p>
-
-<p>I have facilitated several coderetreat events, not master it, but experienced. When in the session with rule <strong><em>No conditional expression allowed</em></strong>, most of people will blame me why we have such restriction, or tell me WTF it&rsquo;s impossiable if we programming in C language. Minutes later, someone would ask me, shall we use &ldquo;while loop&rdquo; or &ldquo;for loop&#8221;instead of &#8220;if&rdquo;, but I always say no. And later, someone told me that programming in OO polymorphism can be done, but how in C?</p>
-
-<p>So how, is there any trick, I can only say don&rsquo;t know, but here I can give a sample of how to resolve the major logic of <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Game of Life">&ldquo;Conway&rsquo;s Game of Life&rdquo;</a>, rules of the game is:</p>
-
-<blockquote><ol>
-<li>Any live cell with fewer than two live neighbours dies, as if caused by under-population.</li>
-<li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-<li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
-<li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-</ol>
-</blockquote>
-
-<p> So we can understand the next generation state will be based on two factors: current generation state (live or dead) and live neighours amount. We can define a two-dimensional array like below diagram illustrates:</p>
-
-<p> <img src="/images/2013-04-12/rule_map.png" title="Rule Map" alt="Alt text" /></p>
-
-<p>The first row means current generation state is dead (0), for corresponding live neighbours amount, the next generation state of this cell shall be what (The value of array defined); similar, the second row means current generation state is live (1), for correspding live neighbours amount, the next generation state is defined as the value of array. The formula is: <em><strong>rule_map[current state][live neighbours amount - 1] = next generation state</strong></em>, for example, if current cell&rsquo;s state is dead, and it has 3 live neighbours, the result will be rule_map[0][3-1] = 1. The pseudocode shall be like this:
- <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'> <span class="cm">/<em>0 means dead, 1 means live</em>/</span>
-</span><span class='line'> <span class="kt">int</span> <span class="n">rule_map</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
-</span><span class='line'>     <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span>
-</span><span class='line'> <span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'> <span class="kt">int</span> <span class="nf">next_state</span><span class="p">(</span><span class="kt">int</span> <span class="n">cur_state</span><span class="p">,</span> <span class="kt">int</span> <span class="n">neighbours</span><span class="p">)</span>
-</span><span class='line'> <span class="p">{</span>
-</span><span class='line'>     <span class="k">return</span> <span class="n">rule_map</span><span class="p">[</span><span class="n">cur_state</span><span class="p">][</span><span class="n">neighbours</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
-</span><span class='line'> <span class="p">}</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>So how to calculate the live neighbours amount of specific cell? Please you make a post for it. I&rsquo;m not going to clarify everything here, or you can comment below. Have fun. :\</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/8">&larr; Older</a>
@@ -397,7 +364,7 @@
     <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
 <li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
 <li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
-<li class='category'><a href='/blog/categories/programming/'>programming (10)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (11)</a></li>
 <li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
 <li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
 <li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
@@ -415,6 +382,10 @@
       </li>
     
       <li class="post">
+        <a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
       </li>
     
@@ -424,10 +395,6 @@
     
       <li class="post">
         <a href="/blog/2015/05/15/thy-ways-to-break-the-dependency-during-unit-testing-in-c_c++-programming/">The Ways to Break the Dependency During Unit Testing in C/C++ Programming</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/04/02/use-new-domain-name/">Domain Name of This Site Will Be Changed Soon</a>
       </li>
     
   </ul>
