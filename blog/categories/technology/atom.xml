@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technology | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/technology/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2016-11-23T17:03:47+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Build Up Octopress Style Blog Site]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog/"/>
+    <updated>2012-12-20T00:00:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2012/12/20/build-up-octopress-blog</id>
+    <content type="html"><![CDATA[<h2>Why I choose octopress?</h2>
+
+<p>I&rsquo;m a programmer, and I&rsquo;m also a lazy guy. One hand, a programmer will encounter quite a lots of questions and problems, such as algorithom making, post reading, open source community contribution, and bug fixing. On the other hand, I&rsquo;m lazy, a lazy programmer will forget a lots of things, because he is lazy, and too things to memorize, so write them done on the source code will be a good way.</p>
+
+<p>Sometimes I like blogging, just sometimes. In the eariler time, I blog on myspace in Microsoft host website, and later, they decide to shut down the host, and push me transferring my owned stuff to wordpress.com, that is a huge platform, million people blog on that, varios of functionalities even I just use little of them. I&rsquo;m not a proffsional editor, and I&rsquo;m living in China, the country where cannot visit facebook, twitter, youtube, and wordpress. But thank godness, we can visit github.com in China.</p>
+
+<p>Always expect there will be a tiny framework, programmer can post blog likes programming. Thanks godness again, octopress can do it&hellip;., thank god, thank author, thank all the people who guide me know this.</p>
+
+<h2>My octopress git repository</h2>
+
+<p>I follow the official guide to <a href="http://octopress.org/docs/setup/" title="Setup Octopress">setup octopress</a>, that I can easily install the octopress on my Linux OS. After finish this, I was recommended to build up my blogs on github, since there is programmer&rsquo;s private plots, we can plant anything what we want. And I managment my octopress and draft like below illustrates:</p>
+
+<p><img src="/images/2012-12-20-build-up-octopress-blog/my.octopress.repository.png" title="My octopress blogs git repository" alt="Alt text" /></p>
+
+<p>Then I follow up the second guideline to <a href="http://octopress.org/docs/deploying/github/" title="deploy on github">deploy octopress blogs in github</a>. But another problem is comming, during you execute <code>rake setup_github_pages</code>, rake will ask you input your blog repository in <code>git</code> protocal (actually in SSH protocal), that&rsquo;s my office network cannot support, in our office, we can support <code>https</code>. How I can resolve this issue?</p>
+
+<h2>Tips</h2>
+
+<p>Open the <code>Rakefile</code> which is under octopress folder, and jump to this code snippet:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;task :setup_github_pages, :repo do |t, args|</span>
+</span><span class='line'><span class="sr">  if args.repo</span>
+</span><span class='line'><span class="sr">    repo_url = args.repo</span>
+</span><span class='line'><span class="sr">  else</span>
+</span><span class='line'><span class="sr">    puts &amp;ldquo;Enter the read/</span><span class="n">write</span> <span class="n">url</span> <span class="k">for</span> <span class="n">your</span> <span class="n">repository</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;(</span><span class="no">For</span> <span class="n">example</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="p">)</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Repository</span> <span class="ss">url</span><span class="p">:</span> <span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">branch</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/[\w-]+.github.com/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="c1">#8216;gh-pages&amp;rsquo; : &amp;lsquo;master&amp;rsquo;</span>
+</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You can change the code to support <code>https</code>url, the code like this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">task</span> <span class="ss">:setup_github_pages</span><span class="p">,</span> <span class="ss">:repo</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
+</span><span class='line'>    <span class="n">repo_url</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">repo</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Enter</span> <span class="n">the</span> <span class="n">read</span><span class="o">/</span><span class="n">write</span> <span class="n">url</span> <span class="k">for</span> <span class="n">your</span> <span class="n">repository</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;(</span><span class="no">For</span> <span class="n">example</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span>           <span class="ow">or</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/your_username/your_username.github.com&quot;</span><span class="o">&gt;</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">your_username</span><span class="o">/</span><span class="n">your_username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">&lt;</span><span class="sr">/a&gt;&amp;rsquo;)&amp;rdquo;</span>
+</span><span class='line'><span class="sr">    repo_url = get_stdin(&amp;ldquo;Repository url: &amp;rdquo;)</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>  <span class="n">protocol</span> <span class="o">=</span> <span class="p">(</span><span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/(^git)@/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">https</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">protocol</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">git</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/:([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">user</span> <span class="o">=</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/github.com\/([^\/]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;  branch = (repo_url.match(/</span><span class="p">\</span><span class="o">/[</span><span class="p">\</span><span class="n">w</span><span class="o">-]+.</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="p">)</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">master</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>  <span class="n">project</span> <span class="o">=</span> <span class="p">(</span><span class="n">branch</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="p">?</span> <span class="n">repo_url</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/\/([^.]+)/</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="p">:</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>After that, <code>rake</code> can support <code>https</code>. Others, I only follow the official guideline, now you can see this post means I have successfully built up my blogs, and post blogs in office.</p>
+
+<p>Post blogs like programming, if you are programmer, just do it. Cheers!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Facilitate Coderetreat Global Day of 2012]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat/"/>
+    <updated>2012-12-18T10:51:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2012/12/18/facilitate-coderetreat</id>
+    <content type="html"><![CDATA[<p>Heard from Agile community, there would be codretreat global day activity, colleague Fred remind us this is a good opportunity to spread out the Agile engineering practice, and we decide to facilitate codereteat in Hangzhou city, as part of coderetreat global day 2012.</p>
+
+<h2>What&rsquo;s the coderetreat</h2>
+
+<p>Coderetreat is a day-long, intensive practice event, focusing on the fundamentals of software development and design. By providing developers the opportunity to take part in focused practice away from the pressures of &lsquo;getting things done&rsquo;, the coderetreat format has proven itself to be a highly effective means of skill improvement.</p>
+
+<p>In the day, all participants practiced below modern development practices:</p>
+
+<ul>
+<li>Pair-programming</li>
+<li>Unit test</li>
+<li>Test-Driven Development (TDD)</li>
+<li>Code refactoring</li>
+</ul>
+
+
+<h2>Rules and practice</h2>
+
+<p>In each session there were some interesting rules/limitation, to guide people go beyond the border of their programming habits, and re-think of important aspects of programming.</p>
+
+<ul>
+<li>RULE #1. Pair-programming is requried</li>
+<li>RULE #2. TDD (Test-Driven Development) is required</li>
+<li>RULE #3. Clean Code is required</li>
+<li>RULE #4. Refactoring is required, and each function logical number shall be less 4 lines</li>
+<li>RULE #5. Mouse is not allowed, and each function naming shall be follow “tell, don’t ask” principle</li>
+<li>RULE #6. No “if … else &hellip;”, “switch … case &hellip;” , “..? ..:..” condition expressions</li>
+</ul>
+
+
+<p>Beside these rules, each session is finished, programmer shall switch pair and permanent remove the previous typing code, we demand this since there would be more chance to share the idea as more as possiable, demand to remove the source code because we were willing to make programmer understand and believe they will coding better.</p>
+
+<p>We took 6 sessions for each rule, and wrap up in the end. Also had video connecting with other cities (Beijing, Shanghai, Taiyuan, Tokyo, Singapore, Hanoi, Ho Chi Minh) via google hangout.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-2.jpg" title="Discussion" alt="Alt text" /></p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-3.jpg" title="Rules Wall" alt="Alt text" /></p>
+
+<h2>Sponsor</h2>
+
+<p>This event is for free, and attendee deserve one lunch which better than pizza, and some soft drink, fruit. So we need some budget, luckly we address a mail to our head, and tell her this event is align with organization goal, and will help to promote the programming competence development in our organization, and finally, she nod for the buget plan, the cost was around 800RMB.</p>
+
+<h2>Attendee</h2>
+
+<p>Since this is an open event, we were looking forward to more programmers come from different company and industry, and coding in different programming language, it will increase the idea diversity, so we advertise on social networks. But later just come 2 persons from outside our company, it prove our advertisement was failed. So, if we plan to facilitate same event, we will advertise on some programming community will be better.</p>
+
+<p><img src="/images/2012-12-18-facilitate-coderetreat/coderetreat-1.jpg" title="I'm not in picture" alt="Alt text" /></p>
+
+<p>Of cause, the advertisement inside our company is quite good, there were more then 20 programmers coming.</p>
+
+<p><em>Suggest the number limited in 30 will better to organize.</em></p>
+
+<h2>Problem for programming</h2>
+
+<p>The problem is <a href="http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" title="Conway's Game of Life">Game of life</a>, programming language is no restrict, actually, we encourage people use strange language.</p>
+
+<p>As my feeling, the event is successful, and quite many people ask me when we will facilitate same event after then. Also, help people to build the modern programming awareness, and change the mindset of that limitation (restriction) is not impediment, instead it demends you think more, it likes the matchstick to light your thinking, open your mind.</p>
+
+<p>More pictures from Hangzhou GDCR 2012, please click <a href="http://coderetreat.org/photo/album/show?id=6456126%3AAlbum%3A18835&amp;xg_source=activity" title="GDCR2012 Hangzhou">here</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thinking | Actionary]]></title>
+  <link href="http://blog.zhangliaoyuan.com/blog/categories/thinking/atom.xml" rel="self"/>
+  <link href="http://blog.zhangliaoyuan.com/"/>
+  <updated>2016-11-23T17:03:47+08:00</updated>
+  <id>http://blog.zhangliaoyuan.com/</id>
+  <author>
+    <name><![CDATA[Eric Zhang]]></name>
+    <email><![CDATA[zhang.lyuan@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[驱魔人 ——《软件驱魔术》译者序]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism/"/>
+    <updated>2014-02-24T16:31:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2014/02/24/translating-preface-of-software-exorcism</id>
+    <content type="html"><![CDATA[<p>从《画皮》里孙俪饰演的降魔人，《倩女悠魂》里古天乐饰演的猎妖师，到《西游》里年轻的驱魔人陈玄奘（文章饰）。不知道为什么，每个故事的驱魔工作者们无一例外，都是蓬头垢面，衣衫褴褛的造型。我一直在想，是什么样的工作性质，让他们如此狼狈不堪：爬高山，钻洞穴，寂寞伴身，学会守候&hellip;&hellip;</p>
+
+<p>我本人所在项目的代码库里，包含了从上世纪八十年代到现在，跨度将近三十年的代码，这个样本都适合做代码考古了，而公司目前有几百人正在从事这套软件的维护工作，维护工作的绝大多数时间就是在与遗留代码战斗。他们需要深入代码洞穴，攀登代码树，在错综复杂的逻辑结构中跟踪每一步可能的分支结点；除了要抓到贻害一方的缺陷，并且还必须在有限的时间里完成这一切工作，这就像美剧里演的一样，一个人拿着枪指着你的头，掐着秒表，逼着你在秒表归零之前完成复杂的网络攻击任务。作者把软件维护工程师们比做软件驱魔人，这是多么贴切的比喻。我现在才惊醒，原来我身边的人本应如孙俪一样俊俏，像古天乐一样有型，似文章一般阳光清纯，而“伟大”的降妖除魔工作，却让他们一个个如降魔人，猎妖师和陈玄奘一般狼狈不堪。</p>
+
+<p>最近听到一个真实的故事：有位1990年出生的女同事，为了解决一个BUG，不得不修改一段1993年编写的遗留代码。加班到晚上八九点之时，这位女同事大发感慨“当我还只有三岁的时候，就有一位怪叔叔写了一段代码，等20年后我长熟了再修改。” 在笑喷的同时，我们也在沉思，还有多少遗留代码是我们孩提时就已经存在，并且需要我们去修改的呢？或者，我们给正在成长的幼儿园宝宝们，又准备了多少的“遗产”呢？前人挖坑，后人填坑，子子孙孙无穷尽也，这会成为我们这些软件从业者的常态吗？</p>
+
+<p>作者Bill Blunden试图通过<a href="http://www.apress.com/9781590592342" title="Software Exorcism"><em>Software Exorcism: A Handbook for Debugging and Optimizing Legacy Code</em></a>，告诉程序员们如何预防掉入软件维护的泥潭，冠冕点的说法，叫做从源头抓起。如果一旦进入缺陷的修改，如何进行调试，针对软件性能的提升，又有什么比较好的方法。从整本书的组织角度来看，条理性比较强。作者不求面面俱到，但从实用性的角度，还是给出了比较多的方法介绍和建议，如防御性编程，单元测试，软件跟踪，调试，优化，甚至调试器的内部实现，都有提及。本书非常适合初入软件维护队伍的从业者，对维护行列的老手来说，则会略觉浅显，但系统性的总结也是一个不错的参考。当然，对于编写软件的从业者来说，这也是一部值得学习的图书，第一部分关于如何预防，防止再次编写难于维护的代码就是不错的建议，同时，关于调优部分也一样受用。</p>
+
+<p>在市面上各种编程语言介绍之类的图书大行其道的当下，这样一部专门讲授如何维护遗留代码的图书就显得异外扎眼。作者并没有提及太过高深的理论或技法，让人的感觉是更多的内容都是来自作者一线维护工作中的点点滴滴的经验总结。</p>
+
+<p>参加本书翻译的几位译者都是IT从业人员，有着近十年的一线软件研发和维护经验，书中的描写更能引起一些共鸣，这也是我们将此书介绍给国内读者的初衷。当然，译者们翻译经验有限谴词造句难免会有出入或生涩之处，请读者批评指正，多多包涵。</p>
+
+<p>感谢华章图书的编辑谢晓芳，及其耐心细致的编辑工作，她是我们见过的最有耐心的一位编辑，容忍我们一次又一次的延迟交稿，如果没有她这些可贵的品质，本书不可能出版。</p>
+
+<p>感谢我们团队的小伙伴们，他们利用晚上的闲暇时光，帮助我们一起审读译稿，感谢公司给我们创造了一个开放宽松的学习实践环境，我们可以将书中所学传播到工作中，践行各种策略、方法和实践。</p>
+
+<p>我们的小伙伴们：郑建琴，王刚，余鹰伟，周峰，凌建发，宓媛珊，吴恩平（排名不分先后），感谢你们。</p>
+
+<p>译者</p>
+
+<p>于杭州，
+2014年下雪的春天
+- End -</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bee Watcher]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/06/25/bee-watcher/"/>
+    <updated>2013-06-25T17:31:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/06/25/bee-watcher</id>
+    <content type="html"><![CDATA[<p>之前与<a href="http://www.weibo.com/u/1431854415" title="Terry's Weibo">Terry</a>一起聊天，聊到一个叫做<a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">Bee Watcher</a>的故事，觉得挺有意思的。话说，一位农场主为了提高蜂蜜的产量，他在资深顾问的建议下，请了一位看蜂人(Bee Watcher)，看蜂人的任务就是监督蜜蜂采蜜，以此来提高产量。可是实际情况是，蜜蜂并没有因为有了看蜂人的存在而改变采蜜的方法，它们还是按部就班的从一朵花飞到另一朵花，飞来飞去忙个不停。一年下来，产量没有提高，农场主认为产量没有提高的原因，是因为看蜂人看得不够努力，于是雇了一位看看蜂人(Bee Watcher Watcher)来监督看蜂人的工作，可是，有了看看蜂人，看蜂人还是像过去一样努力地盯着蜜蜂们忙来忙去，并没有因为有了看看蜂人，看蜂人就眼晴睁得更大点。一年又过去了，蜂蜜的产量还是没有提高，分析原因，农场主得出了结论是因为看看蜂人监督看蜂人监督蜜蜂采蜜不够努力，于是他又雇了名看看看蜂人(Bee Watcher Watcher Watcher)来监督看看蜂人监督看蜂人监督蜜蜂采蜜的工作。一年又一年，越来越多的看看看&hellip;看峰人(Bee Watcher Watcher &hellip;.. Watcher)，产量还是没有提高，而生产成本却一年比一年高。</p>
+
+<p><img src="/images/2013-06-25/beewatcher_lg.gif" title="The Bee Watcher" alt="Alt text" /></p>
+
+<p><em>picture from <a href="http://www.drseussart.com/details/illustration/beewatcher.html" title="The Bee Watcher">The Bee Watcher - The Art of Dr. Seuss</a></em></p>
+
+<p>我很喜欢这个故事，不是因为绕口令一样的角色名字，而是让我发现了身边藏着的Bee Watcher。我们制定了一个Process，期望它能极大地改善我们的研发状况，可是发现不尽如人意，原因可能是Process执行得不到位，于是，我们制定了更多的Process来确保我们的Process能更好地得到执行。这难道不是一个Bee Watcher。你发现了吗？请将更多的Bee Watcher以Comments形式告诉我吧，对我而言，这一定会是一个不错的收获。:\</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Exception Has Been Normal]]></title>
+    <link href="http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal/"/>
+    <updated>2013-05-30T18:31:00+08:00</updated>
+    <id>http://blog.zhangliaoyuan.com/blog/2013/05/30/exception-has-been-normal</id>
+    <content type="html"><![CDATA[<p>My friend Simon talked with me, he would like to buy some instant coffee or ice cream in supermarket, but he found that, all of them including one ingredient is non-dairy creamer(植脂末). This ingredient is used to make the drink more smooth, it&rsquo;s a replacement of milk, but it&rsquo;s bad for human health. Any way, it&rsquo;s better than melamine(三聚氰胺). Nowadays, you are hard to find instant coffee without non-dairy in China.</p>
+
+<p>Another story what I heard there is a government department named as &ldquo;temporary emergency processing center for cover of sewer well&rdquo; (窨井盖临时应急处理中心) is hiring a fixed officer. And as government perspective view, this department will be always existed even the name including &ldquo;temporary&rdquo;, the reason is they have to alwyas handle the &ldquo;temporary&rdquo; &amp; &ldquo;emergency&rdquo; issue. But as I know, the cover of sewer well shall be managed by municipal administration.</p>
+
+<p>The third story is restrict the car to solve the traffic jam, i.e. if the last digit of your car license plate number is 1 or 9, your car will be ban on road on Monday, 2 or 8 will be ban on road on Tuesday, and so on&hellip;. This is a temporary solution for traffic jam issue, but currently, it&rsquo;s becoming a final solution, it&rsquo;s normal for administration department.</p>
+
+<p>So we can understand from those stories, once problem happen, there will be temporary solution coming, in programming area, we called &ldquo;workaround&rdquo;, and there is no further analysis, and temporary solution will act as final solution, workaround will act as solution. Once there is another problem happen, there will be another temporary solution coming, or another &ldquo;workaround&rdquo; be used. A workaround helps to solve another workaround, and another workaround is used to solve another another workaround problem&hellip;.</p>
+
+<p>But why? I often ask this question to myself and my colleague. It might be caused by lazy, yes, that&rsquo;s one reason. But another problem in government administration area, the temporary solution can solve some problems of employment, and there will be more position for officer ask, even it&rsquo;s not needed. In software programming area as well, more workaround, more maintenance is needed, and more engineers are needed. But all of us forget one thing is find out the root cause, and fix it.</p>
+
+<p>If exception has been normal, around of you use workaround solve another problem of workaround, it means the situation around of you has been worse, you need to consider quit only if you can solve it. :\</p>
+]]></content>
+  </entry>
+  
+</feed>

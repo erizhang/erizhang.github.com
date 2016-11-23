@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>关于结对开发的那些事儿 - Actionary</title>
+  <meta name="author" content="Eric Zhang">
+
+  
+  <meta name="description" content="今天是"双11"，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。 在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40225877-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Actionary</a></h1>
+  
+    <h2>A man is valued by his works, not his words!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.zhangliaoyuan.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">关于结对开发的那些事儿</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-11T21:12:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>今天是"双11"，据说这个词已经被注册了商标，不知道这里用会不会侵权啊。这样的日子里，连上班早高峰都不堵车了，传说都是昨晚伤得，大家起不了早。这不，我的搭档都伤得要去买膏方了。</p>
+
+<p>在这样的成双成对的日子里，让我想到了软件开发的结对。(这个引子太牵强了，LOL)在讨论结对开发的时候，我们很容易想到XP中提到的navigator与driver的形式的结对开发。那么结对开发还有其他形式吗？答案是有的。</p>
+
+<p>我们认为，结对开发是用于团队的ramp up的利器之一。团队建立，先分析人，结对开发是一种加强团队成员彼此了解的好机会，这是一种交换学习的形式，设想一下，团队里有7位同事，如果大家都曾彼此结对工作过，大家彼此的了解会更深入，哪些人擅长什么都很清楚。</p>
+
+<p>以老带新的形式进行结对，或者以交换学习新知识和新技能的需要进行结对。需要注意的是，结对的时候，两个人的能力水平差距不宜过大，这样会影响结对工作的效果。多鼓励团队成员自发结对工作，当然，做为经理，可以对结对进行调整，如job rotation的形式等等，多创造一些结对工作的机会。如两个程序员一起结对，程序员和测试人员结对，tutor跟newcomer结对等等。</p>
+
+<p>我们会问，如果大家结对，有没有什么形式来保证大家在开发过程中不会走错路？其实这个问题跟结不结对没有关系，一般来说，架构师会做一个全局的考虑来避免走错路，另外，在daily meeting上也可以通过对任务的更新来发现并避免走错路，每次会议，都问一句能力比较强的同事：有没有什么建议或不同意见？</p>
+
+<p>采用这样的结对方式，可以有效地提高团队的能力，达到团队能力的最优，我们需要的是团队能力的最优，而不是单个个体的最优。如果我们在结对的过程中发现团队的合作或配比不是最优，我们可以打乱团队，重新洗牌。</p>
+
+<p>能不能做到结对开发，这是文化的问题。我们可以通过对能力比较强的同事设定这样的KPI来解决，如，考核该员工结对培养了多少人，另外做360度feedback来考核员工，他所曾经结对过的同事给他反馈。所以我们建议，针对刚成立起来的团队，必须做到100%的结对工作，越是关键，越是困难时期，越是要快速的将团队整体的实力进行提升，而提升的过程必须是learning through work，而结对工作就是一个比较好的手段。我们可以给团队建立一个结对工作图，只有之间有结对工作，将两者之间用线连接起来，以此来跟踪团队结对工作情况。</p>
+
+<p><img src="/images/2014-11-11-pair-work/pair-work-map.png" title="Pair Work Map" alt="Alt text" /></p>
+
+<p>是不是所有工作都应该结对？很显然，不是，结对工作的目的如果是想做团队的能力培养，那么结对的工作内容应该是那些可以让一部分能力强的员工帮助这一块比较弱的员工的工作，如对某个业务模块的编程，测试用例的编写等等，而那些适合独立思考的任务，则给员工留足独立思考的空间吧。所以，员工之间可以达成一个agreement，比如，每天下午的13:00 - 16:00之间会用于pair work，而其他的时间留给各自吧。</p>
+
+<p>为了保证团队建设的可持续性，我们建议直线经理的关注点做如下分配，50%的时间用于团队人员相关事务，30%用于项目相关的事务，而20%的时间则用于hands on的团队工作，如跟团队成员以结对的形式进行工作。这样的直线经理，才能对团队的动态进行洞悉。</p>
+
+<p>其实结对工作可以让参与者完全投入，并能产生积极的工作压力，从这个角度来说，是有助于工作效率的提升，谁也不知道一个看似独自努力工作的人是不是在努力工作，但是，两个在一起努力工作的人肯定是在努力工作。当然，在这样的过程中，做为直线经理，需要关注并影响团队的负面情绪。做为结对开发的推广，我们可能通过KPI考核方式的改变，如考核合作这一块，鼓励尝试使用好的方法，双向推进，真下而上去educate你的经理，自上而上的要求你的团队成员。</p>
+
+<p>通过结对开发，我们可以有效保证产品的质量和开发效率的基础上，做好团队整体能力的提升。</p>
+
+<p>-EOF-</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Eric Zhang</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-11T21:12:00+08:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/" data-via="zhangliaoyuan" data-counturl="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/02/talk-about-agile/" title="Previous Post: 2B青年欢乐多之敏捷扫盲">&laquo; 2B青年欢乐多之敏捷扫盲</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/11/16/what-i-learned-in-coderetreat/" title="Next Post: What I learned in Global Day of Coderetreat">What I learned in Global Day of Coderetreat &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
+<li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
+<li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (12)</a></li>
+<li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
+<li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
+<li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
+<li class='category'><a href='/blog/categories/technology/'>technology (2)</a></li>
+<li class='category'><a href='/blog/categories/thinking/'>thinking (3)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/24/exploding-fake-in-unit-test/">Exploding Fake in Unit Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <p><a class="twitter-timeline" href="https://twitter.com/zhangliaoyuan" data-widget-id="360654469018554368">Tweets by @zhangliaoyuan</a></p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Eric Zhang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'actionary';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/';
+        var disqus_url = 'http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

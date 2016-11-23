@@ -1,1 +1,502 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Actionary</title>
+  <meta name="author" content="Eric Zhang">
+
+  
+  <meta name="description" content="What&rsquo;s exploding fake? let&rsquo;s see below source code firstly. 1
+2
+3
+4
+int a_stub(){ fail(&quot;Boom!!! I shouldn&#39;t have been called!!!& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.zhangliaoyuan.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Actionary" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-40225877-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Actionary</a></h1>
+  
+    <h2>A man is valued by his works, not his words!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.zhangliaoyuan.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/10/24/exploding-fake-in-unit-test/">Exploding Fake in Unit Test</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-10-24T21:22:49+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:22 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>What&rsquo;s <strong>exploding fake</strong>?</h2>
+
+<p>let&rsquo;s see below source code firstly.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">a_stub</span><span class="p">(){</span>
+</span><span class='line'>  <span class="n">fail</span><span class="p">(</span><span class="s">&quot;Boom!!! I shouldn&#39;t have been called!!!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Even more popular:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">int</span> <span class="nf">a_stub</span><span class="p">(){</span>
+</span><span class='line'>  <span class="n">fail</span><span class="p">(</span><span class="s">&quot;Hey!!! I&#39;m actually called! Now you can think about &quot;</span>\
+</span><span class='line'>  <span class="s">&quot;what behaviour do you want me to have. Do you want me to &quot;</span>\
+</span><span class='line'>  <span class="s">&quot;return a specific value?&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So where this <strong>exploding fake</strong> will be used? For example, you would like to add unit test case for legacy code, in order to pass the compilation, you have to add hundreds of stubs, but you do NOT have enough time to check what&rsquo;s the stub purpose and return value, so you can make the stub be self exploding first. And then you can pass the compilation and add unit test case. Once there is stub exploding, then to check whether the stub shall be called, shall the stub have behaviour, and what&rsquo;s return value.</p>
+
+<h2>Automatically generate exploding fake?</h2>
+
+<p>As we know, lots of stubs are needed during unit testing for legacy code, is there any easy way to generate exploding fake automatically?</p>
+
+<p>Because the stub is the dependency&rsquo;s function signature, actually, so, if you can get the dependancies&#8217; signature, that will be easy to generate, for example, tool <a href="https://github.com/terryyin/lizard.git" title="lizard repo">lizard</a> could read all the functions signature, it will be good way to write a script to generate <strong>exploding fake</strong>.</p>
+
+<p>Actually, James Grenning has already implement such script for the <strong>exploding fake</strong> generation: <a href="https://github.com/jwgrenning/cpputest-starter-project/tree/master/tests/exploding-fakes" title="exploding fakes">source>></a></p>
+
+<h2>Does make sense to making exploding fake for dynamic programming language?</h2>
+
+<p>No, because the dynamic programming language is not complied and linked, it will be naturally failed once the dependency missing. In another words, it&rsquo;s self-exploding type, :p</p>
+
+<p>&ndash; EOF &ndash;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-03-09T13:02:39+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>1:02 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>背景</h2>
+
+<p>常常被很多朋友问到关于XP的问题，如什么是XP，什么又是工程实践，跟敏捷啥关系等等这样的问题。相信这些看似简单的问题，有很多人抱有同样的疑问。</p>
+
+<p>本文旨在帮助工程师了解XP的知识点，更深入的话题请参考扩展阅读，对某一话题的辩论请移步至相应辩论区的文章，本文只做基本解释，不做更深入探讨。如果有陈述谬误，请在评论区注明，非常感谢。</p>
+
+<h2>什么是XP？<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></h2>
+
+<p>XP是Extreme Programming的缩写，中文译为极限编程，是Kent Beck<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>等人在上世级九十年代发明的一种软件工程方法。极限编程是一种强调团队工作的工作方式，它是多种敏捷方式的一种。与Scrum不同的是，Scrum是一种工作方式的框架，从组织到团队的设计，而XP关注的是具体的工程技术实践。XP旨在通过工程实践的合理搭配使用，使开发者们能够自信地响应客户需求。强调<strong>反馈环</strong>机制，客户与研发团队之间的反馈环，测试与开发的反馈环，具体代码实现跟单元测试之间的反馈环，结对之间的反馈环。极限编程认为在软件研发过程中，变化是无所不在的，人们不应回避变化，而应该适应变化，通过对反馈的检视，去适应变化。
+<img src="/images/2016-03-09-know-xp/Extreme_Programming.svg.png" alt="Alt" /> <sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></p>
+
+<p>在XP中，常见的工程实践有：</p>
+
+<h3>测试驱动开发 (TDD: Test-Driven Development)<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup></h3>
+
+<p>也有人称之为单元测试先行。这是一种编程方式，在传统的瀑布软件开发中，人们习惯把单元测试当做测试的一部分，认为编程就是指产品代码的实现，只有在产品代码实现之后才能编写单元测试去验证代码的实现，在编程的过程中，人们更关注实现的部分，即所谓的<strong>HOW</strong>，单元测试是后置的。但是，在TDD中，单元测试被认为是描述单元需求（大部分是函数的需求）一种手段，测试用例成为一种自动化的单元测试代码，首先通过单元测试确定要实现什么，即所谓<strong>WAHT</strong>的部分，再实现产品代码，即<strong>HOW</strong>的部分，产品代码的编写始终以需求来驱动。</p>
+
+<p><img src="/images/2016-03-09-know-xp/red_green_refactor.jpg" alt="Alt" /></p>
+
+<p>测试驱动开发的原理是：</p>
+
+<ul>
+<li>没有单元测试，不实现任何功能代码；</li>
+<li>只编写仅能代表一种失败情况的测试代码；</li>
+<li>只编写恰好能通过单元测试的产品代码。</li>
+</ul>
+
+
+<h3>验收测试驱动开发(ATDD)</h3>
+
+<p>ATDD是Acceptance Test-Driven Development的缩写。很多的工程师把它理解为自动化测试驱动开发（Automatic Test Driven Development），因为在很多公司在强调测试的自动化，其实这两者之间并没有太大的联系。ATDD强调的也是需求的澄清，通过举例的手段对用户故事需求进行澄清，再接着让这些例子变成一个个的测试用例，在功能需求被实现后，用这些测试用例去验证功能实现是否满足需求，而这需求的澄清和测试用例的实现是前置在具体的开发实现之前的。因为是通过举例的形式来描述功能的需求说明，也称之为SbE（Specification by Example，中文译为实例化需求），其同样要求测试前置。可以比较着TDD的概念来理解，TDD是对函数级别的需求说明，再驱动实现，而ATDD是对用户故事的级别的需求说明，分析，再驱动实现，他们都要求测试前置，即关注<strong>WHAT</strong>。</p>
+
+<p><img src="/images/2016-03-09-know-xp/SbE.png" height="300" width="400" title="SbE" alt="Alt" /></p>
+
+<p>而测试自动化是一种缩短反馈周期，实现回归测试（Regression Test）的手段。结合着持续集成系统，可以实现一键自动化的集成与部署。</p>
+
+<h3>结对编程</h3>
+
+<p>结对编程（Pair Programming），即两个人一起编写代码，共享显示器及键盘，一位同事担任的是navigator的角色，另一位是driver的角色。结对编程的前提是代码集体所有制（Collective Code Ownership），即代码为团队所共有，团队为代码的质量共同承担责任。一般人理解结对编程是两个人干一件事，是对人力资源的浪费，实则不然。因为：</p>
+
+<ul>
+<li>结对编程可以及时的完成结对代码审查，减少代码的缺陷率</li>
+<li>结对编程可以帮助人员的能力提升</li>
+<li>结对编程可以帮助攻关</li>
+<li>结对编程可以提高编程工作的专注度</li>
+</ul>
+
+
+<p>想了解更多结对编程的内容，可以参考之前的文章：<a href="http://blog.zhangliaoyuan.com/blog/2014/11/11/pair-work/" title="Pair Programming">关于结对开发的那些事儿</a></p>
+
+<h3>持续集成 (Continuous Integration)</h3>
+
+<p>持续集成在XP的实践中占据着非常重要的位置。首先要了解什么是<strong>集成</strong>，然后再讨论<strong>持续</strong>的概念。集成无非就是收集、打包和验证的过程，这就是集成的概念。软件的代码由不同的人编写，需要将所有的代码从不同的位置收集到一处，然后进行编译，这就是一般SCM的概念（即软件配置管理），将编译出来的二进制文件部署到验证环境中，进行软件的验证，这就是一般传统理解的测试 <sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup>的概念。
+为了让产品可以持续地交付到客户那里，从客户处获得客户的反馈，就有必要让产品可以持续地集成，加快集成的频率，缩短集成的周期，这就是持续的概念。为了让集成能够持续地运转，我们就有了持续集成系统，如Jekins帮助我们管理一个个持续集成的任务，Git或subversion做软件的配置管理，用自动化的编译工具对代码进行打包（因不同的开发语言而不同），自动化的单元测试，自动化的验收测试。提供一个清晰快速的反馈机制等等。进而可以演化为通过持续集成系统可以对整个开发工作进行可视化，精益方法运用到持续集成的工作中，指导项目的管理等等。进而延伸到持续部署、持续交付。</p>
+
+<p><img src="/images/2016-03-09-know-xp/CI.png" title="CI" alt="Alt" /> <sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup></p>
+
+<p>如果XP的各个工程实践是珍珠的话，那么串起这些珍珠项链的绳子就是持续集成。</p>
+
+<h2>如何学习和实践XP</h2>
+
+<p>除了了解这些基本概念外，需要了解这些实践背后的本质：反馈环 —— 通过获得反馈，持续改进的方式来适应变化的能力。还有就是不断实践，这不像学习别的东西，听个概念就可以跟人辩驳，XP是一门实践性非常强的方法，与Scrum和Kanban有着非常大的不同，Scrum是组织框架设计，Kanban适用于团队局部优化，而XP却是实打实地技术实践。小到可以从单个工程师编写代码养成良好地单元测试的习惯，再到两个人结对开发，进行可以做团队的持续集成，大到整个产品级别或系统级别的持续集成和交付。不积跬步无以至千里；不积小流，无以成江海。</p>
+
+<h2>结尾</h2>
+
+<p>最后希望本文能够对需要了解XP的同学有所帮助，也希望有更多的朋友能够一道学习，我们不只是要成为了一名把活干完的工程师，而是成为一名如何把活干好的工程师，不是成为了一名只想着构造的工程师，而是在构造之前会想要构造什么的工程师，我们是要制造产品，而不是次品，我们不是码农，而是匠人。</p>
+
+<p>&ndash; EOF &ndash;</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>更多内容可以参考<a href="http://www.extremeprogramming.org/" title="XP">Extreme Programming: A gentle introduction</a><a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+<li id="fn:2">
+<p>Kent Beck也是敏捷宣言的十七位发起人之一，<em>Test-Driven Development: By Example</em>的作者<a href="#fnref:2" rev="footnote">&#8617;</a></p></li>
+<li id="fn:3">
+<p>图片来源https://en.wikipedia.org/wiki/Extreme_programming#/media/File:Extreme_Programming.svg<a href="#fnref:3" rev="footnote">&#8617;</a></p></li>
+<li id="fn:4">
+<p>可阅读Uncle Bob的<a href="http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html" title="TDD cycles">The Cycles of TDD</a><a href="#fnref:4" rev="footnote">&#8617;</a></p></li>
+<li id="fn:5">
+<p>这里指狭义理解的测试概念，测试的概念可以往验证、探索等各个方向延伸讨论，这里不做展开。<a href="#fnref:5" rev="footnote">&#8617;</a></p></li>
+<li id="fn:6">
+<p>图片来自http://www.continuousautomation.com/<a href="#fnref:6" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-12-05T22:46:11+08:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>1. install <code>zsh</code>:</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># install zsh-5.0.7
+</span><span class='line'># prerequisite: gcc ncurses-devel readline-devel pcre-devel zlib-devel
+</span><span class='line'>curl -L http://jaist.dl.sourceforge.net/project/zsh/zsh/5.0.7/zsh-5.0.7.tar.bz2 | tar jx
+</span><span class='line'>cd zsh-5.0.7/
+</span><span class='line'>./configure --prefix=/usr/local/zsh/5.0.7 --enable-cap --enable-pcre --enable-multibyte --disable-gdbm
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span><span class='line'>sudo alternatives --install /usr/local/bin/zsh zsh /usr/local/zsh/5.0.7/bin/zsh 50000</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>2. set the default shell to <code>zsh</code>:</h2>
+
+<h3>2.1 update the <code>/etc/shells</code>, append <code>zsh</code> path there.</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/bin/sh
+</span><span class='line'>/bin/bash
+</span><span class='line'>/sbin/nologin
+</span><span class='line'>/usr/bin/sh
+</span><span class='line'>/usr/bin/bash
+</span><span class='line'>/usr/sbin/nologin
+</span><span class='line'>/bin/tcsh
+</span><span class='line'>/bin/csh
+</span><span class='line'>/usr/local/bin/zsh
+</span><span class='line'>/usr/local/zsh</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2.2 change the default shell to <code>zsh</code></h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chsh -s `which zsh`
+</span><span class='line'>sudo shutdown -r 0</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Install the <code>oh-my-zsh</code></h2>
+
+<p><a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. cutomize the theme of terminal</h2>
+
+<p><a href="http://www.if-not-true-then-false.com/2012/solarized-linux/">http://www.if-not-true-then-false.com/2012/solarized-linux/</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+</span><span class='line'>gnome-terminal-colors-solarized/install.sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ndash; EOF &ndash;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/2">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/agile/'>agile (4)</a></li>
+<li class='category'><a href='/blog/categories/management/'>management (3)</a></li>
+<li class='category'><a href='/blog/categories/programmer/'>programmer (1)</a></li>
+<li class='category'><a href='/blog/categories/programming/'>programming (12)</a></li>
+<li class='category'><a href='/blog/categories/reading/'>reading (3)</a></li>
+<li class='category'><a href='/blog/categories/self-management/'>self-management (2)</a></li>
+<li class='category'><a href='/blog/categories/startup/'>startup (1)</a></li>
+<li class='category'><a href='/blog/categories/technology/'>technology (2)</a></li>
+<li class='category'><a href='/blog/categories/thinking/'>thinking (3)</a></li>
+
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/10/24/exploding-fake-in-unit-test/">Exploding Fake in Unit Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/09/know-xp/">敏捷扫盲之XP(Extreme Programming)篇</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/05/customize-the-terminal/">Customize Your Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/12/how-to-successfully-host-and-facilitate-coderetreat/">How to Successfully Host and Facilitate Coderetreat</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/15/how-to-support-latex-chinese-editing-in-texstudio-under-mac/">How Does TeXstudio Support Chinese Words Edit in LaTeX Under Mac</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <p><a class="twitter-timeline" href="https://twitter.com/zhangliaoyuan" data-widget-id="360654469018554368">Tweets by @zhangliaoyuan</a></p>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Eric Zhang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'actionary';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
