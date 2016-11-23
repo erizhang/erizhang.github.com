@@ -4,7 +4,7 @@
   <title><![CDATA[Actionary]]></title>
   <link href="http://blog.zhangliaoyuan.com/atom.xml" rel="self"/>
   <link href="http://blog.zhangliaoyuan.com/"/>
-  <updated>2016-11-23T17:13:51+08:00</updated>
+  <updated>2016-11-23T17:18:59+08:00</updated>
   <id>http://blog.zhangliaoyuan.com/</id>
   <author>
     <name><![CDATA[Eric Zhang]]></name>
@@ -2067,6 +2067,12 @@ client@client-Workstation:~/tmp/a$
 <h3>4.7. Create the jenkins job</h3>
 
 <p>If you have already finished above steps, now you can follow the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gerrit+Trigger" title="Gerrit Trigger">Gerrit Trigger official guideline</a> to create the jenkins job. I&rsquo;m not going to repeat it in this post again.</p>
+
+<h2>Further reading</h2>
+
+<p><a href="https://review.openstack.org/Documentation/intro-quick.html" title="gerrit code review">Gerrit Code Review - A Quick Introduction</a></p>
+
+<p>&ndash; EOF &ndash;</p>
 ]]></content>
   </entry>
   
